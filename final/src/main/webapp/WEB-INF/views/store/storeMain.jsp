@@ -3,22 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
+<style type="text/css">
 *{
 	margin: 0;
 	padding: 0;
-}
-
-body{
-	font-family:"Malgun Gothic", "맑은 고딕", NanumGothic, 나눔고딕, 돋움, sans-serif;
-	font-size: 14px;
-	
 }
 
 .body-main{
@@ -62,34 +50,34 @@ table{
 
 </style>
 
-</head>
-<body>
+
+
 
 <div class="body-container">
 	<div class="body-main">
 		
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+	  <div class="carousel-inner">
+	    <div class="carousel-item active">
+	      <img src="..." class="d-block w-100" alt="...">
+	    </div>
+	    <div class="carousel-item">
+	      <img src="..." class="d-block w-100" alt="...">
+	    </div>
+	    <div class="carousel-item">
+	      <img src="..." class="d-block w-100" alt="...">
+	    </div>
+	  </div>
+	  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
 
 
 
@@ -248,5 +236,3 @@ table{
 
 
 
-</body>
-</html>

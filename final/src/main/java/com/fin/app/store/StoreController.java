@@ -9,7 +9,7 @@ public class StoreController {
 	
 	@RequestMapping("main")
 	public String main() throws Exception{
-		return "store/storeMain";
+		return ".store.storeMain";
 	}
 	
 }
