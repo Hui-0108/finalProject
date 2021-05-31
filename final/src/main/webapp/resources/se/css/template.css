@@ -234,7 +234,7 @@ img.img-full-width {
 #nino-header {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url(../images/bg-header.jpg) no-repeat center center / cover;
+	background: url(resources/se/img/mainDog.jpg) no-repeat center center / cover;
 }
 #nino-header:after {
 	content: "";
@@ -309,6 +309,31 @@ img.img-full-width {
 	font-weight: 700;
 	font-size: 18px;
 	margin-right: 3px;
+}
+
+#nino-slider .staticBox {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 20px;
+	width: 40%;
+	height: 400px;
+	margin: 10px;
+	text-align: center;
+	font-family: 맑은 고딕, sans-serif;
+}
+
+#nino-slider .donationBox {
+	display: table-cell;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding: 20px;
+	width: 45%;
+	height: 350px;
+	margin: 10px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 40px;
+	font-family: 맑은 고딕, sans-serif;
 }
 /* =============== LAYOUT - MENU AREA =============== */
 #nino-navbar {

@@ -80,3 +80,119 @@ jQuery(function($) {
 		return false;
 	});
 });
+
+$(function(){
+	Highcharts.chart('semiPieStatic', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: 0,
+	        plotShadow: false,
+	        backgroundColor:'transparent'
+	    },
+	    title: {
+	        text: '유기동물현황',
+	        align: 'center',
+	        verticalAlign: 'middle',
+	        y: 60
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    plotOptions: {
+	        pie: {
+	            dataLabels: {
+	                enabled: true,
+	                distance: -50,
+	                style: {
+	                    fontWeight: 'bold',
+	                    color: 'white'
+	                }
+	            },
+	            startAngle: -90,
+	            endAngle: 90,
+	            center: ['50%', '75%'],
+	            size: '110%'
+	        }
+	    },
+	    series: [{
+	        type: 'pie',
+	        name: 'Browser share',
+	        innerSize: '50%',
+	        data: [
+	            ['Chrome', 58.9],
+	            ['Firefox', 13.29],
+	            ['Internet Explorer', 13],
+	            ['Edge', 3.78],
+	            ['Safari', 3.42],
+	            {
+	                name: 'Other',
+	                y: 7.61,
+	                dataLabels: {
+	                    enabled: false
+	                }
+	            }
+	        ]
+	    }]
+	});
+	
+	Highcharts.chart('regionStatic', {
+
+	    chart: {
+	        type: 'column',
+	        backgroundColor:'transparent'	
+	    },
+
+	    title: {
+	        text: '지역별 입양률 및 안락사율 (%)'
+	    },
+
+	    xAxis: {
+	        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+	    },
+
+	    yAxis: {
+	        allowDecimals: false,
+	        min: 0,
+	        title: {
+	            text: 'Number of fruits'
+	        }
+	    },
+
+	    tooltip: {
+	        formatter: function () {
+	            return '<b>' + this.x + '</b><br/>' +
+	                this.series.name + ': ' + this.y + '<br/>' +
+	                'Total: ' + this.point.stackTotal;
+	        }
+	    },
+
+	    plotOptions: {
+	        column: {
+	            stacking: 'normal'
+	        }
+	    },
+
+	    series: [{
+	        name: 'John',
+	        data: [5, 3, 4, 7, 2],
+	        stack: 'male'
+	    }, {
+	        name: 'Joe',
+	        data: [3, 4, 4, 2, 5],
+	        stack: 'male'
+	    }, {
+	        name: 'Jane',
+	        data: [2, 5, 6, 2, 1],
+	        stack: 'female'
+	    }, {
+	        name: 'Janet',
+	        data: [3, 0, 4, 4, 3],
+	        stack: 'female'
+	    }]
+	});
+});
