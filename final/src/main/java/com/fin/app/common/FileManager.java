@@ -206,7 +206,7 @@ public class FileManager {
 	 */
 	public boolean doZipFileDownload(String[] sources, String[] originals, String zipFilename, HttpServletResponse response) {
 		String pathname = System.getProperty("user.dir") + File.separator + "temp";
-		String archiveFilename;
+		String archiveFilename;				//현재 내가 작업하고있는곳 + temp 라고해서 경로 만듬
 		
 		// 파일들을 압축
 		archiveFilename = fileCompression(sources, originals, pathname);
@@ -232,7 +232,7 @@ public class FileManager {
 	 * @return				압축된 파일명
 	 */
 	public String fileCompression(String[] sources, String[] originals, String pathname) {
-		String archiveFilename = null;
+		String archiveFilename = null;//압축한 파일명
 		String fullpathname = null;
 		
 		final int MAX_SIZE = 2048;
@@ -240,8 +240,8 @@ public class FileManager {
 		String s;
 		File f;
 		
-        ZipOutputStream zos = null;
-        FileInputStream fis = null;
+        ZipOutputStream zos = null; //압축파일로 저장하는 거고
+        FileInputStream fis = null;	//파일을 읽어오는거고..
         try {
         	f = new File(pathname);
         	if(! f.exists()) {
@@ -261,16 +261,17 @@ public class FileManager {
             	// 압축파일에 압축되는 파일명
             	// zos.putNextEntry(new ZipEntry(sources[idx]));
             	if(originals!=null && originals.length>=idx) {
-            		s = originals[idx];
+            		//s = originals[idx];
+            		s = originals[idx].substring(originals[idx].lastIndexOf(File.separator));
             	} else {
             		s = sources[idx].substring(sources[idx].lastIndexOf(File.separator));
             	}
             	if(s.indexOf(File.separator)==-1) s=File.separator+s;
-            	zos.putNextEntry(new ZipEntry(s));
+            	zos.putNextEntry(new ZipEntry(s));//압축파일명
             	
             	length = 0;
                 while ( ( length = fis.read(buf) ) > 0) {
-                	zos.write(buf, 0, length);
+                	zos.write(buf, 0, length);//압축파일을 읽어서 넣음
                 }
                 zos.closeEntry();
                 fis.close();
