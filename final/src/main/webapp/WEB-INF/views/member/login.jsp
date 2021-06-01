@@ -29,6 +29,15 @@
   padding-left: 15px;
   margin-top:5px; margin-bottom:15px;
 }
+
+.body-main {
+  width: 550px; height:760px;
+  margin: 0px 0px 0px 0px;
+}
+
+.body-main .bodym-right {
+  float: left;
+}
 </style>
 
 <script type="text/javascript">
@@ -66,7 +75,23 @@ function sendLogin() {
 	            <button type="button" class="btn btn-link">아이디찾기</button>
 	            <button type="button" class="btn btn-link">패스워드찾기</button>
 	        </div>
+	        <div style="margin-top:10px; text-align: center;">${message}</div>
+	    </form>
+	</div>
+	<div class="body-main bodym-right">
+	    <form class="form-signin" name="loginForm" method="post">
+	        <h2 class="form-signin-heading">회원 로그인</h2>
+	        <input type="text" id="mId" name="mId" class="form-control loginTF" autofocus="autofocus"
+	                  placeholder="아이디">
+	        <input type="password" id="mPwd" name="mPwd" class="form-control loginTF"
+	                  placeholder="패스워드">
+	        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendLogin();">로그인 <span class="glyphicon glyphicon-ok"></span></button>
 	        
+	        <div style="margin-top:10px; text-align: center;">
+	            <button type="button" class="btn btn-link">회원가입</button>
+	            <button type="button" class="btn btn-link">아이디찾기</button>
+	            <button type="button" class="btn btn-link">패스워드찾기</button>
+	        </div>
 	        <div style="margin-top:10px; text-align: center;">${message}</div>
 	    </form>
 	</div>
