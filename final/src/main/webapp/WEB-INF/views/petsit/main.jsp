@@ -38,14 +38,14 @@
 		<div style="width: 1000px;">
 			<div class="petListTitle"><p><b>평점이 높은 전문가들을 만나보세요</b></p></div>
 			<div class="petListMore">
-				<div><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
 			</div>
 			<div class="petListItem">
 				<div class="info">
 					<ul>
 						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>웰시코기 전문가</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -58,9 +58,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>강아지를 아끼는 펫시터입니다</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -73,9 +73,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>마당이 있어요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -88,9 +88,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>미국에서왔어요 한국좋아요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -101,23 +101,22 @@
 						</li>					
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
 		<div style="width: 1000px;">
-			<div class="petListTitle"><p><b>가까운 펫시터들을 만나보세요</b></p></div>
+			<div class="petListTitle"><p><b>HOT 펫시터 모아보기</b></p></div>
 			<div class="petListMore">
-				<div><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
 			</div>
 			<div class="petListItem">
 				<div class="info">
 					<ul>
 						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>웰시코기 전문가</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -130,9 +129,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>강아지를 아끼는 펫시터입니다</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -145,9 +144,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>마당이 있어요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -160,9 +159,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>미국에서왔어요 한국좋아요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -173,7 +172,6 @@
 						</li>					
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -182,14 +180,14 @@
 		<div style="width: 1000px;">
 			<div class="petListTitle"><p><b>모든 펫시터를 만나보세요</b></p></div>
 			<div class="petListMore">
-				<div><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
 			</div>
 			<div class="petListItem">
 				<div class="info">
 					<ul>
 						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>웰시코기 전문가</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -202,9 +200,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>강아지를 아끼는 펫시터입니다</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -217,9 +215,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>마당이 있어요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -232,9 +230,9 @@
 				</div>
 				<div class="info">
 					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li>서울 서초구 서초동</li>
-						<li>믿고맡기세요 경력12년베테</li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
+						<li style="font-size: 12px;">서울 서초구 서초동</li>
+						<li><b>미국에서왔어요 한국좋아요</b></li>
 						<li class="grade">
 							<i class="fas fa-star"></i>
 							<i class="fas fa-star"></i>
@@ -245,8 +243,8 @@
 						</li>					
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 	</div>
+
 </div>

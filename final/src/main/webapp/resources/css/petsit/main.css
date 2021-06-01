@@ -3,14 +3,14 @@
 .petsitMain {
 	font-size: 15px;
 	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
-	color: black;
+	color: rgb(57, 60, 71);
 }
 .petsitMain input {
 	width: 475px;
     height: 59px;
 	display: flex;
 	border: 1.5px solid rgb(223, 227, 234);
-	border-radius: 3px;
+	border-radius: 4px;
 	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
 }
 .petsitMain input:focus {
@@ -105,6 +105,9 @@
 .petsitMain .petListMore {
 	width: 30%;
 	float: left;
+	padding-right: 7px;
+	padding-bottom: 15px;
+
 }
 
 .petsitMain .petListMore div {
@@ -130,15 +133,16 @@
 	width: 100%;
 	float: left;
 	text-align: left;
+	padding-left: 25px;
 }
 .petsitMain .info {
 	width: 25%;
 	float: left;
 }
 .petsitMain .info img {
-	width: 245px;
-    height: 170px;
-    border-radius: 3px;
+	width: 230px;
+    height: 163px;
+    border-radius: 5px;
 }
 
 .petsitMain .petListItem ul, .petListItem li {
