@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="loginMember" parameterType="String" resultType="com.fin.app.member.Member">
+		SELECT mNum, mId, mPwd, mNick
+		FROM member
+		WHERE mId = #{mId} 
+	</select>
+	
+    <select id="memberSeq" resultType="Long">
+       SELECT member_seq.NEXTVAL FROM dual 
+    </select>
+
+    <insert id="client" parameterType="Long">
+		INSERT INTO member(mNum, mType) VALUES (#{mNum}, #{mType}) 
+    </insert>
+    
+    <insert id="insertMember" parameterType="com.fin.app.member.Member">
+		INSERT INTO member(mNum, mId, mPwd, mNick, mRoll)
+		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, #{mRoll}) 
+    </insert>
+    
+     <insert id="insertMemberDetail" parameterType="com.fin.app.member.Member">
+		INSERT  memberDetail(mId, mBirth, mEmail, mtel, mzip, mAddr1, mAddr2)
+		VALUES (#{mId}, #{mBirth}, #{mEmail}, #{mtel}, 
+				#{mzip, jdbcType=VARCHAR}, #{mAddr1, jdbcType=VARCHAR}, 
+				#{mAddr2, jdbcType=VARCHAR})		
+    </insert>
+
+    <update id="insertMemberAndDetail" parameterType="com.fin.app.member.Member">
+		INSERT ALL
+		INTO member(mNum, mId, mPwd, mNick)
+		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}) 
+		INTO memberDetail(mId, mBirth, mEmail, mtel, mzip, mAddr1, mAddr2)
+		VALUES (#{mId}, #{mBirth}, #{mEmail}, #{mtel}, 
+				#{mzip, jdbcType=VARCHAR}, #{mAddr1, jdbcType=VARCHAR}, 
+				#{mAddr2, jdbcType=VARCHAR})
+		SELECT * FROM dual		
+    </update>
+
+</mapper>
