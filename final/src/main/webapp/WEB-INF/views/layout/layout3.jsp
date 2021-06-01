@@ -15,19 +15,27 @@
 	
 	 
 	<!-- css -->
+	<!--
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/bootstrap.min.css">
-	<!-- 에러 주석 처리 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/prettyPhoto.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/unslider.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/template.css">
-
+	-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap-icons.css" type="text/css">
+	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fontawesome/css/all.css" rel="stylesheet">
 	
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
 	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<!--
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.min.js"></script>
+	-->
 	<script type="text/javascript">
 	
 	$(function(){
@@ -60,6 +68,7 @@
 	</div>
 	
 	<!-- javascript -->
+	<!--
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.min.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/isotope.pkgd.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.prettyPhoto.js"></script>
@@ -69,5 +78,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/unslider-min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/template.js"></script>
+	-->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap4/js/popper.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap4/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
 	
 </html>
