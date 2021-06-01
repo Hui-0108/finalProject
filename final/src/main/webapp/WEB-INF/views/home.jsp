@@ -225,8 +225,8 @@
 			</h2>
 			<div class="sectionContent">
 				<div class="nino-devices">
-					<img class="tablet" src="images/unique-design/img-1.png" alt="">
-					<img class="mobile" src="images/unique-design/img-2.png" alt="">
+					<img class="tablet" src="" alt="">
+					<img class="mobile" src="" alt="">
 				</div>
 			</div>
     	</div>
@@ -247,7 +247,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="text-center">
-							<img src="images/what-we-do/img-1.jpg" alt="">
+							<img src="" alt="">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -373,7 +373,7 @@
 									<a href="#" class="nino-icon"><i class="mdi mdi-pinterest"></i></a>
 									<a href="#" class="nino-icon"><i class="mdi mdi-instagram"></i></a>
 								</div>
-								<img src="images/our-team/img-1.jpg" alt="">
+								<img src="" alt="">
 							</div>
 						</div>
 						<div class="info">
@@ -390,7 +390,7 @@
 									<a href="#" class="nino-icon"><i class="mdi mdi-pinterest"></i></a>
 									<a href="#" class="nino-icon"><i class="mdi mdi-instagram"></i></a>
 								</div>
-								<img src="images/our-team/img-2.jpg" alt="">
+								<img src="" alt="">
 							</div>
 						</div>
 						<div class="info">
@@ -407,7 +407,7 @@
 									<a href="#" class="nino-icon"><i class="mdi mdi-pinterest"></i></a>
 									<a href="#" class="nino-icon"><i class="mdi mdi-instagram"></i></a>
 								</div>
-								<img src="images/our-team/img-3.jpg" alt="">
+								<img src="" alt="">
 							</div>
 						</div>
 						<div class="info">
@@ -425,12 +425,12 @@
     <section id="nino-brand">
     	<div class="container">
     		<div class="verticalCenter fw" layout="row">
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-1.png" alt=""></a></div>
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-2.png" alt=""></a></div>
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-3.png" alt=""></a></div>
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-4.png" alt=""></a></div>
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-5.png" alt=""></a></div>
-    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="images/brand/img-6.png" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
+    			<div class="col-md-2 col-sm-4 col-xs-6"><a href="#"><img src="" alt=""></a></div>
     		</div>
     	</div>
     </section><!--/#nino-brand-->
@@ -450,8 +450,8 @@
 		<div class="sectionContent">
 			<ul class="nino-portfolioItems">
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-1.jpg">
-						<img src="images/our-work/img-1.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-crown nino-icon"></i>
@@ -462,8 +462,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-2.jpg">
-						<img src="images/our-work/img-2.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-cube-outline nino-icon"></i>
@@ -474,8 +474,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-3.jpg">
-						<img src="images/our-work/img-3.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-desktop-mac nino-icon"></i>
@@ -486,8 +486,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-4.jpg">
-						<img src="images/our-work/img-4.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-flower nino-icon"></i>
@@ -498,8 +498,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-5.jpg">
-						<img src="images/our-work/img-5.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-gamepad-variant nino-icon"></i>
@@ -510,8 +510,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-6.jpg">
-						<img src="images/our-work/img-6.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-gnome nino-icon"></i>
@@ -522,8 +522,8 @@
 					</a>
 				</li>
 				<li class="item">
-					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-7.jpg">
-						<img src="images/our-work/img-7.jpg" />
+					<a class="nino-prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="">
+						<img src="" />
 						<div class="overlay">
 							<div class="content">
 								<i class="mdi mdi-guitar-electric nino-icon"></i>
@@ -546,7 +546,7 @@
 					<li>
 						<div layout="row" class="verticalCenter">
 							<div class="nino-avatar fsr">
-								<img class="img-circle img-thumbnail" src="images/testimonial/img-1.jpg" alt="">
+								<img class="img-circle img-thumbnail" src="" alt="">
 							</div>
 							<div>
 								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
@@ -557,7 +557,7 @@
 					<li>
 						<div layout="row" class="verticalCenter">
 							<div class="nino-avatar fsr">
-								<img class="img-circle img-thumbnail" src="images/testimonial/img-2.jpg" alt="">
+								<img class="img-circle img-thumbnail" src="" alt="">
 							</div>
 							<div>
 								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
@@ -568,7 +568,7 @@
 					<li>
 						<div layout="row" class="verticalCenter">
 							<div class="nino-avatar fsr">
-								<img class="img-circle img-thumbnail" src="images/testimonial/img-3.jpg" alt="">
+								<img class="img-circle img-thumbnail" src="" alt="">
 							</div>
 							<div>
 								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
@@ -594,7 +594,7 @@
 					<div class="col-md-6">
 						<div layout="row" class="item">
 							<div class="nino-avatar fsr">
-								<img class="img-circle" src="images/happy-client/img-1.jpg" alt="">
+								<img class="img-circle" src="" alt="">
 							</div>
 							<div class="info">
 								<h4 class="name">Matthew Dix</h4>
@@ -608,7 +608,7 @@
 					<div class="col-md-6">
 						<div layout="row" class="item">
 							<div class="nino-avatar fsr">
-								<img class="img-circle" src="images/happy-client/img-2.jpg" alt="">
+								<img class="img-circle" src="" alt="">
 							</div>
 							<div class="info">
 								<h4 class="name">Nick Karvounis</h4>
@@ -624,7 +624,7 @@
 					<div class="col-md-6">
 						<div layout="row" class="item">
 							<div class="nino-avatar fsr">
-								<img class="img-circle" src="images/happy-client/img-3.jpg" alt="">
+								<img class="img-circle" src="" alt="">
 							</div>
 							<div class="info">
 								<h4 class="name">Jaelynn Castillo</h4>
@@ -638,7 +638,7 @@
 					<div class="col-md-6">
 						<div layout="row" class="item">
 							<div class="nino-avatar fsr">
-								<img class="img-circle" src="images/happy-client/img-4.jpg" alt="">
+								<img class="img-circle" src="" alt="">
 							</div>
 							<div class="info">
 								<h4 class="name">Mike Petrucci</h4>
@@ -667,7 +667,7 @@
 					<div class="col-md-4 col-sm-4">
 						<article>
 							<div class="articleThumb">
-								<a href="#"><img src="images/our-blog/img-1.jpg" alt=""></a>
+								<a href="#"><img src="" alt=""></a>
 								<div class="date">
 									<span class="number">15</span>
 									<span class="text">Jan</span>
@@ -686,7 +686,7 @@
 					<div class="col-md-4 col-sm-4">
 						<article>
 							<div class="articleThumb">
-								<a href="#"><img src="images/our-blog/img-2.jpg" alt=""></a>
+								<a href="#"><img src="" alt=""></a>
 								<div class="date">
 									<span class="number">14</span>
 									<span class="text">Jan</span>
@@ -705,7 +705,7 @@
 					<div class="col-md-4 col-sm-4">
 						<article>
 							<div class="articleThumb">
-								<a href="#"><img src="images/our-blog/img-3.jpg" alt=""></a>
+								<a href="#"><img src="" alt=""></a>
 								<div class="date">
 									<span class="number">12</span>
 									<span class="text">Jan</span>

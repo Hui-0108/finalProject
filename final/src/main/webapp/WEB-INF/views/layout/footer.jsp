@@ -45,21 +45,21 @@
 	        			<h3 class="nino-colHeading">Blogs</h3>
 	        			<ul class="listArticles">
 	        				<li layout="row" class="verticalCenter">
-	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-4.jpg" alt=""></a>
+	        					<a class="articleThumb fsr" href="#"><img src="" alt=""></a>
 	        					<div class="info">
 	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
 	        						<div class="date">Jan 9, 2016</div>
 	        					</div>
 	        				</li>
 	        				<li layout="row" class="verticalCenter">
-	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-5.jpg" alt=""></a>
+	        					<a class="articleThumb fsr" href="#"><img src="" alt=""></a>
 	        					<div class="info">
 	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
 	        						<div class="date">Jan 9, 2016</div>
 	        					</div>
 	        				</li>
 	        				<li layout="row" class="verticalCenter">
-	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-6.jpg" alt=""></a>
+	        					<a class="articleThumb fsr" href="#"><img src="" alt=""></a>
 	        					<div class="info">
 	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
 	        						<div class="date">Jan 9, 2016</div>
@@ -72,18 +72,18 @@
         			<div class="colInfo">
 	        			<h3 class="nino-colHeading">instagram</h3>
 	        			<div class="instagramImages clearfix">
-	        				<a href="#"><img src="images/instagram/img-1.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-2.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-3.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-4.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-5.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-6.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-7.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-8.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-9.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-3.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-4.jpg" alt=""></a>
-	        				<a href="#"><img src="images/instagram/img-5.jpg" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
+	        				<a href="#"><img src="" alt=""></a>
 	        			</div>
 	        			<a href="#" class="morePhoto">View more photos</a>
         			</div>
