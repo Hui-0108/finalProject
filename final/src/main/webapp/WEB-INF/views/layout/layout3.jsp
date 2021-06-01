@@ -15,11 +15,12 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css">
+	<!-- 에러 주석 처리 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/prettyPhoto.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/unslider.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/template.css">
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 	
 	<script src="https://code.highcharts.com/highcharts.js"></script>
