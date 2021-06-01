@@ -24,8 +24,7 @@
 	
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.min.js"></script>
 	
 	<script type="text/javascript">
 	
@@ -69,5 +68,4 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/unslider-min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/template.js"></script>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
 </html>

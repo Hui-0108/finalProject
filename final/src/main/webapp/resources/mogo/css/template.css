@@ -234,7 +234,7 @@ img.img-full-width {
 #nino-header {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url(resources/mogo/img/main_ani.jpg) no-repeat center center / cover;
+	background: url() no-repeat center center / cover;
 }
 #nino-header:after {
 	content: "";
@@ -252,7 +252,7 @@ img.img-full-width {
 #nino-sli {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url(resources/mogo/img/main_ani.jpg) no-repeat center center / cover;
+	background: url() no-repeat center center / cover;
 }
 #nino-sli:after {
 	content: "";
@@ -540,7 +540,7 @@ section {
 #nino-uniqueDesign {
 	padding-bottom: 0;
 	margin-bottom: 30px;
-	background: #e0e0e0 url(../images/unique-design/bg-unique-design.jpg) no-repeat center center / cover;
+	background: #e0e0e0 url() no-repeat center center / cover;
 }
 #nino-uniqueDesign .nino-devices {
 	position: relative;
@@ -769,7 +769,7 @@ section {
 }
 /* =============== SECTION HAPPY CLIENT =============== */
 #nino-happyClient {
-	background: url(../images/happy-client/bg-happy-client.jpg) no-repeat center center / cover;
+	background: url() no-repeat center center / cover;
 }
 #nino-happyClient .item {
 	margin-bottom: 30px;
@@ -850,7 +850,7 @@ section {
 /* =============== SECTION MAP =============== */
 #nino-map {
 	padding: 40px 0;
-	background: url(../images/map/bg-map.jpg) no-repeat center center / cover;
+	background: url() no-repeat center center / cover;
 }
 #nino-map .nino-sectionHeading {
 	color: #f28989;
@@ -1047,7 +1047,7 @@ footer .nino-copyright {
 	display: none;
 	cursor: pointer;
 	z-index: 2;
-	background: #E74C3C url(../images/go-to-top.png) center center no-repeat;
+	background: #E74C3C url() center center no-repeat;
 }
 #nino-scrollToTop:hover {
 	text-decoration: none;
