@@ -21,12 +21,12 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="resources/se/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="resources/se/css/materialdesignicons.min.css" />
-	<link rel="stylesheet" type="text/css" href="resources/se/css/jquery.mCustomScrollbar.min.css" />
-	<link rel="stylesheet" type="text/css" href="resources/se/css/prettyPhoto.css" />
-	<link rel="stylesheet" type="text/css" href="resources/se/css/unslider.css" />
-	<link rel="stylesheet" type="text/css" href="resources/se/css/template.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/materialdesignicons.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/jquery.mCustomScrollbar.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/prettyPhoto.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/unslider.css" />
+	<link rel="stylesheet" type="text/css" href="resources/mogo/css/template.css" />
 	
 	<script src="https://kit.fontawesome.com/b98d923d4e.js" crossorigin="anonymous"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -110,22 +110,22 @@
 				<ol class="carousel-indicators clearfix">
 					<li data-target="#nino-slider" data-slide-to="0" class="active">
 						<div class="inner">
-							<span class="number">01</span> intro	
+							<span class="number">01</span> Statistics	
 						</div>
 					</li>
 					<li data-target="#nino-slider" data-slide-to="1">
 						<div class="inner">
-							<span class="number">02</span> work
+							<span class="number">02</span> Donation
 						</div>
 					</li>
 					<li data-target="#nino-slider" data-slide-to="2">
 						<div class="inner">
-							<span class="number">03</span> about
+							<span class="number">03</span> PetSitter
 						</div>
 					</li>
 					<li data-target="#nino-slider" data-slide-to="3">
 						<div class="inner">
-							<span class="number">04</span> contacts
+							<span class="number">04</span> Store
 						</div>
 					</li>
 				</ol>
@@ -138,10 +138,10 @@
 	<section id="nino-story">
 		<div class="container">
 			<h2 class="nino-sectionHeading">
-				<span class="nino-subHeading">What we do</span>
-				Story about us
+				<span class="nino-subHeading">Statistics</span>
+				유기동물 통계
 			</h2>
-			<p class="nino-sectionDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+			<p class="nino-sectionDesc">매년 전국적으로 10만 마리 이상의 유기동물들이 보호소로 구조되고 있습니다. <br> 안타깝게도 이 중 절반에 가까운 동물들은 다시 가족을 만나지 못하고 안락사되거나 자연사하고 있습니다. </p>
 			<div class="sectionContent">
 				<div class="row nino-hoverEffect">
 					<div class="col-md-4 col-sm-4">
@@ -149,9 +149,9 @@
 							<a class="overlay" href="#">
 								<span class="content">
 									<i class="mdi mdi-account-multiple nino-icon"></i>
-									super team
+									유기동물 비율 혹은 설명
 								</span>
-								<img src="images/story/img-1.jpg" alt="">
+								<img class="statImg" src="resources/mogo/img/stat_ani1.jpg" alt="">
 							</a>
 						</div>
 					</div>
@@ -160,9 +160,9 @@
 							<a class="overlay" href="#">
 								<span class="content">
 									<i class="mdi mdi-image-filter-center-focus-weak nino-icon"></i>
-									Creativity
+									유기동물 비율 혹은 설명
 								</span>
-								<img src="images/story/img-2.jpg" alt="">
+								<img class="statImg" src="resources/mogo/img/stat_ani2.jpg" alt="">
 							</a>
 						</div>
 					</div>
@@ -171,9 +171,9 @@
 							<a class="overlay" href="#">
 								<span class="content">
 									<i class="mdi mdi-airplay nino-icon"></i>
-									Digital
+									유기동물 비율 혹은 설명
 								</span>
-								<img src="images/story/img-3.jpg" alt="">
+								<img class="statImg" src="resources/mogo/img/stat_ani3.jpg" alt="">
 							</a>
 						</div>
 					</div>
@@ -189,23 +189,23 @@
     		<div layout="row" class="verticalStretch">
     			<div class="item">
     				<div class="number">42</div>
-    				<div class="text">Web Design Projects</div>
+    				<div class="text">유기동물 통계1</div>
     			</div>
     			<div class="item">
     				<div class="number">123</div>
-    				<div class="text">happy client</div>
+    				<div class="text">유기동물 통계2</div>
     			</div>
     			<div class="item">
     				<div class="number">15</div>
-    				<div class="text">award winner</div>
+    				<div class="text">유기동물 통계3</div>
     			</div>
     			<div class="item">
     				<div class="number">99</div>
-    				<div class="text">cup of coffee</div>
+    				<div class="text">유기동물 통계4</div>
     			</div>
     			<div class="item">
     				<div class="number">24</div>
-    				<div class="text">members</div>
+    				<div class="text">유기동물 통계5</div>
     			</div>
     		</div>
     	</div>
@@ -908,15 +908,15 @@
 	<a href="#" id="nino-scrollToTop">Go to Top</a>
 	
 	<!-- javascript -->
-	<script type="text/javascript" src="resources/se/js/jquery.min.js"></script>	
-	<script type="text/javascript" src="resources/se/js/isotope.pkgd.min.js"></script>
-	<script type="text/javascript" src="resources/se/js/jquery.prettyPhoto.js"></script>
-	<script type="text/javascript" src="resources/se/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resources/se/js/jquery.hoverdir.js"></script>
-	<script type="text/javascript" src="resources/se/js/modernizr.custom.97074.js"></script>
-	<script type="text/javascript" src="resources/se/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript" src="resources/se/js/unslider-min.js"></script>
-	<script type="text/javascript" src="resources/se/js/template.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="resources/mogo/js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/jquery.hoverdir.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/modernizr.custom.97074.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/unslider-min.js"></script>
+	<script type="text/javascript" src="resources/mogo/js/template.js"></script>
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

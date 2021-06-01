@@ -234,7 +234,7 @@ img.img-full-width {
 #nino-header {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url(resources/se/img/mainDog.jpg) no-repeat center center / cover;
+	background: url(resources/mogo/img/main_ani.jpg) no-repeat center center / cover;
 }
 #nino-header:after {
 	content: "";
@@ -316,7 +316,7 @@ img.img-full-width {
 	box-sizing: border-box;
 	padding: 20px;
 	width: 40%;
-	height: 400px;
+	height: 90%;
 	margin: 10px;
 	text-align: center;
 	font-family: 맑은 고딕, sans-serif;
@@ -327,7 +327,7 @@ img.img-full-width {
 	vertical-align: middle;
 	box-sizing: border-box;
 	padding: 20px;
-	width: 45%;
+	width: 60%;
 	height: 350px;
 	margin: 10px;
 	text-align: center;
