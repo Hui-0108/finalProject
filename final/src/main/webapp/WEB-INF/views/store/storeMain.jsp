@@ -19,7 +19,7 @@
     margin-top: 100px;
     margin-bottom: 30px;
 }
-
+/*
 .imgstore{
 	height: 500px;
 }
@@ -30,7 +30,7 @@
     width: 100%;
 
 }
-
+*/
 .img img{
 	width: 230px;
     height: 280px;
@@ -75,20 +75,24 @@
 }
 
 .name{
-	width: 170px;
-	height: 30px;
+    width: 170px;
+    height: 30px;
+    font-size: initial;
+    margin-top: 10px;
 }
 
 .price{
-	width: 170px;
+	text-align: right;
 	height: 50px;
 }
+
 #imgStore{
 	width: 100%;
 }
 .popularProduct, .totalProduct{
 	width: 100%;
 	padding-left: 50px;
+	    margin-left: 70px;
 }
 </style>
 
@@ -142,7 +146,7 @@
 				<c:forEach var="dto" items="$">
 					<div class="pproduct">
 						<div class="popularImg1 img">
-						<a><img alt="" src="${pageContext.request.contextPath}/resources/images/food.jpg"></a>
+						<a><img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg"></a>
 						</div>
 						<div class="popularName1 name">
 							<a>어쩌구사료1</a>
@@ -155,7 +159,7 @@
 					<div class="pproduct">
 						<div class="popularImg1 img">
 							<a>
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/food.jpg">
+								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
 							</a>						
 						</div>
 						<div class="popularName1 name">
@@ -170,7 +174,7 @@
 					<div class="pproduct">
 						<div class="popularImg1 img">
 							<a>
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/food.jpg">
+								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
 							</a>	
 						</div>
 						<div class="popularName1 name">
@@ -185,7 +189,7 @@
 					<div class="pproduct">
 						<div class="popularImg1 img">
 							<a>
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/food.jpg">
+								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
 							</a>
 						</div>
 						<div class="popularName1 name">
