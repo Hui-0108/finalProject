@@ -234,7 +234,6 @@ img.img-full-width {
 #nino-header {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url() no-repeat center center / cover;
 }
 #nino-header:after {
 	content: "";
@@ -252,7 +251,7 @@ img.img-full-width {
 #nino-sli {
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
-	background: url() no-repeat center center / cover;
+	background: url(../img/main_ani.jpg) no-repeat center center / cover;
 }
 #nino-sli:after {
 	content: "";

@@ -5,7 +5,7 @@
 
 <div id="nino-headerInner">		
 	<nav id="nino-navbar" class="navbar navbar-default" role="navigation">
-
+		<div class="container">
 	
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -15,7 +15,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="homepage.html">GaeMyo</a>
+				<a class="navbar-brand" href="home.jsp">GaeMyo</a>
 			</div>
 	
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,5 +35,6 @@
 					<li><a href="#" class="nino-search"><i class="fas fa-user"></i></a></li>
 				</ul>
 			</div>
+		</div>
 	</nav>
 </div>

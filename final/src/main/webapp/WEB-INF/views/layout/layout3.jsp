@@ -13,6 +13,7 @@
 	<title><tiles:insertAttribute name="title"/></title>
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	
+	 
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/bootstrap.min.css">
 	<!-- 에러 주석 처리 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css"> -->
