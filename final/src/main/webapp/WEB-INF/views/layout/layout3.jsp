@@ -12,19 +12,22 @@
 	<title><tiles:insertAttribute name="title"/></title>
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap-icons.css" type="text/css">
-
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style2.css" type="text/css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" type="text/css">
-	
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/materialdesignicons.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/prettyPhoto.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/unslider.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mogo/css/template.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
 	
 	<script type="text/javascript">
+	
 	$(function(){
 		$(document)
 		   .ajaxStart(function(){ // AJAX 시작
@@ -38,12 +41,11 @@
 	</script>
 </head>
 
-<body>
-	<header>
+	<header id="nino-header">
 	    <tiles:insertAttribute name="header"/>
 	</header>
 		
-	<main class="container">
+	<main>
 	    <tiles:insertAttribute name="body"/>
 	</main>
 	
@@ -55,9 +57,16 @@
 		<i id="loadingImage" class="fa fa-cog fa-spin fa-fw" style="font-size: 70px; color: 333;"></i> 
 	</div>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap4/js/popper.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap4/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
+	<!-- javascript -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.hoverdir.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/modernizr.custom.97074.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/unslider-min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/mogo/js/template.js"></script>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
-</body>
 </html>
