@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.header {
+	width: 100%;
+	height: 50px;
+	background: #c5811d;
+	color: antiquewhite;
+}
+
+.header a, .navItem a{
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.header .headerline {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+}
+
+.headTitle{
+    font-size: 20px;
+    padding-left: 10px;
+    margin-right: 150px;
+}
+
+.headTitle, .navItem{
+	float: left;
+	line-height: 50px;	
+}
+
+.navItem{
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 15px;
+}
+.headItemMenu{
+	float: right;
+	margin-right: 20px;
+}
+.headItem{
+	float: left;
+	line-height: 50px;
+    margin-left: 30px;	
+}
+.navItemMenu{
+	float: left;
+}
+.logout{
+	margin-left: 15px;
+}

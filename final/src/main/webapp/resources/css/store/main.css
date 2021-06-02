@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+
+.storeBody{
+	margin: 0;
+	padding: 0;
+}
+
+.productTitle{
+	font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.imgstore{
+	height: 500px;
+}
+
+.imgstore > img{
+    position: absolute;
+    left : 0;
+    width: 100%;
+
+}
+
+.img img{
+	width: 230px;
+    height: 280px;
+}
+
+.img{
+	width: 230px;
+    height: 280px;
+}
+
+/*
+.popularImg1 td, .popularImg2 td, .newImg1 td, .newImg2 td, .totalImg1 td, .totalImg2 td{
+	width: 170px;
+	height: 200px;
+}
+*/
+
+.cardBoarder{
+    margin-top: 130px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.pproduct, .ttproduct{
+    float: left;
+    margin-right: 30px;
+
+}
+.banner > img{
+    width: 100%;
+ 	
+}
+.storeCard{
+	width: 1000px;
+    margin-left: 120px;
+}
+.banner{
+	clear: both;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.donation{
+	background: gray;
+}
+
+.name{
+    width: 170px;
+    height: 30px;
+    font-size: initial;
+    margin-top: 10px;
+}
+
+.price{
+	text-align: right;
+	height: 50px;
+}
+
+#imgStore{
+	width: 100%;
+}
+.popularProduct, .totalProduct{
+	width: 100%;
+	padding-left: 50px;
+	margin-left: 70px;
+}
+
+.storeClick{
+	cursor: pointer;
+
+}

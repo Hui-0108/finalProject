@@ -20,8 +20,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap-icons.css" type="text/css">
 	
 	<!-- css (작업하신 css파일 링크는 여기에...) -->
-	<!-- store css -->
 	
+	<!-- header -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header/header.css" type="text/css">	
+	
+	<!-- store css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store/main.css" type="text/css">
+		
 	<!-- petsit css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/main.css" type="text/css">
 	
