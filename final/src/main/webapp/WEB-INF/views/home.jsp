@@ -100,9 +100,9 @@
     border-radius: 2rem;
 }
 
-.img-content {
+.sli-content {
 	font-size: 17px;
-	font-weight: 400;
+	font-weight: 700;
 }
 
 .card {
@@ -145,7 +145,6 @@ $("html").on('mousewheel', function(c) {
 	var sb = $(".window1").height();
 	
 	if(m > 1 && scrollEvent == false && count >= 1) {
-		console.log(count);
 		scrollEvent = true;
 		count--;
 		 $("html").stop().animate({scrollTop:sb*count},
@@ -153,7 +152,6 @@ $("html").on('mousewheel', function(c) {
 				scrollEvent = false;}
 			});
 	} else if (m < 1 && scrollEvent == false && count < 4) {
-		console.log(count);
 		scrollEvent = true;
 		count++;
 		 $("html").stop().animate({scrollTop:sb*count},
@@ -179,28 +177,28 @@ $("html").on('mousewheel', function(c) {
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
 			        <h2>Adopt Animals Adopt Family</h2>
-			        <p class="img-content">유기동물들은 여러분들의 도움이 필요해요</p>
+			        <p class="sli-content">유기동물들은 여러분들의 도움이 필요해요</p>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani2.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
 			        <a href="#" class="btn btn-outline-light">Donation</a>
-			        <p class="img-content">여러분의 후원금은 유기동물의 처우개선을 위해 사용됩니다</p>
+			        <p class="sli-content">여러분의 후원금은 유기동물의 처우개선을 위해 사용됩니다</p>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani3.png" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
 			        <a href="#" class="btn btn-outline-light">Pet Sitter</a>
-			        <p class="img-content">검증된 펫시터들을 만나보세요</p>
+			        <p class="sli-content">검증된 펫시터들을 만나보세요</p>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani4.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
 			        <a href="#" class="btn btn-outline-light">Store</a>
-			        <p class="img-content">스토어 수익금의 50%는 유기동물 보호단체에 기부됩니다</p>
+			        <p class="sli-content">스토어 수익금의 50%는 유기동물 보호단체에 기부됩니다</p>
 			      </div>
 			    </div>
 			  </div>

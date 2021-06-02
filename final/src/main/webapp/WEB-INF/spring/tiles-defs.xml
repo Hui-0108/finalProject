@@ -12,7 +12,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
 	</definition>
 	
-	<definition name=".homeLayout" template="/WEB-INF/views/layout/layout3.jsp">
+	<definition name=".homeLayout" template="/WEB-INF/views/layout/layout4.jsp">
 	    <put-attribute name="title" value="spring" />
 	    <put-attribute name="header" value="/WEB-INF/views/layout/home_header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
