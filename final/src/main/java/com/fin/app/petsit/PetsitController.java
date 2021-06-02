@@ -12,4 +12,9 @@ public class PetsitController {
 		return ".petsit.main";
 	}
 
+	@RequestMapping("reservation")
+	public String reservation() throws Exception {
+		return ".petsit.reservation";
+	}
+	
 }

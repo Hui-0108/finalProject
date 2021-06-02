@@ -10,11 +10,24 @@
 			<div style="width: 1000px;">
 				<div class="searchAddr">
 					<p><i class="fas fa-paper-plane"></i>&nbsp;<b>어디에 사시나요?</b></p>
-					<input type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
+					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
 				</div>
 				<div class="searchDate">
 					<p><i class="fas fa-calendar-alt"></i>&nbsp;<b>언제 맡기시나요?</b></p>
-					<input type="text" placeholder=" checkin, checkout 두칸으로 만들고 텍스트형식이 아니어야함">	
+					<div class="dateBar">
+						<div class="checkinCal">
+						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
+						</div>
+						<div>
+							<input class="checkDate" type="text" placeholder=" 체크인 날짜">	
+						</div>
+						<div class="pointR">
+							<i class="fas fa-arrow-right"></i>
+						</div>
+						<div>
+							<input class="checkDate" type="text" placeholder=" 체크아웃 날짜">	
+						</div>
+					</div>
 				</div>
 				<div class="searchCondition">
 					<p><i class="fas fa-check"></i>&nbsp;<b>원하는 조건을 설정하세요</b></p>
@@ -35,216 +48,166 @@
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
-		<div style="width: 1000px;">
-			<div class="petListTitle"><p><b>평점이 높은 전문가들을 만나보세요</b></p></div>
-			<div class="petListMore">
-				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+			<div class="petListTitle">
+				<p class="titleL">HOT 펫시터 모아보기</p>	
+				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>웰시코기 전문가</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>강아지를 아끼는 펫시터입니다</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>마당이 있어요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>미국에서왔어요 한국좋아요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-			</div>
+				<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>    			
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>		
 		</div>
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
-		<div style="width: 1000px;">
-			<div class="petListTitle"><p><b>HOT 펫시터 모아보기</b></p></div>
-			<div class="petListMore">
-				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+			<div class="petListTitle">
+				<p class="titleL">HOT 펫시터 모아보기</p>	
+				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>웰시코기 전문가</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>강아지를 아끼는 펫시터입니다</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>마당이 있어요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>미국에서왔어요 한국좋아요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-			</div>
+				<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>    			
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>		
 		</div>
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
-		<div style="width: 1000px;">
-			<div class="petListTitle"><p><b>모든 펫시터를 만나보세요</b></p></div>
-			<div class="petListMore">
-				<div style="float: right;"><p>더보기&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></p></div>
+			<div class="petListTitle">
+				<p class="titleL">HOT 펫시터 모아보기</p>	
+				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>웰시코기 전문가</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog2.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>강아지를 아끼는 펫시터입니다</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog3.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>마당이 있어요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-				<div class="info">
-					<ul>
-						<li><img src="${pageContext.request.contextPath}/resources/images/petsit/testdog4.jpg"></li>
-						<li style="font-size: 12px;">서울 서초구 서초동</li>
-						<li><b>미국에서왔어요 한국좋아요</b></li>
-						<li class="grade">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="far fa-star"></i>
-							<span>(12)</span>
-						</li>					
-					</ul>
-				</div>
-			</div>
+				<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>    			
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>		
 		</div>
 	</div>
-
+	<!-- 펫시터 리스트 -->
+	<div class="petList" align="center">
+			<div class="petListTitle">
+				<p class="titleL">HOT 펫시터 모아보기</p>	
+				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
+			</div>
+			<div class="petListItem">
+				<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">Go somewhere</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">Go somewhere</a>
+           			</div>
+       			</div>    			
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">Go somewhere</a>
+           			</div>
+       			</div>
+       			<div class="card cardEach cardEachL" style="width: 18rem;">
+           			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
+           			<div class="card-body">
+             			<h5 class="card-title">시터땡땡땡님</h5>
+               			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
+           			</div>
+       			</div>		
+		</div>
+	</div>
 </div>

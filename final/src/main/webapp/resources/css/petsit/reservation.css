@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.carousel .picture {
+	height: 600px;
+}
+
+.body-main {
+	margin-top: 73px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1027px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;	
+    background-color: yellow;
+    height: 500px;
+}
+
+.body-left {
+	width: 580px;
+	background-color: red;
+	height: 500px;
+}
+
+.body-right {
+	display: block;
+	background-color: blue;
+	height: 500px;
+}
