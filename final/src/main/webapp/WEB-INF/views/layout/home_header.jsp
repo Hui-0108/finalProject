@@ -3,15 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css">
-@font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 .header {
-	font-family: Cafe24Ssurround, sans-serif;
 	position: absolute;
 	width: 100%;
 	height: 35px;
@@ -30,7 +23,7 @@
 }
 
 .nav-item {
-	padding: 16px;
+	padding: 10px;
 	cursor: pointer;
 }
 
@@ -45,7 +38,7 @@
 }
 
 .nav-logo {
-	padding: 13px;
+	padding: 10px;
 	margin-right: 5px;
 	cursor: pointer;
 	display: inline-block;
