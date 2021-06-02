@@ -12,6 +12,16 @@
 	opacity: 0.7;
 }
 
+.carousel-caption .d-none .d-md-block {
+	line-height: 3;
+}
+
+.main-img {
+	align: center;
+	width: 100px;
+	height: 100px;
+}
+
 .section {
 	width: 100vw;
 	height: 100vh;
@@ -37,7 +47,40 @@
 .static-head {
 	font-weight: 700;
     font-size: 25px;
-    line-height: 1;
+    line-height: 2;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.donation-head {
+	font-weight: 700;
+    font-size: 25px;
+    line-height: 2;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.petsit-head {
+	font-weight: 700;
+    font-size: 25px;
+    line-height: 2;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.store-head {
+	font-weight: 700;
+    font-size: 25px;
+    line-height: 2;
     position: relative;
     padding-bottom: 20px;
     margin-bottom: 30px;
@@ -54,11 +97,40 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 100%;
+    border-radius: 2rem;
 }
 
 .img-content {
 	font-size: 17px;
 	font-weight: 400;
+}
+
+.card {
+	display: inline-block;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 15rem;
+}
+
+.card-title {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+
+.container {
+	text-align: center;
+}
+
+.store-content {
+	font-weight: 700;
+    font-size: 25px;
+    height: 50px;
+}
+
+.store-content > h2 {
+	line-height: 50px;
 }
 
 </style>
@@ -76,7 +148,7 @@ $("html").on('mousewheel', function(c) {
 		console.log(count);
 		scrollEvent = true;
 		count--;
-		 $("html").stop().animate({scrollTop:sb*count+50},
+		 $("html").stop().animate({scrollTop:sb*count},
 			{duration:300, complete: function () {
 				scrollEvent = false;}
 			});
@@ -84,7 +156,7 @@ $("html").on('mousewheel', function(c) {
 		console.log(count);
 		scrollEvent = true;
 		count++;
-		 $("html").stop().animate({scrollTop:sb*count+50},
+		 $("html").stop().animate({scrollTop:sb*count},
 			{duration:300, complete: function () {
 				scrollEvent = false;}
 			});
@@ -157,18 +229,102 @@ $("html").on('mousewheel', function(c) {
 	
 <div class="section window3">
 	<div class="cover cover2">
+		<div >
 		
+		</div>
+		<h2 class="donation-head">
+			후원은 유기동물에게 큰 도움이 됩니다
+		</h2> 
 	</div>
 </div>
 
 <div class="section window4">
 	<div class="cover cover3">
-	
+		<h2 class="petsit-head">
+			검증된 펫시터들을 만나보세요
+		</h2> 
+		<div class="container mainpetsit">
+			<div class="main-button petsit-button">
+				<button type="button" class="btn btn-light btnstore">펫시터 예약</button>
+			</div>
+			<div class="card">
+			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">후기제목</h5>
+			    <p class="card-text">후기내용</p>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">후기제목</h5>
+			    <p class="card-text">후기내용</p>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">후기제목</h5>
+			    <p class="card-text">후기내용</p>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">후기제목</h5>
+			    <p class="card-text">후기내용</p>
+			  </div>
+			</div>
+		</div>
 	</div>
 </div>
 
 <div class="section window5">
 	<div class="cover cover3">
-
+		<h2 class="store-head">
+			유기동물과 함께 나누는 개묘개묘 스토어
+		</h2> 
+		<div class="container mainstore">
+			<div class="store-button">
+				<button type="button" class="btn btn-light btnstore">스토어 바로가기</button>
+			</div>
+			<div class="store-content">
+				<h2>인기상품을 만나보세요</h2>
+			</div>
+		</div>
+		<div class="container mainstore">
+			<div class="card">
+			  <img class="main-img imgproduct" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">상품이름</h5>
+			    <p class="card-text">상품설명</p>
+			    <a href="#" class="btn btn-primary">상품 바로가기</a>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgproduct" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">상품이름</h5>
+			    <p class="card-text">상품설명</p>
+			    <a href="#" class="btn btn-primary">상품 바로가기</a>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgproduct" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">상품이름</h5>
+			    <p class="card-text">상품설명</p>
+			    <a href="#" class="btn btn-primary">상품 바로가기</a>
+			  </div>
+			</div>
+			<div class="card">
+			  <img class="main-img imgproduct" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">상품이름</h5>
+			    <p class="card-text">상품설명</p>
+			    <a href="#" class="btn btn-primary">상품 바로가기</a>
+			  </div>
+			</div>
+		</div>
 	</div>
 </div>
