@@ -34,7 +34,7 @@
 	<!-- jquery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
-	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.mousewheel.min.js"></script>
 	
 	
 	<script type="text/javascript">
