@@ -12,6 +12,16 @@
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
 	</definition>
 	
+	<definition name=".homeLayout" template="/WEB-INF/views/layout/layout3.jsp">
+	    <put-attribute name="title" value="spring" />
+	    <put-attribute name="header" value="/WEB-INF/views/layout/home_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/home_footer.jsp" />
+	</definition>
+	<definition name=".home.*" extends=".homeLayout"> 	
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
    <!-- 3단 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout3.jsp">
 	    <put-attribute name="title" value="spring" />
@@ -36,8 +46,11 @@
 	<definition name=".*.*" extends=".mainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
+	
 	<definition name=".*" extends=".mainLayout">
     	  <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
+	
+
 
 </tiles-definitions>
