@@ -3,7 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css">
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .footer {
+	font-family: Cafe24Ssurround, sans-serif;
 	position: absolute;
 	margin: 0;
 	padiing: 0;
@@ -12,6 +20,7 @@
 	z-index: 6;
 	color: white;
 	position: fixed;
+	border-top: 2px solid white;
 }
 
 .footer-stat {
@@ -20,7 +29,16 @@
 	float: left;
 	font-size: 15px;
 	font-weight: 700;
-	border: 2px solid white;
+	border-right: 2px solid white;
+}
+
+.footer-contact {
+	padding: 10px;
+	display: inline-block;
+	float: right;
+	font-size: 15px;
+	font-weight: 700;
+	border-right: 2px solid white;
 }
 
 </style>
@@ -28,8 +46,10 @@
 <footer>
 <div class="footer">
 	<div class="footer-content">
-		<span class="footer-stat">오늘 구조된 동물 : 23마리  입양률 : 32%</span>
+		<span class="footer-stat"><i class="fas fa-ambulance"></i> 오늘 구조된 동물 : 23마리 &nbsp;&nbsp;<i class="fas fa-heart"></i> 입양률 : 32% &nbsp;&nbsp;<i class="fas fa-heart-broken"></i> 안락사율 : 13%</span>
+		<span class="footer-contact">Contact Us &nbsp;&nbsp; GaeMyeo@gmail.com</span>
 	</div>
+	
 </div>
 
 

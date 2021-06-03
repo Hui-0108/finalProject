@@ -5,7 +5,21 @@
 	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
 	color: rgb(57, 60, 71);
 }
-.petsitMain input {
+
+.petsitMain .searchDong {
+   width: 475px;
+    height: 59px;
+   display: flex;
+   border: 1.5px solid rgb(223, 227, 234);
+   border-radius: 4px;
+   box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+}
+.petsitMain .searchDong:focus {
+   outline: none;
+   border: 1.5px solid rgb(113, 162, 255);
+}
+
+.petsitMain .dateBar {
 	width: 475px;
     height: 59px;
 	display: flex;
@@ -13,10 +27,41 @@
 	border-radius: 4px;
 	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
 }
-.petsitMain input:focus {
+
+.petsitMain .dateBar:focus {
 	outline: none;
-	border: 1.5px solid rgb(113, 162, 255);
+	border: 1.5px solid rgb(113, 162, 255);	
 }
+
+.petsitMain .checkDate {
+	border: none;
+	text-align: center;
+	height: 56px;
+}
+ 
+.petsitMain .fas fa-arrow-right {
+     margin-top: 10px;
+}
+
+.petsitMain .dateButton {
+	width: 23px;
+	height: 27px;
+	background-color: white;
+	border: none;
+	margin-top: 13px;
+	margin-left: 15px;
+}
+
+.petsitMain .checkinCal {
+	height: 56px;
+	margine: none;
+	padding: none;
+}
+
+.petsitMain .pointR {
+	padding: 17px 0px 0px
+}
+
 .petsitMain .search ul, .search li {
 	list-style: none;
 	padding-left: 0px;
@@ -88,18 +133,56 @@
 
 .petsitMain .petList {
 	width: 100%;
-	height: 350px;
+	height: 550px;
 	padding: 25px;
 	margin-top: 50px;
 	border-bottom: 1px solid rgb(231, 233, 235);
 }
 
-.petsitMain .petListTitle {
-	width: 70%;
+.petsitMain .cardEach {
+	margin-left: 12px;
+	margin-right: 12px;
+    float: left;
+}
+
+.petsitMain .cardEach .cardEachL {
+    clear: both;
+}
+
+
+.petsitMain .titleL {
 	float: left;
-	text-align: left;
-	font-size: 20px;
-	padding-left: 25px;
+	margin-left: 20px;
+	font-weight: 600;
+	font-size: 27px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.petsitMain .titleR {
+	float: right;
+	margin-right: 20px;
+	border: 1px solid rgb(129, 137, 155);
+    border-radius: 5px;
+    width: 94px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.petsitMain .sitterL {
+	width: 100%;
+	height: 650px;
+	padding: 15px;
+	margin-top: 50px;
+	border-bottom: 1px solid rgb(231, 233, 235);
+}
+
+.petsitMain .petListTitle {
+	width: 82%;
+	height: 60px;
+	text-align: center;
 }
 
 .petsitMain .petListMore {
@@ -130,11 +213,13 @@
 }
 
 .petsitMain .petListItem {
-	width: 100%;
-	float: left;
-	text-align: left;
-	padding-left: 25px;
+	width: 82%;
+	background-color:yellow;
+	float: center;
+	margin: auto;
+	text-align: center;	
 }
+
 .petsitMain .info {
 	width: 25%;
 	float: left;
