@@ -7,7 +7,7 @@
 	<!-- 검색영역 -->
 	<div class="search" align="center">
 		<form name="searchForm">
-			<div style="width: 1000px;">
+			<div style="width: 1300px;">
 				<div class="searchAddr">
 					<p><i class="fas fa-paper-plane"></i>&nbsp;<b>어디에 사시나요?</b></p>
 					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
@@ -47,7 +47,9 @@
 		</form>
 	</div>
 	<!-- 펫시터 리스트 -->
+	
 	<div class="petList" align="center">
+		<div style="width: 1300px;">
 			<div class="petListTitle">
 				<p class="titleL">HOT 펫시터 모아보기</p>	
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
@@ -85,10 +87,12 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>		
+       		</div>			
 		</div>
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
+		<div style="width: 1300px;">
 			<div class="petListTitle">
 				<p class="titleL">HOT 펫시터 모아보기</p>	
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
@@ -125,11 +129,13 @@
                			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
-       			</div>		
-		</div>
+       			</div>				
+			</div>
+		</div>	
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
+		<div style="width: 1300px;">
 			<div class="petListTitle">
 				<p class="titleL">HOT 펫시터 모아보기</p>	
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
@@ -166,11 +172,13 @@
                			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
-       			</div>		
-		</div>
+       			</div>				
+			</div>
+		</div>	
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="petList" align="center">
+		<div style="width: 1300px;">
 			<div class="petListTitle">
 				<p class="titleL">HOT 펫시터 모아보기</p>	
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
@@ -197,7 +205,7 @@
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
                			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
-             			<a href="#" class="btn btn-primary">Go somewhere</a>
+             			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
        			<div class="card cardEach cardEachL" style="width: 18rem;">
@@ -207,7 +215,8 @@
                			<p class="card-text">강아지를 사랑하는 시터입니다. 안심하고 아이를 맡겨주세요. 사랑으로 보살피고 케어하겠습니다! </p>
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
-       			</div>		
+       			</div>				
+			</div>
 		</div>
 	</div>
 </div>

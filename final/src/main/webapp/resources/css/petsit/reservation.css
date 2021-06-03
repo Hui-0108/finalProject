@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+* {
+	font-size: 15px;
+	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
+	color: rgb(57, 60, 71);
+}
+
 .carousel .picture {
 	height: 600px;
 }
@@ -8,22 +14,111 @@
 	margin-top: 73px;
     margin-left: auto;
     margin-right: auto;
-    width: 1027px;
+    width: 1100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;	
-    background-color: yellow;
-    height: 500px;
+    background: yellow; 
 }
 
 .body-left {
+	float: left;
 	width: 580px;
-	background-color: red;
-	height: 500px;
+	background-color: white;
 }
 
 .body-right {
-	display: block;
+	float: right;
+	width: 450px;
+	height: 1200px;
 	background-color: blue;
-	height: 500px;
+}
+
+.profile {
+	display: flex;
+    flex-direction: row;
+}
+
+.profile-p {
+	border: 1px solid #ccc;
+	width: 125px;
+	height: 125px;
+	line-height: 125px;
+	border-radius:45px;
+	background: #eee;
+	margin-left: 20px;
+}
+
+.frofile-t {
+	margin-left: 50px;
+	margin-top: 20px;
+}
+
+.best {
+	margin-top: 60px;
+	height: 100px;
+	text-align: center;
+	background-color: #EAEAEA;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+.intro {
+	margin-top: 60px;
+}
+
+.intro-d {
+	margin-top: 20px;
+}
+
+.certif {
+	margin-top: 60px;
+	height: 200px;
+}
+
+.certif-d {
+	margin: 32px 0px;	
+}
+
+.certf-dp {
+	background-color: gray;
+	border-radius: 5px;
+	width: 210px;
+	height: 140px;
+	float: left;
+	clear: both;
+	margin-left: 60px
+}
+
+.certf-de{
+	width: 190px;
+	height: 160px;
+	margin-right: 100px;
+	float:right;
+}
+
+.certif-title {
+	margin-top: 20px;
+}
+
+.certif-date {
+	margin-top: 30px;
+	font-size: x-small;
+}
+
+.review {
+	margin-top: 50px
+}
+
+.review h4 {
+	width: 200px;
+}
+
+.star{
+	width: 150px;
+	margin: 0px; 0px; 5px; 0px;
 }
