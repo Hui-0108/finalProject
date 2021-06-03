@@ -46,7 +46,9 @@ public class MemberController {
 		//세션에 로그인 정보 저장
 		SessionInfo info=new SessionInfo();
 		info.setmId(dto.getmId());
-		info.setmName(dto.getmName()); //mNick으로 해야하는지? 아니면 mNick을 추가해야하는지?
+		info.setmNick(dto.getmNick()); //mNick으로 해야하는지? 아니면 mNick을 추가해야하는지?
+		info.setmRole(dto.getmRole());
+		info.setmNum(dto.getmNum());
 		
 		session.setMaxInactiveInterval(30*60); // 세션유지시간 30분, 기본:30분
 		
