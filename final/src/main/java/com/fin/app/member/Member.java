@@ -14,8 +14,14 @@ public class Member {
 	private String mZip;
 	private String mAddr1, mAddr2;	
 	private String mEmail, mEmail1,mEmail2;
-	private String birth;
+	private String mBirth;
 	
+	public String getmBirth() {
+		return mBirth;
+	}
+	public void setmBirth(String mBirth) {
+		this.mBirth = mBirth;
+	}
 	public long getmNum() {
 		return mNum;
 	}
@@ -118,11 +124,6 @@ public class Member {
 	public void setmEmail2(String mEmail2) {
 		this.mEmail2 = mEmail2;
 	}
-	public String getBirth() {
-		return birth;
-	}
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
+
 		
 }
