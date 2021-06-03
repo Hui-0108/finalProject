@@ -20,6 +20,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap4/css/bootstrap-icons.css" type="text/css">
 	
 	<!-- css (작업하신 css파일 링크는 여기에...) -->
+	<!-- main css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home/home.css" type="text/css">
+	
 	<!-- store css -->
 	
 	<!-- petsit css -->
@@ -73,5 +76,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 	
 </html>
