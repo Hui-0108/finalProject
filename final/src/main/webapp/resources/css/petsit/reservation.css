@@ -1,16 +1,16 @@
 @charset "UTF-8";
 
-* {
+.petsitReserve {
 	font-size: 15px;
 	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
 	color: rgb(57, 60, 71);
 }
 
-.carousel .picture {
+.petsitReserve .carousel .picture {
 	height: 600px;
 }
 
-.body-main {
+.petsitReserve .body-main {
 	margin-top: 73px;
     margin-left: auto;
     margin-right: auto;
@@ -21,25 +21,25 @@
     background: yellow; 
 }
 
-.body-left {
+.petsitReserve .body-left {
 	float: left;
 	width: 580px;
 	background-color: white;
 }
 
-.body-right {
+.petsitReserve .body-right {
 	float: right;
 	width: 450px;
 	height: 1200px;
 	background-color: blue;
 }
 
-.profile {
+.petsitReserve .profile {
 	display: flex;
     flex-direction: row;
 }
 
-.profile-p {
+.petsitReserve .profile-p {
 	border: 1px solid #ccc;
 	width: 125px;
 	height: 125px;
@@ -49,12 +49,12 @@
 	margin-left: 20px;
 }
 
-.frofile-t {
+.petsitReserve .frofile-t {
 	margin-left: 50px;
 	margin-top: 20px;
 }
 
-.best {
+.petsitReserve .best {
 	margin-top: 60px;
 	height: 100px;
 	text-align: center;
@@ -67,24 +67,24 @@
     position: relative;
 }
 
-.intro {
+.petsitReserve .intro {
 	margin-top: 60px;
 }
 
-.intro-d {
+.petsitReserve .intro-d {
 	margin-top: 20px;
 }
 
-.certif {
+.petsitReserve .certif {
 	margin-top: 60px;
 	height: 200px;
 }
 
-.certif-d {
+.petsitReserve .certif-d {
 	margin: 32px 0px;	
 }
 
-.certf-dp {
+.petsitReserve .certf-dp {
 	background-color: gray;
 	border-radius: 5px;
 	width: 210px;
@@ -94,31 +94,31 @@
 	margin-left: 60px
 }
 
-.certf-de{
+.petsitReserve .certf-de{
 	width: 190px;
 	height: 160px;
 	margin-right: 100px;
 	float:right;
 }
 
-.certif-title {
+.petsitReserve .certif-title {
 	margin-top: 20px;
 }
 
-.certif-date {
+.petsitReserve .certif-date {
 	margin-top: 30px;
 	font-size: x-small;
 }
 
-.review {
+.petsitReserve .review {
 	margin-top: 50px
 }
 
-.review h4 {
+.petsitReserve .review h4 {
 	width: 200px;
 }
 
-.star{
+.petsitReserve .star{
 	width: 150px;
 	margin: 0px; 0px; 5px; 0px;
 }

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
-<div>
+<div class="petsitReserve">
 <div id="carouselExampleIndicators" class="carousel slide picture" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -30,7 +30,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-</div>
+
 <div class="body-main">
 	<div style="width: 1100px;">
 	<div class="body-left">
@@ -119,4 +119,4 @@
 	</div>
 </div>	
 </div>
-
+</div>
