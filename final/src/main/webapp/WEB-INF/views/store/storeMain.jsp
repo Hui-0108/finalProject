@@ -7,8 +7,9 @@
 상품의 경우 들어올때마다 추가 될때마다 floatleft를 하고 5번째는 clearboth와 floatleft같이 줌
 -->
 
+
 <div class="storeBody">
-	<div class="body-main">
+	<div class="storebody-main">
 
 		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 		  <ol class="carousel-indicators">
