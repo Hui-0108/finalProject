@@ -24,7 +24,7 @@
             	<i class="fas fa-user-alt"></i>
             	</a>
             	&nbsp;|&nbsp;
-            	<a href="">
+            	<a class="headerIcon" href="">
             	<i class="fas fa-shopping-cart"></i>
         		</a>
         

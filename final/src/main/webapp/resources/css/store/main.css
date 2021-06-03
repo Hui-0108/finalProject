@@ -6,30 +6,30 @@
 	padding: 0;
 }
 
-.productTitle{
+.storeBody .productTitle{
 	font-size: 30px;
     text-align: center;
     margin-top: 100px;
     margin-bottom: 30px;
 }
 
-.imgstore{
+.storeBody .imgstore{
 	height: 500px;
 }
 
-.imgstore > img{
+.storeBody .imgstore > img{
     position: absolute;
     left : 0;
     width: 100%;
 
 }
 
-.img img{
+.storeBody .img img{
 	width: 230px;
     height: 280px;
 }
 
-.img{
+.storeBody .img{
 	width: 230px;
     height: 280px;
 }
@@ -41,43 +41,43 @@
 }
 */
 
-.cardBoarder{
+.storeBody .cardBoarder{
     margin-top: 130px;
     margin-bottom: 30px;
     text-align: center;
 }
 
-.pproduct, .ttproduct{
+.storeBody .pproduct, .storeBody .ttproduct{
     float: left;
     margin-right: 30px;
 
 }
-.banner > img{
+.storeBody .banner > img{
     width: 100%;
  	
 }
-.storeCard{
+.storeBody .storeCard{
 	width: 1000px;
     margin-left: 120px;
 }
-.banner{
+.storeBody .banner{
 	clear: both;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
 
-.donation{
+.storeBody .donation{
 	background: gray;
 }
 
-.name{
+.storeBody .name{
     width: 170px;
     height: 30px;
     font-size: initial;
     margin-top: 10px;
 }
 
-.price{
+.storeBody .price{
 	text-align: right;
 	height: 50px;
 }
@@ -85,13 +85,13 @@
 #imgStore{
 	width: 100%;
 }
-.popularProduct, .totalProduct{
+.storeBody .popularProduct, .storeBody .totalProduct{
 	width: 100%;
 	padding-left: 50px;
 	margin-left: 70px;
 }
 
-.storeClick{
+.storeBody .storeClick{
 	cursor: pointer;
 
 }
