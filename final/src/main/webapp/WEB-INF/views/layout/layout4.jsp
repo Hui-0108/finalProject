@@ -78,4 +78,5 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 	
+	
 </html>
