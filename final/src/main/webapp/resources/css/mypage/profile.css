@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mypageProfile {
+	margin-top: 50px;
+}
+
+.mypageProfile .body-title {
+	width: 50%;
+	float: left;
+}
+
+.mypageProfile .body-title h3 {
+	font-family: Cafe24Ssurround;
+	text-align: left;
+}
+
+.mypageProfile .body-editButton {
+	width: 50%;
+	float: left;
+	text-align: right;
+	padding-top: 12px;
+}
+
+.mypageProfile .body-editButton span {
+	color: gray;
+}
+
+.mypageProfile .table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.mypageProfile .table-content {
+	margin-top: 25px;
+}
+
+.mypageProfile .table-content tr > td:nth-child(1) {
+	width: 100px;
+	padding-top: 12px;
+	padding-right: 5px;
+	text-align: right;
+	vertical-align: top;
+}
+.mypageProfile .table-content tr > td:nth-child(1) label {
+	font-weight: 700;
+}
+
+.mypageProfile .table-content tr > td:nth-child(2) {
+	padding-left: 10px;
+	padding-bottom: 13px;
+}
+
+.mypageProfile .table-content tr > td:nth-child(2) p:first-child {
+	padding-bottom: 5px;
+}
+
+.mypageProfile .table-content .lg {
+	width: 98%;
+}
+
+.mypageProfile .table-content .md {
+	width: 33%;
+}
+
+.mypageProfile .table-content .sm {
+	width: 23%;
+}

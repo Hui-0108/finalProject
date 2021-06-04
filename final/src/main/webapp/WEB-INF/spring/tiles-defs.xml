@@ -26,7 +26,7 @@
 	    <put-attribute name="title" value="spring" />
 	    <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
 	    <put-attribute name="myheader" value="/WEB-INF/views/layout/mypage_header.jsp" />
-	    <put-attribute name="sidebar" value="/WEB-INF/views/layout/sidebar.jsp" />
+	    <put-attribute name="sidebar" value="/WEB-INF/views/layout/mypahe_sidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
 	</definition>

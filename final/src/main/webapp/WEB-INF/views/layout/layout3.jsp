@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/reservation.css" type="text/css">
 	
 	<!-- mypage -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/info.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/profile.css" type="text/css">
 	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fontawesome/css/all.css" rel="stylesheet">

@@ -15,7 +15,7 @@
     <div class="header-right">
         <div class="headerUser">
             <c:if test="${not empty sessionScope.member}">
-                <span class="headerUserName">${sessionScope.member.userName}</span>님
+                <span class="headerUserName">${sessionScope.member.mNick}</span>님
                 &nbsp;|&nbsp;
                 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
                 &nbsp;|&nbsp;
