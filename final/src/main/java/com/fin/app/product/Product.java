@@ -3,94 +3,139 @@ package com.fin.app.product;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
-	private int num; //제품코드 
-	private int CateNum;//카테고리 번호
-	private int listNum;
-	private String Name;//상품명
-	private int Price;//가격
-	private int DiscountRate;//할인율
-	private String Content;//상세정보
+	private int pnum; //제품코드 
+	private int pCateNum;//카테고리 번호
+	private int listNum; //리스트번호
+	private String pName;//상품명
+	private int pPrice;//가격
+	private int pDiscountRate;//할인율
+	private String pContent;//상세정보
 	private int delivType;//배송조건
-	private int Date;//등록일
+	private int pDate;//등록일
 	
-	private String ImgName;//파일번호
-	private int ImgNum;//이미지파일 이름
+	private int pcateNum;
+	private String pcateName;
+	
+	
+	private String pImgName;//파일번호
+	private int pImgNum;//이미지파일 이름
 	
 	private MultipartFile upload;
-	
 
-	public int getCateNum() {
-		return CateNum;
+	public int getPnum() {
+		return pnum;
 	}
-	public void setCateNum(int cateNum) {
-		CateNum = cateNum;
+
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
 	}
+
+	public int getpCateNum() {
+		return pCateNum;
+	}
+
+	public void setpCateNum(int pCateNum) {
+		this.pCateNum = pCateNum;
+	}
+
 	public int getListNum() {
 		return listNum;
 	}
+
 	public void setListNum(int listNum) {
 		this.listNum = listNum;
 	}
-	public String getName() {
-		return Name;
+
+	public String getpName() {
+		return pName;
 	}
-	public void setName(String name) {
-		Name = name;
+
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
-	public int getPrice() {
-		return Price;
+
+	public int getpPrice() {
+		return pPrice;
 	}
-	public void setPrice(int price) {
-		Price = price;
+
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
-	public int getDiscountRate() {
-		return DiscountRate;
+
+	public int getpDiscountRate() {
+		return pDiscountRate;
 	}
-	public void setDiscountRate(int discountRate) {
-		DiscountRate = discountRate;
+
+	public void setpDiscountRate(int pDiscountRate) {
+		this.pDiscountRate = pDiscountRate;
 	}
-	public String getContent() {
-		return Content;
+
+	public String getpContent() {
+		return pContent;
 	}
-	public void setContent(String content) {
-		Content = content;
+
+	public void setpContent(String pContent) {
+		this.pContent = pContent;
 	}
-	public int getDelivType() {
-		return delivType;
+
+
+	public int getpDate() {
+		return pDate;
 	}
-	public void setDelivType(int delivType) {
-		this.delivType = delivType;
+
+	public void setpDate(int pDate) {
+		this.pDate = pDate;
 	}
-	public int getDate() {
-		return Date;
+
+	public int getPcateNum() {
+		return pcateNum;
 	}
-	public void setDate(int date) {
-		Date = date;
+
+	public void setPcateNum(int pcateNum) {
+		this.pcateNum = pcateNum;
 	}
-	public String getImgName() {
-		return ImgName;
+
+	public String getPcateName() {
+		return pcateName;
 	}
-	public void setImgName(String imgName) {
-		ImgName = imgName;
+
+	public void setPcateName(String pcateName) {
+		this.pcateName = pcateName;
 	}
-	public int getImgNum() {
-		return ImgNum;
+
+	public String getpImgName() {
+		return pImgName;
 	}
-	public void setImgNum(int imgNum) {
-		ImgNum = imgNum;
+
+	public void setpImgName(String pImgName) {
+		this.pImgName = pImgName;
 	}
-	public int getNum() {
-		return num;
+
+	public int getpImgNum() {
+		return pImgNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+
+	public void setpImgNum(int pImgNum) {
+		this.pImgNum = pImgNum;
 	}
+
 	public MultipartFile getUpload() {
 		return upload;
 	}
+
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
 	}
+
+	public int getDelivType() {
+		return delivType;
+	}
+
+	public void setDelivType(int delivType) {
+		this.delivType = delivType;
+	}
+	
+
 	
 	
 }

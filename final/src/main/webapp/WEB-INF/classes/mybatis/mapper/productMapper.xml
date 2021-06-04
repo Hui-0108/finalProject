@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	
+	<insert id="insertProduct" parameterType="com.fin.app.product.Product">
+		INSERT INTO product(pNum, pCateNum, pName, pPrice, pDisCountRate, pContent, delivType, pDate)
+		VALUES(product_seq.NEXTVAL, #{pCateNum}, #{pName}, #{pPrice}, #{pDisCountRate}, 
+		#{pContent}, #{delivType}, SYSDATE)	
+	</insert>
+	
+
+	
+</mapper>

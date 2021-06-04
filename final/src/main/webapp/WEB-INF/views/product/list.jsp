@@ -3,45 +3,57 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<style type="text/css">
+.productListBody{
+	width: 1300px;
+}
+.productListBody .prodcutListTop{
+	width: 100%;
+}
+
+.productListBody .productListMain ul, .productListBody .productListMain li{
+	list-style: none;
+}
+
+.productListBody .prooductSearchBar{
+	float: right;
+}
+</style>
+
+
 <div class="productListBody">
-	<div class="productNavBar">
-		
-	</div>
-	<div class="productListMain">
-		<table class="productTable">
-		<tr>
-			<td>
-				<h2>카테고리</h2>
-			</td>
-		</tr>
-		<tr>
-			<td class="productListPaging">
-				#개(#/#페이지)
-			</td>
-		</tr>	
+
+	<div class="">	
+		<table class="prodcutListTop">
+			<tr>
+				<td>
+					<h2>카테고리</h2>
+				</td>
+			</tr>
+			<tr>
+				<td class="productListPaging">
+					#개(#/#페이지)
+				</td>
+				<td class="prooductSearchBar">
+					<form>
+						<input type="text" name="keyword" class="" placeholder="상품검색">
+						<button type="button" class="">검색</button>								
+					</form>								
+				</td>
+			</tr>	
 		</table>
-		
-		<div>
+		<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/created';">상품 등록하기</button>
+
+		<div class="productListMain">
 			<ul>
-				<li class="">
-				<form>
-					<select name="condition" class="">
-						<option value="">상품명</option> <!-- 검색할때 제목으로만 하면 됨 -->
-					</select>
-					<input type="text" name="keyword" class="" placeholder="상품검색">
-					<button type="button" class="">검색</button>
-				
-				</form>
-				</li>
-				<li>
-					<c:if test="">
-						<button type="button">등록하기</button>					
-					</c:if>
-				</li>
-			</ul>
+				<li>사진</li>
+				<li>상품명</li>
+				<li>가격</li>
+			</ul>			
 		</div>
-		<div class=""></div>
-		
-		
+
+		<div>
+			페이징처리
+		</div>
 	</div>
 </div>
