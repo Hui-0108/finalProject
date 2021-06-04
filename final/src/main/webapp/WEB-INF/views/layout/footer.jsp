@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- Footer -->
-<footer>
 	<div style="width: 100%; height: 333px; background-color: gray;">
 		
 	</div>
-</footer>
