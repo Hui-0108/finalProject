@@ -9,11 +9,11 @@
 		<form name="searchForm">
 			<div style="width: 1300px;">
 				<div class="searchAddr">
-					<p><i class="fas fa-paper-plane"></i>&nbsp;<b>어디에 사시나요?</b></p>
+					<p><i class="fas fa-home"></i>&nbsp;<b>어디에 사시나요?</b></p>
 					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
 				</div>
-				<div class="searchDate">
-					<p><i class="fas fa-calendar-alt"></i>&nbsp;<b>언제 맡기시나요?</b></p>
+				<div class="reserve-detail">
+					<p><i class="fas fa-paw"></i></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
 					<div class="dateBar">
 						<div class="checkinCal">
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
@@ -54,8 +54,8 @@
 				<p class="titleL">HOT 펫시터 모아보기</p>	
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
-			<div class="petListItem">
-				<div class="card cardEach" style="width: 18rem;">
+			<div class="petListItem" align="center">
+				<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -63,7 +63,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach" style="width: 18rem;">
+       			<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -71,7 +71,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>    			
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -79,7 +79,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -98,7 +98,7 @@
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="card cardEach" style="width: 18rem;">
+				<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -106,7 +106,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach" style="width: 18rem;">
+       			<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -114,7 +114,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>    			
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -122,7 +122,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -141,7 +141,7 @@
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="card cardEach" style="width: 18rem;">
+				<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -149,7 +149,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach" style="width: 18rem;">
+       			<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -157,7 +157,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>    			
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -165,7 +165,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -184,7 +184,7 @@
 				<a class="titleR"><span>더보기</span>&nbsp;<i class="fas fa-chevron-right" style="color: gray;"></i></a>
 			</div>
 			<div class="petListItem">
-				<div class="card cardEach" style="width: 18rem;">
+				<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -192,7 +192,7 @@
              			<a href="#" class="btn btn-primary">Go somewhere</a>
            			</div>
        			</div>
-       			<div class="card cardEach" style="width: 18rem;">
+       			<div class="card cardEach" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -200,7 +200,7 @@
              			<a href="#" class="btn btn-primary">Go somewhere</a>
            			</div>
        			</div>    			
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>
@@ -208,7 +208,7 @@
              			<a href="#" class="btn btn-primary">시터 만나기</a>
            			</div>
        			</div>
-       			<div class="card cardEach cardEachL" style="width: 18rem;">
+       			<div class="card cardEach cardEachL" style="width: 305px;">
            			<img src="${pageContext.request.contextPath}/resources/images/petsit/mong.jpg" class="card-img-top" alt="...">
            			<div class="card-body">
              			<h5 class="card-title">시터땡땡땡님</h5>

@@ -19,6 +19,14 @@
    border: 1.5px solid rgb(113, 162, 255);
 }
 
+.petsitMain .reserve-detail {
+	float: right;
+    width: 50%;
+    padding: 25px;
+    text-align: left;
+}
+
+
 .petsitMain .dateBar {
 	width: 475px;
     height: 59px;
@@ -37,6 +45,12 @@
 	border: none;
 	text-align: center;
 	height: 56px;
+	width:200px;
+}
+
+.petsitMain .checkDate:focus {
+	outline:none;
+	border-bottom: 3px solid rgb(113, 162, 255);
 }
  
 .petsitMain .fas fa-arrow-right {
@@ -143,9 +157,10 @@
 
 
 .petsitMain .cardEach {
-	margin-left: 27.5px;
-	margin-right: 27.5px;
+	margin-left: 10px;
+	margin-right: 10px;
 	float:left;
+	
 
 }
 
@@ -218,11 +233,9 @@
 
 .petsitMain .petListItem {
 	width: 100%;
-	background-color:yellow;
-	float: inherit;
-	margin: auto;
 	text-align: center;
-		
+	height: 450px;	
+	margin: 0 auto;
 }
 
 .petsitMain .info {

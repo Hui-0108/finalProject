@@ -6,8 +6,10 @@
 	color: rgb(57, 60, 71);
 }
 
-.petsitReserve .carousel .picture {
-	height: 600px;
+.petsitReserve .slide-body{
+	width: 1300px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .petsitReserve .body-main {
@@ -18,7 +20,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;	
-    background: yellow; 
 }
 
 .petsitReserve .body-left {
@@ -31,7 +32,6 @@
 	float: right;
 	width: 450px;
 	height: 1200px;
-	background-color: blue;
 }
 
 .petsitReserve .profile {
@@ -114,11 +114,394 @@
 	margin-top: 50px
 }
 
+.petsitReserve .review-title{
+	display: flex; 
+	align-items: center;
+	margin-bottom: 20px;
+}
+
 .petsitReserve .review h4 {
 	width: 200px;
+	margin: 0px 0px;
 }
 
 .petsitReserve .star{
 	width: 150px;
 	margin: 0px; 0px; 5px; 0px;
 }
+
+.petsitReserve .review-pictureSet{
+	display: flex;
+    flex-direction: row;
+    margin-top: 33px;
+}
+
+.petsitReserve .review-psEach{
+	border: 1px solid #ccc;
+	width: 120px;
+	height: 120px;
+	margin-right: 10px;
+}
+
+.petsitReserve .review-content{
+	padding: 38px 0px;
+}
+
+
+.petsitReserve .review-writer {
+	display: flex;
+    flex-direction: row;
+}
+
+.petsitReserve .review-writerP{
+	border: 1px solid #ccc;
+	width: 65px;
+	height: 65px;
+	line-height: 65px;
+	border-radius:45px;
+	background: #eee;
+	margin: 0px 0px;
+}
+
+.petsitReserve .review-writerI{
+	display: inline-block;
+	display: flex;
+	flex-direction: column;
+	width:80px;
+	height: 60px;
+	margin-left: 25px;
+}
+
+.petsitReserve .review-writerI p:first-child {
+	margin: 0px 0px;
+}
+
+.petsitReserve .review-writerI p:last-child {
+	margin: 20px 0 0 0;
+}
+
+.petsitReserve .review-picture{
+	display: flex;
+    flex-direction: row;
+    margin-top: 33px;
+}
+
+.petsitReserve .review-pEach{
+	border: 1px solid #ccc;
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.petsitReserve .reverve-detail {
+	height: 530px;
+	
+	width: 375px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+}
+
+.petsitReserve .dateBar {
+	width: 300px;
+    height: 65px;
+	display: flex;
+	border: 1px solid rgb(223, 227, 234);
+	border-radius: 4px;
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+}
+
+.petsitReserve .dateBar:focus {
+	outline: none;
+	border: 1px solid rgb(113, 162, 255);	
+}
+
+.petsitReserve .checkDate {
+	border: none;
+	text-align: center;
+	height: 60px;
+	width:110px;
+}
+
+.petsitReserve .checkDate:focus {
+	outline:none;
+	border-bottom: 1px solid rgb(113, 162, 255);
+}
+ 
+.petsitReserve .fas fa-arrow-right {
+     margin-top: 10px;
+}
+
+.petsitReserve .dateButton {
+	width: 23px;
+	height: 27px;
+	background-color: white;
+	border: none;
+	margin-top: 13px;
+	margin-left: 15px;
+}
+
+.petsitReserve .checkinCal {
+	height: 56px;
+	margine: none;
+	padding: none;
+}
+
+.petsitReserve .pointR {
+	padding: 17px 0px 0px
+}
+
+
+.petsitReserve .reverve-detail p {
+	font-family: "Noto Sans KR";
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57, 60, 71);
+    margin-top: 38px;
+}
+
+
+.petsitReserve .reserve-time {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 38px;	
+}
+
+.petsitReserve .time-checkin p:first-child {
+	font-family: "Noto Sans KR";
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57, 60, 71);
+    margin: 0 0 18px 0;
+}
+
+.petsitReserve .time-checkin button {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 149px;
+    height: 50px;
+    border: 1px solid rgb(223, 227, 234);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+    background-color: white;
+}
+
+.petsitReserve .time-checkin p:last-child {
+  	 font-size: 15px;
+    line-height: 22px;
+    color: rgb(153, 153, 153);
+    margin: 10px 0 0 0;
+
+}
+
+.petsitReserve .time-checkout button {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 149px;
+    height: 50px;
+    border: 1px solid rgb(223, 227, 234);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+    background-color: white;
+}
+
+.petsitReserve .time-checkout p:first-child {
+	font-family: "Noto Sans KR";
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57, 60, 71);
+    margin: 0 0 18px 0;
+}
+
+.petsitReserve .time-checkout p:last-child {
+  	 font-size: 15px;
+    line-height: 22px;
+    color: rgb(153, 153, 153);
+    margin: 10px 0 0 0;
+
+}
+
+.petsitReserve .pet-p {
+	font-family: "Noto Sans KR";
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57, 60, 71);
+    margin-top: 38px;
+    margin-bottom: 18px;	
+}
+
+.petsitReserve .pet-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 311px;
+    height: 50px;
+    border: 1px solid rgb(223, 227, 234);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+    background-color: white;
+    padding: 15px
+}
+
+.petsitReserve .pet-button p {
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    line-height: 22px;
+    color: rgb(153, 153, 153);
+	margin: 0 30px 0 0;
+}
+   
+.petsitReserve .reserve-send {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 311px;
+    height: 59px;
+    border-radius: 3px;
+    background-color: rgb(113, 162, 255);
+    margin-top: 50px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.petsitReserve .reserve-send p{
+	font-family: "Noto Sans KR";
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    line-height: 22px;
+    color: white;
+    margin:0 0;
+}
+
+.petsitReserve .price {
+	height: 340px;
+	
+	width: 375px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
+    padding: 38px 32px;
+    margin-top: 38px;
+    margin-bottom: 10px;
+}
+
+.petsitReserve .price-title {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.price-title p:first-child {
+    font-weight: 600;
+    font-size: 19px;
+	margin-right: 80px;
+}
+
+.petsitReserve .petsitReserve .middle {
+	width: 1px;
+    height: 15px;
+    background-color: rgb(236, 237, 240);
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.petsitReserve .pet-type {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 14px;
+    height: 24px;
+}
+
+.petsitReserve .pet-type p {
+	margin: 0 0;
+}
+
+.petsitReserve .type-L {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 24px;
+}
+
+.petsitReserve .type-L p:first-child {
+	font-size: 14px;
+    line-height: 19px;
+    color: rgb(56, 60, 72);
+    margin-left: 10px;
+}
+
+.petsitReserve .type-L p:last-child {
+	font-size: 12px;
+    line-height: 17px;
+    color: rgb(153, 153, 153);
+    margin-left: 12px;
+}
+
+.petsitReserve .type-R {
+	display: flex;
+    flex-direction: row;
+}
+
+.petsitReserve .type-R p:first-child {
+	font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    color: rgb(78, 82, 91);
+    margin-right: 12px;
+}
+
+.petsitReserve .type-R p:last-child {
+	font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    color: rgb(78, 82, 91);
+}    
+
+
+.petsitReserve .schedule {
+	height: 470px;
+	margin-top: 38px;
+	
+	width: 375px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+}
+
+.petsitReserve .lacation {
+	height: 420px;
+	
+	display: flex;
+    flex-direction: column;
+    width: 375px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
+    margin-top: 38px;
+    overflow: hidden;
+}
+
+
+
+
