@@ -12,20 +12,18 @@
        SELECT member_seq.NEXTVAL FROM dual 
     </select>
 
-    <insert id="client" parameterType="Long">
-		INSERT INTO member(mNum, mType) VALUES (#{mNum}, #{mType}) 
+    <insert id="client" parameterType="com.fin.app.member.Member">
+		INSERT INTO client(mNum, mType) VALUES (#{mNum}, #{mType}) 
     </insert>
     
     <insert id="insertMember" parameterType="com.fin.app.member.Member">
-		INSERT INTO member(mNum, mId, mPwd, mNick, mRoll)
-		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, #{mRoll}) 
+		INSERT INTO member(mNum, mId, mPwd, mNick, mRole)
+		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, #{mRole}) 
     </insert>
     
      <insert id="insertMemberDetail" parameterType="com.fin.app.member.Member">
-		INSERT  memberDetail(mId, mBirth, mEmail, mtel, mzip, mAddr1, mAddr2)
-		VALUES (#{mId}, #{mBirth}, #{mEmail}, #{mtel}, 
-				#{mzip, jdbcType=VARCHAR}, #{mAddr1, jdbcType=VARCHAR}, 
-				#{mAddr2, jdbcType=VARCHAR})		
+		INSERT INTO memberDetail(mId, mName, mTel, mZip, mAddr1, mAddr2, mEmail, mBirth)
+		VALUES ( #{mId}, #{mName}, #{mTel}, #{mZip}, #{mAddr1}, #{mAddr2}, #{mEmail}, #{mBirth}) 		
     </insert>
 
     <update id="insertMemberAndDetail" parameterType="com.fin.app.member.Member">

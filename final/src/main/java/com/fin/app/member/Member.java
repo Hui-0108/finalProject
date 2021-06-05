@@ -124,6 +124,12 @@ public class Member {
 	public void setmEmail2(String mEmail2) {
 		this.mEmail2 = mEmail2;
 	}
+	@Override
+	public String toString() {
+		return "Member [mNum=" + mNum + ", mType=" + mType + ", mId=" + mId + ", mPwd=" + mPwd + ", mNick=" + mNick
+				+ ", mRole=" + mRole + ", mName=" + mName + ", mTel=" + mTel + ", mTel1=" + mTel1 + ", mTel2=" + mTel2
+				+ ", mTel3=" + mTel3 + ", mZip=" + mZip + ", mAddr1=" + mAddr1 + ", mAddr2=" + mAddr2 + ", mEmail="
+				+ mEmail + ", mEmail1=" + mEmail1 + ", mEmail2=" + mEmail2 + ", mBirth=" + mBirth + "]";
+	}
 
-		
 }
