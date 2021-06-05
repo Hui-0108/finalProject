@@ -8,8 +8,8 @@
 		WHERE mId = #{mId} 
 	</select>
 	
-    <select id="memberSeq" resultType="Long">
-       SELECT member_seq.NEXTVAL FROM dual 
+    <select id="clientSeq" resultType="Long">
+       SELECT client_seq.NEXTVAL FROM dual 
     </select>
 
     <insert id="client" parameterType="com.fin.app.member.Member">

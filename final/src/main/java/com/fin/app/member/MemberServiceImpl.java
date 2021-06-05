@@ -40,9 +40,9 @@ public class MemberServiceImpl implements MemberService {
 				dto.setmTel(dto.getmTel1() + "-" + dto.getmTel2() + "-" + dto.getmTel3());
 			}
 			
-			long memberSeq = dao.selectOne("member.memberSeq");
-			dto.setmNum(memberSeq);
-			System.out.println("memberSeq : "+memberSeq);
+			long clientSeq = dao.selectOne("member.clientSeq");
+			dto.setmNum(clientSeq);
+			System.out.println("memberSeq : "+clientSeq);
 			dao.insertData("member.client", dto);
 			dao.insertData("member.insertMember", dto);
 			dao.insertData("member.insertMemberDetail", dto);
