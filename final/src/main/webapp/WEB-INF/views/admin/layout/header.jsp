@@ -12,10 +12,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="${pageContext.request.contextPath}/admin" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -85,9 +82,9 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height: 973px">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="${pageContext.request.contextPath}/admin" class="brand-link">
       <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Gaemyeo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">GaeMyeo</span>
     </a>
@@ -123,22 +120,86 @@
 
           <li class="nav-item">
             <div class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-users-cog"></i>
               <p>
-               <a href="#"> Widgets</a>
-                <span class="right badge badge-danger">New</span>
+               <a href="${pageContext.request.contextPath}/admin/memberManagement">&nbsp;회원관리</a>
               </p>
             </div>
           </li>
           <li class="nav-item">
             <div class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-donate"></i>
               <p>
-                <a href="#">Layout Options</a>
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <a href="${pageContext.request.contextPath}/admin/donationManagement">&nbsp;후원금 관리</a>
               </p>
             </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <i class="fas fa-money-check-alt"></i>
+              <p>
+                <a href="${pageContext.request.contextPath}/admin/mileageManagement">&nbsp;마일리지 관리</a>
+              </p>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <i class="fas fa-store"></i>
+              <p>
+				<a href="#">&nbsp;스토어 관리</a>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </div>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/orderManagement">&nbsp;&nbsp;주문관리</a></p>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/productManagement">&nbsp;&nbsp;상품관리</a></p>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/saleStatus">&nbsp;&nbsp;매출현황</a></p>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <i class="fas fa-dog"></i>
+              <p>
+				<a href="#">&nbsp;펫시터 관리</a>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </div>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/reservationManagement">&nbsp;&nbsp;예약관리</a></p>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/petsitManagement">&nbsp;&nbsp;펫시터관리</a></p>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link">
+                  
+                  <p><a href="${pageContext.request.contextPath}/admin/petsitStatus">&nbsp;&nbsp;매출현황</a></p>
+                </div>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

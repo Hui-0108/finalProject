@@ -15,6 +15,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 	
+	<!-- dataTable css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome Icons -->
@@ -34,7 +39,7 @@
     <tiles:insertAttribute name="header"/>
 </header>
 	
-<main class="container">
+<main>
     <tiles:insertAttribute name="body"/>
 </main>
 
@@ -42,14 +47,35 @@
     <tiles:insertAttribute name="footer"/>
 </footer>
 
+
+<!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
 
+
+<!-- Java Script -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/management.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/statusChart.js"></script>
 
 <!-- Bootstrap -->
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/jszip/jszip.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="${pageContext.request.contextPath}/resources/admin/plugins/chart.js/Chart.min.js"></script>
@@ -57,6 +83,7 @@
 <script src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath}/resources/admin/dist/js/pages/dashboard3.js"></script>
+
 
 </body>
 </html>
