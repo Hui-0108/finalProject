@@ -31,6 +31,7 @@
 	<!-- petsit css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/main.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/reservation.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/write.css" type="text/css">
 	
 	<!-- mypage -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/profile.css" type="text/css">

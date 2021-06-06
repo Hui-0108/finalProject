@@ -23,18 +23,18 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager {
 	/**
 	 * 파일을 업로드 하기 위한 메소드
-	 * @param partFile	업로드할 파일정보를 가지고 있는 MultipartFile 객체
+	 * @param multipartFile	업로드할 파일정보를 가지고 있는 MultipartFile 객체
 	 * @param pathname	파일을 저장할 경로
 	 * @return			서버에 저장된 새로운 파일의 이름
 	 */
-	public String doFileUpload(MultipartFile partFile, String pathname) throws Exception {
+	public String doFileUpload(MultipartFile multipartFile, String pathname) throws Exception {
 		String saveFilename = null;
 
-		if(partFile == null || partFile.isEmpty())
+		if(multipartFile == null || multipartFile.isEmpty())
 			return null;
 		
 		// 클라이언트가 업로드한 파일의 이름
-		String originalFilename=partFile.getOriginalFilename();
+		String originalFilename=multipartFile.getOriginalFilename();
 		if(originalFilename==null||originalFilename.length()==0)
 			return null;
 		
@@ -55,7 +55,7 @@ public class FileManager {
 		if(!f.getParentFile().exists())
 			f.getParentFile().mkdirs();
 
-		partFile.transferTo(f);
+		multipartFile.transferTo(f);
 
 		return saveFilename;
 	}

@@ -1,7 +1,11 @@
 package com.fin.app.petsit;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class Petsit {
+	
+	private int num, listNum;
+	
 	//펫시터 부가정보
 	private String mId; //아이디
 	
@@ -11,10 +15,13 @@ public class Petsit {
 	private int petYard; //마당유무 (0무 1유);
 	private int petLarge; //대형견가능유무 (0무 1유);
 	private String petContent; //소개글 
+	private String petTitle; //글제목
+	private int petCertif; //교육증취득일
 	
 	//펫시터 이미지
 	private int petImgNum; //파일번호
 	private String petImg; //이미지 파일이름
+	private MultipartFile upload; //파일업로드
 	
 	//펫시터 스케줄 //가능1 불가0
 	private int mon; 
@@ -25,6 +32,20 @@ public class Petsit {
 	private int sat;
 	private int sun;
 	
+	
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
 	public String getmId() {
 		return mId;
 	}
@@ -79,6 +100,13 @@ public class Petsit {
 	public void setPetImg(String petImg) {
 		this.petImg = petImg;
 	}
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 	public int getMon() {
 		return mon;
 	}
@@ -120,6 +148,18 @@ public class Petsit {
 	}
 	public void setSun(int sun) {
 		this.sun = sun;
+	}
+	public String getPetTitle() {
+		return petTitle;
+	}
+	public void setPetTitle(String petTitle) {
+		this.petTitle = petTitle;
+	}
+	public int getPetCertif() {
+		return petCertif;
+	}
+	public void setPetCertif(int petCertif) {
+		this.petCertif = petCertif;
 	}
 	
 	

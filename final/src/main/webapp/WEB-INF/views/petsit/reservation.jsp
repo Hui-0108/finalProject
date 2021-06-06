@@ -180,9 +180,8 @@
 			<div class="price-title">
 				<p>이용요금</p>
 				<p>1박 케어</p>
-				<div class="middle">
-				</div>
-				<p>데이 케어</p>
+				<p>|</p>
+				<p style="font-size: 13px;">데이 케어</p>
 				<p><i class="fas fa-question-circle"></i><p>
 			</div>		
 			<div class="pet-type">
@@ -215,13 +214,18 @@
 					<p>5,0000원</p>
 				</div>
 			</div>
-			<div>
+			<div class="bar" ></div>
+			<div class="extra" style="margin: 0px;">
+				<p>반려동물 추가비</p>
+				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할인</p></div>
 			</div>
-			<div>
+			<div class="extra">
+				<p>명절 할증비</p>
+				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
 			</div>
-			<div>
-			</div>
-			<div>
+			<div class="extra">
+				<p>공휴일·성수기 할증비</p>
+				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
 			</div>
 		</div>
 		<div class="schedule">
