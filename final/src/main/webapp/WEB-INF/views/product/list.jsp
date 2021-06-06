@@ -18,14 +18,27 @@
 .productListBody .prooductSearchBar{
 	float: right;
 }
+
+.productListTitle{
+	
+}
 </style>
 
+<script type="text/javascript">
+$(function(){
+	$("#pCateNum").change(function(){
+		var cn = $(this).val();
+		var url="${pageContext.request.contextPath}/product/list?cn="+cn;
+		location.href=url;
+	});
+});
 
+</script>
 <div class="productListBody">
 
 	<div class="">	
 		<table class="prodcutListTop">
-			<tr>
+			<tr class="productListTitle">
 				<td>
 					<h2>카테고리</h2>
 				</td>
@@ -40,6 +53,13 @@
 						<button type="button" class="">검색</button>								
 					</form>								
 				</td>
+				<td>
+					<select id="pCateNum" name="pCateNum">
+						<c:forEach var="vo" items="${categorys}">
+							<option value="${vo.pCateNum}" ${pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>	
 		</table>
 		<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/created';">상품 등록하기</button>
@@ -47,8 +67,12 @@
 		<div class="productListMain">
 			<ul>
 				<li>사진</li>
-				<li>상품명</li>
-				<li>가격</li>
+				<li>상품명
+					<input type="text" id="" name="">
+				</li>
+				<li>
+					<input type="text" id="price" name="">
+				</li>
 			</ul>			
 		</div>
 

@@ -7,7 +7,16 @@
 상품의 경우 들어올때마다 추가 될때마다 floatleft를 하고 5번째는 clearboth와 floatleft같이 줌
 -->
 
+<style type="text/css">
+.popularWhole{
 
+margin: auto;
+}
+
+
+
+
+</style>
 <div class="storeBody">
 	<div class="storebody-main">
 
@@ -49,6 +58,8 @@
 		    <span class="sr-only">Next</span>
 		  </a>
 		</div>
+		
+		<div id="popularWhole">
 	
 		<div class="popularProductText productTitle">
 			인기상품
@@ -116,7 +127,8 @@
 						</div>
 					</div>													
 			</div>
-	
+		</div>
+		
 		<div class="banner donation">
 			<a class="storeClick">
 				<img src="${pageContext.request.contextPath}/resources/images/storeMain/eventImg.jpg" class="d-block w-100 " alt="...">
@@ -173,6 +185,8 @@
 		  </div>
 		</div>
 	
+		
+		<div id="totalProductWhole">
 		<div class="totalProductText productTitle">
 			전체상품
 		</div>			
@@ -241,7 +255,8 @@
 						</div>
 					</div>	
 			</div>	
-
+		</div>	
+			
 		<div class="card border-light text-white banner">
 		  <img src="${pageContext.request.contextPath}/resources/images/storeMain/ban.jpg" class="card-img" alt="...">
 		  <div class="card-img-overlay">

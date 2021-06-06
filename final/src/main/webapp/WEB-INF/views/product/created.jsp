@@ -12,7 +12,7 @@
 	font-family: 
 }
 
-.productForm{
+.productTableForm{
 	width: 800px;
     height: auto;
     display: flex;
@@ -23,7 +23,7 @@
     flex-wrap: wrap;
     align-items: center;
 }
-.productFormTable{
+.productTable{
 	margin-top: 30px;
 }
 
@@ -32,6 +32,22 @@
 }
 
 </style>
+<script type="text/javascript">
+
+$(function(){
+	
+});
+
+
+
+function sendOk() {
+	var f = document.createdFrom;
+	
+	f.action = "${pageContext.request.contextPath}/product/${mode}";
+	f.submit();
+}
+
+</script>
 
 
 <div class="productCreateBody">
@@ -39,65 +55,25 @@
 	<div class="productCreateTitle">
 		<h3><i class="far fa-edit"></i>상품 등록</h3>
 	</div>
-
-	<div class="productForm">
-		<table class="productFormTable">
+	<form name="createdFrom" method="post" enctype="multipart/form-data">
+	<div class="productTableForm">
+		<table class="productTable">
 			<tr>
-				<td>
-					카테고리:
-					<form action="" name="" >
-						<select class="">
-							<option value="1">강아지 사료</option>
-							<option value="2">강아지 외출용품</option>
-							<option value="3">강아지 장난감</option>
-							<option value="4">강아지 간식</option>
-							<option value="5">고양이 사료</option>
-							<option value="6">고양이 외출용품</option>
-							<option value="7">고양이 장난감</option>
-							<option value="8">고양이 간식</option>							
-						</select>
-					</form>				
+				<td>			
+					<select name="categoryNum">
+						<option value="0" ${pCateNum==0?"selected='selected'":""}>카테고리</option>
+						<c:forEach var="vo" items="${categorys}">
+							<option value="${vo.pCateNum}" ${dto.pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
+						</c:forEach>
+					</select>		
 				</td>
 			</tr>
 			<tr>
-				<td>
-					옵션1:
-					<form action="" name="">
-						<select>
-							<option></option>
-						</select>
-					</form>
-				</td>
-				<td>
-					옵션2:
-					<form action="" name="">
-						<select>
-							<option></option>
-						</select>
-					</form>
-				</td>
-				<td>
-					옵션3:
-					<form action="" name="">
-						<select>
-							<option></option>
-						</select>
-					</form>
-				</td>
-
-			</tr>
-			<tr>
-				<td>제품 이미지</td>
+				<td>제품 대표 이미지</td>
 				<td>
 					<input type="file" name="pImgNum" value="${dto.pImgNum}">
 				</td>
 			</tr>				
-			<tr>
-				<td>제품코드</td>
-				<td>
-					<input type="text" name="pnum" value="${dto.pnum}">
-				</td>
-			</tr>		
 			<tr>
 				<td>상품명</td>
 				<td>
@@ -105,7 +81,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>원가</td>
+				<td>상품가격</td>
 				<td>
 					<input type="text" name="pPrice" value="${dto.pPrice}">
 				</td>
@@ -115,17 +91,12 @@
 				<td>
 					<input type="text" name="pDiscountRate" value="${dto.pDiscountRate}">
 				</td>
-			</tr>
-			<tr>
-				<td>가격</td>
-				<td>
-					<input type="text" name="pPrice" value="${dto.pPrice}">
-				</td>
 			</tr>			
 			<tr>
 				<td>배송조건</td>
 				<td>
-					<input type="text" name="delivType" value="${dto.delivType}">
+					<label><input type="radio" name="delivType" value="${dto.delivType}"></label>
+					<label><input type="radio" name="delivType" value="${dto.delivType}"></label>					
 				</td>
 			</tr>
 			<tr>
@@ -133,15 +104,70 @@
 				<td>
 					<textarea name="pContent" class="">${dto.pContent}</textarea>
 				</td>
+			</tr>			
+			<tr>
+				<td>상세옵션수량</td>
+				<td>
+					<input type="text" name="pDetailCnt" value="${dto.pDetailCnt}">
+				</td>
+			</tr>			
+			<tr>
+				<td>최종가격</td>
+				<td>
+					<input type="text" name="pDetailPrice" value="${dto.pDetailPrice}">
+				</td>
+			</tr>			
+			<tr>
+				<td>
+					옵션1:				
+						<select name="storeMainOptNum">
+							<option value="0" ${storeMainOptNum==0?"selected='selected'":""}>옵션</option>
+							<c:forEach var="vo" items="${mainOpts}">
+								<option value="${vo.storeMainOptNum}" ${dto.storeMainOptNum==vo.storeMainOptNum?"selected='selected'":""}>${vo.storeMainOptName}</option>
+							</c:forEach>
+						</select>			
+				</td>
+				<td>
+					옵션2:				
+						<select name="storeSubOptNum">
+							<c:forEach var="vo" items="${subOpts}">
+								<option value="${vo.storeSubOptNum}" ${dto.storeSubOptNum==vo.storeSubOptNum?"selected='selected'":""}>${vo.storeSubOptName}</option>
+							</c:forEach>
+						</select>
+					
+				</td>
+				<td>
+					옵션3:
+					
+						<select>
+							<option>옵션3</option>
+							
+						</select>
+					
+				</td>
+
 			</tr>
+
 		</table>
-		<table class="">
+		<table class="tableFooter">
 			<tr>
 				<td>
 					<button type="button" class="">등록하기</button>
 					<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >등록취소</button>
+				
+					<c:if test="${mode='update'}">
+						<input type="hidden" name="page" value="${page}">
+						<input type="hidden" name="pName" value="${dto.pName}">
+					</c:if>
+					<c:if test="">
+					
+					
+					
+					</c:if>
+				
 				</td>
 			</tr>
 		</table>
 	</div>
+	</form>
 </div>

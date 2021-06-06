@@ -15,12 +15,11 @@ public class ProductServiceImpl implements ProductService{
 	private CommonDAO dao;
 
 	@Override
-	public void insertProduct(Product dto, String mode) throws Exception {
+	public void insertProduct(Product dto) throws Exception {
+		
 		try {
-			dao.insertData("product.insertData", dto);
-			
+			dao.insertData("product.insertProduct", dto);
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		}
 		
@@ -34,12 +33,19 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<Product> listProduct(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> list = null;
+		
+		try {
+			list = dao.selectList("product.listProduct", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 	@Override
-	public void updateHitCount(int listNum) throws Exception {
+	public void updateHitCount(int num) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -51,17 +57,57 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void updateProduct(Product dto, String mode) throws Exception {
+	public void updateProduct(Product dto) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteProduct(int num, String mode) throws Exception {
+	public void deleteProduct(int num) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public List<Product> listCategroy() {
+		List<Product> list = null;
+		
+		try {
+			list = dao.selectList("product.listCategory");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Product> listMainOpt() {
+		List<Product> list = null;
+		
+		try {
+			list = dao.selectList("product.listMainOpt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
+	@Override
+	public List<Product> listSubOpt() {
+		List<Product> list = null;
+		
+		try {
+			list = dao.selectList("product.listSubOpt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+
+
 
 		
 }

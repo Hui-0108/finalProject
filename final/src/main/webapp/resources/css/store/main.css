@@ -58,7 +58,7 @@
 }
 .storeBody .storeCard{
 	width: 1000px;
-    margin-left: 120px;
+    margin: auto;
 }
 .storeBody .banner{
 	clear: both;
@@ -85,11 +85,19 @@
 #imgStore{
 	width: 100%;
 }
-.storeBody .popularProduct, .storeBody .totalProduct{
+.storeBody .popularProduct {
 	width: 100%;
 	padding-left: 50px;
 	margin-left: 70px;
 }
+
+.storeBody .totalProduct{
+	width: 100%;
+	padding-left: 50px;
+	margin-left: 70px;
+	
+}
+
 
 .storeBody .storeClick{
 	cursor: pointer;

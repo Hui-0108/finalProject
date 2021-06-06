@@ -3,7 +3,7 @@ package com.fin.app.product;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
-	private int pnum; //제품코드 
+	private int pNum; //제품코드 
 	private int pCateNum;//카테고리 번호
 	private int listNum; //리스트번호
 	private String pName;//상품명
@@ -13,21 +13,79 @@ public class Product {
 	private int delivType;//배송조건
 	private int pDate;//등록일
 	
-	private int pcateNum;
-	private String pcateName;
-	
+	private String pCateName; //카테고리명	
 	
 	private String pImgName;//파일번호
 	private int pImgNum;//이미지파일 이름
 	
 	private MultipartFile upload;
 
-	public int getPnum() {
-		return pnum;
+	//제품 옵션들
+	private int storeMainOptNum;//상위옵션번호
+	private String storeMainOptName;//상위옵션명
+	
+	private int storeSubOptNum;//하위옵션변호
+	private String storeSubOptName;//하위옵션명
+	
+	private int storeDetailOptNum;//상세옵션번호
+	private int pDetailCnt;//상세옵션수량
+	private int pDetailPrice;//최종가격?	
+	
+	
+	public int getStoreMainOptNum() {
+		return storeMainOptNum;
 	}
 
-	public void setPnum(int pnum) {
-		this.pnum = pnum;
+	public void setStoreMainOptNum(int storeMainOptNum) {
+		this.storeMainOptNum = storeMainOptNum;
+	}
+
+	public String getStoreMainOptName() {
+		return storeMainOptName;
+	}
+
+	public void setStoreMainOptName(String storeMainOptName) {
+		this.storeMainOptName = storeMainOptName;
+	}
+
+	public int getStoreSubOptNum() {
+		return storeSubOptNum;
+	}
+
+	public void setStoreSubOptNum(int storeSubOptNum) {
+		this.storeSubOptNum = storeSubOptNum;
+	}
+
+	public String getStoreSubOptName() {
+		return storeSubOptName;
+	}
+
+	public void setStoreSubOptName(String storeSubOptName) {
+		this.storeSubOptName = storeSubOptName;
+	}
+
+	public int getStoreDetailOptNum() {
+		return storeDetailOptNum;
+	}
+
+	public void setStoreDetailOptNum(int storeDetailOptNum) {
+		this.storeDetailOptNum = storeDetailOptNum;
+	}
+
+	public int getpDetailCnt() {
+		return pDetailCnt;
+	}
+
+	public void setpDetailCnt(int pDetailCnt) {
+		this.pDetailCnt = pDetailCnt;
+	}
+
+	public int getpDetailPrice() {
+		return pDetailPrice;
+	}
+
+	public void setpDetailPrice(int pDetailPrice) {
+		this.pDetailPrice = pDetailPrice;
 	}
 
 	public int getpCateNum() {
@@ -87,22 +145,6 @@ public class Product {
 		this.pDate = pDate;
 	}
 
-	public int getPcateNum() {
-		return pcateNum;
-	}
-
-	public void setPcateNum(int pcateNum) {
-		this.pcateNum = pcateNum;
-	}
-
-	public String getPcateName() {
-		return pcateName;
-	}
-
-	public void setPcateName(String pcateName) {
-		this.pcateName = pcateName;
-	}
-
 	public String getpImgName() {
 		return pImgName;
 	}
@@ -133,6 +175,22 @@ public class Product {
 
 	public void setDelivType(int delivType) {
 		this.delivType = delivType;
+	}
+
+	public int getpNum() {
+		return pNum;
+	}
+
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
+
+	public String getpCateName() {
+		return pCateName;
+	}
+
+	public void setpCateName(String pCateName) {
+		this.pCateName = pCateName;
 	}
 	
 

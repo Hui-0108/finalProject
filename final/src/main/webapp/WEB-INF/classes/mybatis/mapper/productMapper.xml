@@ -2,13 +2,54 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
-	
+
 	<insert id="insertProduct" parameterType="com.fin.app.product.Product">
-		INSERT INTO product(pNum, pCateNum, pName, pPrice, pDisCountRate, pContent, delivType, pDate)
-		VALUES(product_seq.NEXTVAL, #{pCateNum}, #{pName}, #{pPrice}, #{pDisCountRate}, 
-		#{pContent}, #{delivType}, SYSDATE)	
+		INSERT INTO product(pNum, pCateNum, pName, pDisCountRate, pContent, delivType, pDate)
+		VALUES(product_seq.NEXTVAL, #{pCateNum}, #{pName}, #{pDisCountRate}, #{pContent},
+		 #{delivType}, #{pDate})
 	</insert>
 	
+	
+	<select id="listCategory" resultType="com.fin.app.product.Product">
+		SELECT pCateNum, pCateName FROM productCategory
+	</select>	
+	
+	<sql id="where-list">
+		<if test="condition == 'title'">
+			INSTR(pName, #{keyword}) &gt; 0
+		</if>
+	</sql>
+	
+	<select id="listProduct" parameterType="map" resultType="com.fin.app.product.Product">
+		SELECT pName, p.pCateNum, pPrice, pDisscountRate
+		FROM product p	
+		JOIN productCategory c ON p.pCateNum = c.pCateNum
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			<if test="pCateNum != 0">
+				AND p.pCateNum = #{pCateNum}			
+			</if>
+		</where>
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="listMainOpt" resultType="com.fin.app.product.Product">
+		SELECT storeMainOptNum, storeMainOptName FROM storeMainOpt
+	</select>	
+
+
+	<select id="listSubOpt" resultType="com.fin.app.product.Product">
+		SELECT storeSubOptNum, storeSubOptName, storeMainOptNum 
+		FROM storeSubOpt 
+	</select>	
+	 
+	<insert id="insertStoreDetail" parameterType="com.fin.app.product.Product">
+		INSERT INTO(storeDetailOptNum, storeSubOptNum, pNum, pDetailCnt, pDetailPrice)
+		VALUES(storeDetailOpt_seq.NEXTVAL, #{storeSubOptNum}, #{pNum}, #{pDetailCnt}, #{pDetailPrice})
+	</insert>
 
 	
+
 </mapper>
