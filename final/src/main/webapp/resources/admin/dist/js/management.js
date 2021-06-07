@@ -13,3 +13,26 @@
       "responsive": true,
     });
   });
+
+  
+  $(function () {
+      var url = window.location.pathname;
+      var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
+      $('a').each(function () {
+    	  if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+              $(this).addClass('active');
+          }
+      });
+  });
+  
+  $(function() {
+      var url = window.location.pathname;
+      var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
+      $('a').each(function() {
+    	  if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+              $(this).closest('ul').parent().children('a').addClass('active');
+              $(this).closest('ul').parent().addClass('menu-is-opening menu-open')
+          }
+      });
+  });
+  

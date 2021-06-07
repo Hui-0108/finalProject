@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -12,7 +13,6 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="${pageContext.request.contextPath}/admin" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -20,9 +20,6 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
@@ -72,11 +69,6 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -117,86 +109,85 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
           <li class="nav-item">
-            <div class="nav-link">
+            <a href="${pageContext.request.contextPath}/admin" class="nav-link">
+              <i class="fas fa-home"></i>
+              <p>&nbsp;메인 페이지</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/memberManagement" class="nav-link">
               <i class="fas fa-users-cog"></i>
-              <p>
-               <a href="${pageContext.request.contextPath}/admin/memberManagement">&nbsp;회원관리</a>
-              </p>
-            </div>
+              <p>&nbsp;회원관리</p>
+            </a>
           </li>
           <li class="nav-item">
-            <div class="nav-link">
+            <a href="${pageContext.request.contextPath}/admin/donationManagement" class="nav-link">
               <i class="fas fa-donate"></i>
-              <p>
-                <a href="${pageContext.request.contextPath}/admin/donationManagement">&nbsp;후원금 관리</a>
-              </p>
-            </div>
+              <p>&nbsp;후원금 관리</p>
+            </a>
           </li>
           <li class="nav-item">
-            <div class="nav-link">
+            <a href="${pageContext.request.contextPath}/admin/mileageManagement" class="nav-link">
               <i class="fas fa-money-check-alt"></i>
-              <p>
-                <a href="${pageContext.request.contextPath}/admin/mileageManagement">&nbsp;마일리지 관리</a>
-              </p>
-            </div>
+              <p>&nbsp;마일리지 관리</p>
+            </a>
           </li>
-          <li class="nav-item">
-            <div class="nav-link">
+          <li class="nav-item"> 
+            <a href="#" class="nav-link">
               <i class="fas fa-store"></i>
               <p>
-				<a href="#">&nbsp;스토어 관리</a>
+				&nbsp;스토어 관리
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </div>
+            </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/orderManagement">&nbsp;&nbsp;주문관리</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/orderManagement" class="nav-link">
+               	  <i class="fas fa-dolly-flatbed"></i>
+                  <p>&nbsp;&nbsp;주문관리</p>
+                </a>
               </li>
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/productManagement">&nbsp;&nbsp;상품관리</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/productManagement" class="nav-link">
+                  <i class="fas fa-gift"></i>
+                  <p>&nbsp;&nbsp;상품관리</p>
+                </a>
               </li>
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/saleStatus">&nbsp;&nbsp;매출현황</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/saleStatus" class="nav-link">
+                  <i class="fas fa-chart-line"></i>
+                  <p>&nbsp;&nbsp;매출현황</p>
+                </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <div class="nav-link">
+            <a href="#" class="nav-link">
               <i class="fas fa-dog"></i>
               <p>
-				<a href="#">&nbsp;펫시터 관리</a>
+				&nbsp;펫시터 관리
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </div>
+            </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/reservationManagement">&nbsp;&nbsp;예약관리</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/reservationManagement" class="nav-link">
+                  <i class="far fa-calendar-alt"></i>
+                  <p>&nbsp;&nbsp;예약관리</p>
+                </a>
               </li>
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/petsitManagement">&nbsp;&nbsp;펫시터관리</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/petsitManagement" class="nav-link">
+                  <i class="fas fa-baby-carriage"></i>
+                  <p>&nbsp;&nbsp;펫시터관리</p>
+                </a>
               </li>
               <li class="nav-item">
-                <div class="nav-link">
-                  
-                  <p><a href="${pageContext.request.contextPath}/admin/petsitStatus">&nbsp;&nbsp;매출현황</a></p>
-                </div>
+                <a href="${pageContext.request.contextPath}/admin/petsitStatus" class="nav-link">
+                  <i class="fas fa-chart-line"></i>
+                  <p>&nbsp;&nbsp;매출현황</p>
+                </a>
               </li>
             </ul>
           </li>
@@ -207,3 +198,8 @@
     <!-- /.sidebar -->
   </aside>
  </div>
+ 
+
+ 
+
+ 

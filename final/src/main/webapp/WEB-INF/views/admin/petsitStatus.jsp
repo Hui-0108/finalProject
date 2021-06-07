@@ -174,3 +174,5 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/statusChart.js"></script>

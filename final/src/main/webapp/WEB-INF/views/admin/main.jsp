@@ -15,8 +15,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v3</li>
+              <li class="breadcrumb-item active">관리자 메인</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -276,3 +275,9 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  
+
+<!-- AdminLTE for demo purposes -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/pages/dashboard3.js"></script>
