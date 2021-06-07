@@ -49,6 +49,7 @@
 	text-align: right;
 	vertical-align: top;
 }
+
 .mypageProfile .table-content tr > td:nth-child(1) label {
 	font-weight: 700;
 }

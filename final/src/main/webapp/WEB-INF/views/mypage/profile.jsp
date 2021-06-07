@@ -5,36 +5,64 @@
 
 <script type="text/javascript">
 
-// 수정
+
 $(function() {
-	
+	// 수정
 	$("body").on("click", ".edit", function(e) {
 		
 		$(this).html("<span class='editOk'> 수정완료 </span>");
 		
 		var s;
+		var arr = [];
 		
-		s = "<input type='text' name='mZip' id='mZip' value='${dto.mZip}' readonly='readonly'>";
+		// 우편번호, 주소1, 주소2
+		s = "<input type='text' name='mZip' id='mZip' class='boxTF sm' value='${dto.mZip}' readonly='readonly'>";
 		s += "<button type='button' onClick='daumPostcode();'>우편번호</button>";
 		$(".mZip").html(s);
 		s="";
 		
-		s = "<input type='text' name='mAddr1' id='mAddr1' value='${dto.mAddr1}' readonly='readonly'>";
+		s = "<input type='text' name='mAddr1' id='mAddr1' class='boxTF lg' value='${dto.mAddr1}' readonly='readonly'>";
 		$(".mAddr1").html(s);
 		s="";
 		
-		s = "<input type='text' name='mAddr2' id='mAddr2' value='${dto.mAddr2}'>";
+		s = "<input type='text' name='mAddr2' id='mAddr2' class='boxTF lg' value='${dto.mAddr2}'>";
 		$(".mAddr2").html(s);
 		s="";
 		
+		// 전화번호
+		s = "${dto.mTel}";
+		arr = s.split("-");
+		s="";
+		s = "<input type='text' name='mTel1' id='mTel1' class='boxTF sm' value="+arr[0]+">";
+		s += "<span> - </span>"
+		s += "<input type='text' name='mTel2' id='mTel2' class='boxTF sm' value="+arr[1]+">";
+		s += "<span> - </span>"
+		s += "<input type='text' name='mTel3' id='mTel3' class='boxTF sm' value="+arr[2]+">";
+		$(".mTel").html(s);
+		arr="";
+		s="";
 		
-		
+		// 이메일
+		s = "${dto.mEmail}";
+		arr = s.split("@");
+		s="";
+		s = "<input type='text' name='mEmail1' id='mEmail1' class='boxTF md' value="+arr[0]+">";
+		s += "<span> @ </span>"
+		s += "<input type='text' name='mEmail2' id='mEmail2' class='boxTF md' value="+arr[1]+">";
+		$(".mEmail").html(s);
+		s="";
+		arr="";
 		
 		// .one
 		$(this).off(e);
 	});
 	
+	// 수정완료
+	$("body").on("click", ".editOk", function(e) {
+		editOk();
+	});
 	
+
 	
 	
 	
@@ -52,6 +80,7 @@ $(function() {
 		</div>
 	    
 		<div class="body-main">
+		<form name="memberForm" method="post" enctype="multipart/form-data">
 			<table class="table table-content">
 				<tr>
 					<td>
@@ -62,6 +91,12 @@ $(function() {
 							<span>${dto.mId}</span>
 						</p>
 					</td>
+					<td rowspan="2">
+						<p class="mProfileImg">
+							<img class="imgStyle" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 105px; height: 105px;">
+						</p>
+					</td>
+					
 				</tr>
 				
 				<tr>
@@ -79,7 +114,7 @@ $(function() {
 					<td>
 						<label>이름</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p>
 							<span>${dto.mName}</span>
 						</p>
@@ -90,7 +125,7 @@ $(function() {
 					<td>
 						<label>생년월일</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p>
 							${dto.mBirth}
 						</p>
@@ -101,7 +136,7 @@ $(function() {
 					<td>
 						<label>우편번호</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p class="mZip">
 							<span>${dto.mZip}</span>       
 						</p>
@@ -112,7 +147,7 @@ $(function() {
 					<td>
 						<label>주소</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p class="mAddr1">
 							<span>${dto.mAddr1}</span>
 						</p>
@@ -126,7 +161,7 @@ $(function() {
 					<td>
 						<label>전화번호</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p class="mTel">
 							<span>${dto.mTel}</span>
 						</p>
@@ -137,7 +172,7 @@ $(function() {
 					<td>
 						<label>이메일</label>
 					</td>
-					<td>
+					<td colspan="2">
 						<p class="mEmail">
 							<span>${dto.mEmail}</span>
 						</p>
@@ -145,6 +180,7 @@ $(function() {
 				</tr>
 				
 			</table>
+		</form>
 		</div>
 	</div>
 	
@@ -192,5 +228,13 @@ $(function() {
             }
         }).open();
     }
+    
+    function editOk() {
+		var f = document.memberForm;
+		
+		f.action = "${pageContext.request.contextPath}/mypage/profile";
+	    f.submit();
+	}
+
 </script>
 </div>

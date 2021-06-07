@@ -1,5 +1,7 @@
 package com.fin.app.member;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	private long mNum;
 	private int mType;//회원구분(회원/비회원)
@@ -15,6 +17,21 @@ public class Member {
 	private String mAddr1, mAddr2;	
 	private String mEmail, mEmail1,mEmail2;
 	private String mBirth;
+	private String mProfileImg;
+	
+	public String getmProfileImg() {
+		return mProfileImg;
+	}
+	public void setmProfileImg(String mProfileImg) {
+		this.mProfileImg = mProfileImg;
+	}
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+	private MultipartFile upload;
 	
 	public String getmBirth() {
 		return mBirth;
