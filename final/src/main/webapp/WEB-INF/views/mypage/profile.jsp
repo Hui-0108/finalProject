@@ -53,6 +53,11 @@ $(function() {
 		s="";
 		arr="";
 		
+		// 프로필 사진
+		s = "<input type='file' name='upload' accept='image/*'>";
+		$(".mProfileImg").append(s);
+		s="";
+		
 		// .one
 		$(this).off(e);
 	});
@@ -71,16 +76,21 @@ $(function() {
 
 
 <div class="mypageProfile" align="center">
+<form name="memberForm" method="post" enctype="multipart/form-data">
 	<div class="body-container" style="width: 700px;">
 		<div class="body-title">
 	        <h3><i class="fas fa-user"></i> 회원 기본 정보 </h3>
+		</div>
+		<div class="body-profile">
+			<p class="mProfileImg">
+				<img src="${pageContext.request.contextPath}/uploads/profileImages/${dto.mProfileImg}" style="width: 105px; height: 105px; border-radius: 15px;">
+			</p>
 		</div>
 		<div class="body-edit">
 	        <span class="edit"> 정보수정 </span>
 		</div>
 	    
 		<div class="body-main">
-		<form name="memberForm" method="post" enctype="multipart/form-data">
 			<table class="table table-content">
 				<tr>
 					<td>
@@ -89,11 +99,6 @@ $(function() {
 					<td>
 						<p>
 							<span>${dto.mId}</span>
-						</p>
-					</td>
-					<td rowspan="2">
-						<p class="mProfileImg">
-							<img class="imgStyle" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 105px; height: 105px;">
 						</p>
 					</td>
 					
@@ -114,7 +119,7 @@ $(function() {
 					<td>
 						<label>이름</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p>
 							<span>${dto.mName}</span>
 						</p>
@@ -125,7 +130,7 @@ $(function() {
 					<td>
 						<label>생년월일</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p>
 							${dto.mBirth}
 						</p>
@@ -136,7 +141,7 @@ $(function() {
 					<td>
 						<label>우편번호</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p class="mZip">
 							<span>${dto.mZip}</span>       
 						</p>
@@ -147,7 +152,7 @@ $(function() {
 					<td>
 						<label>주소</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p class="mAddr1">
 							<span>${dto.mAddr1}</span>
 						</p>
@@ -161,7 +166,7 @@ $(function() {
 					<td>
 						<label>전화번호</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p class="mTel">
 							<span>${dto.mTel}</span>
 						</p>
@@ -172,7 +177,7 @@ $(function() {
 					<td>
 						<label>이메일</label>
 					</td>
-					<td colspan="2">
+					<td>
 						<p class="mEmail">
 							<span>${dto.mEmail}</span>
 						</p>
@@ -180,10 +185,9 @@ $(function() {
 				</tr>
 				
 			</table>
-		</form>
 		</div>
 	</div>
-	
+</form>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     function daumPostcode() {
@@ -231,6 +235,58 @@ $(function() {
     
     function editOk() {
 		var f = document.memberForm;
+		var str;
+		
+	    str = f.mTel1.value;
+	    if(!str) {
+	        alert("전화번호를 입력하세요. ");
+	        f.mTel1.focus();
+	        return;
+	    }
+	    if(!/^(\d+)$/.test(str)) {
+	        alert("숫자만 가능합니다. ");
+	        f.mTel1.focus();
+	        return;
+	    }
+
+	    str = f.mTel2.value;
+	    if(!str) {
+	        alert("전화번호를 입력하세요. ");
+	        f.mTel2.focus();
+	        return;
+	    }
+	    if(!/^(\d+)$/.test(str)) {
+	        alert("숫자만 가능합니다. ");
+	        f.mTel2.focus();
+	        return;
+	    }
+
+	    str = f.mTel3.value;
+	    if(!str) {
+	        alert("전화번호를 입력하세요. ");
+	        f.mTel3.focus();
+	        return;
+	    }
+	    if(!/^(\d+)$/.test(str)) {
+	        alert("숫자만 가능합니다. ");
+	        f.mTel3.focus();
+	        return;
+	    }
+	    
+	    str = f.mEmail1.value;
+	    if(!str) {
+	        alert("이메일을 입력하세요. ");
+	        f.mEmail1.focus();
+	        return;
+	    }
+
+	    str = f.mEmail2.value;
+	    if(!str) {
+	        alert("이메일을 입력하세요. ");
+	        f.mEmail2.focus();
+	        return;
+	    }
+		
 		
 		f.action = "${pageContext.request.contextPath}/mypage/profile";
 	    f.submit();

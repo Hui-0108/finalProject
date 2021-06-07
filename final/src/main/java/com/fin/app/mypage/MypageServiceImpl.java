@@ -40,16 +40,20 @@ public class MypageServiceImpl implements MypageService {
 			}
 			
 			// 프로필사진
-			String saveFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
-			dto.setmProfileImg(saveFilename);
+			String saveFilename = fileManager.doFileUpload(dto.getUpload(), pathname);
+			if(saveFilename != null) {
+				dto.setmProfileImg(saveFilename);
+				dao.updateData("mypage.updateProfileImg", dto);
+			}
 			
 			dao.updateData("mypage.updateDetail", dto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 		
-		return null;
+		return dto;
 	}
 
 }

@@ -11,8 +11,7 @@
 }
 
 .mypageProfile .body-title {
-	width: 50%;
-	float: left;
+	width: 100%;
 }
 
 .mypageProfile .body-title h3 {
@@ -20,16 +19,21 @@
 	text-align: left;
 }
 
-.mypageProfile .body-edit {
-	width: 50%;
+.mypageProfile .body-profile {
 	float: left;
+	width: 70%;
+	padding-left: 250px;
+}
+.mypageProfile .body-edit {
 	text-align: right;
-	padding-top: 12px;
+	padding-top: 88px;
+	float: left;
+	width: 30%;
 }
 
 .mypageProfile .body-edit span {
 	color: gray;
-	cursor: pointer;ㅣ
+	cursor: pointer;
 }
 
 .mypageProfile .table {
@@ -73,4 +77,8 @@
 
 .mypageProfile .table-content .sm {
 	width: 23%;
+}
+
+.mypageProfile input:focus {
+	outline:none;
 }

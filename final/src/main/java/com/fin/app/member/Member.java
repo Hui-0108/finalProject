@@ -19,6 +19,8 @@ public class Member {
 	private String mBirth;
 	private String mProfileImg;
 	
+	private MultipartFile upload;
+	
 	public String getmProfileImg() {
 		return mProfileImg;
 	}
@@ -31,8 +33,6 @@ public class Member {
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
 	}
-	private MultipartFile upload;
-	
 	public String getmBirth() {
 		return mBirth;
 	}
