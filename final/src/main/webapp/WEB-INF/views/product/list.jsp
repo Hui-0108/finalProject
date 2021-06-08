@@ -45,20 +45,13 @@ $(function(){
 			</tr>
 			<tr>
 				<td class="productListPaging">
-					#개(#/#페이지)
+					${dataCount}개(${page}/${total_page}페이지)
 				</td>
 				<td class="prooductSearchBar">
 					<form>
 						<input type="text" name="keyword" class="" placeholder="상품검색">
 						<button type="button" class="">검색</button>								
 					</form>								
-				</td>
-				<td>
-					<select id="pCateNum" name="pCateNum">
-						<c:forEach var="vo" items="${categorys}">
-							<option value="${vo.pCateNum}" ${pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
-						</c:forEach>
-					</select>
 				</td>
 			</tr>	
 		</table>

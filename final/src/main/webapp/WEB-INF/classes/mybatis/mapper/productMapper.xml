@@ -3,25 +3,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
 
+	<select id="seq" resultType="Integer">
+		SELECT product_seq.NEXTVAL FROM dual
+	</select>
+
+	<!-- 상품 정보 -->
 	<insert id="insertProduct" parameterType="com.fin.app.product.Product">
-		INSERT INTO product(pNum, pCateNum, pName, pDisCountRate, pContent, delivType, pDate)
-		VALUES(product_seq.NEXTVAL, #{pCateNum}, #{pName}, #{pDisCountRate}, #{pContent},
-		 #{delivType}, #{pDate})
+		INSERT INTO product(pNum, pCateNum, pName, pPrice, pDiscountRate, pContent, delivType, pDate)
+		VALUES(#{pNum}, #{pCateNum}, #{pName}, #{pPrice}, #{pDiscountRate}, #{pContent},
+		 #{delivType}, SYSDATE)
 	</insert>
-	
-	
-	<select id="listCategory" resultType="com.fin.app.product.Product">
-		SELECT pCateNum, pCateName FROM productCategory
-	</select>	
-	
+
+	<!-- 검색조건 -->
 	<sql id="where-list">
 		<if test="condition == 'title'">
 			INSTR(pName, #{keyword}) &gt; 0
 		</if>
 	</sql>
 	
+	<!-- 리스트 -->
+	
 	<select id="listProduct" parameterType="map" resultType="com.fin.app.product.Product">
-		SELECT pName, p.pCateNum, pPrice, pDisscountRate
+		SELECT pName, p.pCateNum, pPrice, pDiscountRate
 		FROM product p	
 		JOIN productCategory c ON p.pCateNum = c.pCateNum
 		<where>
@@ -35,21 +38,41 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
+	<!-- 카테고리 -->
+	
+	<select id="listCategory" resultType="com.fin.app.product.Product">
+		SELECT pCateNum, pCateName FROM productCategory
+	</select>		
+	
+	<!-- 옵션 -->
 	<select id="listMainOpt" resultType="com.fin.app.product.Product">
 		SELECT storeMainOptNum, storeMainOptName FROM storeMainOpt
 	</select>	
 
-
-	<select id="listSubOpt" resultType="com.fin.app.product.Product">
+	<select id="listSubOpt"  parameterType="map" resultType="com.fin.app.product.Product">
 		SELECT storeSubOptNum, storeSubOptName, storeMainOptNum 
-		FROM storeSubOpt 
+		FROM storeSubOpt s
+		WHERE storeMainOptNum = #{storeMainOptNum}
 	</select>	
 	 
+	 <!-- 상품상세정보 --> 
 	<insert id="insertStoreDetail" parameterType="com.fin.app.product.Product">
-		INSERT INTO(storeDetailOptNum, storeSubOptNum, pNum, pDetailCnt, pDetailPrice)
+		INSERT INTO storeDetailOpt(storeDetailOptNum, storeSubOptNum, pNum, pDetailCnt, pDetailPrice)
 		VALUES(storeDetailOpt_seq.NEXTVAL, #{storeSubOptNum}, #{pNum}, #{pDetailCnt}, #{pDetailPrice})
 	</insert>
-
 	
-
+	<!-- 파일 -->
+	<insert id="insertProductImage" parameterType="com.fin.app.product.Product">
+		INSERT INTO productImage(pImgNum, pImgName, pNum)
+		VALUES(productImage_seq.NEXTVAL, #{pImgName}, #{pNum})
+	</insert>	
+	
+	<select id="listProductImage" parameterType="Integer">
+		SELECT pImgNum, pImgName, pNum
+		FROM productImage
+		WHERE pNum=#{pNum}
+	</select>
+	
+	
+	
 </mapper>

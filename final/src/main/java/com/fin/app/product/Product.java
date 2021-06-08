@@ -1,24 +1,24 @@
 package com.fin.app.product;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 	private int pNum; //제품코드 
-	private int pCateNum;//카테고리 번호
 	private int listNum; //리스트번호
 	private String pName;//상품명
 	private int pPrice;//가격
 	private int pDiscountRate;//할인율
 	private String pContent;//상세정보
 	private int delivType;//배송조건
-	private int pDate;//등록일
-	
+	private int pDate;//등록일	
+	private int pCateNum;//카테고리 번호
 	private String pCateName; //카테고리명	
 	
-	private String pImgName;//파일번호
-	private int pImgNum;//이미지파일 이름
-	
-	private MultipartFile upload;
+	private String pImgName;//이미지파일 이름 
+	private int pImgNum;//파일번호
+	private List<MultipartFile> selectImg; //이미지 파일 업로드
 
 	//제품 옵션들
 	private int storeMainOptNum;//상위옵션번호
@@ -161,14 +161,6 @@ public class Product {
 		this.pImgNum = pImgNum;
 	}
 
-	public MultipartFile getUpload() {
-		return upload;
-	}
-
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
-	}
-
 	public int getDelivType() {
 		return delivType;
 	}
@@ -191,6 +183,14 @@ public class Product {
 
 	public void setpCateName(String pCateName) {
 		this.pCateName = pCateName;
+	}
+
+	public List<MultipartFile> getSelectImg() {
+		return selectImg;
+	}
+
+	public void setSelectImg(List<MultipartFile> selectImg) {
+		this.selectImg = selectImg;
 	}
 	
 
