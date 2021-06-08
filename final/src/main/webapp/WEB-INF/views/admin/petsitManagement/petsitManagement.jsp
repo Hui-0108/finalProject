@@ -31,6 +31,9 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float:right">
+				  펫시터 아이디 발급
+				</button>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -38,10 +41,10 @@
                   <thead>
                   <tr>
                     <th>아이디</th>
+                    <th>근무시작일</th>
                     <th>급여계좌</th>
-                    <th>가능 요일(스케줄)</th>
-                    <th>비고</th>
-                    <th>CSS grade</th>
+                    <th>현재상태</th>
+                    <th>근무가능 요일</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -477,4 +480,27 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">새로운 펫시터 아이디 발급</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		아이디 : <br>
+		임시패스워드 : <br>
+		근무시작일 : 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary">발급하기</button>
+      </div>
+    </div>
+  </div>
+</div>
   

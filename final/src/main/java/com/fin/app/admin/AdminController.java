@@ -12,10 +12,7 @@ public class AdminController {
 		return ".adminLayout";
 	}
 	
-	@RequestMapping(value="/admin/memberManagement", method=RequestMethod.GET)
-	public String memberManagement() {
-		return ".admin.memberManagement";
-	}
+
 	
 	@RequestMapping(value="/admin/donationManagement", method=RequestMethod.GET)
 	public String donationManagement() {
@@ -42,10 +39,7 @@ public class AdminController {
 		return ".admin.reservationManagement";
 	}
 	
-	@RequestMapping(value="/admin/petsitManagement", method=RequestMethod.GET)
-	public String petstiManagement() {
-		return ".admin.petsitManagement";
-	}
+
 	
 	@RequestMapping(value="/admin/saleStatus", method=RequestMethod.GET)
 	public String saleStatus() {
