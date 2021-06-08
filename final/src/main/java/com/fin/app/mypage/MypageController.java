@@ -38,7 +38,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
-	public String editProfile(
+	public String ProfileSubmit(
 			HttpSession session,
 			Member dto,
 			Model model
@@ -57,6 +57,12 @@ public class MypageController {
 		
 		
 		return "redirect:/mypage/profile";
+	}
+	
+	@RequestMapping(value = "changePwd")
+	public String changePwd() throws Exception {
+		
+		return ".mypage.changePwd";
 	}
 	
 }
