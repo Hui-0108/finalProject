@@ -54,7 +54,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		try {
 			HttpSession session=req.getSession();
-			SessionInfo info=(SessionInfo)session.getAttribute("signup");
+			SessionInfo info=(SessionInfo)session.getAttribute("member");
 			String cp=req.getContextPath();
 			String uri=req.getRequestURI();
 			String queryString=req.getQueryString();
@@ -64,14 +64,23 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 				
 				if(isAjaxRequest(req)) {
 					resp.sendError(403);
-				} else {
-					if(uri.indexOf(cp)==0)
-						uri=uri.substring(req.getContextPath().length());
-					if(queryString!=null)
-						uri+="?"+queryString;
+					return result;
+				} 
+				
+				if(uri.indexOf(cp)==0) {
+					uri=uri.substring(req.getContextPath().length());
+				}
+				if(queryString!=null) {
+					uri+="?"+queryString;
+				}
 
-					session.setAttribute("preLoginURI", uri);
-					resp.sendRedirect(cp+"/member/login");
+				session.setAttribute("preLoginURI", uri);
+				resp.sendRedirect(cp+"/member/login");
+			} else {
+				if(uri.indexOf("admin")!=-1 && ! info.getmId().equals("admin")) {
+					
+					result=false;
+					resp.sendRedirect(cp+"/member/noAuthorized");
 				}
 			}
 		} catch (Exception e) {

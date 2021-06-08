@@ -36,5 +36,25 @@
 				#{mAddr2, jdbcType=VARCHAR})
 		SELECT * FROM dual		
     </update>
+    
+    <select id="readMember" parameterType="String" resultType="com.fin.app.member.Member">
+    	SELECT m.mId, mPwd, mNick, mRole, mNum, mName, mTel, mZip,
+    			mAddr1, mAddr2, mEmail, TO_CHAR(mBirth, 'YYYY-MM-DD') mBirth
+    	FROM member m 
+    	LEFT OUTER JOIN memberDetail m2 ON m.mId = m2.mId
+    	WHERE m.mId=#{mId}
+    </select>
 
+    <update id="updateMember1" parameterType="com.fin.app.member.Member">
+		UPDATE member SET mPwd=#{mPwd}
+		WHERE mId=#{mId}
+    </update>
+	
+    <update id="updateMember2" parameterType="com.fin.app.member.Member">
+		UPDATE memberDetail SET mEmail=#{mEmail, jdbcType=VARCHAR}, 
+			mTel=#{mTel, jdbcType=VARCHAR}, mBirth=#{mBirth, jdbcType=VARCHAR},
+			mZip=#{mZip, jdbcType=VARCHAR},
+			mAddr1=#{mAddr1, jdbcType=VARCHAR}, mAddr2=#{mAddr2, jdbcType=VARCHAR}
+		WHERE mId=#{mId}
+    </update>
 </mapper>

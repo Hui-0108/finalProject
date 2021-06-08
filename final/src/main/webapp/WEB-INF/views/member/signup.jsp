@@ -219,16 +219,8 @@ function mNickCheck() {
 </script>
 
 <style>
-	div {
-		text-align: center;
-	
-	@font-face {
-	    font-family: 'Cafe24Ssurround';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-		}	
-    }
+div {
+	text-align: center;
 }
 </style>
 
@@ -313,7 +305,7 @@ function mNickCheck() {
 					</div>
 					
 					<div class="col col-sm-8 input-group">
-						<input type="text" class="form-control" name="mEmail1" maxlength="30" value="aa" >
+						<input type="text" class="form-control" name="mEmail1" maxlength="30" value="${dto.mEmail1}" >
 					    <div class="input-group-prepend">
 					      <div class="input-group-text" style=" background: none; border: none;">@</div>
 					    </div>
@@ -360,7 +352,7 @@ function mNickCheck() {
 		        <label class="col-sm-2 col-form-label" for="addr1">주소</label>
 		        <div class="col-sm-8">
 		       		<div>
-		           		<input class="form-control" id="addr1" name="mAddr1" placeholder="기본 주소" value="111" readonly="readonly">
+		           		<input class="form-control" id="addr1" name="mAddr1" placeholder="기본 주소" value="${dto.mAddr1}" readonly="readonly">
 		           	</div>
 		       		<div style="margin-top: 5px;">
 		       			<input class="form-control" id="addr2" name="mAddr2" placeholder="상세 주소" value="${dto.mAddr2}">

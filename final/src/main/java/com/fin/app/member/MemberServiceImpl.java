@@ -2,17 +2,22 @@ package com.fin.app.member;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fin.app.common.dao.CommonDAO;
+import com.fin.app.mail.Mail;
+import com.fin.app.mail.MailSender;
 
 @Service("member.memberService")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private CommonDAO dao;
 	
+	@Autowired
+	private MailSender mailSender;
 	
 	@Override
 	public Member loginMember(String mId) {
@@ -56,14 +61,50 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void updateMember(Member dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			if(dto.getmEmail1().length()!=0 && dto.getmEmail2().length()!=0) {
+				dto.setmEmail(dto.getmEmail1() + "@" + dto.getmEmail2());
+			}
+			
+			if(dto.getmTel1().length()!=0 && dto.getmTel2().length()!=0 && dto.getmTel3().length()!=0) {
+				dto.setmTel(dto.getmTel1() + "-" + dto.getmTel2() + "-" + dto.getmTel3());
+			}
+			
+			dao.updateData("member.updateMember1", dto);
+			dao.updateData("member.updateMember2", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public Member readMember(String mId) {
-		// TODO Auto-generated method stub
-		return null;
+		Member dto=null;
+		
+		try {
+			dto=dao.selectOne("member.readMember", mId);
+			
+			if(dto!=null) {
+				if(dto.getmEmail()!=null) {
+					String [] s=dto.getmEmail().split("@");
+					dto.setmEmail1(s[0]);
+					dto.setmEmail2(s[1]);
+				}
+
+				if(dto.getmTel()!=null) {
+					String [] s=dto.getmTel().split("-");
+					dto.setmTel1(s[0]);
+					dto.setmTel2(s[1]);
+					dto.setmTel3(s[2]);
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
 	}
 
 	@Override
@@ -74,14 +115,49 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		
+		return result;
 	}
 
 	@Override
 	public List<Member> listMember(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Member> list=null;
+		
+		return list;
+	}
+
+	@Override
+	public void generatePwd(Member dto) throws Exception {
+		// 10 자리 임시 패스워드 생성
+		StringBuilder sb = new StringBuilder();
+		Random rd = new Random();
+		String s="!@#$%^&*~-+ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+		for(int i=0; i<10; i++) {
+			int n = rd.nextInt(s.length());
+			sb.append(s.substring(n, n+1));
+		}
+		
+		String result;
+		result = dto.getmId()+"님의 새로 발급된 임시 패스워드는 <b>"
+		         + sb.toString()+"</b> 입니다.<br>"
+		         + "로그인 후 반드시 패스워드를 변경 하시기 바랍니다.";
+		Mail mail = new Mail();
+		mail.setReceiverEmail(dto.getmEmail());
+		
+		mail.setSenderEmail("ghiouw96@gmail.com");
+		mail.setSenderName("관리자");
+		mail.setSubject("임시 패스워드 발급");
+		mail.setContent(result);
+		
+		boolean b = mailSender.mailSend(mail);
+		
+		if(b) {
+			dto.setmPwd(sb.toString());
+			updateMember(dto);
+		} else {
+			throw new Exception("이메일 전송중 오류가 발생했습니다.");
+		}
 	}
 
 }

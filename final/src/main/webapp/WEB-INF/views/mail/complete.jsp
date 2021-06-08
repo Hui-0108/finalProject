@@ -7,7 +7,7 @@
 	<div class="inner-page">
 		<div class="info-continer">
 			<div class="info-title">
-				<h3>${title}</h3>
+				<h3><i class="icofont-email"></i> 메일 전송</h3>
 			</div>
 			<div class="info-box">
 				<div class="info-message">

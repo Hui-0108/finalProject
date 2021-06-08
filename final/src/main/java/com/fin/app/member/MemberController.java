@@ -132,6 +132,8 @@ public class MemberController {
 	}
 	
 	//로그아웃
+	
+	@RequestMapping(value="logout")
 	public String logout(HttpSession session) {
 		//세션에 저장된 정보 지우기
 		session.removeAttribute("member");
@@ -269,5 +271,46 @@ public class MemberController {
 		Map<String, Object> model=new HashMap<>();
 		model.put("passed", p);
 		return model;
+	}
+	
+	// 패스워드 찾기
+	@RequestMapping(value="findPwd", method=RequestMethod.GET)
+	public String findPwdForm(HttpSession session) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info!=null) {
+			return "redirect:/";
+		}
+		
+		return ".member.findPwd";
+	}
+	
+	@RequestMapping(value="findPwd", method=RequestMethod.POST)
+	public String findPwdSubmit(@RequestParam String mId,
+			final RedirectAttributes reAttr,
+			Model model
+			) throws Exception {
+		
+		Member dto = service.readMember(mId);
+		if(dto==null || dto.getmEmail()==null) {
+			model.addAttribute("message", "등록된 아이디가 아닙니다.");
+			return ".member.findPwd";
+		}
+		
+		try {
+			service.generatePwd(dto);
+		} catch (Exception e) {
+			model.addAttribute("message", "이메일 전송이 실패했습니다.");
+			return ".member.findPwd";
+		}
+		
+		StringBuilder sb=new StringBuilder();
+		sb.append("회원님의 이메일로 임시 패스워드를 전송했습니다.<br>");
+		sb.append("로그인 후 패스워드를 변경하시기 바랍니다.<br>");
+		
+		reAttr.addFlashAttribute("title", "패스워드 찾기");
+		reAttr.addFlashAttribute("message", sb.toString());
+		
+		return "redirect:/member/complete";
+		
 	}
 }

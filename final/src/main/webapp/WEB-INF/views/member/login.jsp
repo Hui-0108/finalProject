@@ -101,9 +101,9 @@ function sendLogin() {
 	        <input type="password" id="mPwd" name="mPwd" class="form-control loginTF" placeholder="패스워드">
 	        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendLogin();">로그인 <span class="glyphicon glyphicon-ok"></span></button>
 	        <div class="center">
-	            <button type="button" class="btn btn-link">회원가입 </button>
-	            <button type="button" class="btn btn-link">아이디찾기 </button>
-	            <button type="button" class="btn btn-link">패스워드찾기</button>
+					<a href="${pageContext.request.contextPath}/member/signup">회원가입</a> <span>|</span>
+					<a href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a> <span>|</span>
+					<a href="${pageContext.request.contextPath}/member/findPwd">패스워드 찾기</a>
 	        </div>
 	        <div class="message">${message}</div>
 	    </form>
