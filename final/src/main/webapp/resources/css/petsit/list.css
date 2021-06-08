@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+.petsitList {
+	font-size: 15px;
+	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
+	color: rgb(57, 60, 71);
+}
+
+.petsitList .searchDong {
+   width: 475px;
+    height: 59px;
+   display: flex;
+   border: 1.5px solid rgb(223, 227, 234);
+   border-radius: 4px;
+   box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+}
+.petsitList .searchDong:focus {
+   outline: none;
+   border: 1.5px solid rgb(113, 162, 255);
+}
+
+.petsitList .reserve-detail {
+	float: right;
+    width: 50%;
+    padding: 25px;
+    text-align: left;
+}
+
+
+.petsitList .dateBar {
+	width: 475px;
+    height: 59px;
+	display: flex;
+	border: 1.5px solid rgb(223, 227, 234);
+	border-radius: 4px;
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+}
+
+.petsitList .dateBar:focus {
+	outline: none;
+	border: 1.5px solid rgb(113, 162, 255);	
+}
+
+.petsitList .checkDate {
+	border: none;
+	text-align: center;
+	height: 56px;
+	width:200px;
+}
+
+.petsitList .checkDate:focus {
+	outline:none;
+	border-bottom: 3px solid rgb(113, 162, 255);
+}
+ 
+.petsitList .fas fa-arrow-right {
+     margin-top: 10px;
+}
+
+.petsitList .dateButton {
+	width: 23px;
+	height: 27px;
+	background-color: white;
+	border: none;
+	margin-top: 13px;
+	margin-left: 15px;
+}
+
+.petsitList .checkinCal {
+	height: 56px;
+	margine: none;
+	padding: none;
+}
+
+.petsitList .pointR {
+	padding: 17px 0px 0px
+}
+
+.petsitList .search ul, .search li {
+	list-style: none;
+	padding-left: 0px;
+	padding-right: 15px;
+	float: left;
+}
+
+.petsitList .search {
+	width: 100%;
+	height: 322px;
+	padding: 25px;
+	border-bottom: 1px solid rgb(231, 233, 235);
+	box-shadow: rgb(0 0 0 / 5%) 0px 2px 20px;
+}
+.petsitList .searchAddr {
+	float: left;
+	width: 50%;
+	padding: 25px;
+	text-align: left;
+}
+.petsitList .searchDate {
+	float: left;
+	width: 50%;
+	padding: 25px;
+	text-align: left;
+}
+.petsitList .searchCondition {
+	float: left;
+	width: 70%;
+	padding: 25px;
+	text-align: left;
+}
+.petsitList .condition {
+	width: 122px;
+    height: 55px;
+    line-height: 52px;
+    display: flex;
+	border: 1.5px solid rgb(223, 227, 234);
+	border-radius: 28px;
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+	text-align:center;
+	vertical-align:middle;
+    justify-content: center;
+}
+.petsitList .condition p {
+	font-size: 15px;
+    font-weight: 500;
+    color: rgb(187, 193, 204);
+}
+.petsitList .searchButton {
+	float: left;
+	width: 30%;
+	padding: 33px;
+	padding-right: 0px;
+}
+.petsitList .button {
+	width: 250px;
+    height: 60px;
+    line-height: 60px;
+    background: rgb(113, 162, 255);
+    margin-top: 25px;
+    border-radius: 7px;
+    display: flex;
+	text-align:center;
+	vertical-align:middle;
+    justify-content: center;
+    box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+}
+
+.petsitMain .petList {
+	width: 100%;
+	height: 550px;
+	padding: 25px;
+	margin-top: 50px;
+	border-bottom: 1px solid rgb(231, 233, 235);
+	box-shadow: rgb(0 0 0 / 5%) 0px 2px 20px;
+	text-align: rignt;
+}
+

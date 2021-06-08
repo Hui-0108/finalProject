@@ -13,7 +13,7 @@
 					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
 				</div>
 				<div class="reserve-detail">
-					<p><i class="fas fa-paw"></i></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
+					<p><i class="fas fa-paw"></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
 					<div class="dateBar">
 						<div class="checkinCal">
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>

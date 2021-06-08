@@ -7,14 +7,16 @@
 }
 
 .petsitWrite .body-title {
-	width: 1100px;
+	width: 900px;
 	border: 3px solid blue;
-	margin: 0 auto;
-	
+	margin: 0 auto;	
 }
 
 .petsitWrite .write {
+	width: 900px;
 	margin-top: 50px;
+	text-align: left;
+	
 }
 
 .petsitWrite .table {
@@ -56,4 +58,9 @@
 .petsitWrite .table-footer tr {
 	height:45px;
 	text-align: center;
+}
+
+.petsitWrite .spaceNeed {
+	width: 80px;
+	display: inline-block;
 }

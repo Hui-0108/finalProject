@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface PetsitService {
 
-	//글작성(펫시터 글올리기, 후기 글올리기)
-	
 	//글쓰기
 	public void insertPetsit(Petsit dto, String pathname) throws Exception;
 	//글리스트
@@ -18,8 +16,17 @@ public interface PetsitService {
 	//글수정
 	public void updatePetsit(Petsit dot, String pathname) throws Exception;
 	//글삭제
-	public void deletePetsit(int num, String pathname, String userId) throws Exception;
+	public void deletePetsit(int num, String pathname) throws Exception;
 	
+	//파일insert
+	public void insertFile(Petsit dto) throws Exception;
+	//파일 list
+	public List<Petsit> listFile(int num);
+	//파일읽기
+	public Petsit readFile(int petImgNum);
+	//파일 지우기
+	public void deleteFile(Map<String, Object> map) throws Exception;
+
 	
 	
 	

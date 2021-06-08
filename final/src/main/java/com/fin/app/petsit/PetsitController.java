@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,12 +42,17 @@ public class PetsitController {
 	public String reservation() throws Exception {
 		return ".petsit.reservation";
 	}
+	
+	@RequestMapping("list")
+	public String list() throws Exception {
+		return ".petsit.list";
+	}
 
-	@RequestMapping(value="list")
+	//@RequestMapping(value="list")
 	public String list(
 			@RequestParam(value="page", defaultValue="1") int current_page, //현재페이지. 처음엔 1페이지 보여줌
 			@RequestParam(defaultValue="all") String condition, //조건 처음엔 모든조건을 보여줌 
-			@RequestParam(defaultValue="") String keyword,//조겆 검색
+			@RequestParam(defaultValue="") String keyword,//조건 검색
 			@RequestParam(value="rows", defaultValue="7") int rows, //한번에 7줄
 			HttpServletRequest req, //값을 받아옴
 			Model model	//Controller에서 생성한 데이터를 담아서 View로 전달
@@ -101,7 +105,7 @@ public class PetsitController {
 		}
 		
 		if(query.length() !=0) {
-			listUrl = cp+"/bbs/list?" + query;
+			listUrl = cp+"/petsit/list?" + query;
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);//myUtil의 페이징()메소드의 결과값 paging으로 받음
@@ -115,7 +119,7 @@ public class PetsitController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		return ".petSit.list";
+		return ".petsit.list";
 	}
 	
 	//글쓰기 폼
@@ -134,16 +138,17 @@ public class PetsitController {
 			
 		//사진파일은 꼭 root(webapp)에 저장해야함 
 		String root = session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"petsit";
+		String pathname=root+"upload"+File.separator+"petsit";
 		
 		try {
 			dto.setmId(info.getmId()); //세션에 저장된 아이디를 dto에 setmId를 통해 넣음
 			service.insertPetsit(dto, pathname); //insertPesit()메소드에 dto, pathname을 전달하여 실행 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/bbs/list";	//글쓰기 완료 후 페이지가 list로 	
+		return "redirect:/petsit/list";	//글쓰기 완료 후 페이지가 list로 	
 	}
 	
 	//글보기
@@ -170,7 +175,7 @@ public class PetsitController {
 		
 		dto.setPetContent(myUtil.htmlSymbols(dto.getPetContent()));
 		
-		return ".petsit.article";
+		return ".petsit.main";
 		
 		
 		//글수정
