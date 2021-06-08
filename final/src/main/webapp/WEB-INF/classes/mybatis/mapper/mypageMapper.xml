@@ -10,12 +10,29 @@
 	</select>
 	
 	<update id="updateDetail" parameterType="com.fin.app.mypage.Profile">
-		UPDATE memberdetail SET mZip = #{mZip}, mAddr1 = #{mAddr1}, mAddr2 = #{mAddr2}, mTel = #{mTel}, mEmail = #{mEmail}
+		UPDATE memberdetail SET mName = #{mName}, mBirth = #{mBirth},  mZip = #{mZip}, mAddr1 = #{mAddr1}, 
+			mAddr2 = #{mAddr2}, mTel = #{mTel}, mEmail = #{mEmail}
+		WHERE mId = #{mId}
+	</update>
+	
+	<update id="updateNick" parameterType="com.fin.app.mypage.Profile">
+		UPDATE member SET mNick = #{mNick} 
 		WHERE mId = #{mId}
 	</update>
 	
 	<update id="updateProfileImg" parameterType="com.fin.app.mypage.Profile">
 		UPDATE memberdetail SET mProfileImg = #{mProfileImg} 
+		WHERE mId = #{mId}
+	</update>
+	
+	<select id="selectCurrPwd" parameterType="String" resultType="String">
+		SELECT mPwd 
+		FROM member 
+		WHERE mId = #{mId}
+	</select>
+	
+	<update id="updatePwd" parameterType="com.fin.app.mypage.Profile">
+		UPDATE member SET mPwd = #{mPwd} 
 		WHERE mId = #{mId}
 	</update>
 

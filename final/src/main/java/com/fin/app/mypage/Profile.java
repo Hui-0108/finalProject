@@ -7,7 +7,7 @@ public class Profile {
 	private int mType;//회원구분(회원/비회원)
 	
 	private String mId;
-	private String mPwd, mPwd1, mPwd2;
+	private String mPwd;
 	private String mNick;
 	private int mRole;//회원권한(운영자0,일반1,펫시터2)
 	
@@ -17,10 +17,12 @@ public class Profile {
 	private String mAddr1, mAddr2;	
 	private String mEmail, mEmail1,mEmail2;
 	private String mBirth;
-	private String mProfileImg;
 	
-	private MultipartFile upload;
-
+	private String mProfileImg; // 프로필 이미지 파일 이름
+	private MultipartFile upload; // 프로필 이미지 업로드
+	
+	private String currPwd; // 비밀번호 변경 시 현재 비밀번호
+	
 	public long getmNum() {
 		return mNum;
 	}
@@ -51,22 +53,6 @@ public class Profile {
 
 	public void setmPwd(String mPwd) {
 		this.mPwd = mPwd;
-	}
-
-	public String getmPwd1() {
-		return mPwd1;
-	}
-
-	public void setmPwd1(String mPwd1) {
-		this.mPwd1 = mPwd1;
-	}
-
-	public String getmPwd2() {
-		return mPwd2;
-	}
-
-	public void setmPwd2(String mPwd2) {
-		this.mPwd2 = mPwd2;
 	}
 
 	public String getmNick() {
@@ -196,6 +182,16 @@ public class Profile {
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
 	}
+
+	public String getCurrPwd() {
+		return currPwd;
+	}
+
+	public void setCurrPwd(String currPwd) {
+		this.currPwd = currPwd;
+	}
+	
+	
 	
 	
 }

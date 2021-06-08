@@ -39,8 +39,7 @@ public class MypageController {
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public String ProfileSubmit(
 			HttpSession session,
-			Profile dto,
-			Model model
+			Profile dto
 			) throws Exception {
 		
 		try {
@@ -58,9 +57,40 @@ public class MypageController {
 		return "redirect:/mypage/profile";
 	}
 	
-	@RequestMapping(value = "changePwd")
+	@RequestMapping(value = "changePwd", method = RequestMethod.GET)
 	public String changePwd() throws Exception {
 		
+		return ".mypage.changePwd";
+	}
+	
+	@RequestMapping(value = "changePwd", method = RequestMethod.POST)
+	public String changePwdSubmit(
+			HttpSession session,
+			Profile dto,
+			Model model
+			) throws Exception {
+		
+		try {
+			SessionInfo info = (SessionInfo)session.getAttribute("member");
+			String currId = info.getmId();
+			
+			if(service.updatePwd(dto, currId)) {
+				model.addAttribute("result", "true");
+				
+				// 로그아웃
+				session.removeAttribute("member");
+				session.invalidate();
+				return "redirect:/";
+			}
+			
+			model.addAttribute("result", "false");
+			
+			
+			
+			
+		} catch (Exception e) {
+		}
+
 		return ".mypage.changePwd";
 	}
 	

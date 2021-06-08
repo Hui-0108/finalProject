@@ -15,6 +15,21 @@ $(function() {
 		var s;
 		var arr = [];
 		
+		// 닉네임
+		s = "<input type='text' name='mNick' id='mNick' class='boxTF sm' value='${dto.mNick}'>";
+		$(".mNick").html(s);
+		s="";
+		
+		// 이름
+		s = "<input type='text' name='mName' id='mName' class='boxTF sm' value='${dto.mName}'>";
+		$(".mName").html(s);
+		s="";
+		
+		// 생년월일
+		s = "<input type='text' name='mBirth' id='mBirth' class='boxTF md' value='${dto.mBirth}'>";
+		$(".mBirth").html(s);
+		s="";
+		
 		// 우편번호, 주소1, 주소2
 		s = "<input type='text' name='mZip' id='mZip' class='boxTF sm' value='${dto.mZip}' readonly='readonly'>";
 		s += "<button type='button' onClick='daumPostcode();'>우편번호</button>";
@@ -109,7 +124,7 @@ $(function() {
 						<label>닉네임</label>
 					</td>
 					<td>
-						<p>
+						<p class="mNick">
 							<span>${dto.mNick}</span>
 						</p>
 					</td>
@@ -120,7 +135,7 @@ $(function() {
 						<label>이름</label>
 					</td>
 					<td>
-						<p>
+						<p class="mName">
 							<span>${dto.mName}</span>
 						</p>
 					</td>
@@ -131,7 +146,7 @@ $(function() {
 						<label>생년월일</label>
 					</td>
 					<td>
-						<p>
+						<p class="mBirth">
 							${dto.mBirth}
 						</p>
 					</td>
@@ -237,14 +252,36 @@ $(function() {
 		var f = document.memberForm;
 		var str;
 		
+		str = f.mNick.value;
+	    if(!str) {
+	        alert("닉네임을 입력하세요. ");
+	        f.mNick.focus();
+	        return;
+	    }
+	    
+	    str = f.mName.value;
+	    if(!str) {
+	        alert("이름을 입력하세요. ");
+	        f.mName.focus();
+	        return;
+	    }
+	    
+	    str = f.mBirth.value;
+	    if(!str || !isValidDateFormat(str)) {
+	        alert("생년월일을 입력하세요. [YYYY-MM-DD] ");
+	        f.mBirth.focus();
+	        return;
+	    }
+	    
+		
 	    str = f.mTel1.value;
 	    if(!str) {
 	        alert("전화번호를 입력하세요. ");
 	        f.mTel1.focus();
 	        return;
 	    }
-	    if(!/^(\d+)$/.test(str)) {
-	        alert("숫자만 가능합니다. ");
+	    if(!/^[0-9]{3}$/.test(str)) {
+	        alert("숫자만 가능합니다. [010-xxxx-xxxx]");
 	        f.mTel1.focus();
 	        return;
 	    }
@@ -255,8 +292,8 @@ $(function() {
 	        f.mTel2.focus();
 	        return;
 	    }
-	    if(!/^(\d+)$/.test(str)) {
-	        alert("숫자만 가능합니다. ");
+	    if(!/^[0-9]{4}$/.test(str)) {
+	        alert("숫자만 가능합니다. [010-xxxx-xxxx]");
 	        f.mTel2.focus();
 	        return;
 	    }
@@ -267,8 +304,8 @@ $(function() {
 	        f.mTel3.focus();
 	        return;
 	    }
-	    if(!/^(\d+)$/.test(str)) {
-	        alert("숫자만 가능합니다. ");
+	    if(!/^[0-9]{4}$/.test(str)) {
+	        alert("숫자만 가능합니다. [010-xxxx-xxxx]");
 	        f.mTel3.focus();
 	        return;
 	    }
@@ -290,6 +327,13 @@ $(function() {
 		
 		f.action = "${pageContext.request.contextPath}/mypage/profile";
 	    f.submit();
+	}
+    
+    function isValidDateFormat(str) {
+    	if(!/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/.test(str)) {
+    		return false;
+    	}
+    	return true;
 	}
 
 </script>

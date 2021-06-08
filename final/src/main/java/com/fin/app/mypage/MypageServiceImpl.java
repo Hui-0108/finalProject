@@ -45,14 +45,39 @@ public class MypageServiceImpl implements MypageService {
 				dao.updateData("mypage.updateProfileImg", dto);
 			}
 			
+			// 테이블이 다르기 때문에 두번 update
 			dao.updateData("mypage.updateDetail", dto);
-			
+			dao.updateData("mypage.updateNick", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 		
 		return dto;
+	}
+
+	@Override
+	public boolean updatePwd(Profile dto, String mId) throws Exception {
+		
+		try {
+			// 입력받은 현재 비밀번호와 현재세션의 비밀번호 정보 비교
+			String currPwd = dto.getCurrPwd();
+			if(currPwd.equals(dao.selectOne("mypage.selectCurrPwd", mId))) {
+				
+				
+				dto.setmId(mId);
+				
+				// 비밀번호 update
+				dao.updateData("mypage.updatePwd", dto);
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return false;
+		
 	}
 
 }
