@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.fin.app.common.FileManager;
 import com.fin.app.common.dao.CommonDAO;
-import com.fin.app.member.Member;
 
 @Service("mypage.mypageService")
 public class MypageServiceImpl implements MypageService {
@@ -17,8 +16,8 @@ public class MypageServiceImpl implements MypageService {
 	private FileManager fileManager;
 	
 	@Override
-	public Member getUserDetail(String mId) {
-		Member dto = null;
+	public Profile getUserDetail(String mId) {
+		Profile dto = null;
 		try {
 			dto = dao.selectOne("mypage.selectDetail", mId);
 		} catch (Exception e) {
@@ -28,7 +27,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public Member updateUserDetail(Member dto, String pathname) throws Exception {
+	public Profile updateUserDetail(Profile dto, String pathname) throws Exception {
 		
 		try {
 			// 데이터 가공

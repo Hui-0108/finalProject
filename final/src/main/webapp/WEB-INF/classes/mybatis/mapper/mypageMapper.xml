@@ -2,19 +2,19 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
-	<select id="selectDetail" parameterType="String" resultType="com.fin.app.member.Member">
+	<select id="selectDetail" parameterType="String" resultType="com.fin.app.mypage.Profile">
 		SELECT m.mId, m.mNick, m.mNum, md.mName, TO_CHAR(md.mBirth, 'YYYY-MM-DD') mBirth, md.mTel, md.mEmail, md.mZip, md.mAddr1, md.mAddr2, md.mProfileImg
 		FROM member m 
 		JOIN memberDetail md ON m.mId = md.mid 
 		WHERE m.mId = #{mId}
 	</select>
 	
-	<update id="updateDetail" parameterType="com.fin.app.member.Member">
+	<update id="updateDetail" parameterType="com.fin.app.mypage.Profile">
 		UPDATE memberdetail SET mZip = #{mZip}, mAddr1 = #{mAddr1}, mAddr2 = #{mAddr2}, mTel = #{mTel}, mEmail = #{mEmail}
 		WHERE mId = #{mId}
 	</update>
 	
-	<update id="updateProfileImg" parameterType="com.fin.app.member.Member">
+	<update id="updateProfileImg" parameterType="com.fin.app.mypage.Profile">
 		UPDATE memberdetail SET mProfileImg = #{mProfileImg} 
 		WHERE mId = #{mId}
 	</update>

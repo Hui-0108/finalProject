@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fin.app.member.Member;
 import com.fin.app.member.SessionInfo;
 
 @Controller("mypage.mypageController")
@@ -25,7 +24,7 @@ public class MypageController {
 			Model model
 			) throws Exception {
 		
-		Member dto = new Member();
+		Profile dto = new Profile();
 		
 		try {
 			SessionInfo info = (SessionInfo)session.getAttribute("member");
@@ -40,7 +39,7 @@ public class MypageController {
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public String ProfileSubmit(
 			HttpSession session,
-			Member dto,
+			Profile dto,
 			Model model
 			) throws Exception {
 		
