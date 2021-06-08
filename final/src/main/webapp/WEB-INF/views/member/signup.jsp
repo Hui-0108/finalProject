@@ -352,10 +352,10 @@ div {
 		        <label class="col-sm-2 col-form-label" for="addr1">주소</label>
 		        <div class="col-sm-8">
 		       		<div>
-		           		<input class="form-control" id="addr1" name="mAddr1" placeholder="기본 주소" value="${dto.mAddr1}" readonly="readonly">
+		           		<input class="form-control" id="mAddr1" name="mAddr1" placeholder="기본 주소" value="${dto.mAddr1}" readonly="readonly">
 		           	</div>
 		       		<div style="margin-top: 5px;">
-		       			<input class="form-control" id="addr2" name="mAddr2" placeholder="상세 주소" value="${dto.mAddr2}">
+		       			<input class="form-control" id="mAddr2" name="mAddr2" placeholder="상세 주소" value="${dto.mAddr2}">
 					</div>
 				</div>
 		    </div>
