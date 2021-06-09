@@ -32,50 +32,67 @@
 
 	<!--  JQuery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
+	
+	<script type="text/javascript">
+	
+	$(function(){
+		$(document)
+		   .ajaxStart(function(){ // AJAX 시작
+			   $("#loadingImage").center();
+			   $("#loadingLayout").fadeTo("slow", 0.5);
+		   })
+		   .ajaxComplete(function(){ // AJAX 종료
+			   $("#loadingLayout").hide();
+		   });
+	});
+	</script>
 	
 </head>
 
 
 <body class="hold-transition sidebar-mini">
-<header class="header">
-    <tiles:insertAttribute name="header"/>
-</header>
+	<header class="header">
+	    <tiles:insertAttribute name="header"/>
+	</header>
+		
+	<main>
+	    <tiles:insertAttribute name="body"/>
+	</main>
 	
-<main>
-    <tiles:insertAttribute name="body"/>
-</main>
+	<footer class="main-footer">
+	    <tiles:insertAttribute name="footer"/>
+	</footer>
 
-<footer class="main-footer">
-    <tiles:insertAttribute name="footer"/>
-</footer>
+	<div id="loadingLayout" style="display: none; position: absolute; left: 0; top:0; width: 100%; height: 100%; z-index: 9000; background: #eeeeee;">
+		<i id="loadingImage" class="fa fa-cog fa-spin fa-fw" style="font-size: 70px; color: 333;"></i> 
+	</div>
 
-
-<!-- OPTIONAL SCRIPTS -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/chart.js/Chart.min.js"></script>
-
-<!-- Java Script -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/management.js"></script>
-
-
-<!-- Bootstrap -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.js"></script>
-
-<!-- DataTables  & Plugins -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jszip/jszip.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/pdfmake.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/vfs_fonts.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+	<!-- OPTIONAL SCRIPTS -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/chart.js/Chart.min.js"></script>
+	
+	<!-- Java Script -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/management.js"></script>
+	
+	
+	<!-- Bootstrap -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.js"></script>
+	
+	<!-- DataTables  & Plugins -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jszip/jszip.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/pdfmake.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/pdfmake/vfs_fonts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 
 </body>

@@ -16,39 +16,37 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/donationManagement", method=RequestMethod.GET)
 	public String donationManagement() {
-		return ".admin.donationManagement";
+		return ".admin.donationManagement.donationManagement";
 	}
 	
 	@RequestMapping(value="/admin/mileageManagement", method=RequestMethod.GET)
 	public String mileageManagement() {
-		return ".admin.mileageManagement";
+		return ".admin.mileageManagement.mileageManagement";
 	}
 	
 	@RequestMapping(value="/admin/orderManagement", method=RequestMethod.GET)
 	public String orderManagement() {
-		return ".admin.orderManagement";
+		return ".admin.orderManagement.orderManagement";
 	}
 	
 	@RequestMapping(value="/admin/productManagement", method=RequestMethod.GET)
 	public String productManagement() {
-		return ".admin.productManagement";
+		return ".admin.productManagement.productManagement";
 	}
 	
 	@RequestMapping(value="/admin/reservationManagement", method=RequestMethod.GET)
 	public String reservationManagement() {
-		return ".admin.reservationManagement";
+		return ".admin.reservationManagement.reservationManagement";
 	}
-	
-
 	
 	@RequestMapping(value="/admin/saleStatus", method=RequestMethod.GET)
 	public String saleStatus() {
-		return ".admin.saleStatus";
+		return ".admin.saleStatus.saleStatus";
 	}
 	
 	@RequestMapping(value="/admin/petsitStatus", method=RequestMethod.GET)
 	public String petsitStatus() {
-		return ".admin.petsitStatus";
+		return ".admin.petsitStatus.petsitStatus";
 	}
 
 }

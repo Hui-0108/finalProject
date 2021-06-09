@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>주문관리</h1>
+            <h1>상품관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin">Home</a></li>
-              <li class="breadcrumb-item active">주문관리</li>
+              <li class="breadcrumb-item active">상품관리</li>
             </ol>
           </div>
         </div>
@@ -37,11 +37,11 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>주문코드</th>
-                    <th>고객번호</th>
-                    <th>주문상태</th>
-                    <th>결제금액</th>
-                    <th>구매자명</th>
+                    <th>제품코드</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>재고수량</th>
+                    <th>등록일</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -453,15 +453,6 @@
                     <td>U</td>
                   </tr>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
