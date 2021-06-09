@@ -33,10 +33,9 @@ public class ProductController {
 	@Autowired
 	private FileManager fileManger;
 	
-	@RequestMapping("created5")
-	public String test() throws Exception{
-		
-		return ".product.created5";
+	@RequestMapping("main")
+	public String main() throws Exception{
+		return ".product.productMain";
 	}
 	
 	

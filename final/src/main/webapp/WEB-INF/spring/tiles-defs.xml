@@ -33,6 +33,17 @@
 	<definition name=".mypage.*" extends=".mypageLayout"> 	
 		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />
 	</definition>
+
+	<definition name=".productLayout" template="/WEB-INF/views/layout/layout5.jsp">
+	    <put-attribute name="title" value="spring" />
+	  	<put-attribute name="header" value="/WEB-INF/views/layout/store_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+	<definition name=".product.*" extends=".productLayout">
+		<put-attribute name="body" value="/WEB-INF/views/product/{1}.jsp"/>	
+	</definition>	
+	
 	
    <!-- 3단 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout3.jsp">

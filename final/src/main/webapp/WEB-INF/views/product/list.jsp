@@ -5,13 +5,22 @@
 
 <style type="text/css">
 .productListBody{
+	margin: 0;
+	padding: 0;
 	width: 1300px;
+	font-family: 
+}
+
+.productListForm{
+	margin: auto;
+	width: 1100px;
 }
 .productListBody .prodcutListTop{
 	width: 100%;
+	margin: auto;
 }
 
-.productListBody .productListMain ul, .productListBody .productListMain li{
+.productListBody ul{
 	list-style: none;
 }
 
@@ -25,22 +34,45 @@
 </style>
 
 <script type="text/javascript">
-$(function(){
-	$("#pCateNum").change(function(){
-		var cn = $(this).val();
-		var url="${pageContext.request.contextPath}/product/list?cn="+cn;
-		location.href=url;
+
+function ajaxFun(url, method, query, dataType, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data) {
+			fn(data);
+		},
+		beforeSend:function(jqXHR) {
+			jqXHR.setRequestHeader("AJAX", true);
+		},
+		error:function(jqXHR) {
+			if(jqXHR.status===403) {
+				login();
+				return false;
+			}
+	    	
+			console.log(jqXHR.responseText);
+		}
 	});
+}
+
+$(function(){
+	listPage(1);
 });
+
+
+
 
 </script>
 <div class="productListBody">
 
-	<div class="">	
+	<div class="productListForm">	
 		<table class="prodcutListTop">
 			<tr class="productListTitle">
 				<td>
-					<h2>카테고리</h2>
+					<h2>전체상품</h2>
 				</td>
 			</tr>
 			<tr>
@@ -58,15 +90,11 @@ $(function(){
 		<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/created';">상품 등록하기</button>
 
 		<div class="productListMain">
-			<ul>
-				<li>사진</li>
-				<li>상품명
-					<input type="text" id="" name="">
-				</li>
-				<li>
-					<input type="text" id="price" name="">
-				</li>
-			</ul>			
+		
+			<div class="" data-pageNo="0"></div>
+			<div class=""></div>
+			<div class=""></div>		
+			<div class=""></div>		
 		</div>
 
 		<div>

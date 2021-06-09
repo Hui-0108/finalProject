@@ -104,10 +104,6 @@ function ajaxFun(url, method, query, dataType, fn) {
 	});
 }
 
-
-
-
-
 /*
 $(function(){
 	$(".delete-img").click(function(){
@@ -126,7 +122,6 @@ $(function(){
 	
 }); 
  */
-
 
 	$(function(){
 		//이미지 미리보기
@@ -152,7 +147,7 @@ $(function(){
 	});
 	
 
-function sendOk() {
+function check() {
 	var f = document.createdFrom;
 	
 	var str = f.pCateNum.value;
@@ -201,11 +196,11 @@ function sendOk() {
 	}
 	
 	str = f.pContent.value;
-	if(! str || str=="<p>&nbsp;</p>"){
-		alert("제품 정보를 입력하세요.");
-		f.pContent.focus();
-		return;
-	}
+    if(!str || str=="<p>&nbsp;</p>") {
+        alert("내용을 입력하세요. ");
+        f.pContent.focus();
+        return false;
+    }
 	
 	str = f.pDetailCnt.value;
 	if(! str){
@@ -222,7 +217,7 @@ function sendOk() {
 	}
 	
 	f.action = "${pageContext.request.contextPath}/product/${mode}";
-	f.submit();
+	return true;
 }
 
 $(function(){
@@ -263,7 +258,7 @@ $(function(){
 		<h3><i class="far fa-edit"></i>상품 등록</h3>
 	</div>
 	<div class="productTableForm">
-	<form name="createdFrom" method="post" enctype="multipart/form-data">
+	<form name="createdFrom" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
 		<div class="productTable">
 			<ul class="categoryHead">
 				<li class="categoryList">			
@@ -331,8 +326,8 @@ $(function(){
 
 				<li>배송조건</li>
 				<li>
-					<label><input type="radio" name="delivType" value="0" ${empty dto || dto.delivType==0?"checked='checked'":""}>무료</label>
-					<label><input type="radio" name="delivType" value="0" ${dto.delivType==1?"checked='checked'":""}>유료</label>					
+					<label><input type="radio" name="delivType" value="0" checked="checked">무료</label>
+					<label><input type="radio" name="delivType" value="1" >유료</label>					
 				</li>
 
 				<li style="vertical-align: top;">상세옵션수량</li>
@@ -348,14 +343,14 @@ $(function(){
 			<ul class="contentClear">
 				<li>상세정보</li>
 				<li>
-					<textarea name="pContent" id="content" class=""  style="height: 270px;">${dto.pContent}</textarea>
+					<textarea name="pContent" id="pContent" class=""  style="height: 270px;">${dto.pContent}</textarea>
 				</li>
 			</ul>						
 		
 		<div class="tableFooter">
 			<ul>
 				<li>
-					<button type="button" class="" onclick="sendOk();">${mode=='update'?'상품수정':'상품등록'}</button>
+					<button type="submit" class="">${mode=='update'?'상품수정':'상품등록'}</button>
 					<button type="reset" class="productReset">다시입력</button>
 					<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode='update'}">
@@ -374,7 +369,7 @@ $(function(){
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 	oAppRef: oEditors,
-	elPlaceHolder: "content",
+	elPlaceHolder: "pContent",
 	sSkinURI: "${pageContext.request.contextPath}/resources/se/SmartEditor2Skin.html",	
 	htParams : {bUseToolbar : true,
 		fOnBeforeUnload : function(){
@@ -390,16 +385,16 @@ nhn.husky.EZCreator.createInIFrame({
 
 function pasteHTML() {
 	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-	oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+	oEditors.getById["pContent"].exec("PASTE_HTML", [sHTML]);
 }
 
 function showHTML() {
-	var sHTML = oEditors.getById["content"].getIR();
+	var sHTML = oEditors.getById["pContent"].getIR();
 	alert(sHTML);
 }
 	
 function submitContents(elClickedObj) {
-	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	oEditors.getById["pContent"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 	
 	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
 	
@@ -412,7 +407,7 @@ function submitContents(elClickedObj) {
 function setDefaultFont() {
 	var sDefaultFont = '돋움';
 	var nFontSize = 24;
-	oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+	oEditors.getById["pContent"].setDefaultFont(sDefaultFont, nFontSize);
 }
 </script>    	
 	
