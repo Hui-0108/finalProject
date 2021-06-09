@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,13 +18,18 @@ public class PetsitManagementController {
 	private PetsitManagementService service;
 	
 	@RequestMapping(value="/admin/petsitManagement", method=RequestMethod.GET)
-	public String petstiManagement() {
+	public String petstiManagement(Model model) {
+		
+		List<PetsitManagement> list = service.listPetsit();
+		
+		model.addAttribute("list", list);
+		
 		return ".admin.petsitManagement.petsitManagement";
 	}
 	
 	@RequestMapping(value="/admin/petsitAdd", method=RequestMethod.POST)
 	@ResponseBody
-	public void petsitAdd(Petsit dto, @RequestParam String mId) {
+	public void petsitAdd(PetsitManagement dto, @RequestParam String mId) {
 		try {
 			service.insertPetsit(dto, mId);
 		} catch (Exception e) {
@@ -32,7 +38,7 @@ public class PetsitManagementController {
 	
 	@RequestMapping(value="/admin/petsitPrint", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> petsitPrint(Petsit dto) {
+	public Map<String, Object> petsitPrint(PetsitManagement dto) {
 		try {
 			service.printPetsit(dto);
 		} catch (Exception e) {
@@ -49,16 +55,5 @@ public class PetsitManagementController {
 		
 		return model;
 	}
-	
-	@RequestMapping(value="/admin/petsitList", method=RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> list() throws Exception {
-		Map<String, Object> model = new HashMap<>();
-		
-		List<Petsit> list = service.listPetsit();
-		
-		model.put("list", list);
-		
-		return model;
-	}
+
 }

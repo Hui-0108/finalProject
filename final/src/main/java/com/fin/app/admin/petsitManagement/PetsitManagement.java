@@ -1,8 +1,8 @@
 package com.fin.app.admin.petsitManagement;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class Petsit {
+public class PetsitManagement {
 	private long mNum;
 	private int mType;//회원구분(회원/비회원)
 	
@@ -16,7 +16,7 @@ public class Petsit {
 	private String petAct; // 급여계좌
 	
 	private int mon; // 근무 스케쥴
-	private int tus;
+	private int tue;
 	private int wed;
 	private int thu;
 	private int fri;
@@ -48,12 +48,12 @@ public class Petsit {
 		this.mon = mon;
 	}
 
-	public int getTus() {
-		return tus;
+	public int getTue() {
+		return tue;
 	}
 
-	public void setTus(int tus) {
-		this.tus = tus;
+	public void setTue(int tue) {
+		this.tue = tue;
 	}
 
 	public int getWed() {
