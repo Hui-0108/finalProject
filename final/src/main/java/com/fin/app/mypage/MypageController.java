@@ -1,6 +1,8 @@
 package com.fin.app.mypage;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fin.app.member.SessionInfo;
 
@@ -18,6 +21,7 @@ public class MypageController {
 	@Autowired
 	private MypageService service;
 	
+	// profile.jsp
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(
 			HttpSession session,
@@ -57,6 +61,8 @@ public class MypageController {
 		return "redirect:/mypage/profile";
 	}
 	
+	
+	// changePwd.jsp
 	@RequestMapping(value = "changePwd", method = RequestMethod.GET)
 	public String changePwd() throws Exception {
 		
@@ -64,34 +70,44 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "changePwd", method = RequestMethod.POST)
-	public String changePwdSubmit(
+	@ResponseBody
+	public Map<String, Object> changePwdSubmit(
 			HttpSession session,
-			Profile dto,
-			Model model
+			Profile dto
 			) throws Exception {
+		
+		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
 			SessionInfo info = (SessionInfo)session.getAttribute("member");
 			String currId = info.getmId();
 			
 			if(service.updatePwd(dto, currId)) {
-				model.addAttribute("result", "true");
 				
 				// 로그아웃
 				session.removeAttribute("member");
 				session.invalidate();
-				return "redirect:/";
+				
+				result.put("state", "true");
+				return result;
 			}
 			
-			model.addAttribute("result", "false");
-			
-			
-			
+			result.put("state", "false");
 			
 		} catch (Exception e) {
 		}
 
-		return ".mypage.changePwd";
+		return result;
 	}
+	
+	// changePwd.jsp
+	@RequestMapping(value = "myList", method = RequestMethod.GET)
+	public String myList() throws Exception {
+		
+		
+		return ".mypage.myList";
+	}
+		
+	
 	
 }

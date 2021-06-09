@@ -55,7 +55,7 @@ public class MypageServiceImpl implements MypageService {
 		
 		return dto;
 	}
-
+	
 	@Override
 	public boolean updatePwd(Profile dto, String mId) throws Exception {
 		
@@ -79,5 +79,6 @@ public class MypageServiceImpl implements MypageService {
 		return false;
 		
 	}
+
 
 }

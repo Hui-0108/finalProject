@@ -69,12 +69,28 @@ $(function() {
 		arr="";
 		
 		// 프로필 사진
-		s = "<input type='file' name='upload' accept='image/*'>";
+		s = "<input type='file' id='upload' name='upload' accept='image/*'>";
 		$(".mProfileImg").append(s);
 		s="";
 		
 		// .one
 		$(this).off(e);
+	});
+	
+	// 프로필사진 수정 중 변경사항 적용
+	$("body").on("change", "#upload", function(e) {
+		var file = this.files[0];
+		
+		if(! file.type.match("image.*")) {
+			this.focus();
+			return false;
+		}
+		
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$(".mProfileImg").find("img").attr("src", e.target.result);
+		};
+		reader.readAsDataURL(file);
 	});
 	
 	// 수정완료
