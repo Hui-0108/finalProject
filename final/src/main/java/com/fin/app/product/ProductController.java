@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fin.app.common.FileManager;
 import com.fin.app.common.MyUtil;
 
-
 @Controller("product.productController")
 @RequestMapping("/product/*")
 public class ProductController {
