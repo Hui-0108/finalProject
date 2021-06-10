@@ -44,6 +44,10 @@
     	LEFT OUTER JOIN memberDetail m2 ON m.mId = m2.mId
     	WHERE m.mId=#{mId}
     </select>
+    
+    <select id="readMember2" parameterType="String" resultType="com.fin.app.member.Member">
+    	SELECT mId, mEmail FROM memberDetail WHERE mEmail=#{mEmail}
+    </select>
 
     <update id="updateMember1" parameterType="com.fin.app.member.Member">
 		UPDATE member SET mPwd=#{mPwd}

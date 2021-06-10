@@ -1,6 +1,5 @@
 package com.fin.app.admin.petsitManagement;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +14,7 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 	private CommonDAO dao;
 
 	@Override
-	public void insertPetsit(Petsit dto, String mId) throws Exception {
+	public void insertPetsit(PetsitManagement dto, String mId) throws Exception {
 		try {
 			long mNum = dao.selectOne("adminPetsit.clientSeq");
 			
@@ -26,10 +25,6 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 			dto.setmId(mId);
 			dto.setmPwd(mPwd);
 			dto.setmNick(mNick);
-			
-			Date date = new Date();
-			
-			dto.setPetStart(date);
 			
 			
 			// 펫시터 등록
@@ -47,7 +42,7 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 	}
 
 	@Override
-	public void printPetsit(Petsit dto) throws Exception {
+	public void printPetsit(PetsitManagement dto) throws Exception {
 		try {
 	        Random rand = new Random();
 	        String newPetsitNum = ""; //난수가 저장될 변수
@@ -65,9 +60,6 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 			dto.setmPwd(mPwd);
 			dto.setmNick(mNick);
 			
-			Date date = new Date();
-			
-			dto.setPetStart(date);
 			
 			
 			
@@ -80,8 +72,8 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 	}
 
 	@Override
-	public List<Petsit> listPetsit() {
-		List<Petsit> list = null;
+	public List<PetsitManagement> listPetsit() {
+		List<PetsitManagement> list = null;
 		
 		try {
 			list=dao.selectList("adminPetsit.listPetsit");

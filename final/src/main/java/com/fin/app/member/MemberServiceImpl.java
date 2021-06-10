@@ -34,8 +34,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertMember(Member dto) throws Exception {
 		try {
-			System.out.println("dto.getmEmail1() : " + dto.getmEmail1());
-			System.out.println("dto.getmEmail2() : " + dto.getmEmail2());
 			
 			if(dto.getmEmail1().length()!=0 && dto.getmEmail2().length()!=0) {
 				dto.setmEmail(dto.getmEmail1() + "@" + dto.getmEmail2());
@@ -47,7 +45,6 @@ public class MemberServiceImpl implements MemberService {
 			
 			long clientSeq = dao.selectOne("member.clientSeq");
 			dto.setmNum(clientSeq);
-			System.out.println("memberSeq : "+clientSeq);
 			dao.insertData("member.client", dto);
 			dao.insertData("member.insertMember", dto);
 			dao.insertData("member.insertMemberDetail", dto);
@@ -106,6 +103,27 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dto;
 	}
+	
+	@Override
+	public Member readMember2(String mEmail) {
+		Member dto=null;
+		
+		try {
+			dto=dao.selectOne("member.readMember2", mEmail);
+			
+			if(dto!=null) {
+				if(dto.getmId()!=null) {
+					String s=dto.getmId();
+					dto.setmId(s);
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 
 	@Override
 	public void deleteMember(Map<String, Object> map) throws Exception {
@@ -125,6 +143,30 @@ public class MemberServiceImpl implements MemberService {
 		List<Member> list=null;
 		
 		return list;
+	}
+	
+	@Override
+	public void findId(Member dto) throws Exception {
+		
+		String result;
+		result = "고객님의 아이디는 <b>"+dto.getmId()+"</b> 입니다.<br>";
+		Mail mail = new Mail();
+		mail.setReceiverEmail(dto.getmEmail());
+		
+		mail.setSenderEmail("ghiouw96@gmail.com");
+		mail.setSenderName("개묘개묘");
+		mail.setSubject("아이디 안내");
+		mail.setContent(result);
+		
+		boolean b = mailSender.mailSend(mail);
+		
+		if(b) {
+			dto.getmId();
+
+		} else {
+			throw new Exception("이메일 전송 중 오류가 발생했습니다.");
+		}
+		
 	}
 
 	@Override
@@ -146,7 +188,7 @@ public class MemberServiceImpl implements MemberService {
 		mail.setReceiverEmail(dto.getmEmail());
 		
 		mail.setSenderEmail("ghiouw96@gmail.com");
-		mail.setSenderName("관리자");
+		mail.setSenderName("개묘개묘");
 		mail.setSubject("임시 패스워드 발급");
 		mail.setContent(result);
 		
@@ -156,7 +198,7 @@ public class MemberServiceImpl implements MemberService {
 			dto.setmPwd(sb.toString());
 			updateMember(dto);
 		} else {
-			throw new Exception("이메일 전송중 오류가 발생했습니다.");
+			throw new Exception("이메일 전송 중 오류가 발생했습니다.");
 		}
 	}
 

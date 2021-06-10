@@ -4,29 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <script type="text/javascript">
-function ajaxFun(url, method, query, dataType, fn) {
-	$.ajax({
-		type:method,
-		url:url,
-		data:query,
-		dataType:dataType,
-		success:function(data) {
-			fn(data);
-		},
-		beforeSend:function(jqXHR) {
-			jqXHR.setRequestHeader("AJAX", true);
-		},
-		error:function(jqXHR) {
-			if(jqXHR.status===403) {
-				login();
-				return false;
-			}
-	    	
-			console.log(jqXHR.responseText);
-		}
-	});
-}
-
 function petsitAdd() {
 	var str = $("#mId").text();
 	str = str.trim();
@@ -48,34 +25,6 @@ function petsitAdd() {
 	});
 }
 
-$(document).ready(function(){
-	var url = "${pageContext.request.contextPath}/admin/petsitList";
-	$.ajax({
-		type:"GET"
-		,url:url
-		,dataType:"json"
-		,success:function(data) {
-			$("#petsitTbody").empty();
-		
-			for(var i=0; i<data.list.length; i++) {
-				var html = "";
-				
-				html += "<tr><td>"+data.list[i].mId+"</td>";
-				html += "<td>"+data.list[i].petStart+"</td>";
-				html += "<td>"+data.list[i].petOnoff+"</td>";
-				html += "<td>"+data.list[i].petAct+"</td>";
-				html += "<td>스케쥴</td></tr>";
-
-				
-				$("#petsitTbody").append(html);
-			}				
-		}
-		,error:function(e) {
-	    	console.log(e.responseText);
-		}
-	})
-});
-
 
 function petsitPrint() {
 	$(".modal-body").empty();
@@ -91,9 +40,8 @@ function petsitPrint() {
 			var html = "";
 			
 			html += "아이디 : <span id='mId'>" + data.mId + "</span><br>";
-			html += "임시 패스워드 : " + data.mPwd + "<br>";
-			html += "임시 닉네임 : " + data.mNick + "<br>";
-			html += "근무시작일 : " + data.petStart;
+			html += "임시 패스워드 : " + data.mPwd + " (변경 후 사용)<br>";
+			html += "임시 닉네임 : " + data.mNick + " (변경 후 사용)<br>";
 			
 			
 			$(".modal-body").append(html);
@@ -133,7 +81,7 @@ function petsitPrint() {
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title"></h3>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="petsitPrint();" style="float:right">
 				  펫시터 아이디 등록
 				</button>
@@ -151,7 +99,33 @@ function petsitPrint() {
                   </tr>
                   </thead>
                   <tbody id="petsitTbody">
-                  
+                  	<c:forEach var="dto" items="${list}">
+                  		<tr>
+                  			<td>${dto.mId}</td>
+                  			<td>${dto.petStart}</td>
+                  			<td>${dto.petOnoff==0?"-":"활동 중"}</td>
+                  			<td>
+                  			<c:choose>
+                  			<c:when test="${empty dto.petAct}">-</c:when>
+                  			<c:when test="${not empty dto.petAct}">${dto.petAct}</c:when>
+                  			</c:choose>
+                  			</td>
+                  			<td>
+                  			<c:choose>
+                  			<c:when test="${dto.mon+dto.tue+dto.wed+dto.thu+dto.fri+dto.sat+dto.sun eq 0}">-</c:when>
+                  			<c:when test="${dto.mon+dto.tue+dto.wed+dto.thu+dto.fri+dto.sat+dto.sun ne 0}">
+                  			<c:if test="${dto.mon ne 0}">월&nbsp;</c:if>
+                  			<c:if test="${dto.tue ne 0}">화&nbsp;</c:if>
+                  			<c:if test="${dto.wed ne 0}">수&nbsp;</c:if>
+                  			<c:if test="${dto.thu ne 0}">목&nbsp;</c:if>
+                  			<c:if test="${dto.fri ne 0}">금&nbsp;</c:if>
+                  			<c:if test="${dto.sat ne 0}">토&nbsp;</c:if>
+                  			<c:if test="${dto.sun ne 0}">일</c:if>
+                  			</c:when>
+                  			</c:choose>
+                  			</td>
+                  		</tr>
+                  	</c:forEach>
                   </tbody>
                 </table>
               </div>
