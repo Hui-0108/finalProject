@@ -21,7 +21,7 @@ public class PetsitManagementController {
 	public String petstiManagement(Model model) {
 		
 		List<PetsitManagement> list = service.listPetsit();
-		
+
 		model.addAttribute("list", list);
 		
 		return ".admin.petsitManagement.petsitManagement";

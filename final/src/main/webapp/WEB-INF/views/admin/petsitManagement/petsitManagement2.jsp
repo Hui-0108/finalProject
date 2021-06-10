@@ -52,6 +52,33 @@ function petsitPrint() {
 	});
 }
 
+$(document).ready(function(){
+	var url = "${pageContext.request.contextPath}/admin/petsitList";
+	$.ajax({
+		type:"GET"
+		,url:url
+		,dataType:"json"
+		,success:function(data) {
+			$("#petsitTbody").empty();
+		
+			for(var i=0; i<data.list.length; i++) {
+				var html = "";
+				
+				html += "<tr><td>"+data.list[i].mId+"</td>";
+				html += "<td>"+data.list[i].petStart+"</td>";
+				html += "<td>"+data.list[i].petOnoff+"</td>";
+				html += "<td>"+data.list[i].petAct+"</td>";
+				html += "<td>스케쥴</td></tr>";
+				
+				$("#petsitTbody").append(html);
+			}				
+		}
+		,error:function(e) {
+	    	console.log(e.responseText);
+		}
+	})
+});
+
 </script>
 
   <!-- Content Wrapper. Contains page content -->
@@ -97,34 +124,8 @@ function petsitPrint() {
                     <th>근무가능 요일</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  	<c:forEach var="dto" items="${list}">
-                  		<tr>
-                  			<td>${dto.mId}</td>
-                  			<td>${dto.petStart}</td>
-                  			<td>${dto.petOnoff==0?"-":"활동 중"}</td>
-                  			<td>
-                  			<c:choose>
-                  			<c:when test="${empty dto.petAct}">-</c:when>
-                  			<c:when test="${not empty dto.petAct}">${dto.petAct}</c:when>
-                  			</c:choose>
-                  			</td>
-                  			<td>
-                  			<c:choose>
-                  			<c:when test="${dto.mon+dto.tue+dto.wed+dto.thu+dto.fri+dto.sat+dto.sun eq 0}">-</c:when>
-                  			<c:when test="${dto.mon+dto.tue+dto.wed+dto.thu+dto.fri+dto.sat+dto.sun ne 0}">
-                  			<c:if test="${dto.mon ne 0}">월&nbsp;</c:if>
-                  			<c:if test="${dto.tue ne 0}">화&nbsp;</c:if>
-                  			<c:if test="${dto.wed ne 0}">수&nbsp;</c:if>
-                  			<c:if test="${dto.thu ne 0}">목&nbsp;</c:if>
-                  			<c:if test="${dto.fri ne 0}">금&nbsp;</c:if>
-                  			<c:if test="${dto.sat ne 0}">토&nbsp;</c:if>
-                  			<c:if test="${dto.sun ne 0}">일</c:if>
-                  			</c:when>
-                  			</c:choose>
-                  			</td>
-                  		</tr>
-                  	</c:forEach>
+                  <tbody id="petsitTbody">
+
                   </tbody>
                 </table>
               </div>

@@ -118,7 +118,7 @@
           <li class="nav-item">
             <a href="${pageContext.request.contextPath}/admin/memberManagement" class="nav-link">
               <i class="fas fa-users-cog"></i>
-              <p>&nbsp;회원관리</p>
+              <p>&nbsp;회원 관리</p>
             </a>
           </li>
           <li class="nav-item">
