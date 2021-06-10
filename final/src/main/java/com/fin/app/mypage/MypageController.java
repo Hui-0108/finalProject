@@ -100,12 +100,11 @@ public class MypageController {
 		return result;
 	}
 	
-	// changePwd.jsp
-	@RequestMapping(value = "myList", method = RequestMethod.GET)
-	public String myList() throws Exception {
+	// myStoreList.jsp
+	@RequestMapping(value = "storeList", method = RequestMethod.GET)
+	public String storeList() throws Exception {
 		
-		
-		return ".mypage.myList";
+		return ".mypage.storeList";
 	}
 		
 	
