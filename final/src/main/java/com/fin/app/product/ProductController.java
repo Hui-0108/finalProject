@@ -37,7 +37,6 @@ public class ProductController {
 		return ".product.productMain";
 	}
 	
-	
 	@RequestMapping("list")
 	public String list(
 			@RequestParam(value = "page", defaultValue = "1") int current_page,
@@ -51,13 +50,13 @@ public class ProductController {
 			Model model	
 			) throws Exception{
 		
-		int rows = 10;
-		int total_page = 0;
-		int dataCount =0;
-		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			keyword = URLDecoder.decode(keyword, "utf-8");
 		}
+		
+		int rows = 10;
+		int total_page = 0;
+		int dataCount =0;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -80,7 +79,12 @@ public class ProductController {
 		
 		List<Product> list = service.listProduct(map);
 	
-		
+		int listNum, n= 0;
+		for(Product dto : list) {
+			listNum = dataCount - (offset + n);
+			dto.setListNum(listNum);
+			n++;
+		}
 		
 		//흠
 		
@@ -98,8 +102,10 @@ public class ProductController {
 		}
 		
 		if(query.length()!=0) {
-			listUrl += "?"+query;
-			articleUrl += "&"+query;
+			//listUrl += "?"+query;
+			//articleUrl += "&"+query;
+			listUrl = cp+"/product/list?"+ query;
+			articleUrl = cp+"/product/article?page="+current_page+"&"+query;
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
@@ -107,10 +113,7 @@ public class ProductController {
 		List<Product> categoryList = service.listCategroy();
 		List<Product> mainOptList = service.listMainOpt();
 		
-		
 		//List<Product> subOptList = service.listSubOpt();
-		
-		
 			
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("storeMainOptNum", storeMainOptNum); //여기 이렇게 넣는게 맞나?

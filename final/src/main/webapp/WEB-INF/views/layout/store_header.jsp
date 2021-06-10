@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <div class="storeHeader">
 
 <div class="top-bar fixed-top">
 	<div class="container flex-center">
 		<div class="top-info">
 		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
-                <span class="titleTop">개묘개묘아이콘</span>
-            </a>
+                <span class="titleTop">개묘개묘아이콘</span></a>
 		</div>
 		<div class="top-links">
 			<c:choose>
@@ -38,25 +38,20 @@
 
 <div class="headerBottom">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand title" href="#">개묘개묘스토어</a>
+  <a class="navbar-brand title" href="${pageContext.request.contextPath}/product/main">개묘개묘스토어</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"> 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">전체상품 <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
        	 사료
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지사료</a>
-          <a class="dropdown-item" href="#">고양이사료</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">강아지 사료</a>
+          <a class="dropdown-item" href="#">고양이 사료</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -64,10 +59,8 @@
        	   간식
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지간식</a>
-          <a class="dropdown-item" href="#">고양이간식</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">강아지 간식</a>
+          <a class="dropdown-item" href="#">고양이 간식</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -77,8 +70,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">강아지 외출용품</a>
           <a class="dropdown-item" href="#">고양이 외출용품</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -88,7 +79,14 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">강아지 외출용품</a>
           <a class="dropdown-item" href="#">고양이 외출용품</a>
-      </li>            
+          </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">전체상품 <span class="sr-only">(current)</span></a>
+      </li>      
+		<li class="nav-item active item ">
+	        <a class="nav-link color"   href="#">고객센터 <span class="sr-only">(current)</span></a>
+	    </li>                    
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="상품검색" aria-label="Search">
