@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fin.app.common.dao.CommonDAO;
 
-@Service("admin.memberManageMentService")
+@Service("admin.memberManagementService")
 public class MemberManagementServiceImpl implements MemberManagementService {
 	@Autowired
 	private CommonDAO dao;	

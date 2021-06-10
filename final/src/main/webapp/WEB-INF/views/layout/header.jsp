@@ -49,19 +49,19 @@
 	        <a class="nav-link" href="#">정기후원 <span class="sr-only">(current)</span></a>
 	    </li>   
 		<li class="nav-item active item">
-	        <a class="nav-link" href="#">개묘개묘 스토어 <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="${pageContext.request.contextPath}/product/main">개묘개묘 스토어 <span class="sr-only">(current)</span></a>
 	    </li>
 		<li class="nav-item active item">
-	        <a class="nav-link" href="#">개묘개묘 펫시터 <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="${pageContext.request.contextPath}/petsit/main">개묘개묘 펫시터 <span class="sr-only">(current)</span></a>
 	    </li>
       <li class="nav-item dropdown item">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       	   공지사항
+       	   고객센터
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">공지사항</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">이벤트</a>
+  	      <a class="dropdown-item" href="#">이벤트</a>
+          <a class="dropdown-item" href="#">FAQ</a>
         </div>
       </li> 	       	                              
     </ul>

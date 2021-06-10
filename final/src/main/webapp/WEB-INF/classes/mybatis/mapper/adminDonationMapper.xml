@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminDonation">
+	<select id="listDonation" resultType="com.fin.app.admin.donationManagement.DonationManagement">
+		SELECT donaNum, mId, donaPrice, donaStart, donaEnd
+		FROM donation 
+	</select>
+	
+</mapper>
