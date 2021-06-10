@@ -83,10 +83,6 @@
     font-style: normal;
 }
 
-.titleTop{
-	color: wheat;
-}
-
 .storeHeader{
 	font-family: Cafe24Ssurround, sans-serif;
 }
@@ -97,11 +93,8 @@
 
 .headerBottom{
 	position: relative;
-	display: flex;
-	text-align: center;
-	left: 250px;
 }
 
-.item{
-	padding: 10px;
+.titleTop{
+	color: wheat;
 }

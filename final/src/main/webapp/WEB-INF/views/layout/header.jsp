@@ -3,56 +3,70 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<div class="storeHeader">
 
-<div class="header-top">
-    <div class="header-left">
-        <p  class="headTitleP">
-            <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
-                <span class="headTitlespan">개묘개묘</span>
+<div class="top-bar fixed-top">
+	<div class="container flex-center">
+		<div class="top-info">
+		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
+                <span class="titleTop">개묘개묘</span>
             </a>
-        </p>
-    </div>
-    <div class="header-right">
-        <div class="headerUser">
-            <c:if test="${not empty sessionScope.member}">
-                <span class="headerUserName">${sessionScope.member.mNick}</span>님
-                &nbsp;|&nbsp;
-                <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-                &nbsp;|&nbsp;
-            </c:if>
-            	<a href="">
-            	<i class="fas fa-user-alt"></i>
+		</div>
+		<div class="top-links">
+			<c:choose>
+				<c:when test="${not empty sessionScope.member}">
+	                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+	                &nbsp;|&nbsp;
+	                <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+	                &nbsp;|&nbsp;				
+                </c:when>
+			<c:otherwise>
+				<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
+				<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
             	</a>
-            	&nbsp;|&nbsp;
-            	<a class="headerIcon" href="">
-            	<i class="fas fa-shopping-cart"></i>
+            	&nbsp;&nbsp;|
+            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
         		</a>
-        
-        </div>
-    </div>
+					<c:if test="${sessionScope.member.userId=='admin'}">
+						<a href="${pageContext.request.contextPath}/admin" title="관리자"><i class="fas fa-user-secret"></i></a>
+					</c:if>
+			</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 </div>
 
+<div class="headerBottom">
+<nav class="navbar navbar-expand-lg navbar-light ">
 
-	<div class="headerBottom">
-		<div class="navItemMenu">
-			<div class="navItem">
-				<a href="#">소개</a>
-			</div>
-			<div class="navItem">
-				<a href="#">유기동물 통계</a>
-			</div>
-			<div class="navItem">
-				<a href="#">정기후원</a>
-			</div>
-			<div class="navItem">
-				<a href="#">개묘개묘스토어</a>
-			</div>
-			<div class="navItem">
-				<a href="#">개묘개묘펫시터</a>
-			</div>	
-			<div class="navItem">
-				<a href="#">공지사항</a>
-			</div>						
-		</div> 
-	</div>  
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"> 
+      <li class="nav-item active item">
+	        <a class="nav-link" href="#">유기동물 통계 <span class="sr-only">(current)</span></a>
+	      </li>
+		<li class="nav-item active item">
+	        <a class="nav-link" href="#">정기후원 <span class="sr-only">(current)</span></a>
+	    </li>   
+		<li class="nav-item active item">
+	        <a class="nav-link" href="#">개묘개묘 스토어 <span class="sr-only">(current)</span></a>
+	    </li>
+		<li class="nav-item active item">
+	        <a class="nav-link" href="#">개묘개묘 펫시터 <span class="sr-only">(current)</span></a>
+	    </li>
+      <li class="nav-item dropdown item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       	   공지사항
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">공지사항</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">이벤트</a>
+        </div>
+      </li> 	       	                              
+    </ul>
+
+  </div>
+</nav>
+</div>
+</div>
