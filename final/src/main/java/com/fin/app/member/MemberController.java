@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller("member.memberController")
 @RequestMapping(value="/member/*")
 public class MemberController {
+	
 	@Autowired
 	private MemberService service;
 	
@@ -40,27 +41,26 @@ public class MemberController {
 				Model model) {
 
 			try {
-				System.out.println(dto);
 				service.insertMember(dto);
 			} catch (DuplicateKeyException e) {
 				// 기본키 중복에 의한 제약 조건 위반
 				model.addAttribute("mode", "signup");
-				model.addAttribute("message", "아이디 중복으로 회원가입이 실패했습니다.");
+				model.addAttribute("message", "아이디 중복으로 회원 가입이 실패했습니다.");
 				return ".member.signup";
 			} catch (DataIntegrityViolationException e) {
 				// 데이터형식 오류, 참조키, NOT NULL 등의 제약조건 위반
 				model.addAttribute("mode", "signup");
-				model.addAttribute("message", "제약 조건 위반으로 회원가입이 실패했습니다.");
+				model.addAttribute("message", "제약 조건 위반으로 회원 가입이 실패했습니다.");
 				return ".member.signup";
 			} catch (Exception e) {
 				model.addAttribute("mode", "signup");
-				model.addAttribute("message", "회원가입이 실패했습니다.");
+				model.addAttribute("message", "회원 가입이 실패했습니다.");
 				return ".member.signup";
 			}
 			
 			StringBuilder sb=new StringBuilder();
-			sb.append(dto.getmName()+ "님의 회원 가입이 정상적으로 처리되었습니다.<br>");
-			sb.append("메인화면으로 이동하여 로그인하시기 바랍니다.<br>");
+			sb.append(dto.getmName()+ " 님의 회원 가입이 정상적으로 처리되었습니다.<br>");
+			sb.append("메인 화면으로 이동하여 로그인하시기 바랍니다.<br>");
 			
 			// 리다이렉트된 페이지에 값 넘기기
 	        reAttr.addFlashAttribute("message", sb.toString());
@@ -199,7 +199,7 @@ public class MemberController {
 
 			StringBuilder sb=new StringBuilder();
 			sb.append(dto.getmNick()+ "님의 회원 탈퇴 처리가 정상적으로 처리되었습니다.<br>");
-			sb.append("메인화면으로 이동 하시기 바랍니다.<br>");
+			sb.append("메인 화면으로 이동 하시기 바랍니다.<br>");
 			
 			reAttr.addFlashAttribute("title", "회원 탈퇴");
 			reAttr.addFlashAttribute("message", sb.toString());
@@ -225,8 +225,8 @@ public class MemberController {
 		}
 		
 		StringBuilder sb=new StringBuilder();
-		sb.append(dto.getmNick()+ "님의 회원정보가 정상적으로 변경되었습니다.<br>");
-		sb.append("메인화면으로 이동하시기 바랍니다.<br>");
+		sb.append(dto.getmNick()+ "님의 회원 정보가 정상적으로 변경되었습니다.<br>");
+		sb.append("메인 화면으로 이동하시기 바랍니다.<br>");
 		
 		reAttr.addFlashAttribute("title", "회원 정보 수정");
 		reAttr.addFlashAttribute("message", sb.toString());
@@ -235,6 +235,7 @@ public class MemberController {
 	}
 
 	// @ResponseBody : 자바 객체를 HTTP 응답 몸체로 전송(AJAX에서 JSON 전송 등에 사용)
+	// 아이디 유효성 검사
 	@RequestMapping(value="mIdCheck", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> idCheck(
@@ -244,7 +245,6 @@ public class MemberController {
 		String p="true";
 		Member dto=service.readMember(mId);
 		
-		System.out.println("dto"+dto);
 		if(dto!=null) {
 			p="false";
 		}
@@ -254,6 +254,7 @@ public class MemberController {
 		return model;
 	}
 	
+	// 닉네임 유효성 검사
 	@RequestMapping(value="mNickCheck", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> nickCheck(
@@ -263,7 +264,6 @@ public class MemberController {
 		String p="true";
 		Member dto=service.readMember(mNick);
 		
-		System.out.println("dto"+dto);
 		if(dto!=null) {
 			p="false";
 		}
@@ -271,6 +271,45 @@ public class MemberController {
 		Map<String, Object> model=new HashMap<>();
 		model.put("passed", p);
 		return model;
+	}
+	
+	// 아이디 찾기
+	@RequestMapping(value="findId", method=RequestMethod.GET)
+	public String findIdForm(HttpSession session) throws Exception{
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info!=null) {
+			return "redirect:/";
+		}
+		
+		return ".member.findId";
+	}
+	
+	@RequestMapping(value="findId", method=RequestMethod.POST)
+	public String findIdSubmit(@RequestParam String mEmail,
+			final RedirectAttributes reAttr,
+			Model model
+			) throws Exception{
+		
+		Member dto = service.readMember2(mEmail);
+		if(dto==null || dto.getmId()==null) {
+			model.addAttribute("message", "등록된 아이디가 없습니다.");
+			return ".member.findId";
+		}
+		
+		try {
+			service.findId(dto);
+		} catch (Exception e) {
+			model.addAttribute("message", "이메일 전송이 실패했습니다.");
+			return ".member.findId";
+		}
+		
+		StringBuilder sb=new StringBuilder();
+		sb.append("회원님의 이메일로 아이디를 전송했습니다.<br>");
+		
+		reAttr.addFlashAttribute("title", "아이디 찾기");
+		reAttr.addFlashAttribute("message", sb.toString());
+		
+		return "redirect:/member/complete";
 	}
 	
 	// 패스워드 찾기

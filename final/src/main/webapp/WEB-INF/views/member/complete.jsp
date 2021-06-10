@@ -14,7 +14,7 @@
 					${message} 
 				</div>
 				<div class="info-footer">
-					<button type="button" class="btnConfirm" onclick="javascript:location.href='${pageContext.request.contextPath}/';">메인화면으로 이동</button>
+					<button type="button" class="btnConfirm" onclick="javascript:location.href='${pageContext.request.contextPath}/';">메인 화면으로 이동</button>
 				</div>
 			</div>
 		</div>
