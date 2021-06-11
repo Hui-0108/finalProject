@@ -13,12 +13,12 @@
     </select>
 
     <insert id="client" parameterType="com.fin.app.member.Member">
-		INSERT INTO client(mNum, mType) VALUES (#{mNum}, #{mType}) 
+		INSERT INTO client(mNum, mType) VALUES (#{mNum}, 1) 
     </insert>
     
     <insert id="insertMember" parameterType="com.fin.app.member.Member">
 		INSERT INTO member(mNum, mId, mPwd, mNick, mRole)
-		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, #{mRole}) 
+		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, 1) 
     </insert>
     
      <insert id="insertMemberDetail" parameterType="com.fin.app.member.Member">
