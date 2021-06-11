@@ -15,22 +15,30 @@
 		<div class="top-links">
 			<c:choose>
 				<c:when test="${not empty sessionScope.member}">
-	                <span class="headerUserName">${sessionScope.member.mNick}</span>님
-	                &nbsp;|&nbsp;
-	                <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-	                &nbsp;|&nbsp;				
+					<c:choose>
+						<c:when test="${sessionScope.member.mRole eq 0}">
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;             
+							<a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-secret"></i></a>
+						</c:when>
+						<c:otherwise>
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;
+						</c:otherwise>
+					</c:choose>
                 </c:when>
-			<c:otherwise>
-				<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
-				<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
-            	</a>
-            	&nbsp;&nbsp;|
-            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
-        		</a>
-					<c:if test="${sessionScope.member.userId=='admin'}">
-						<a href="${pageContext.request.contextPath}/admin" title="관리자"><i class="fas fa-user-secret"></i></a>
-					</c:if>
-			</c:otherwise>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
+					<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
+	            	</a>
+	            	&nbsp;&nbsp;|
+	            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
+	        		</a>
+				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>

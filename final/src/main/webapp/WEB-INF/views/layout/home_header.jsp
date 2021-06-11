@@ -10,62 +10,125 @@
     font-style: normal;
 }
 
-.header {
-	font-family: Cafe24Ssurround, sans-serif;
+.fixed-top {
 	position: absolute;
 	width: 100%;
-	height: 35px;
+	height: 61px;
 	z-index: 6;
 	color: white;
 	position: fixed;
+	font-family: Cafe24Ssurround, sans-serif;
 }
 
-.nav-container {
-	display: inline-block;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	border-bottom: 1px solid white;
-}
-
-.nav-item {
-	padding: 16px;
-	cursor: pointer;
-}
-
-.nav-item a {
-	text-align: center;
-	text-decoration: none;
-	color: white;
-}
-
-.nav-item {
-	float: right;
-}
-
-.nav-logo {
-	padding: 13px;
-	margin-right: 5px;
-	cursor: pointer;
-	display: inline-block;
-	clear: both;
-	float: left;
+.flex-center {
+	display: flex;
+	align-items: center;
 	font-size: 20px;
-	font-weight: 700;
+}
+.justify-content-center  {
+	justify-content: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.top-bar {
+  border-bottom: 2px solid white;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #fff;
+  width: 100%;
+  line-height: 2;
+}
+.top-bar .top-info{
+	margin-right: auto;
+}
+.top-bar .top-links a {
+    color: rgba(255, 255, 255);
+    padding-left: 15px;
+    display: inline-block;
+    line-height: 1px;
+    transition: 0.3s;
+}
+.top-bar .top-links a:hover {
+  	color: #fff;
+}
+.top-bar.topbar-scrolled {
+  	top: -40px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 576px) {
+	.container {
+	    max-width: 540px;
+	}
+}
+@media (min-width: 768px) {
+	.container {
+	    max-width: 720px;
+	}
+}
+@media (min-width: 992px) {
+	.container {
+		max-width: 960px;
+	}
+}
+@media (min-width: 1200px) {
+	.container {
+	    max-width: 1140px;
+	}
+}
+
+.titleTop{
+    color: rgba(255, 255, 255);
 }
 
 </style>
 
 <header>
-<div class="header">
-	<nav>
-		<ul class="nav-container">
-			<li><span class="nav-logo">개묘개묘</span></li>
-			<li class="nav-item"><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-			<li class="nav-item"><a href="#"><i class="fas fa-user"></i></a></li>
-			<li class="nav-item"><a href="#"><i class="fas fa-search"></i></a></li>
-		</ul>
-	</nav>
+<div class="top-bar fixed-top">
+	<div class="container flex-center">
+		<div class="top-info">
+		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
+                <span class="titleTop">개묘개묘</span>
+            </a>
+		</div>
+		<div class="top-links">
+			<c:choose>
+				<c:when test="${not empty sessionScope.member}">
+					<c:choose>
+						<c:when test="${sessionScope.member.mRole eq 0}">
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;             
+							<a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-secret"></i></a>
+						</c:when>
+						<c:otherwise>
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;
+						</c:otherwise>
+					</c:choose>
+                </c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
+					<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
+	            	</a>
+	            	&nbsp;&nbsp;|
+	            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
+	        		</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 </div>
 </header>
