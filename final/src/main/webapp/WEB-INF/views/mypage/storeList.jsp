@@ -102,6 +102,7 @@
 						</td>
 						<td style="text-align: left;">
 							<p> 상품정보 표시 </p>
+							<p style="color: #777777;"> 옵션: XL </p>
 						</td>
 						
 						<td>

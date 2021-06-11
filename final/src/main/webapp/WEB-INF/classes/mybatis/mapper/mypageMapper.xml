@@ -2,6 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
+	<!-- profile.jsp -->
 	<select id="selectDetail" parameterType="String" resultType="com.fin.app.mypage.Profile">
 		SELECT m.mId, m.mNick, m.mNum, md.mName, TO_CHAR(md.mBirth, 'YYYY-MM-DD') mBirth, md.mTel, md.mEmail, md.mZip, md.mAddr1, md.mAddr2, md.mProfileImg
 		FROM member m 
@@ -25,6 +26,7 @@
 		WHERE mId = #{mId}
 	</update>
 	
+	<!-- changePwd.jsp -->
 	<select id="selectCurrPwd" parameterType="String" resultType="String">
 		SELECT mPwd 
 		FROM member 
@@ -35,5 +37,10 @@
 		UPDATE member SET mPwd = #{mPwd} 
 		WHERE mId = #{mId}
 	</update>
+	
+	<!-- storeList.jsp -->
+	<select id="select" parameterType="String" resultType="com.fin.app.mypage.Store">
+		
+	</select>
 
 </mapper>
