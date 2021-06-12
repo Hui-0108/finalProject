@@ -25,6 +25,7 @@ public class Petsit {
 	private int petLiving;//거주형태
 	private int petChild;//자녀
 	private String petCertif; //교육증취득일
+	private String petAddr;//근무주소
 	
 	//펫시터 이미지
 	private int petImgNum; //파일번호
@@ -130,6 +131,12 @@ public class Petsit {
 	}
 	public void setPetCertif(String petCertif) {
 		this.petCertif = petCertif;
+	}
+	public String getPetAddr() {
+		return petAddr;
+	}
+	public void setPetAddr(String petAddr) {
+		this.petAddr = petAddr;
 	}
 	public int getPetImgNum() {
 		return petImgNum;

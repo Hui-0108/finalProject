@@ -56,6 +56,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td>근무 주소</td>
+				<td>
+					<input type="text" name="petAddr" maxlength="100" class="boxTF">
+				</td>
+			</tr>
+			<tr>
 				<td>소&nbsp;&nbsp;&nbsp;개</td>
 				<td>
 					<textarea name="petContent" class="boxTA">${dto.petContent}</textarea>
@@ -115,8 +121,6 @@
 					<label><input type="radio" name="petChild" value="1" checked="checked"> 없음 </label>&nbsp;&nbsp;&nbsp; 				
 					<label><input type="radio" name="petChild" value="2"> 미취학아동 </label>&nbsp;&nbsp;&nbsp;
 					<label><input type="radio" name="petChild" value="3"> 초등생 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="radio" name="petChild" value="4"> 중등생 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="radio" name="petChild" value="5"> 고등학생이상 </label>
 				</td>
 			</tr>	
 			<tr>
@@ -124,13 +128,13 @@
 					<div class="spaceNeed">근무가능요일</div>&nbsp;
 				</td>
 				<td>
-					<label><input type="checkbox" name="petSchedule" value="1"> 월 </label>&nbsp;&nbsp;&nbsp;				
-					<label><input type="checkbox" name="petSchedule" value="2"> 화 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="checkbox" name="petSchedule" value="3"> 수 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="checkbox" name="petSchedule" value="4"> 목 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="checkbox" name="petSchedule" value="5"> 금 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="checkbox" name="petSchedule" value="6"> 토 </label>&nbsp;&nbsp;&nbsp;
-					<label><input type="checkbox" name="petSchedule" value="7"> 일 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="mon" value="1"> 월 </label>&nbsp;&nbsp;&nbsp;				
+					<label><input type="checkbox" name="tue" value="1"> 화 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="wed" value="1"> 수 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="thu" value="1"> 목 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="fri" value="1"> 금 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="sat" value="1"> 토 </label>&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" name="sun" value="1"> 일 </label>&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>		
 			<tr>
@@ -172,7 +176,7 @@
 					<button type="reset" class="btn">다시입력</button>
 					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/main';">${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode=='update'}">
-						<input type="hidden" name="num" value="${dto.petNum}">
+						<input type="hidden" name="petNum" value="${dto.petNum}">
 						<input type="hidden" name="page" value="${page}">
 					</c:if>
 				</td>

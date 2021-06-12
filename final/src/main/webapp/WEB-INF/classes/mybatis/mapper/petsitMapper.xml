@@ -8,9 +8,9 @@
 	</select>
 	
 	<insert id="insertPetsit" parameterType="com.fin.app.petsit.Petsit">
-		INSERT INTO petsit(petNum, petYN, petYard, petLarge, petTitle, petContent, petFamily, petWalk,petLiving, petChild, petCertif, mId, petAct)
+		INSERT INTO petsit(petNum, petYN, petYard, petLarge, petTitle, petContent, petFamily, petWalk,petLiving, petChild, petCertif, mId, petAct, petAddr)
 		VALUES(#{petNum}, #{petYN}, #{petYard}, #{petLarge}, #{petTitle}, #{petContent},#{petFamily}, #{petWalk},#{petLiving}, #{petChild},
-		#{petCertif}, #{mId}, #{petAct})	
+		#{petCertif}, #{mId}, #{petAct}, #{petAddr})	
 	</insert>
 	
 	<insert id="insertPetSchedule" parameterType="com.fin.app.petsit.Petsit">
@@ -18,13 +18,81 @@
 		VALUES(#{petNum}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri},#{sat}, #{sun})	
 	</insert>
 	
-	<!-- 조건검색부분 어떻게 할지 고민,, -->
-	<!-- 데이터 개수 -->
-	<!-- 리스트  --><!-- 사진,주소,제목,조건들,글번호 => petsit테이블, petImage테이블 조인-->
-	<!-- 글보기 --><!-- petsit, schedule, petImage 조인 -->		
+	<update id="updateOn" parameterType="com.fin.app.petsit.Petsit">
+		UPDATE petDetail SET petOnoff = 1  
+		WHERE mId = #{mId}
+	</update>
 	
+	<update id="updateOff" parameterType="com.fin.app.petsit.Petsit">
+		UPDATE petDetail SET petOnoff = 0  
+		WHERE mId = #{mId}
+	</update>
+	
+	<!-- 조건검색 (어떻게 할지 고민,,) -->
+	<sql id="where-list">
+		<if test="condition=='all' ">
+			( INSTR(subject, #{keyword}) &gt; 0
+				OR INSTR(content, #{keyword}) &gt; 0 )
+		</if>
+		<if test="condition=='subject' ">
+			INSTR(subject, #{keyword}) &gt; 0
+		</if>
+		<if test="condition=='content' ">
+			INSTR(content, #{keyword}) &gt; 0 
+		</if>
+	</sql>
+	
+	<!-- 데이터 개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
+		FROM petsit
+		<where>	
+			<if test="keyword != null and keyword !=''"> <!-- 만약 조건이 있으면 -->
+				AND <include refid="where-list"/> <!-- 반복되는 쿼리를 미리 작성해 놓고 재활용 할 수 있게 해줌--> 
+			</if>	<!--refid=reference id  -->
+		</where>
+	</select>
+	
+	<!-- 리스트  --><!-- 사진,주소,제목,조건들,글번호 => petsit테이블, petImage테이블 조인-->
+	<select id="listPetsit" parameterType="map" resultType="com.fin.app.petsit.Petsit">
+		SELECT petImgNum, petImg, petTitle, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, mId, s.petNum
+		FROM petsit s
+		LEFT OUTER JOIN (
+			SELECT petImgNum, petNum, petImg FROM (
+				SELECT petImgNum, petNum, petImg,
+					ROW_NUMBER() OVER(PARTITION BY petNum ORDER BY petImg ASC) rank
+				 FROM petImage <!--ROW_NUMBER() OVER(PRTITION BY 그룹핑할 컬럼  ORDER BY 정렬할 컬럼  ASC(오름차순) :그룹짓고 그 안에서 순위매김. ROW_NUMBER(): 1등이 2명이어도 1,2등 나눔-->
+			) WHERE rank = 1 <!-- 순위가 1위인 것만 -->
+		) i ON s.petNum = i.petNum
+		<where>
+			<if test="keword != null and keyword != ''"> <!-- 검색일 경우 -->
+				AND <include refid="where-list"/> 
+			</if>	
+		</where>
+		ORDER BY petNum DESC <!-- 글번호 내림차순으로 정렬 -->
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY	<!-- 페이징 -->
+	</select>
+	
+	<!-- 글보기 --><!-- petsit, schedule조인 이미지는 밑에 따로 -->	
+	<select id="readPetsit" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
+		SELECT s.petNum, petTitle, petContent, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, petCertif, mId,
+				mon, tue, wed, thu, fri, sat, sun
+		FROM petsit s
+		JOIN petSchedule d ON s.petNum = d.petNum	
+		WHERE s.petNum = #{s.petNum}
+	</select>
+		
 	<!-- 수정 -->
+	<update id="updatePetsit" parameterType="com.fin.app.petsit.Petsit">
+		UPDATE petsit SET petTitle=#{petTitle}, petContent=#{petContent}, petAddr=#{petAddr}, petYN=#{petYN}, petYard=#{petYard}, petLarge=#{petLarge}, 
+		petFamily=#{petFamily}, petWalk=#{petWalk}, petLiving=#{petLiving}, petChild=#{petChild} 
+		WHERE petNum=#{petNum}
+	</update>
+	
 	<!-- 삭제 -->
+	<delete id="deletePetsit" parameterType="Integer">
+		DELETE FROM petsit WHERE petNum=#{petNum}
+	</delete>
 	
 	<!-- 파일 -->
 	<insert id="insertFile" parameterType="com.fin.app.petsit.Petsit">
@@ -32,7 +100,19 @@
 				(petImage_seq.NEXTVAL, #{petNum}, #{petImg})
 	</insert>
 	
-	
-
-	
+	<select id="listFile" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
+      SELECT petImgNum, petNum, petImg
+      FROM petImage
+      WHERE petNum=#{petNum}
+   </select>
+   
+   <select id="readFile" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
+		SELECT petImgNum, petNum, petImg
+		FROM petImage
+	    WHERE petImgNum=#{petImgNum}      
+	</select>
+   	
+   	<delete id="deleteFile" parameterType="map">
+		DELETE FROM petImage WHERE ${field} = #{petNum}
+	</delete>
 </mapper>

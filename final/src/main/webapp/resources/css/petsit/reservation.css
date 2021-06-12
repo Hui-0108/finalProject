@@ -7,7 +7,15 @@
 }
 
 .petsitReserve .slide-body{
-	width: 1300px;
+	width: 1200px;
+	height: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.petsitReserve .slide-body img{
+	width: 1200px;
+	height: 600px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -93,6 +101,13 @@
 	clear: both;
 	margin-left: 60px
 }
+
+.petsitReserve .certf-dp img {
+	border-radius: 5px;
+	width: 210px;
+	height: 140px;
+}
+
 
 .petsitReserve .certf-de{
 	width: 190px;

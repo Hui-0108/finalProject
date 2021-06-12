@@ -17,10 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fin.app.common.FileManager;
 import com.fin.app.common.MyUtil;
 import com.fin.app.member.SessionInfo;
+
 
 @Controller("petsit.petsitController")
 @RequestMapping("/petsit/*")
@@ -37,26 +39,17 @@ public class PetsitController {
 	public String main() throws Exception {
 		return ".petsit.main";
 	}
-	
-	@RequestMapping("reservation")
-	public String reservation() throws Exception {
-		return ".petsit.reservation";
-	}
-	
-	@RequestMapping("list")
-	public String list() throws Exception {
-		return ".petsit.list";
-	}
 
-	//@RequestMapping(value="list")
+	@RequestMapping(value="list")
 	public String list(
 			@RequestParam(value="page", defaultValue="1") int current_page, //현재페이지. 처음엔 1페이지 보여줌
 			@RequestParam(defaultValue="all") String condition, //조건 처음엔 모든조건을 보여줌 
 			@RequestParam(defaultValue="") String keyword,//조건 검색
-			@RequestParam(value="rows", defaultValue="7") int rows, //한번에 7줄
+			@RequestParam(value="rows", defaultValue="5") int rows, //한페이지에 5개씩
 			HttpServletRequest req, //값을 받아옴
 			Model model	//Controller에서 생성한 데이터를 담아서 View로 전달
 			) throws Exception {
+		
 		
 		int total_page; //전체 페이지
 		int dataCount; //전체 데이터 갯수
@@ -65,7 +58,7 @@ public class PetsitController {
 			keyword = URLDecoder.decode(keyword, "utf-8"); //인코딩해줌
 		}
 		
-		//전체 페이지 수 
+		//전체 페이지 수 O
 		Map<String, Object> map = new HashMap<String, Object>(); //map객체 생성 //map=인터페이스=선언만가능, 자식=HashMap으로 객체생성 
 		map.put("condition", condition);                         //HashMap: Map을 구현. Key와 value를 묶어 하나의 entry로 저장
 		map.put("keyword", keyword);//keyword(키)에 keyword(값)저장
@@ -86,7 +79,7 @@ public class PetsitController {
 		//글리스트 
 		List<Petsit> list = service.listPetsit(map);
 		
-		//리스트 글번호 만들기 //?? 
+		//리스트 글번호 만들기 
 		int listNum, n =0;
 		for(Petsit dto: list) {
 			listNum = dataCount - (offset + n);
@@ -94,10 +87,11 @@ public class PetsitController {
 			n++;
 		}
 		
-		  //검색일 경우 글번호
+		//검색일 경우 글번호
 		String cp = req.getContextPath();
 		String query = "";
 		String listUrl = cp+"/petsit/list";
+		String reservationUrl = cp+"/petsit/reservation?page="+ current_page;
 		
 		if(keyword.length() !=0) { //keyword가 있으면 = 검색이면 
 			query = "condition=" +condition +
@@ -106,11 +100,13 @@ public class PetsitController {
 		
 		if(query.length() !=0) {
 			listUrl = cp+"/petsit/list?" + query;
+			reservationUrl = cp+"/petsit/reservation?page="+ current_page + "&" +query;
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);//myUtil의 페이징()메소드의 결과값 paging으로 받음
 		
 		model.addAttribute("list", list);
+		model.addAttribute("reservationUrl", reservationUrl);
 		model.addAttribute("page", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
@@ -118,7 +114,7 @@ public class PetsitController {
 		
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
-		
+				
 		return ".petsit.list";
 	}
 	
@@ -144,6 +140,7 @@ public class PetsitController {
 			dto.setmId(info.getmId()); //세션에 저장된 아이디를 dto에 setmId를 통해 넣음
 			service.insertPetsit(dto, pathname); //insertPesit()메소드에 dto, pathname을 전달하여 실행 
 			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,9 +149,9 @@ public class PetsitController {
 	}
 	
 	//글보기
-	@RequestMapping(value="article")
+	@RequestMapping(value="reservation")
 	public String article( //글번호,페이지, 검색조건, 세션정보, 모델객체를 가져감
-			@RequestParam int num, 
+			@RequestParam int petNum,
 			@RequestParam String page, 
 			@RequestParam(defaultValue="all") String condition, 
 			@RequestParam(defaultValue="") String keyword, 
@@ -168,62 +165,138 @@ public class PetsitController {
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
+		
 		//해당 레코드 가져오기
-		Petsit dto = service.readPetsit(num);
+		Petsit dto = service.readPetsit(petNum);
 		if(dto==null)
 			return "redirect:/petsit/list?"+query;
+					
+		//이미지 파일
+		List<Petsit> listFile=service.listFile(petNum);
 		
-		dto.setPetContent(myUtil.htmlSymbols(dto.getPetContent()));
-		
-		return ".petsit.main";
-		
-		
-		//글수정
+		model.addAttribute("condition", condition);
+		model.addAttribute("keyword", keyword);
 	
-		//파일삭제
+		model.addAttribute("listFile", listFile);
 		
-		//글삭제
+		model.addAttribute("dto", dto);
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);
 		
-	
 		
+		return ".petsit.reservation";
+	}	
+
+	//글수정
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int petNum,
+			@RequestParam String page,
+			HttpSession session,
+			Model model) throws Exception {
+			
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+			
+		Petsit dto = service.readPetsit(petNum);
+		if(dto==null)
+			return "redirect:/petsit/list?page="+page;
+			
+		if(! dto.getmId().equals(info.getmId())) {
+			return "redirect:/";
+		}
+			
+		List<Petsit> listFile=service.listFile(petNum);
+			
+		model.addAttribute("dto", dto);
+		model.addAttribute("listFile", listFile);
+			
+		model.addAttribute("page", page);
+		model.addAttribute("mode", "update");				
+			
+		return ".petsit.write";
 	}
 	
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updateSubmit( 
+			Petsit dto,
+			@RequestParam String page,
+			HttpSession session) throws Exception {
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+"upload"+File.separator+"petsit";
+		
+		try {
+			service.updatePetsit(dto, pathname);
+		} catch (Exception e) {
+		}
+			
+		return "redirect:/petsit/reservation?page="+page+"&petNum="+dto.getPetNum();
+	}
+
+	//글삭제
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String delete(
+			@RequestParam int petNum,
+			@RequestParam String page,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpSession session) throws Exception {
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+"upload"+File.separator+"petsit";
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		Petsit dto = service.readPetsit(petNum);
+		if (dto == null) {
+			return "redirect:/petsit/list?page="+page;
+		}
+		
+		if(! dto.getmId().equals(info.getmId())) {
+			return "redirect:/";
+		}
+		
+		try {
+			service.deletePetsit(petNum, pathname);
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/petsit/list?"+query;
+	}
 	
+	//파일삭제
+	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteFile(
+			@RequestParam int petImgNum,
+			HttpSession session) throws Exception {
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + "upload" + File.separator + "album";
+		
+		Petsit dto=service.readFile(petImgNum);
+		if(dto!=null) {
+			fileManager.doFileDelete(dto.getPetImg(), pathname);
+		}
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("field", "petImgNum");
+		map.put("petNum", petImgNum);
+		service.deleteFile(map);
+		
+   	    // 작업 결과를 json으로 전송
+		Map<String, Object> model = new HashMap<>(); 
+		model.put("state", "true");
+		return model;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+		
+		
 	
 	
 	

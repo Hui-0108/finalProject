@@ -23,7 +23,7 @@ public class PetsitServiceImpl implements PetsitService {
 	public void insertPetsit(Petsit dto, String pathname) throws Exception {
 		try {
 			int seq=dao.selectOne("petsit.seq");
-			dto.setPetImgNum(seq);
+			dto.setPetNum(seq);
 			
 			dao.insertData("petsit.insertPetsit", dto);
 			
@@ -41,6 +41,9 @@ public class PetsitServiceImpl implements PetsitService {
 			//스케줄 업로드
 			dao.insertData("petsit.insertPetSchedule", dto);
 			
+			//petOnoff 업데이트
+			dao.updateData("petsit.updateOn", dto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -54,7 +57,7 @@ public class PetsitServiceImpl implements PetsitService {
 		int result=0;
 			
 		try {
-			result=dao.selectOne("petsit.dataCount", map);
+			result=dao.selectOne("petsit.dataCount", map); //selectOne() :오직 하나의객체만을 리턴
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,11 +82,11 @@ public class PetsitServiceImpl implements PetsitService {
 	
 	//글보기
 	@Override
-	public Petsit readPetsit(int num) {
+	public Petsit readPetsit(int petNum) {
 		Petsit dto = null;
 		
 		try {
-			dto=dao.selectOne("petsit.readPetsit", num);
+			dto=dao.selectOne("petsit.readPetsit", petNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,10 +118,10 @@ public class PetsitServiceImpl implements PetsitService {
 	}
 	//글삭제
 	@Override
-	public void deletePetsit(int num, String pathname) throws Exception {
+	public void deletePetsit(int petNum, String pathname) throws Exception {
 		try {
 			//파일 지우기
-			List<Petsit> listFile=listFile(num);
+			List<Petsit> listFile=listFile(petNum);
 			if(listFile!=null) {
 				for(Petsit dto:listFile) {
 					fileManager.doFileDelete(dto.getPetImg(), pathname);
@@ -127,11 +130,11 @@ public class PetsitServiceImpl implements PetsitService {
 			
 			//파일 테이블 내용 지우기
 			Map<String, Object> map=new HashMap<String, Object>();		
-			map.put("field", "num");
-			map.put("num", num);
+			map.put("field", "petNum");
+			map.put("petNum", petNum);
 			deleteFile(map);
 			
-			dao.deleteData("petsit.deletePetsit", num);		
+			dao.deleteData("petsit.deletePetsit",petNum);		
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -149,11 +152,11 @@ public class PetsitServiceImpl implements PetsitService {
 	}
 	//파일리스트
 	@Override
-	public List<Petsit> listFile(int num) {
+	public List<Petsit> listFile(int petNum) {
 		List<Petsit> listFile=null;
 		
 		try {
-			listFile=dao.selectList("album.listFile", num);
+			listFile=dao.selectList("petsit.listFile", petNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

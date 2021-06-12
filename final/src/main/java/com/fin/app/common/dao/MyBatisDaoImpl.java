@@ -142,7 +142,7 @@ public class MyBatisDaoImpl implements CommonDAO {
 	// 테이블의 하나의 레코드를 SELECT
 	public <T> T selectOne(String id, Object value) throws Exception {
 		try {
-			return  sqlSession.selectOne(id, value);
+			return  sqlSession.selectOne(id, value); 
 		} catch (Exception e) {
 			logger.error(e.toString());
 			

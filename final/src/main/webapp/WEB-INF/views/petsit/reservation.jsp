@@ -3,10 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
+<script type="text/javascript">
+<c:if test="${sessionScope.member.mId=='admin' || sessionScope.member.mId==dto.mId}">
+function deletePetsit() {
+	var query = "petNum=${dto.petNum}&${query}";
+	var url = "${pageContext.request.contextPath}/petsit/delete?" + query;
+
+    if(confirm("정말 삭제 하시 겠습니까 ? ")) {
+  	  location.href=url;
+    }
+}
+</c:if>    
+</script>
+
 <div class="petsitReserve">
 <!-- 사진 슬라이드 영역-->
 <div style="width:1300px" align="center">	
-	<div class="slide-body" >
+	<div class="slide-body" align="center">
 		<div id="carouselExampleIndicators" class="carousel slide picture" data-ride="carousel">
 			<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -14,16 +27,12 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
   		<div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="${pageContext.request.contextPath}/resources/images/petsit/home1.jpg" class="d-block w-100" alt="집2">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="${pageContext.request.contextPath}/resources/images/petsit/home2.jpg" class="d-block w-100" alt="집2">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="${pageContext.request.contextPath}/resources/images/petsit/home3.jpg" class="d-block w-100" alt="집3">
-		    </div>
-  		</div>
+  		<c:forEach var="vo" items="${listFile}" varStatus="status">
+			<div class="carousel-item ${status.index==0?'active':'' }">
+            	<img src="${pageContext.request.contextPath}/upload/petsit/${vo.petImg}" class="d-block w-100">
+          	</div>
+		</c:forEach>
+  		</div>	
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="sr-only">Previous</span>
@@ -40,13 +49,27 @@
 <div style="width: 1300px;">
 	<div class="body-left">
 		<div class="profile">
-			<div class="profile-p">
-			<img src="${pageContext.request.contextPath}/uploads/profileImages/${dto.mProfileImg}">
+			<div class="profile-p">		
 			</div>
 			<div class="frofile-t">
-				<h4><span>서울 서초구 방배동</span>펫시터${dto.mId}님</h4>
+				<h4>${dto.petAddr} 펫시터 ${dto.mId}님</h4>
 				<p>${dto.petTitle}</p>
-				<span>선택1</span>&nbsp;&nbsp;<span>선택2</span>&nbsp;&nbsp;<span>선택3</span>&nbsp;&nbsp;<span>선택4</span>
+				<p>
+				<c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if>
+				<c:if test="${dto.petYard ne 0}">#마당 보유&nbsp; </c:if>
+				<c:if test="${dto.petLarge ne 0}">#대형견 가능&nbsp; </c:if>								
+				<c:if test="${dto.petWalk ne 0}">#산책로 있어요&nbsp; </c:if>			
+				<c:if test="${dto.petLiving eq 1}">#아파트&nbsp; </c:if>
+				<c:if test="${dto.petLiving eq 2}">#단독주택&nbsp; </c:if>
+				<c:if test="${dto.petLiving eq 3}">#빌라&nbsp; </c:if>
+				<c:if test="${dto.petLiving eq 4}">#오피스텔&nbsp; </c:if>
+				<c:if test="${dto.petFamily eq 1}">#2인 이하 가구&nbsp; </c:if>
+				<c:if test="${dto.petFamily eq 2}">#3인 가구&nbsp; </c:if>
+				<c:if test="${dto.petFamily eq 3}">#4인 가구&nbsp; </c:if>
+				<c:if test="${dto.petFamily eq 4}">#5인 이상 가구&nbsp; </c:if>
+				<c:if test="${dto.petChild eq 2}">#미취학 아동 자녀 있어요&nbsp; </c:if>
+				<c:if test="${dto.petChild eq 3}">#초등생 자녀 있어요&nbsp; </c:if>	
+				</p>
 			</div>
 		</div>
 		<div class="best">
@@ -65,12 +88,12 @@
 			<h5>자격증 및 수료증</h5>
 			<div class="certif-d">
 				<div class="certf-dp">
-				<img src="${pageContext.request.contextPath}/resources/images/petsit/certif.png">
+				<img src="${pageContext.request.contextPath}/resources/images/petsit/certif.PNG">
 				</div>
 				<div class="certf-de">
 					<p class="certif-title">펫시터 전문가 교육</p>
 					<p>(사) K.S.D 문화교육원</p>
-					<p class="certif-date">${dto.petCertif}에 취득하였습니다</p>
+					<p class="certif-date"> ${dto.petCertif} 에 취득하였습니다</p>
 				</div>
 			</div>
 		</div>
@@ -226,8 +249,25 @@
 		</div>
 		<div class="lacation">
 		</div>
-	
-	
+		<div>
+			<c:choose>
+				<c:when test="${sessionScope.member.mId==dto.mId}">
+			    	<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/update?petNum=${dto.petNum}&page=${page}';">수정</button>
+			    </c:when>
+			    <c:otherwise>
+			    	<button type="button" class="btn" disabled="disabled">수정</button>
+			    </c:otherwise>
+			 </c:choose>
+			    	
+			 <c:choose>
+			    <c:when test="${sessionScope.member.mId==dto.mId || sessionScope.member.mId=='admin'}">
+			    	<button type="button" class="btn" onclick="deletePetsit();">삭제</button>
+			    </c:when>
+			    <c:otherwise>
+			    	<button type="button" class="btn" disabled="disabled">삭제</button>
+			    </c:otherwise>
+			</c:choose>
+		</div>
 	</div>	
 </div>
 </div>
