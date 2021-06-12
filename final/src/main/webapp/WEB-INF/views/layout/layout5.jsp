@@ -28,7 +28,9 @@
 	
 	<!-- product css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/product/main.css" type="text/css">
-		
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/product/list.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/product/created.css" type="text/css">
+			
 	<!-- petsit css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/main.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/reservation.css" type="text/css">

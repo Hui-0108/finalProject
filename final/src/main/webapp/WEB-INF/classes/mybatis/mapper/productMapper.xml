@@ -32,8 +32,11 @@
 		FROM product p
 		JOIN storeDetailOpt d ON p.pNum = d.pNum
 		<where>
+			<if test="pCateNum!=null and pCateNum != 0">
+				pCateNum = #{pCateNum}
+			</if>			
 			<if test="keyword != null and keyword != '' ">
-				<include refid="where-list"/>
+				AND<include refid="where-list"/>
 			</if>
 		</where>		
 	</select>
@@ -57,6 +60,9 @@
 			) WHERE rank = 1
 		) i ON p.pNum = i.pNum
 		<where>
+			<if test="pCateNum!=null and pCateNum != 0">
+				pCateNum = #{pCateNum}
+			</if>		
 			<if test="keyword != null and keyword != '' ">
 				AND<include refid="where-list"/>
 			</if>
@@ -67,26 +73,6 @@
 	
 	
 	<!-- 카테고리별 리스트 -->	
-	
-	<select id="cateList" parameterType="map" resultType="com.fin.app.product.Product">
-		SELECT p.pNum, pCateNum, pName, pDetailPrice, pImgName,pDate
-		FROM product p
-		JOIN storeDetailOpt d ON p.pNum = d.pNum
-		LEFT OUTER JOIN (
-			SELECT pImgNum, pImgName, pNum FROM(
-				SELECT pImgNum, pImgName, pNum,
-					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgNum ASC)rank
-				 FROM productImage
-			) WHERE rank = 1
-		) i ON p.pNum = i.pNum
-		<where>
-			<if test="keyword != null and keyword != '' ">
-				<include refid="where-list"/>
-			</if>
-		</where>
-		ORDER BY pNum DESC
-		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
-	</select>	
 	
 	
 	

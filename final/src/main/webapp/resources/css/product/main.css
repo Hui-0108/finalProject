@@ -1,45 +1,49 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .storeBody{
 	margin: 0;
 	padding: 0;
 }
 
+.storebody-main{
+	padding: 0;
+	width: 1300px;
+	margin: auto;
+}
+
+.imgStore{
+	width: 100%;
+}
 .storeBody .productTitle{
 	font-size: 30px;
     text-align: center;
     margin-top: 100px;
     margin-bottom: 30px;
+	color: #c39755;    
+	font-family: Cafe24Ssurround, sans-serif;    
 }
 
 .storeBody .imgstore{
-	height: 500px;
+	height: 700px;
 }
 
 .storeBody .imgstore > img{
     position: absolute;
     left : 0;
     width: 100%;
-
 }
 
-.storeBody .img img{
-	width: 230px;
-    height: 280px;
+.storeBody .img, .storeBody .img img{
+	width: 300px;
+    height: 400px;
 }
-
-.storeBody .img{
-	width: 230px;
-    height: 280px;
-}
-
-/*
-.popularImg1 td, .popularImg2 td, .newImg1 td, .newImg2 td, .totalImg1 td, .totalImg2 td{
-	width: 170px;
-	height: 200px;
-}
-*/
 
 .storeBody .cardBoarder{
     margin-top: 130px;
@@ -49,16 +53,15 @@
 
 .storeBody .pproduct, .storeBody .ttproduct{
     float: left;
-    margin-right: 30px;
+    margin-right: 10px;
 
 }
 .storeBody .banner > img{
     width: 100%;
- 	
 }
 .storeBody .storeCard{
-	width: 1000px;
     margin: auto;
+    height: 700px;
 }
 .storeBody .banner{
 	clear: both;
@@ -80,26 +83,18 @@
 .storeBody .price{
 	text-align: right;
 	height: 50px;
+	font-size: 18px;
 }
 
-#imgStore{
-	width: 100%;
-}
-.storeBody .popularProduct {
-	width: 100%;
-	padding-left: 50px;
-	margin-left: 70px;
-}
 
-.storeBody .totalProduct{
-	width: 100%;
-	padding-left: 50px;
-	margin-left: 70px;
-	
+.storeBody .popularProduct, .storeBody .totalProduct{
+	padding-left: 30px;
 }
-
 
 .storeBody .storeClick{
-	cursor: pointer;
-
+	cursor: pointer;    
+	font-size: 20px;
+    text-decoration: none;
+    color: black;
 }
+

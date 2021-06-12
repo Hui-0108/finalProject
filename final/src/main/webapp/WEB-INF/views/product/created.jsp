@@ -5,78 +5,7 @@
 <!-- 상품 작성폼 (관리자) -->
 <style type="text/css">
 
-.productCreateBody{
-	margin: 0;
-	padding: 0;
-	width: 1300px;
-	font-family: 
-}
 
-.productTableForm{
-	margin: auto;
-	width: 100%;
-}
-.productTable{
-	margin: auto;
-	width: 800px;
-}
-
-.productCreateTitle{
-	
-}
-.imgPreView {
-    border: 1px solid #ccc;
-    width: 200px;
-    height: 200px;
-    line-height: 45px;
-    border-radius: 45px;
-    background: #eee;
-    position: relative;
-    z-index: 9999;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    font-size: 9px;
-    font-family: 나눔고딕;
-    margin-bottom: 20px;
-    margin-top: 15px;    
-}
-
-.productCreateSelect{
-    width: 150px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 25px;
-}
-
-.productTableForm ul{
-	list-style: none;
-}
-.categoryList{
-	float: left;
-}
-
-.imgLeft{
-	float: left;
-    clear: both;
-}
-
-.contentLeft{
-	float: left;
-	padding-left: 0px;	
-}
-
-.contentClear{
-	clear: both;
-}
-.imgText{
-	padding-left: 5px;
-    font-size: 20px;
-}
-
-.categoryHead{
-	height: 30px;
-}
 
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js" charset="utf-8"></script>
@@ -254,115 +183,116 @@ $(function(){
 
 
 <div class="productBody">
-	<div class="productCreateTitle">
-		<h3><i class="far fa-edit"></i>상품 등록</h3>
-	</div>
-	<div class="productTableForm">
-	<form name="createdFrom" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
-		<div class="productTable">
-			<ul class="categoryHead">
-				<li class="categoryList">			
-					<select name="pCateNum" class="productCreateSelect">
-						<option value="0" ${pCateNum==0?"selected='selected'":""}>카테고리</option>
-						<c:forEach var="vo" items="${categorys}">
-							<option value="${vo.pCateNum}" ${dto.pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
-						</c:forEach>
-					</select>		
-				</li>
-				<li class="categoryList">			
+	<div class="productCreateForm">
+		<div class="productCreateTitle">
+			<h3><i class="far fa-edit"></i>상품 등록</h3>
+		</div>
+		<div class="productTableForm">
+		<form name="createdFrom" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
+			<div class="productTable">
+				<ul class="categoryHead">
+					<li class="categoryList">			
+						<select name="pCateNum" class="productCreateSelect">
+							<option value="0" ${pCateNum==0?"selected='selected'":""}>카테고리</option>
+							<c:forEach var="vo" items="${categorys}">
+								<option value="${vo.pCateNum}" ${dto.pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
+							</c:forEach>
+						</select>		
+					</li>
+					<li class="categoryList">			
 						<select name="storeMainOptNum" class="productCreateSelect">
 							<option value="0" ${storeMainOptNum==0?"selected='selected'":""}>옵션1</option>
-							<c:forEach var="vo" items="${mainOpts}">
-								<option value="${vo.storeMainOptNum}" ${dto.storeMainOptNum==vo.storeMainOptNum?"selected='selected'":""}>${vo.storeMainOptName}</option>
-							</c:forEach>
+								<c:forEach var="vo" items="${mainOpts}">
+									<option value="${vo.storeMainOptNum}" ${dto.storeMainOptNum==vo.storeMainOptNum?"selected='selected'":""}>${vo.storeMainOptName}</option>
+								</c:forEach>
 						</select>			
-				</li>
-				<li class="categoryList">			
+					</li>
+					<li class="categoryList">			
 						<select name="storeSubOptNum" class="productCreateSelect">
 							<option value="0" ${storeSubOptNum==0?"selected='selected'":""}>옵션2</option>
-							<c:forEach var="vo" items="${subOpts}">
-								<option value="${vo.storeSubOptNum}" ${dto.storeSubOptNum==vo.storeSubOptNum?"selected='selected'":""}>${vo.storeSubOptName}</option>
-							</c:forEach>
+								<c:forEach var="vo" items="${subOpts}">
+									<option value="${vo.storeSubOptNum}" ${dto.storeSubOptNum==vo.storeSubOptNum?"selected='selected'":""}>${vo.storeSubOptName}</option>
+								</c:forEach>
 						</select>				
-				</li>				
-			</ul>
-			
-			<ul class="imgLeft">
-				<li class="imgText">대표 이미지</li>
-				<li>
-					<div class="imgPreView"></div>
-					<input type="file" name="selectImg" accept="image/*" multiple="multiple">
-				</li>
-			
-			<c:if test="${mode=='update'}">
-				<ul>
-				<li class="imgText">대표 이미지</li>
+					</li>				
+				</ul>
+				
+				<ul class="imgLeft">
+					<li class="imgText">대표 이미지</li>
 					<li>
-						<div class="">
-							<c:forEach var="vo" items="${listImg}">
-								<img class="delete-img" src="${pageContext.request.contextPath}/uploads/product/${vo.pImgName}" 
-								data-ImgNum = "${vo.pImgNum}">
-							</c:forEach>
-						</div>
+						<div class="imgPreView"></div>
+						<input type="file" name="selectImg" accept="image/*" multiple="multiple">
+					</li>
+				
+				<c:if test="${mode=='update'}">
+					<ul>
+					<li class="imgText">제품 대표 이미지</li>
+						<li>
+							<div class="">
+								<c:forEach var="vo" items="${listImg}">
+									<img class="delete-img" src="${pageContext.request.contextPath}/uploads/product/${vo.pImgName}" 
+									data-ImgNum = "${vo.pImgNum}">
+								</c:forEach>
+							</div>
+						</li>
+					</ul>
+				</c:if>
+				</ul>
+				<ul class="contentLeft">
+					<li>상품명</li>
+					<li>
+						<input type="text" name="pName" value="${dto.pName}">
+					</li>
+	
+					<li>상품가격</li>
+					<li>
+						<input type="text" name="pPrice" value="${dto.pPrice}">
+					</li>
+	
+					<li>할인율</li>
+					<li>
+						<input type="text" name="pDiscountRate" value="${dto.pDiscountRate}">
+					</li>
+	
+					<li>배송조건</li>
+					<li>
+						<label><input type="radio" name="delivType" value="0" checked="checked">무료</label>
+						<label><input type="radio" name="delivType" value="1" >유료</label>					
+					</li>
+	
+					<li style="vertical-align: top;">상세옵션수량</li>
+					<li>
+						<input type="text" name="pDetailCnt" value="${dto.pDetailCnt}">
+					</li>
+	
+					<li>최종가격</li>
+					<li>
+						<input type="text" name="pDetailPrice" value="${dto.pDetailPrice}">
 					</li>
 				</ul>
-			</c:if>
-			</ul>
-			<ul class="contentLeft">
-				<li>상품명</li>
-				<li>
-					<input type="text" name="pName" value="${dto.pName}">
-				</li>
-
-				<li>상품가격</li>
-				<li>
-					<input type="text" name="pPrice" value="${dto.pPrice}">
-				</li>
-
-				<li>할인율</li>
-				<li>
-					<input type="text" name="pDiscountRate" value="${dto.pDiscountRate}">
-				</li>
-
-				<li>배송조건</li>
-				<li>
-					<label><input type="radio" name="delivType" value="0" checked="checked">무료</label>
-					<label><input type="radio" name="delivType" value="1" >유료</label>					
-				</li>
-
-				<li style="vertical-align: top;">상세옵션수량</li>
-				<li>
-					<input type="text" name="pDetailCnt" value="${dto.pDetailCnt}">
-				</li>
-
-				<li>최종가격</li>
-				<li>
-					<input type="text" name="pDetailPrice" value="${dto.pDetailPrice}">
-				</li>
-			</ul>
-			<ul class="contentClear">
-				<li>상세정보</li>
-				<li>
-					<textarea name="pContent" id="pContent" class=""  style="height: 270px;">${dto.pContent}</textarea>
-				</li>
-			</ul>						
-		
-		<div class="tableFooter">
-			<ul>
-				<li>
-					<button type="submit" class="">${mode=='update'?'상품수정':'상품등록'}</button>
-					<button type="reset" class="productReset">다시입력</button>
-					<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
-					<c:if test="${mode='update'}">
-						<input type="hidden" name="page" value="${page}">
-						<input type="hidden" name="pName" value="${dto.pName}">
-					</c:if>
-				</li>
-			</ul>
+				<ul class="contentClear">
+					<li>제품 상세정보</li>
+					<li>
+						<textarea name="pContent" id="pContent" class="">${dto.pContent}</textarea>
+					</li>
+				</ul>						
+			
+			<div class="tableFooter">
+				<ul>
+					<li>
+						<button type="submit" class="">${mode=='update'?'상품수정':'상품등록'}</button>
+						<button type="reset" class="productReset">다시입력</button>
+						<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
+						<c:if test="${mode='update'}">
+							<input type="hidden" name="page" value="${page}">
+							<input type="hidden" name="pName" value="${dto.pName}">
+						</c:if>
+					</li>
+				</ul>
+			</div>
+			</div>
+		</form>
 		</div>
-		</div>
-	</form>
-	</div>
 	
 <script type="text/javascript">
 //스마트에디터
@@ -412,5 +342,5 @@ function setDefaultFont() {
 </script>    	
 	
 	
-	
+	</div>
 </div>

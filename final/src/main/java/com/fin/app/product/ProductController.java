@@ -57,7 +57,7 @@ public class ProductController {
 			keyword = URLDecoder.decode(keyword, "utf-8");
 		}
 
-		int rows = 10;
+		int rows = 6;
 		int total_page = 0;
 		int dataCount =0;
 		
@@ -163,7 +163,7 @@ public class ProductController {
 			keyword = URLDecoder.decode(keyword, "utf-8");
 		}
 		
-		int rows = 10;
+		int rows = 6;
 		int total_page = 0;
 		int dataCount =0;
 		
@@ -179,7 +179,8 @@ public class ProductController {
 		dataCount = service.dataCount(map);
 		total_page = myUtil.pageCount(rows, dataCount);
 		
-		current_page = current_page > total_page ? total_page : current_page;
+		if (total_page < current_page)
+			current_page = total_page;
 		
 		int offset = (current_page - 1) * rows;
 		if(offset < 0) offset = 0;
@@ -217,7 +218,6 @@ public class ProductController {
 			articleUrl = cp+"/product/article?page="+current_page+"&"+query;
 		}
 		
-		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		List<Product> categoryList = service.listCategroy();
 		List<Product> mainOptList = service.listMainOpt();
@@ -228,6 +228,7 @@ public class ProductController {
 		map2.put("storeMainOptNum", storeMainOptNum); //여기 이렇게 넣는게 맞나?
 
 		List<Product> subOptList = service.listSubOpt(map2);
+		String paging = myUtil.paging(current_page, total_page, listUrl);
 		 	
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);

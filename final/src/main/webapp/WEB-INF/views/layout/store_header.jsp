@@ -5,7 +5,6 @@
 
 
 <div class="storeHeader">
-
 <div class="top-bar fixed-top">
 	<div class="container flex-center">
 		<div class="top-info">
@@ -100,12 +99,17 @@
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/product/list">전체상품 <span class="sr-only">(current)</span></a>
       </li>      
-		<li class="nav-item active item ">
-	        <a class="nav-link color"   href="#">고객센터 <span class="sr-only">(current)</span></a>
-	    </li>                    
+	  <li class="nav-item active item ">
+	    <a class="nav-link" href="#">고객센터 <span class="sr-only">(current)</span></a>
+	  </li>
+       <c:if test="${sessionScope.member.mRole eq 0}">
+       <li class="nav-item active">
+        <a class="nav-link" style="color: #c39755;"  href="${pageContext.request.contextPath}/product/created">상품 등록 <span class="sr-only">(current)</span></a>
+      </li>     
+       </c:if>         
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="상품검색" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" name="searchForm" action="${pageContext.request.contextPath}/product/list" method="post">
+      <input class="form-control mr-sm-2" type="search"  name="keyword" placeholder="상품검색" aria-label="Search">
       <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">검색</button>
     </form>
   </div>

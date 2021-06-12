@@ -3,22 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<!--  
-상품의 경우 들어올때마다 추가 될때마다 floatleft를 하고 5번째는 clearboth와 floatleft같이 줌
--->
-
-<style type="text/css">
-.popularWhole{
-
-margin: auto;
-}
 
 
-
-</style>
 <div class="storeBody">
-	<div class="storebody-main">
-
 		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 		  <ol class="carousel-indicators">
 		    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -58,8 +45,9 @@ margin: auto;
 		  </a>
 		</div>
 		
+		<div class="storebody-main">
+		
 		<div id="popularWhole">
-	
 		<div class="popularProductText productTitle">
 			인기상품
 		</div>
@@ -136,14 +124,6 @@ margin: auto;
 		<div class="banner donation">
 			<img src="${pageContext.request.contextPath}/resources/images/storeMain/do3.jpg" class="d-block w-100 " alt="...">
 		</div>
-		<!-- 
-		<div class="card border-light text-white banner">
-		  <img src="${pageContext.request.contextPath}/resources/images/catcat.jpg" class="card-img" alt="...">
-		  <div class="card-img-overlay">
-		    <a class="card-title">개묘개묘 이벤트에 참여하고 스토어 할인 쿠폰을 받아보세요! </a>
-		  </div>
-		</div>			
-		 -->
 		<div class="newProductText productTitle">
 			신상품
 		</div>			
@@ -256,16 +236,15 @@ margin: auto;
 			</div>	
 		</div>	
 			
-		<div class="card border-light text-white banner">
-		  <img src="${pageContext.request.contextPath}/resources/images/storeMain/ban.jpg" class="card-img" alt="...">
-		  <div class="card-img-overlay">
-		    <h5 class="card-title">개묘개묘는 동물과 사람이 함께하는 문화를 만듭니다</h5>
-		    <p class="card-text"></p>
-		    <p class="card-text"></p>
-		  </div>
-		</div>				
-		
-	</div>
+			<div class="card border-light text-white banner">
+			  <img src="${pageContext.request.contextPath}/resources/images/storeMain/ban.jpg" class="card-img" alt="...">
+			  <div class="card-img-overlay">
+			    <h5 class="card-title">개묘개묘는 동물과 사람이 함께하는 문화를 만듭니다</h5>
+			    <p class="card-text"></p>
+			    <p class="card-text"></p>
+			  </div>
+			</div>				
+		</div>
 </div>
 
 
