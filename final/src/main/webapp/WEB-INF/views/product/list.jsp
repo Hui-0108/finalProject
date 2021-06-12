@@ -28,129 +28,46 @@
 	float: right;
 }
 
-.productListTitle{
-	
+.imgLayout {
+	width: 230px;
+	height: 320px;
+	padding: 10px 5px 10px;
+	margin: 5px;
+	cursor: pointer;
 }
+
+.product {
+     width:180px;
+     height:25px;
+     line-height:25px;
+     margin:5px auto;
+     display: inline-block;
+     white-space:nowrap;
+     overflow:hidden;
+     text-overflow:ellipsis;
+     cursor: pointer;
+}
+
+.productPrice{
+
+}
+
 </style>
 
 <script type="text/javascript">
-
-function ajaxFun(url, method, query, dataType, fn) {
-	$.ajax({
-		type:method,
-		url:url,
-		data:query,
-		dataType:dataType,
-		success:function(data) {
-			fn(data);
-		},
-		beforeSend:function(jqXHR) {
-			jqXHR.setRequestHeader("AJAX", true);
-		},
-		error:function(jqXHR) {
-			if(jqXHR.status===403) {
-				login();
-				return false;
-			}
-	    	
-			console.log(jqXHR.responseText);
-		}
-	});
+function searchList() {
+	var f=document.searchForm;
+	f.submit();
 }
 
-$(function(){
-	listPage(1);
-});
-
-
-function ajaxFileFun(url, method, query, dataType, fn) {
-	$.ajax({
-		type:method,
-		url:url,
-		processData: false,  // file 전송시 필수. 서버로전송할 데이터를 쿼리문자열로 변환여부
-		contentType: false,  // file 전송시 필수. 서버에전송할 데이터의 Content-Type. 기본:application/x-www-urlencoded
-		data:query,
-		dataType:dataType,
-		success:function(data) {
-			fn(data);
-		},
-		beforeSend:function(jqXHR) {
-			jqXHR.setRequestHeader("AJAX", true);
-		},
-		error:function(jqXHR) {
-			if(jqXHR.status===403) {
-				login();
-				return false;
-			}
-	    	
-			console.log(jqXHR.responseText);
-		}
-	});
+function article(pNum) {
+	var url="${articleUrl}&pNum="+pNum;
+	location.href=url;
 }
-
-//글리스트 및 페이징 처리
-function listPage(page) {
-	var url = "${pageContext.request.contextPath}/product/list";
-	var query = "pageNo="+page;
-	var params = $('form[name=searchForm]').serialize();
-	query = query + "&" + params;
-	
-	var fn = function(data){
-		printList(data);
-	};
-	ajaxFun(url, "get", query, "json", fn);
-}
-
-function printList(data) {
-	var dataCount = data.dataCount;
-	var totalPage = data.total_page;
-	var page = data.pageNo;
-	var paging = data.paging;
-
-	if(dataCount==0) {
-		$(".productlist-body").height(0);
-		$(".productlist-body").empty();
-		$(".productlisg-paging").html("등록된 게시물이 없습니다.");
-		return;
-	}
-	
-	$(".productlist-body").attr("data-pageNo", page);
-	
-	// 크거나 같은수 중 가장 적은 정수
-	var n =  Math.ceil(dataCount / 4);
-	var h = 170 * n;
-	
-	$(".list-body").height(h);
-	if(n == 1) {
-		document.querySelector(".list-body").style.gridTemplateRows = "repeat(1, auto)";
-	} else {
-		document.querySelector(".list-body").style.gridTemplateRows = "repeat(2, auto)";
-	}
-	
-	var out="";
-	for(var idx=0; idx<data.list.length; idx++) {
-		var num = data.list[idx].num;
-		var userName = data.list[idx].userName;
-		var subject = data.list[idx].subject;
-		var imageFilename = data.list[idx].imageFilename;
-		var created = data.list[idx].created;
-
-		var src = "${pageContext.request.contextPath}/uploads/photo/"+imageFilename;
-		var item = "<div class='item' style='background-image: url("+src+");' data-num='"+num+"'></div>";
-		
-		out += item;
-	}
-	
-	$(".list-body").html(out);
-	$(".list-paging").html(paging);
-}
-
 
 </script>
 
-
 <div class="productListBody">
-
 	<div class="productListForm">	
 		<table class="prodcutListTop">
 			<tr class="productListTitle">
@@ -163,7 +80,7 @@ function printList(data) {
 					${dataCount}개(${page}/${total_page}페이지)
 				</td>
 				<td class="prooductSearchBar">
-					<form>
+					<form name="searchForm" action="${pageContext.request.contextPath}/product/list" method="post">
 						<input type="text" name="keyword" class="" placeholder="상품검색">
 						<button type="button" class="">검색</button>								
 					</form>								
@@ -172,11 +89,51 @@ function printList(data) {
 		</table>
 		<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/created';">상품 등록하기</button>
 
-		<div class="productListMain">
-		
-			<div class="productlist-body" data-pageNo="0"></div>
-			<div class="productlisg-paging clear"></div>		
-		</div>
+		<table class="">
+			<c:forEach var="dto" items="${list}" varStatus="status">
+				<c:if test="${status.index==0}">
+					<tr>
+				</c:if>			
+				<c:if test="${status.index!=0 && status.index%4==0}">
+					<c:out value="</tr><tr>" escapeXml="false"/>									
+				</c:if>
+				<td width="210" align="center">
+					<div class="imgLayout">
+						<img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" width="230" height="280" border="0"
+						onclick="javascript:article('${dto.pNum}');">
+						<span class="product" onclick="javascript:article('${dto.pNum}');" >
+							${dto.pName}
+						</span>	
+						<span class="product" >
+							${dto.pDetailPrice}
+						</span>	
+											
+					</div>				
+				</td>
+			</c:forEach>					
+	
+			<c:set var="n" value="${list.size()}"/>	
+			<c:if test="${n>0&&n%4!=0}">
+				<c:forEach var="i" begin="${n%4+1}" end="4" step="1">
+					<td width="210">
+						<div class="imgLayout">&nbsp;</div>
+					</td>				
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${n!=0}">
+				<c:out value="</tr>" escapeXml="false"/>
+			</c:if>	
+		</table>
+
+		<table class="">
+			<tr>
+				<td align="center">
+					${dataCount==0?"등록된 게시물이 없습니다.":paging}					
+				</td>
+			</tr>
+		</table>
+
 
 	</div>
 </div>

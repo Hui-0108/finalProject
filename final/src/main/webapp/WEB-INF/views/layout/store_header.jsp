@@ -15,22 +15,30 @@
 		<div class="top-links">
 			<c:choose>
 				<c:when test="${not empty sessionScope.member}">
-	                <span class="headerUserName">${sessionScope.member.mNick}</span>님
-	                &nbsp;|&nbsp;
-	                <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-	                &nbsp;|&nbsp;				
+					<c:choose>
+						<c:when test="${sessionScope.member.mRole eq 0}">
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;             
+							<a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-secret"></i></a>
+						</c:when>
+						<c:otherwise>
+			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                &nbsp;|&nbsp;
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
+			                &nbsp;|&nbsp;
+						</c:otherwise>
+					</c:choose>
                 </c:when>
-			<c:otherwise>
-				<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
-				<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
-            	</a>
-            	&nbsp;&nbsp;|
-            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
-        		</a>
-					<c:if test="${sessionScope.member.userId=='admin'}">
-						<a href="${pageContext.request.contextPath}/admin" title="관리자"><i class="fas fa-user-secret"></i></a>
-					</c:if>
-			</c:otherwise>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
+					<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
+	            	</a>
+	            	&nbsp;&nbsp;|
+	            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
+	        		</a>
+				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
@@ -38,10 +46,18 @@
 
 <div class="headerBottom">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand title" href="${pageContext.request.contextPath}/product/main">개묘개묘스토어</a>
+  <a class="navbar-brand title"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <a class="navbar-brand title"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>  
+  <a class="navbar-brand title" href="${pageContext.request.contextPath}/product/main">개묘개묘스토어</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>  
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"> 
@@ -50,8 +66,8 @@
        	 사료
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지 사료</a>
-          <a class="dropdown-item" href="#">고양이 사료</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/1">강아지 사료</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/5">고양이 사료</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -59,8 +75,8 @@
        	   간식
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지 간식</a>
-          <a class="dropdown-item" href="#">고양이 간식</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/4">강아지 간식</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/8">고양이 간식</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -68,8 +84,8 @@
        	   외출용품
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지 외출용품</a>
-          <a class="dropdown-item" href="#">고양이 외출용품</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/2">강아지 외출용품</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/6">고양이 외출용품</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -77,12 +93,12 @@
        	   장난감
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">강아지 외출용품</a>
-          <a class="dropdown-item" href="#">고양이 외출용품</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/3">강아지 장난감</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/product/cateList/7">고양이 장난감</a>
           </div>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">전체상품 <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/product/list">전체상품 <span class="sr-only">(current)</span></a>
       </li>      
 		<li class="nav-item active item ">
 	        <a class="nav-link color"   href="#">고객센터 <span class="sr-only">(current)</span></a>

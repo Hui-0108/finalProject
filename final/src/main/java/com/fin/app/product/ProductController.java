@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,114 @@ public class ProductController {
 	public String main() throws Exception{
 		return ".product.productMain";
 	}
+	
+	@RequestMapping("cateList/{category}")
+	public String cateList(
+			@RequestParam(value = "page", defaultValue = "1") int current_page,
+			@RequestParam(defaultValue = "title") String condition,
+			@RequestParam(defaultValue = "") String keyword,			
+			@PathVariable String category,
+			@RequestParam(value = "cn", defaultValue = "0")int pCateNum,			
+			@RequestParam(value = "mn", defaultValue = "0")int storeMainOptNum,
+			@RequestParam(value = "sn", defaultValue = "0")int storeSubOptNum,
+			HttpServletRequest req,
+			HttpSession session,
+			Model model				
+			) throws Exception{
+		Map<String, Object>  map = new HashMap<String, Object>();
+		
+		if(req.getMethod().equalsIgnoreCase("GET")) {
+			keyword = URLDecoder.decode(keyword, "utf-8");
+		}
+
+		int rows = 10;
+		int total_page = 0;
+		int dataCount =0;
+		
+		map.put("pCateNum", category);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		map.put("storeMainOptNum", storeMainOptNum);
+		map.put("storeSubOptNum", storeSubOptNum);
+		
+		dataCount = service.dataCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);		
+		
+		current_page = current_page > total_page ? total_page : current_page;
+		
+		int offset = (current_page - 1) * rows;
+		if(offset < 0) offset = 0;
+		map.put("offset", offset);
+		map.put("rows", rows);		
+		
+		List<Product> list = service.listProduct(map);
+		
+		String cp = req.getContextPath();
+		String query = "cn="+pCateNum;
+		query += "mn"+storeMainOptNum;
+		query += "sn"+storeSubOptNum;
+		
+		String listUrl = cp+"/product/list";
+		String articleUrl = cp+"/product/article?page="+current_page;
+		if(keyword.length()!=0) {
+			query += "&condition="+condition+"&keyword="+
+					URLEncoder.encode(keyword, "utf-8");
+		}
+		
+		if(query.length()!=0) {
+			//listUrl += "?"+query;
+			//articleUrl += "&"+query;
+			listUrl = cp+"/product/list?"+ query;
+			articleUrl = cp+"/product/article?page="+current_page+"&"+query;
+		}
+		
+		String paging = myUtil.paging(current_page, total_page, listUrl);
+		
+		List<Product> mainOptList = service.listMainOpt();
+		
+		//List<Product> subOptList = service.listSubOpt();
+			
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("storeMainOptNum", storeMainOptNum); //여기 이렇게 넣는게 맞나?
+
+		List<Product> subOptList = service.listSubOpt(map2);
+		 	
+		model.addAttribute("list", list);
+		model.addAttribute("articleUrl", articleUrl);
+		model.addAttribute("condition", condition);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("page", current_page);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("dataCount", dataCount);
+		model.addAttribute("paging", paging);
+		
+		model.addAttribute("storeMainOptNum", storeMainOptNum);
+		model.addAttribute("mainOpts", mainOptList);
+		
+		model.addAttribute("storeSubOptNum", storeSubOptNum);
+		model.addAttribute("subOpts", subOptList);	
+		
+		
+		String title = null;
+		
+		switch (category) {
+		case "1": title ="강아지사료";	break;
+		case "2": title ="강아지 외출용품";	break;
+		case "3": title ="강아지 장난감";	break;
+		case "4": title ="강아지 간식";	break;
+		case "5": title ="고양이사료";	break;
+		case "6": title ="고양이 외출용품";	break;
+		case "7": title ="고양이 장난감";	break;
+		case "8": title ="고양이 간식";	break;		
+		}
+		
+		model.addAttribute("title", title);
+		model.addAttribute("category", category);
+		
+		return ".product.cateList";
+	}
+	
 	
 	@RequestMapping("list")
 	public String list(
@@ -221,6 +330,17 @@ public class ProductController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("state", "true");
 		return model;
+	}
+	
+	@RequestMapping(value = "article")
+	public String article()throws Exception{
+		
+		
+		
+		// 스마트 에디터에서는 주석 처리
+        // dto.setContent(myUtil.htmlSymbols(dto.getContent()));		
+		
+		return ".product.article";
 	}
 	
 	

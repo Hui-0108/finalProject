@@ -46,7 +46,6 @@ public class ProductServiceImpl implements ProductService{
 			e.printStackTrace();
 			throw e;
 		}
-		
 	}
 
 
@@ -236,11 +235,7 @@ public class ProductServiceImpl implements ProductService{
 			e.printStackTrace();
 			throw e;
 		}
-		
-		
 	}
-		
-
 	
 	@Override
 	public void insertProductImage(Product dto) throws Exception {
@@ -274,14 +269,11 @@ public class ProductServiceImpl implements ProductService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return dto;
 	}
 
 	@Override
 	public void deleteProductImage(Map<String, Object> map) throws Exception {
-		
 		
 		try {
 			dao.deleteData("product.deleteProductImage", map);

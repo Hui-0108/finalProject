@@ -21,25 +21,77 @@
 		</if>
 	</sql>
 	
-	<!-- 리스트 -->
+	<sql id="where-category">
+		<if test="">
+		</if>
+	</sql>
 	
-	<select id="listProduct" parameterType="map" resultType="com.fin.app.product.Product">
-		SELECT pName, p.pCateNum, pPrice, pDiscountRate
-		FROM product p	
-		JOIN productCategory c ON p.pCateNum = c.pCateNum
+
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM product p
+		JOIN storeDetailOpt d ON p.pNum = d.pNum
 		<where>
 			<if test="keyword != null and keyword != '' ">
 				<include refid="where-list"/>
 			</if>
-			<if test="pCateNum != 0">
-				AND p.pCateNum = #{pCateNum}			
+		</where>		
+	</select>
+<!-- 		JOIN productImage i ON p.pNum = i.pNum	 
+
+			<if test="pCateNum!=null and pCateNum != 0">
+				pCateNum = #{pCateNum}
+			</if>
+
+-->	
+	<!-- 전체리스트 -->
+	<select id="listProduct" parameterType="map" resultType="com.fin.app.product.Product">
+		SELECT p.pNum, pCateNum, pName, pDetailPrice, pImgName,pDate
+		FROM product p
+		JOIN storeDetailOpt d ON p.pNum = d.pNum
+		LEFT OUTER JOIN (
+			SELECT pImgNum, pImgName, pNum FROM(
+				SELECT pImgNum, pImgName, pNum,
+					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgNum ASC)rank
+				 FROM productImage
+			) WHERE rank = 1
+		) i ON p.pNum = i.pNum
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				AND<include refid="where-list"/>
 			</if>
 		</where>
+		ORDER BY pNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
-	<!-- 카테고리 -->
 	
+	<!-- 카테고리별 리스트 -->	
+	
+	<select id="cateList" parameterType="map" resultType="com.fin.app.product.Product">
+		SELECT p.pNum, pCateNum, pName, pDetailPrice, pImgName,pDate
+		FROM product p
+		JOIN storeDetailOpt d ON p.pNum = d.pNum
+		LEFT OUTER JOIN (
+			SELECT pImgNum, pImgName, pNum FROM(
+				SELECT pImgNum, pImgName, pNum,
+					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgNum ASC)rank
+				 FROM productImage
+			) WHERE rank = 1
+		) i ON p.pNum = i.pNum
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY pNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+	
+	
+	
+	
+	<!-- 카테고리 -->
 	<select id="listCategory" resultType="com.fin.app.product.Product">
 		SELECT pCateNum, pCateName FROM productCategory
 	</select>		

@@ -12,7 +12,7 @@ public class Product {
 	private int pDiscountRate;//할인율
 	private String pContent;//상세정보
 	private int delivType;//배송조건
-	private int pDate;//등록일	
+	private String pDate;//등록일	
 	private int pCateNum;//카테고리 번호
 	private String pCateName; //카테고리명	
 	
@@ -137,13 +137,7 @@ public class Product {
 	}
 
 
-	public int getpDate() {
-		return pDate;
-	}
 
-	public void setpDate(int pDate) {
-		this.pDate = pDate;
-	}
 
 	public String getpImgName() {
 		return pImgName;
@@ -191,6 +185,14 @@ public class Product {
 
 	public void setSelectImg(List<MultipartFile> selectImg) {
 		this.selectImg = selectImg;
+	}
+
+	public String getpDate() {
+		return pDate;
+	}
+
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
 	}
 	
 

@@ -15,7 +15,6 @@ margin: auto;
 
 
 
-
 </style>
 <div class="storeBody">
 	<div class="storebody-main">
