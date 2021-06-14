@@ -8,7 +8,7 @@ public class Product {
 	private int pNum; //제품코드 
 	private int listNum; //리스트번호
 	private String pName;//상품명
-	private int pPrice;//가격
+	private int pPrice;//제품원가
 	private int pDiscountRate;//할인율
 	private String pContent;//상세정보
 	private int delivType;//배송조건
@@ -29,9 +29,31 @@ public class Product {
 	
 	private int storeDetailOptNum;//상세옵션번호
 	private int pDetailCnt;//상세옵션수량
-	private int pDetailPrice;//최종가격?	
+	private int pDetailPrice;//옵션가격	
+	
+	private int totPrice; //pPrice+pDetailPrice- discountPrice
+	private int discountPrice; //(pPrice+pDetailPrice) * discoutNum
+	private int discoutNum; //pDiscountRate *0.01
+	private int productPrice;//pPrice+pDetailPrice
 	
 	
+	
+	public int getDiscountPrice() {
+		return discountPrice;
+	}
+
+	public void setDiscountPrice(int discountPrice) {
+		this.discountPrice = discountPrice;
+	}
+
+	public int getDiscoutNum() {
+		return discoutNum;
+	}
+
+	public void setDiscoutNum(int discoutNum) {
+		this.discoutNum = discoutNum;
+	}
+
 	public int getStoreMainOptNum() {
 		return storeMainOptNum;
 	}
@@ -136,9 +158,6 @@ public class Product {
 		this.pContent = pContent;
 	}
 
-
-
-
 	public String getpImgName() {
 		return pImgName;
 	}
@@ -194,6 +213,24 @@ public class Product {
 	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
+
+	public int getTotPrice() {
+		return totPrice;
+	}
+
+	public void setTotPrice(int totPrice) {
+		this.totPrice = totPrice;
+	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+
 	
 
 	

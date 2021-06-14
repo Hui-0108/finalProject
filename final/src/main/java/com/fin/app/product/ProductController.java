@@ -80,23 +80,38 @@ public class ProductController {
 		
 		List<Product> list = service.listProduct(map);
 		
-		String cp = req.getContextPath();
-		String query = "cn="+pCateNum;
-		query += "mn"+storeMainOptNum;
-		query += "sn"+storeSubOptNum;
+		int listNum, n= 0;
+		int pDetailPrice,pPrice,totPrice,pDiscountRate =0;
+		double discountPrice,discoutNum;
+		for(Product dto : list) {
+			listNum = dataCount - (offset + n);
+			dto.setListNum(listNum);
+			n++;
+			
+			//상품 가격 보여주기/할인율 계산
+			pDetailPrice= dto.getpDetailPrice();
+			pPrice = dto.getpPrice();
+			pDiscountRate = dto.getpDiscountRate();
+			discoutNum = pDiscountRate*0.01;
+			discountPrice =(pPrice+pDetailPrice)*discoutNum;
+			totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+			dto.setTotPrice(totPrice);
+			
+		}		
 		
-		String listUrl = cp+"/product/list";
-		String articleUrl = cp+"/product/article?page="+current_page;
+		String cp = req.getContextPath();
+		String query = "";
+		
+		String listUrl = cp+"/product/cateList/"+category+"?pCateNum="+pCateNum;
+		String articleUrl = cp+"/product/article?pCateNum="+pCateNum+"&page="+current_page;
 		if(keyword.length()!=0) {
-			query += "&condition="+condition+"&keyword="+
-					URLEncoder.encode(keyword, "utf-8");
+			query += "&condition="+condition+
+					"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
 		if(query.length()!=0) {
-			//listUrl += "?"+query;
-			//articleUrl += "&"+query;
-			listUrl = cp+"/product/list?"+ query;
-			articleUrl = cp+"/product/article?page="+current_page+"&"+query;
+			listUrl += "?"+query;
+			articleUrl += "&"+query;
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
@@ -167,12 +182,12 @@ public class ProductController {
 		int total_page = 0;
 		int dataCount =0;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("pCateNum", pCateNum);
+		//페이지
+		Map<String, Object> map = new HashMap<String, Object>();		
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
+		map.put("pCateNum", pCateNum);
 		map.put("storeMainOptNum", storeMainOptNum);
 		map.put("storeSubOptNum", storeSubOptNum);
 		
@@ -190,32 +205,39 @@ public class ProductController {
 		List<Product> list = service.listProduct(map);
 	
 		int listNum, n= 0;
+		int pDetailPrice,pPrice,totPrice,pDiscountRate =0;
+		double discountPrice,discoutNum;
 		for(Product dto : list) {
 			listNum = dataCount - (offset + n);
 			dto.setListNum(listNum);
 			n++;
+			
+			//상품 가격 보여주기/할인율 계산
+			pDetailPrice= dto.getpDetailPrice();
+			pPrice = dto.getpPrice();
+			pDiscountRate = dto.getpDiscountRate();
+			discoutNum = pDiscountRate*0.01;
+			discountPrice =(pPrice+pDetailPrice)*discoutNum;
+			totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+			dto.setTotPrice(totPrice);
 		}
-		
-		//흠
-		
-		
+
 		String cp = req.getContextPath();
-		String query = "cn="+pCateNum;
-		query += "mn"+storeMainOptNum;
-		query += "sn"+storeSubOptNum;
+	
+		String query = "";
 		
-		String listUrl = cp+"/product/list";
-		String articleUrl = cp+"/product/article?page="+current_page;
+		String listUrl = cp+"/product/list?pCateNum="+pCateNum;
+		String articleUrl = cp+"/proudct/article?pCateNum="+pCateNum+"&page="+current_page;
 		if(keyword.length()!=0) {
-			query += "&condition="+condition+"&keyword="+
-					URLEncoder.encode(keyword, "utf-8");
+			query += "&condition="+condition+
+					"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
 		if(query.length()!=0) {
-			//listUrl += "?"+query;
-			//articleUrl += "&"+query;
-			listUrl = cp+"/product/list?"+ query;
-			articleUrl = cp+"/product/article?page="+current_page+"&"+query;
+			//listUrl = cp+"/product/list?" + query;
+        	//articleUrl = cp+"/product/article?page=" + current_page + "&"+ query;
+			listUrl += "?"+query;
+			articleUrl += "&"+query;
 		}
 		
 		
@@ -334,13 +356,49 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "article")
-	public String article()throws Exception{
+	public String article(
+			@RequestParam int pNum,
+			@RequestParam String page,
+			@RequestParam(defaultValue = "title") String condition,
+			@RequestParam(defaultValue = "") String keyword,
+			Model model
+			)throws Exception{
 		
+		keyword = URLDecoder.decode(keyword, "utf-8");
 		
+		String query = "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
+		}
 		
-		// 스마트 에디터에서는 주석 처리
-        // dto.setContent(myUtil.htmlSymbols(dto.getContent()));		
-		
+		Product dto = service.readProduct(pNum);
+		if(dto==null) {
+			return "redirect:/product/list?"+query;
+		}
+
+        dto.setpContent(myUtil.htmlSymbols(dto.getpContent()));	
+        
+        int pDetailPrice= dto.getpDetailPrice();
+		int pPrice = dto.getpPrice();
+		int pDiscountRate = dto.getpDiscountRate();
+		double discoutNum = pDiscountRate*0.01;
+		double discountPrice =(pPrice+pDetailPrice)*discoutNum;
+		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+		dto.setTotPrice(totPrice);
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        map.put("condition", condition);
+        map.put("keyword", keyword);
+        map.put("pNum", pNum);
+        
+        
+        
+        model.addAttribute("dto", dto);    
+        model.addAttribute("page", page);
+        model.addAttribute("query", query);
+        
+        
 		return ".product.article";
 	}
 	

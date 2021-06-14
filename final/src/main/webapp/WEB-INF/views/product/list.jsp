@@ -41,7 +41,7 @@ function article(pNum) {
 							${dto.pName}
 						</div>	
 						<div class="product productPrice" >
-							 ₩${dto.pDetailPrice}
+							 ₩${dto.totPrice}
 						</div>						
 					</div>				
 				</td>		
