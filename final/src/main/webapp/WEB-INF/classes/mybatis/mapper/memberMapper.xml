@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<select id="loginMember" parameterType="String" resultType="com.fin.app.member.Member">
-		SELECT mNum, mId, mPwd, mNick, mRole
+		SELECT mNum, mId, mPwd, mNick, mRole, lastLogin
 		FROM member
 		WHERE mId = #{mId} 
 	</select>
@@ -17,8 +17,8 @@
     </insert>
     
     <insert id="insertMember" parameterType="com.fin.app.member.Member">
-		INSERT INTO member(mNum, mId, mPwd, mNick, mRole)
-		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, 1) 
+		INSERT INTO member(mNum, mId, mPwd, mNick, mRole, createdDate)
+		VALUES (#{mNum}, #{mId}, #{mPwd}, #{mNick}, 1, SYSDATE) 
     </insert>
     
      <insert id="insertMemberDetail" parameterType="com.fin.app.member.Member">
@@ -60,5 +60,10 @@
 			mZip=#{mZip, jdbcType=VARCHAR},
 			mAddr1=#{mAddr1, jdbcType=VARCHAR}, mAddr2=#{mAddr2, jdbcType=VARCHAR}
 		WHERE mId=#{mId}
+    </update>
+    
+    <update id="lastlogin" parameterType="com.fin.app.member.Member">
+    	UPDATE member SET lastLogin=(SYSDATE)
+    	WHERE mId=#{mId}
     </update>
 </mapper>

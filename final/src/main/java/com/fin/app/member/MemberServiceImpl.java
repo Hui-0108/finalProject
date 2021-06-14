@@ -1,5 +1,6 @@
 package com.fin.app.member;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -25,6 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		try {
 			dto=dao.selectOne("member.loginMember", mId);
+			dao.updateData("member.lastlogin", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
