@@ -4,37 +4,66 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
 <script type="text/javascript">
-    function sendOk() {
-        var f = document.petsitForm;
+//수정시 등록되어있는 이미지 삭제하기 
+<c:if test="${mode=='update'}"> 
+$(function(){
+	$(".delete-img").click(function(){ //이미지를 클릭하면 
+		if(! confirm("이미지를 삭제 하시겠습니까 ?")) { //삭제여부 물어봄
+			return false;
+		}
+		var $img = $(this);
+		var petImgNum = $img.attr("data-petImgNum");
+		var url="${pageContext.request.contextPath}/petsit/deleteFile";
+		$.post(url, {petImgNum:petImgNum}, function(data){
+			$img.remove();
+		}, "json");
+		
+	});
+});
+</c:if>
 
-    	var str = f.petTitle.value;
-        if(!str) {
-            alert("제목을 입력하세요. ");
-            f.petTitle.focus();
-            return;
-        }
 
-    	str = f.petContent.value;
-        if(!str) {
-            alert("소개글을 입력하세요. ");
-            f.petContent.focus();
-            return;
-        }
-        
-        var mode="${mode}";
-        if(mode=="write"||mode=="update" && f.upload.value!="") {
-    		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
-    			alert('파일 형식이 올바르지 않습니다. 이미지 파일만 첨부 가능합니다.');
-    			f.upload.focus();
-    			return;
-    		}
-    	}
-    	
-    	f.action="${pageContext.request.contextPath}/petsit/${mode}";
-		//action: 폼 데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 URL을 명시
-        		
-		f.submit(); 
+function sendOk() {
+    var f = document.petsitForm;
+
+    var str = f.petTitle.value;
+    if(!str) {
+        alert("제목을 입력하세요. ");
+        f.petTitle.focus();
+        return;
     }
+
+    str = f.petContent.value;
+    if(!str) {
+       alert("소개글을 입력하세요. ");
+       f.petContent.focus();
+        return;
+    }
+        
+    var mode="${mode}";
+    if(mode=="write"||mode=="update" && f.upload.value!="") {
+    	if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+    		alert('파일 형식이 올바르지 않습니다. 이미지 파일만 첨부 가능합니다.');
+    		f.upload.focus();
+    		return;
+    	}
+    }
+    	
+    f.action="${pageContext.request.contextPath}/petsit/${mode}";
+	//action: 폼 데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 URL을 명시
+        		
+	f.submit(); 
+ }
+    
+function deleteSend() {
+    var query = "petNum=${dto.petNum}&${query}";
+    var url = "${pageContext.request.contextPath}/petsit/delete?" + query;
+    	
+    if(confirm("위 자료를 삭제 하시 겠습니까 ? ")) {
+    	location.href=url;
+    }
+}
+    
 </script>
 
 <div class="petsitWrite" align="center">
@@ -152,12 +181,15 @@
 				</td>
 			</tr>
 			<c:if test="${mode=='update'}">
-				<tr>
+				<tr id="${vo.petNum}">
 					<td>첨부된파일</td>
 					<td>
-						<c:if test="${not empty dto.petImg}">
-							<a href="${pageContext.request.contextPath}/petsit/deleteFile?num=${dto.petNum}&page=${page}"><i class="far fa-trash-alt"></i></a>
-						</c:if>		
+						<div class="uploadedImg">
+							<c:forEach var="vo" items="${listFile}">
+								<img class="delete-img" src="${pageContext.request.contextPath}/upload/petsit/${vo.petImg}"
+									data-petImgNum="${vo.petImgNum}">
+							</c:forEach>
+						</div>		
 					</td>
 				</tr>
 			</c:if>	

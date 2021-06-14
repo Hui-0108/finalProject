@@ -76,6 +76,8 @@ public class PetsitController {
 		map.put("offset", offset);//offset(키)에 offset(값)을 map에 저장
 		map.put("rows", rows);
 		
+		
+		
 		//글리스트 
 		List<Petsit> list = service.listPetsit(map);
 		
@@ -104,7 +106,7 @@ public class PetsitController {
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);//myUtil의 페이징()메소드의 결과값 paging으로 받음
-		
+				
 		model.addAttribute("list", list);
 		model.addAttribute("reservationUrl", reservationUrl);
 		model.addAttribute("page", current_page);
@@ -226,6 +228,7 @@ public class PetsitController {
 		
 		try {
 			service.updatePetsit(dto, pathname);
+		
 		} catch (Exception e) {
 		}
 			

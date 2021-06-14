@@ -98,7 +98,10 @@ public class PetsitServiceImpl implements PetsitService {
 	@Override
 	public void updatePetsit(Petsit dto, String pathname) throws Exception {
 		try {
+			
 			dao.updateData("petsit.updatePetsit", dto);
+			
+			dao.updateData("updateSchedule", dto);
 			
 			if(! dto.getUpload().isEmpty()) {
 				for(MultipartFile mf:dto.getUpload()) {

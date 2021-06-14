@@ -64,3 +64,23 @@
 	width: 80px;
 	display: inline-block;
 }
+
+
+.petsitWrite .uploadedImg {
+	max-width: 600px;
+	padding: 5px;
+	box-sizing: border-box;
+	display: flex; /* 자손요소를 flexbox로 변경 */
+	flex-direction: row; /* 정방향 수평나열 */
+	flex-wrap: nowrap;
+	overflow-x: auto;
+}
+
+.petsitWrite .uploadedImg .delete-img {
+	width: 55px; height: 55px;
+	margin-right: 5px;
+	flex: 0 0 auto;
+	cursor: pointer;
+}
+
+

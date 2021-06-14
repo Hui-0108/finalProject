@@ -22,23 +22,23 @@
 		UPDATE petDetail SET petOnoff = 1  
 		WHERE mId = #{mId}
 	</update>
-	
+		
 	<update id="updateOff" parameterType="com.fin.app.petsit.Petsit">
 		UPDATE petDetail SET petOnoff = 0  
 		WHERE mId = #{mId}
 	</update>
 	
-	<!-- 조건검색 (어떻게 할지 고민,,) -->
+	<!-- 조건검색 (어떻게 할지 고민,,) -->	
 	<sql id="where-list">
 		<if test="condition=='all' ">
-			( INSTR(subject, #{keyword}) &gt; 0
-				OR INSTR(content, #{keyword}) &gt; 0 )
+			( INSTR(subject, #{keyword}) > 0
+				OR INSTR(content, #{keyword}) > 0 ) 
 		</if>
 		<if test="condition=='subject' ">
-			INSTR(subject, #{keyword}) &gt; 0
+			INSTR(subject, #{keyword}) > 0 
 		</if>
 		<if test="condition=='content' ">
-			INSTR(content, #{keyword}) &gt; 0 
+			INSTR(content, #{keyword}) > 0 
 		</if>
 	</sql>
 	
@@ -87,6 +87,11 @@
 		UPDATE petsit SET petTitle=#{petTitle}, petContent=#{petContent}, petAddr=#{petAddr}, petYN=#{petYN}, petYard=#{petYard}, petLarge=#{petLarge}, 
 		petFamily=#{petFamily}, petWalk=#{petWalk}, petLiving=#{petLiving}, petChild=#{petChild} 
 		WHERE petNum=#{petNum}
+	</update>
+	
+	<update id="updateSchedule" parameterType="com.fin.app.petsit.Petsit">
+		UPDATE petSchedule SET mon=#{mon}, tue=#{tue}, wed=#{wed}, thu=#{thu}, fri=#{fri}, sat=#{sat}, sun=#{sun}
+		WHERE mId = #{mId}
 	</update>
 	
 	<!-- 삭제 -->
