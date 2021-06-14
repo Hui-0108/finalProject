@@ -239,6 +239,7 @@ public class PetsitController {
 	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public String delete(
 			@RequestParam int petNum,
+			@RequestParam String mId,
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
@@ -264,7 +265,7 @@ public class PetsitController {
 		}
 		
 		try {
-			service.deletePetsit(petNum, pathname);
+			service.deletePetsit(petNum, pathname, mId);
 		} catch (Exception e) {
 		}
 		

@@ -16,7 +16,7 @@ public interface PetsitService {
 	//글수정
 	public void updatePetsit(Petsit dot, String pathname) throws Exception;
 	//글삭제
-	public void deletePetsit(int num, String pathname) throws Exception;
+	public void deletePetsit(int num, String pathname, String mId) throws Exception;
 	
 	//파일insert
 	public void insertFile(Petsit dto) throws Exception;

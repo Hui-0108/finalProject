@@ -91,7 +91,7 @@
 	
 	<update id="updateSchedule" parameterType="com.fin.app.petsit.Petsit">
 		UPDATE petSchedule SET mon=#{mon}, tue=#{tue}, wed=#{wed}, thu=#{thu}, fri=#{fri}, sat=#{sat}, sun=#{sun}
-		WHERE mId = #{mId}
+		WHERE petNum = #{petNum}
 	</update>
 	
 	<!-- 삭제 -->

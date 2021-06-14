@@ -210,6 +210,7 @@ function deleteSend() {
 					<c:if test="${mode=='update'}">
 						<input type="hidden" name="petNum" value="${dto.petNum}">
 						<input type="hidden" name="page" value="${page}">
+						<input type="hidden" name="mId" value="${dto.mId}">
 					</c:if>
 				</td>
 			</tr>

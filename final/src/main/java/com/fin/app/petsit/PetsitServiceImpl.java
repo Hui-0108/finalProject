@@ -44,6 +44,7 @@ public class PetsitServiceImpl implements PetsitService {
 			//petOnoff 업데이트
 			dao.updateData("petsit.updateOn", dto);
 			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -121,7 +122,7 @@ public class PetsitServiceImpl implements PetsitService {
 	}
 	//글삭제
 	@Override
-	public void deletePetsit(int petNum, String pathname) throws Exception {
+	public void deletePetsit(int petNum, String pathname, String mId) throws Exception {
 		try {
 			//파일 지우기
 			List<Petsit> listFile=listFile(petNum);
@@ -137,7 +138,10 @@ public class PetsitServiceImpl implements PetsitService {
 			map.put("petNum", petNum);
 			deleteFile(map);
 			
-			dao.deleteData("petsit.deletePetsit",petNum);		
+			dao.deleteData("petsit.deletePetsit",petNum);	
+			
+			dao.updateData("petsit.updateOff", mId);
+											
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
