@@ -2,6 +2,7 @@ package com.fin.app.mypage;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fin.app.common.MyUtil;
 import com.fin.app.member.SessionInfo;
 
 @Controller("mypage.mypageController")
@@ -20,6 +23,8 @@ import com.fin.app.member.SessionInfo;
 public class MypageController {
 	@Autowired
 	private MypageService service;
+	@Autowired
+	private MyUtil myUtil;
 	
 	// profile.jsp
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
@@ -100,13 +105,116 @@ public class MypageController {
 		return result;
 	}
 	
-	// myStoreList.jsp
+	// storeList.jsp
 	@RequestMapping(value = "storeList", method = RequestMethod.GET)
-	public String storeList() throws Exception {
+	public String storeList(
+			Model model,
+			HttpSession session,
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page
+			) throws Exception {
+		
+		int rows = 8;
+		int total_page, dataCount;
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		int mNum = (int) info.getmNum();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mNum", mNum);
+		
+		dataCount = service.dataCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);
+
+		if(total_page < current_page)
+			current_page = total_page;
+		
+		int offset = (current_page - 1) * rows;
+		if(offset<0) offset=0;
+		
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<Store> list = service.selectStoreList(map);
+		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		model.addAttribute("list", list);
+		model.addAttribute("dataCount", dataCount);
+		model.addAttribute("pageNo", current_page);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
 		
 		return ".mypage.storeList";
 	}
+	
+	@RequestMapping(value = "review", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> review(
+			HttpSession session,
+			Review dto
+			) throws Exception {
 		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			SessionInfo info = (SessionInfo)session.getAttribute("member");
+			String currId = info.getmId();
+			dto.setmId(currId);
+			
+			String root = session.getServletContext().getRealPath("/");
+			String path = root+"uploads"+File.separator+"reviewImage";
+			
+			boolean b = service.insertReview(dto, path);
+			
+			result.put("state", b);
+			
+		} catch (Exception e) {
+		}
+		
+		return result;
+	}
+	
+	
+	// storeList.jsp
+	@RequestMapping(value = "petsitList", method = RequestMethod.GET)
+	public String petsitList(
+			Model model,
+			HttpSession session,
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page
+			) throws Exception {
+		
+		int rows = 8;
+		int total_page, dataCount;
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		int mNum = (int) info.getmNum();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mNum", mNum);
+		
+		dataCount = service.dataCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);
+
+		if(total_page < current_page)
+			current_page = total_page;
+		
+		int offset = (current_page - 1) * rows;
+		if(offset<0) offset=0;
+		
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<Petsit> list = service.selectPetsitList(map);
+		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		model.addAttribute("list", list);
+		model.addAttribute("dataCount", dataCount);
+		model.addAttribute("pageNo", current_page);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
+		
+		return ".mypage.petsitList";
+	}
+	
 	
 	
 }

@@ -39,8 +39,56 @@
 	</update>
 	
 	<!-- storeList.jsp -->
-	<select id="select" parameterType="String" resultType="com.fin.app.mypage.Store">
-		
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM store s
+		JOIN storedetail sd ON sd.ordernum = s.ordernum
+		JOIN storedetailopt do ON do.storedetailoptnum = sd.storedetailoptnum
+		JOIN product p ON p.pnum = do.pnum
+		JOIN productImage img ON img.pnum = p.pnum
+		JOIN storesubopt so ON so.storesuboptnum = do.storesuboptnum
+		JOIN storemainopt mo ON mo.storemainoptnum = so.storemainoptnum
+		JOIN orderproduct op ON op.ordernum = s.ordernum
+		WHERE op.mnum = #{mNum}
+	</select>
+	
+	<select id="selectStoreList" parameterType="map" resultType="com.fin.app.mypage.Store">
+		SELECT s.orderNum, TO_CHAR(s.sDate, 'YYYY-MM-DD') sDate, sd.sdetailqty, sd.sdetailprice, p.pname, img.pimgname, so.storesuboptname, mo.storemainoptname, sd.storeDetailOptNum
+		FROM store s
+		JOIN storedetail sd ON sd.ordernum = s.ordernum
+		JOIN storedetailopt do ON do.storedetailoptnum = sd.storedetailoptnum
+		JOIN product p ON p.pnum = do.pnum
+		JOIN productImage img ON img.pnum = p.pnum
+		JOIN storesubopt so ON so.storesuboptnum = do.storesuboptnum
+		JOIN storemainopt mo ON mo.storemainoptnum = so.storemainoptnum
+		JOIN orderproduct op ON op.ordernum = s.ordernum
+		WHERE op.mnum = #{mNum}
+		ORDER BY s.sDate DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="selectPetsitList" parameterType="map" resultType="com.fin.app.mypage.Petsit">
+		SELECT r.orderNum, TO_CHAR(r.checkIn, 'YYYY-MM-DD') checkIn, TO_CHAR(r.checkOut, 'YYYY-MM-DD') checkOut, TO_CHAR(r.rDate, 'YYYY-MM-DD') rDate, r.mNum, r.petNum, r.finalPrice , p.petTitle
+		FROM reservation r
+		JOIN petsit p  ON p.petNum = r.petNum
+		WHERE r.mnum = #{mNum}
+		ORDER BY r.rDate DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	
+	<insert id="insertReview" parameterType="com.fin.app.mypage.Review">
+		INSERT INTO review(rNum, rTitle, rContent, rGrade, rCreated, mId, orderNum) 
+			VALUES (#{rNum}, #{rTitle}, #{rContent}, #{rGrade}, SYSDATE, #{mId}, #{orderNum})
+	
+	</insert>
+	
+	<insert id="insertReviewImage" parameterType="com.fin.app.mypage.Review">
+		INSERT INTO reviewImage(rImgNum, rNum, imagefilename) VALUES (RIMGNUM_SEQ.nextval, #{rNum}, #{imagefilename} )
+	</insert>
+	
+	<select id="seq" resultType="Integer">
+		SELECT REVIEW_SEQ.NEXTVAL FROM dual
 	</select>
 
 </mapper>

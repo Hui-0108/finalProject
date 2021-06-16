@@ -1,7 +1,11 @@
 package com.fin.app.mypage;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fin.app.common.FileManager;
 import com.fin.app.common.dao.CommonDAO;
@@ -77,6 +81,100 @@ public class MypageServiceImpl implements MypageService {
 			throw e;
 		}
 		return false;
+		
+	}
+
+	@Override
+	public int dataCount(Map<String, Object> map) {
+		int result=0;
+		
+		try {
+			result=dao.selectOne("mypage.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	@Override
+	public List<Store> selectStoreList(Map<String, Object> map) throws Exception {
+		List<Store> list = null;
+		
+		try {
+			list = dao.selectList("mypage.selectStoreList", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public List<Petsit> selectPetsitList(Map<String, Object> map) throws Exception {
+		List<Petsit> list = null;
+		
+		try {
+			list = dao.selectList("mypage.selectPetsitList", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+
+	@Override
+	public boolean insertReview(Review dto, String pathname) throws Exception {
+		
+		boolean b = true;
+		
+		try {
+			// seq 먼저 +1 하기
+			int rNum =  dao.selectOne("mypage.seq");
+			dto.setrNum(rNum);
+			
+			// 이미지파일이 없이 리뷰작성 시
+			if(dto.getUploads().size() == 0 ) {
+				dao.insertData("mypage.insertReview", dto);
+				
+			// 이미지파일이 1개 이상	5개 이하
+			} else if (dto.getUploads().size() < 6 ) {
+				dao.insertData("mypage.insertReview", dto);
+				
+				for(MultipartFile mf: dto.getUploads()) {
+					String saveFilename = fileManager.doFileUpload(mf, pathname);
+					if(saveFilename==null)continue;
+					
+					dto.setImagefilename(saveFilename);
+					
+					insertReviewImage(dto);
+				}
+				
+			// 이미지 파일 5개 초과 시 막음
+			} else {
+				b = false;
+				return b;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return b;
+	}
+	
+	@Override
+	public void insertReviewImage(Review dto) throws Exception {
+		
+		try {
+			dao.insertData("mypage.insertReviewImage", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
