@@ -43,10 +43,9 @@ public class ProductController {
 			@RequestParam(value = "page", defaultValue = "1") int current_page,
 			@RequestParam(defaultValue = "title") String condition,
 			@RequestParam(defaultValue = "") String keyword,			
-			@PathVariable String category,
-			@RequestParam(value = "cn", defaultValue = "0")int pCateNum,			
-			@RequestParam(value = "mn", defaultValue = "0")int storeMainOptNum,
-			@RequestParam(value = "sn", defaultValue = "0")int storeSubOptNum,
+			@PathVariable String category,			
+			@RequestParam(defaultValue = "0")int storeMainOptNum,
+			@RequestParam(defaultValue = "0")int storeSubOptNum,
 			HttpServletRequest req,
 			HttpSession session,
 			Model model				
@@ -102,8 +101,8 @@ public class ProductController {
 		String cp = req.getContextPath();
 		String query = "";
 		
-		String listUrl = cp+"/product/cateList/"+category+"?pCateNum="+pCateNum;
-		String articleUrl = cp+"/product/article?pCateNum="+pCateNum+"&page="+current_page;
+		String listUrl = cp+"/product/cateList/"+category;
+		String articleUrl = cp+"/product/article?category="+category+"&page="+current_page;
 		if(keyword.length()!=0) {
 			query += "&condition="+condition+
 					"&keyword="+URLEncoder.encode(keyword, "utf-8");
@@ -166,9 +165,9 @@ public class ProductController {
 			@RequestParam(value = "page", defaultValue = "1") int current_page,
 			@RequestParam(defaultValue = "title") String condition,
 			@RequestParam(defaultValue = "") String keyword,			
-			@RequestParam(value = "cn", defaultValue = "0")int pCateNum,
-			@RequestParam(value = "mn", defaultValue = "0")int storeMainOptNum,
-			@RequestParam(value = "sn", defaultValue = "0")int storeSubOptNum,
+			@RequestParam(defaultValue = "0")int category,
+			@RequestParam(defaultValue = "0")int storeMainOptNum,
+			@RequestParam(defaultValue = "0")int storeSubOptNum,
 			HttpServletRequest req,
 			HttpSession session,
 			Model model	
@@ -187,7 +186,7 @@ public class ProductController {
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
-		map.put("pCateNum", pCateNum);
+		map.put("pCateNum", category);
 		map.put("storeMainOptNum", storeMainOptNum);
 		map.put("storeSubOptNum", storeSubOptNum);
 		
@@ -226,16 +225,15 @@ public class ProductController {
 	
 		String query = "";
 		
-		String listUrl = cp+"/product/list?pCateNum="+pCateNum;
-		String articleUrl = cp+"/proudct/article?pCateNum="+pCateNum+"&page="+current_page;
+		
+		String listUrl = cp+"/product/list?category="+category;
+		String articleUrl = cp+"/product/article?category="+category+"&page="+current_page;
 		if(keyword.length()!=0) {
 			query += "&condition="+condition+
 					"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
 		if(query.length()!=0) {
-			//listUrl = cp+"/product/list?" + query;
-        	//articleUrl = cp+"/product/article?page=" + current_page + "&"+ query;
 			listUrl += "?"+query;
 			articleUrl += "&"+query;
 		}
@@ -261,7 +259,8 @@ public class ProductController {
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("paging", paging);
 		
-		model.addAttribute("pCateNum", pCateNum);
+		model.addAttribute("category", category);
+		
 		model.addAttribute("categorys", categoryList);
 		
 		model.addAttribute("storeMainOptNum", storeMainOptNum);
@@ -340,25 +339,26 @@ public class ProductController {
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + "uploads" + File.separator + "product";
 		
-		Product dto = service.readProduct(pImgNum);
+		Product dto = service.readProductImage(pImgNum);
 		if(dto!=null) {
 			fileManger.doFileDelete(dto.getpImgName(), pathname);
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("field", "pImgNum");
-		map.put("pImgNum", pImgNum);
+		map.put("pNum", pImgNum);
 		service.deleteProductImage(map);
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("state", "true");
 		return model;
 	}
 	
-	@RequestMapping(value = "article")
+	@RequestMapping(value = "article",  method=RequestMethod.GET)
 	public String article(
 			@RequestParam int pNum,
 			@RequestParam String page,
+			@RequestParam int category,
 			@RequestParam(defaultValue = "title") String condition,
 			@RequestParam(defaultValue = "") String keyword,
 			Model model
@@ -366,7 +366,7 @@ public class ProductController {
 		
 		keyword = URLDecoder.decode(keyword, "utf-8");
 		
-		String query = "page="+page;
+		String query = "category="+category+"&page="+page;
 		if(keyword.length()!=0) {
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
@@ -376,30 +376,120 @@ public class ProductController {
 			return "redirect:/product/list?"+query;
 		}
 
-        dto.setpContent(myUtil.htmlSymbols(dto.getpContent()));	
+        //dto.setpContent(myUtil.htmlSymbols(dto.getpContent()));	
         
         int pDetailPrice= dto.getpDetailPrice();
 		int pPrice = dto.getpPrice();
 		int pDiscountRate = dto.getpDiscountRate();
+		int productPrice = pPrice+pDetailPrice;
 		double discoutNum = pDiscountRate*0.01;
 		double discountPrice =(pPrice+pDetailPrice)*discoutNum;
 		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+		dto.setProductPrice(productPrice);
 		dto.setTotPrice(totPrice);
+		
+		List<Product> listProductImage = service.listProductImage(pNum);
+		
         
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        map.put("condition", condition);
-        map.put("keyword", keyword);
-        map.put("pNum", pNum);
-        
-        
-        
+		model.addAttribute("listProductImage", listProductImage);
+		
+		model.addAttribute("pNum", pNum);
+		model.addAttribute("category", category);
         model.addAttribute("dto", dto);    
         model.addAttribute("page", page);
         model.addAttribute("query", query);
         
         
 		return ".product.article";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int pNum,
+			@RequestParam String page,
+			@RequestParam int category,			
+			HttpSession session,
+			Model model
+			)throws Exception{
+		
+		Product dto = service.readProduct(pNum);
+		if(dto == null) {
+			return "redirect:/product/list?category="+category+"&page="+page;
+		}	
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("storeMainOptNum", null);
+		List<Product> mainOptList = service.listMainOpt();
+		map.put("storeMainOptNum", dto.getStoreMainOptNum());
+		List<Product> subOptList = service.listSubOpt(map);
+
+		List<Product> categoryList = service.listCategroy();
+		
+		List<Product> listImg = service.listProductImage(pNum);
+
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("listImg", listImg);
+		
+		model.addAttribute("categorys", categoryList);		
+		model.addAttribute("mainOpts", mainOptList);
+		model.addAttribute("subOpts", subOptList);
+		model.addAttribute("page", page);
+		model.addAttribute("mode", "update");
+		model.addAttribute("category", category);		
+		
+		return ".product.created";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateSubmit(
+			Product dto,
+			@RequestParam String page,
+			HttpSession session
+			)throws Exception{
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root+"uploads"+File.separator+"product";
+		
+		try {
+			service.updateProduct(dto, pathname);
+		} catch (Exception e) {
+		}
+		
+		
+		return "redirect:/product/article?pNum="+dto.getpNum()+"&page="+page;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(
+			@RequestParam int pNum,
+			@RequestParam String page,
+			@RequestParam int category,
+			@RequestParam(defaultValue = "title") String condition,
+			@RequestParam(defaultValue = "") String keyword,
+			HttpSession session) throws Exception{
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query = "category="+category+"&page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
+		}
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root+"uploads"+File.separator+"product";
+		
+		Product dto = service.readProduct(pNum);
+		if(dto == null) {
+			return "redirect:/product/list?category="+category+"&page="+page;
+		}	
+		
+		try {
+			service.deleteProduct(pNum, pathname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/product/list?"+query;
 	}
 	
 	
