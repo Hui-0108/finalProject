@@ -61,6 +61,11 @@
 .btnBig{
 	width: 300px;
     height: 35px;
+    border: none;
+    background: #ffb84d;
+    border-radius: 5px;
+	color: white;
+    font-size: 17px;    
 }
 
 .margin{
@@ -68,6 +73,9 @@
     margin-right: 30px;
 }
 
+.quantityBorder{
+	border: none;
+}
 </style>
 <script type="text/javascript">
 /*
@@ -217,13 +225,13 @@ $(function(){
 						<form name="form" method="get">
 						
 						수량 : <input type=hidden name="sell_price"  >
-						<input type="text" name="quantity" value="1" size="3" onchange="change();">
-						<input type="button" value=" + " class="btnPlus" onclick="add();">
-						<input type="button" value=" - " class="btnMinus" onclick="del();"><br>
+						<input type="text" name="quantity" value="1" size="3" onchange="change();" class="quantityBorder">
+						<input type="button" value=" + " class="btnPlus quantityBorder" onclick="add();" >
+						<input type="button" value=" - " class="btnMinus quantityBorder" onclick="del();" ><br>
 						<!-- 금액 : 원<input type="text" name="sum" size="11"  value="${dto.totPrice}" readonly="readonly"> -->
 											
 						<span class="productPrice" data-price="${dto.totPrice}"></span>					
-						<button type="button">x</button>
+						<button type="button" class="quantityBorder">x</button>
 										
 						</form>					
 					</td>

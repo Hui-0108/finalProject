@@ -12,6 +12,9 @@
 	height: 70px;
 font-size: 17px;
 }
+.title{
+	    padding-left: 200PX;
+}
 </style>
 
 
