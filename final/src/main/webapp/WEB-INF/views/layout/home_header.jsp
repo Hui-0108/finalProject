@@ -97,7 +97,7 @@
 	<div class="container flex-center">
 		<div class="top-info">
 		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
-                <span class="titleTop"><img class="imgLogo" src="${pageContext.request.contextPath}/resources/images/home/logoWhite.png" style="height:70px; margin-top:60px;"></span>
+                <span class="titleTop"><img class="imgLogo" src="${pageContext.request.contextPath}/resources/images/home/logoWhite.png" style="height:44px;"></span>
             </a>
 		</div>
 		<div class="top-links">
