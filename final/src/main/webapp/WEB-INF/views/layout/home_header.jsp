@@ -105,14 +105,14 @@
 				<c:when test="${not empty sessionScope.member}">
 					<c:choose>
 						<c:when test="${sessionScope.member.mRole eq 0}">
-			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                <a class="headerUserName" href="${pageContext.request.contextPath}/admin"><span>${sessionScope.member.mNick}님</span></a>
 			                &nbsp;|&nbsp;
 			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
 			                &nbsp;|&nbsp;             
 							<a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-secret"></i></a>
 						</c:when>
 						<c:otherwise>
-			                <span class="headerUserName">${sessionScope.member.mNick}</span>님
+			                <a class="headerUserName" href="${pageContext.request.contextPath}/mypage/profile"><span>${sessionScope.member.mNick}님</span></a>
 			                &nbsp;|&nbsp;
 			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
 			                &nbsp;|&nbsp;

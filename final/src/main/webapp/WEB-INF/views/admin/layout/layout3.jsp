@@ -32,6 +32,7 @@
 
 	<!--  JQuery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
 	
 	<script type="text/javascript">
