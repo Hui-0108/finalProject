@@ -28,28 +28,18 @@
 		WHERE mId = #{mId}
 	</update>
 	
-	<!-- 조건검색 (어떻게 할지 고민,,) -->	
-	<sql id="where-list">
-		<if test="condition=='all' ">
-			( INSTR(subject, #{keyword}) > 0
-				OR INSTR(content, #{keyword}) > 0 ) 
-		</if>
-		<if test="condition=='subject' ">
-			INSTR(subject, #{keyword}) > 0 
-		</if>
-		<if test="condition=='content' ">
-			INSTR(content, #{keyword}) > 0 
-		</if>
-	</sql>
-	
 	<!-- 데이터 개수 -->
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
 		FROM petsit
 		<where>	
-			<if test="keyword != null and keyword !=''"> <!-- 만약 조건이 있으면 -->
-				AND <include refid="where-list"/> <!-- 반복되는 쿼리를 미리 작성해 놓고 재활용 할 수 있게 해줌--> 
-			</if>	<!--refid=reference id  -->
+			<if test="addr != null and addr !=''">
+				INSTR(petAddr, #{addr}) &gt; 0
+			</if>
+			<if test="condition != 'all'">
+				AND ${condition} = 1
+			</if>
+			
 		</where>
 	</select>
 	
@@ -64,10 +54,13 @@
 				 FROM petImage <!--ROW_NUMBER() OVER(PRTITION BY 그룹핑할 컬럼  ORDER BY 정렬할 컬럼  ASC(오름차순) :그룹짓고 그 안에서 순위매김. ROW_NUMBER(): 1등이 2명이어도 1,2등 나눔-->
 			) WHERE rank = 1 <!-- 순위가 1위인 것만 -->
 		) i ON s.petNum = i.petNum
-		<where>
-			<if test="keword != null and keyword != ''"> <!-- 검색일 경우 -->
-				AND <include refid="where-list"/> 
-			</if>	
+		<where>	
+			<if test="addr != null and addr !=''">
+				INSTR(petAddr, #{addr}) &gt; 0
+			</if>
+			<if test="condition != 'all'">
+				AND ${condition} = 1
+			</if>			
 		</where>
 		ORDER BY petNum DESC <!-- 글번호 내림차순으로 정렬 -->
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY	<!-- 페이징 -->
