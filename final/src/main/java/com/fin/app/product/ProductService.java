@@ -23,6 +23,7 @@ public interface ProductService {
 	public void insertStoreDetail(Product dto) throws Exception;
 	public List<Product> listStoreDetail(Map<String, Object>map);
 	public Product readStoreDetail(int storeDetailOptNum);
+	public void updateStoreDetail(Product dto) throws Exception;
 	public void deleteStoreDetail(int storeDetailOptNum) throws Exception;
 	
 	public void insertProductImage(Product dto)throws Exception;
