@@ -24,21 +24,21 @@
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani2.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <a href="#" class="btn btn-outline-light btn-main">Donation</a>
+			        <a href="${pageContext.request.contextPath}/donation/main"><button type="button" class="btn btn-outline-light btn-main">Donation</button></a>
 			        <p class="carousel-content">여러분의 후원금은 유기동물의 처우개선을 위해 사용됩니다</p>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani3.png" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <a href="#" class="btn btn-outline-light btn-main">Pet Sitter</a>
+			        <a href="${pageContext.request.contextPath}/petsit/list"><button type="button" class="btn btn-outline-light btn-main">Pet Sitter</button></a>
 			        <p class="carousel-content">검증된 펫시터들을 만나보세요</p>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani4.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <a href="#" class="btn btn-outline-light btn-main">Store</a>
+			        <a href="${pageContext.request.contextPath}/product/main"><button type="button" class="btn btn-outline-light btn-main">Store</button></a>
 			        <p class="carousel-content">스토어 수익금의 50%는 유기동물 보호단체에 기부됩니다</p>
 			      </div>
 			    </div>
@@ -65,7 +65,7 @@
 				<img class="donaimg" style="height: 270px; margin-bottom:20px;" src="${pageContext.request.contextPath}/resources/images/home/dona_ani.jpg" class="card-img-top" alt="...">
 			</div>
 			<div class="main-button donation-button">
-				<button type="button" class="btn btn-light">후원 바로가기</button>
+				<a href="${pageContext.request.contextPath}/donation/main"><button type="button" class="btn btn-light">후원 바로가기</button></a>
 			</div>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 		</h2> 
 		<div class="container mainpetsit">
 			<div class="main-button petsit-button">
-				<button type="button" class="btn btn-light">펫시터 예약</button>
+				<a href="${pageContext.request.contextPath}/petsit/list"><button type="button" class="btn btn-light">펫시터 예약</button></a>
 			</div>
 			<div class="card">
 			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
