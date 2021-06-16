@@ -114,7 +114,7 @@ $(function() {
 		</div>
 		<div class="body-profile">
 			<p class="mProfileImg">
-				<img src="${pageContext.request.contextPath}/uploads/profileImages/${dto.mProfileImg}" style="width: 105px; height: 105px; border-radius: 15px;">
+				<img src="${pageContext.request.contextPath}/upload/profileImages/${dto.mProfileImg}" style="width: 105px; height: 105px; border-radius: 15px;">
 			</p>
 		</div>
 		<div class="body-edit">
