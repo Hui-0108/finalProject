@@ -44,7 +44,7 @@ function changeDate(date) {
 
 <div class="petsitReserve">
 <!-- 사진 슬라이드 영역-->
-<div style="width:1300px" align="center">	
+<div style="width:1300px; margin-left: 150px;" align="center" >	
 	<div class="slide-body" align="center">
 		<div id="carouselExampleIndicators" class="carousel slide picture" data-ride="carousel">
 			<ol class="carousel-indicators">
