@@ -26,7 +26,7 @@ public class DonationController {
 			service.readMember(mId);
 			System.out.println("mId:" + mId);
 		}
-		return ".member.login";
+		return ".donation.main";
 	}
 	
 	@RequestMapping(value="main", method=RequestMethod.POST)
@@ -68,7 +68,7 @@ public class DonationController {
 		return ".donation.tempDon";
 	}
 	
-	@RequestMapping(value="signup", method=RequestMethod.POST)
+	@RequestMapping(value="tempDon", method=RequestMethod.POST)
 	public String tempSubmit(Donation dto,
 			final RedirectAttributes reAttr,
 			Model model) {
@@ -79,5 +79,24 @@ public class DonationController {
 	
 		}
 		return ".donation.tempDon";
+	}
+	
+	@RequestMapping(value="checkDon", method=RequestMethod.GET)
+	public String checkForm(Model model) {
+		model.addAttribute("mode", "check");
+		return ".donation.checkDon";
+	}
+	
+	@RequestMapping(value="checkDon", method=RequestMethod.POST)
+	public String checkSubmit(Donation dto,
+			final RedirectAttributes reAttr,
+			Model model) {
+		
+		try {
+			service.insertDonation(dto);
+		} catch (Exception e) {
+	
+		}
+		return ".donation.checkDon";
 	}
 }
