@@ -2,45 +2,41 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!-- 제이쿼리 ui css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- 제이쿼리 style css -->
-<link rel="stylesheet" href="/resources/demos/style.css">
-<!-- 제이쿼리 js --> 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!-- 제이쿼리 ui js --> 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- 
+
+
 <script type="text/javascript">
-//input부분을 datepicker로 설정
-$( function() {
-    $( "#datepicker1, #datepicker2" ).datepicker();
-  } );
 //datepicker의 기본 설정
 $(function() {
-	$("#datepicker1").datepicker({
-		 dateFormat: 'yy-mm-dd' //월-일-년 형태 -> 년-월-일 형태로 변경
-		,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-		,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
-        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
-        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-		,minDate:0
+	$("#datepicker1, #datepicker2").datepicker({
+		 showMonthAfterYear: true
+		,minDate:"0"
 		,maxDate:"+3M"
-		,showAnim: "slide"
+		,showAnim:"slide"
 	});
 });
+
+
+
+function searchList(category) {
+	alert(category);
+	var f=document.searchForm;
+	f.condition.value = category;
+	f.submit();
+}
 
 </script>
 
 <div class="petsitList">
 	<!-- 검색영역 -->
 	<div class="search" align="center">
-		<form name="searchForm">
+		<form name="searchForm" method="post">
 			<div style="width: 1300px;">
 				<div class="searchAddr">
 					<p><i class="fas fa-home"></i>&nbsp;<b>어디에 사시나요?</b></p>
-					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)">
+					<div class="inputbtn">
+					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)" value="${addr}">
+					<button class="serchbtn" onclick="serchList()"><i class="fas fa-search"></i>&nbsp;검색</button>
+					</div>
 				</div>
 				<div class="reserve-detail">
 					<p><i class="fas fa-paw"></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
@@ -49,29 +45,25 @@ $(function() {
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
 						</div>
 						<div>
-							<input class="checkDate" type="text"  id="datepicker1" placeholder=" 체크인 날짜">	
+							<input class="checkDate" type="text" name="checkDate1" id="datepicker1" placeholder=" 체크인 날짜">	
 						</div>
 						<div class="pointR">
 							<i class="fas fa-arrow-right"></i>
 						</div>
 						<div>
-							<input class="checkDate" type="text" id="datepicker2" placeholder=" 체크아웃 날짜">	
+							<input class="checkDate" type="text" name="checkDate2" id="datepicker2" placeholder=" 체크아웃 날짜">	
 						</div>
 					</div>
 				</div>
 				<div class="searchCondition">
 					<p><i class="fas fa-check"></i>&nbsp;<b>원하는 조건을 설정하세요</b></p>
 					<ul>
-						<li><div class="condition"><p>없음</p></div></li>
-						<li><div class="condition"><p>대형견</p></div></li>
-						<li><div class="condition"><p>소형견</p></div></li>
-						<li><div class="condition"><p>반려묘</p></div></li>
+						<li><div class="condition" onclick="searchList('petLarge')"><p>대형견 가능</p></div></li>
+						<li><div class="condition"  onclick="searchList('petYard')"><p>마당 있음</p></div></li>
+						<li><div class="condition"  onclick="searchList('petYN')"><p>반려동물 없음</p></div></li>
+						<li><div class="condition"  onclick="searchList('petWalk')"><p>산책로 있음</p></div></li>
 					</ul>
-				</div>
-				<div class="searchButton">
-					<div class="button">
-						<p style="color: white;"><i class="fas fa-search"></i>&nbsp;<b>검색하기</b></p>
-					</div>
+					<input type="hidden" name="condition" value="${condition}">
 				</div>
 			</div>
 		</form>

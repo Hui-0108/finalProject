@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
 <script type="text/javascript">
+//글 수정시 이전 등록된 사진 삭제 
 <c:if test="${sessionScope.member.mId=='admin' || sessionScope.member.mId==dto.mId}">
 function deletePetsit() {
 	var query = "petNum=${dto.petNum}&${query}";
@@ -14,6 +15,31 @@ function deletePetsit() {
     }
 }
 </c:if>    
+
+//datepicker의 기본 설정
+$(function() {
+	$("#datepicker1, #datepicker2").datepicker({
+		 showMonthAfterYear: true
+		,minDate:"0"
+		,maxDate:"+3M"
+		,showAnim:"slide"
+	});
+});
+
+//옵션선택 숨겨두기
+$(function() {
+	$("#selectBox").hide()
+});
+
+//달력 앞뒤로 이동
+function changeDate(date) {
+	var url="${pageContext.request.contextPath}/schedule/day?date="+date;
+	location.href=url;
+}
+
+
+
+
 </script>
 
 <div class="petsitReserve">
@@ -161,13 +187,13 @@ function deletePetsit() {
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
 					</div>
 					<div>
-						<input class="checkDate" type="text" placeholder=" 체크인 날짜">	
+						<input class="checkDate" type="text" id="datepicker1" placeholder=" 체크인 날짜">	
 					</div>
 					<div class="pointR">
 						<i class="fas fa-arrow-right"></i>
 					</div>
 					<div>
-						<input class="checkDate" type="text" placeholder=" 체크아웃 날짜">	
+						<input class="checkDate" type="text" id="datepicker2" placeholder=" 체크아웃 날짜">	
 					</div>
 				</div>
 			</div>
@@ -186,12 +212,63 @@ function deletePetsit() {
 				</div>
 			</div>			
 			<p class="pet-p"><b>맡기시는 반려동물</b></p>
-			<button class="pet-button">
+			<button type="button" class="pet-button" onclick="$('.selectB').slideDown()" >
 				<p>반려동물 선택</p><i class="fas fa-chevron-down"></i>
 			</button>
+			<div class="selectB" id="selectBox">
+				<div class="boxLine">
+					<div class="lineL">
+						<p>소형견</p>
+						<p>7kg 미만</p>
+					</div>
+					<div class="lineR">
+						<div class="pmBtn">
+						-
+						</div>
+						<p>0</p>
+						<div class="pmBtn">
+						+
+						</div>
+					</div>
+				</div>
+				<div class="boxLine sth">
+					<div class="lineL">
+						<p>중형견</p>
+						<p>7-14.9kg 미만</p>
+					</div>
+					<div class="lineR">
+						<div class="pmBtn">
+						-
+						</div>
+						<p>0</p>
+						<div class="pmBtn">
+						+
+						</div>
+					</div>
+				</div>
+				<div class="boxLine sth">
+					<div class="lineL">
+						<p>소형견</p>
+						<p>15kg 이상</p>
+					</div>
+					<div class="lineR">
+						<div class="pmBtn">
+						-
+						</div>
+						<p>0</p>
+						<div class="pmBtn">
+						+
+						</div>
+					</div>
+				</div>
+				<div class="bFooter">
+					<p>최대 4마리 까지만 선택 가능합니다.</p>
+					 <button type="button" onclick="$('.selectB').slideUp(400)"><p>닫기</p></button>
+				</div>
+			</div>	
 			<div class="reserve-send">
 				<p>예약요청</p>
-			</div>
+			</div>			
 		</div>
 		<div class="price">
 			<div class="price-title">
@@ -237,15 +314,53 @@ function deletePetsit() {
 				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할인</p></div>
 			</div>
 			<div class="extra">
-				<p>명절 할증비</p>
-				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
-			</div>
-			<div class="extra">
-				<p>공휴일·성수기 할증비</p>
+				<p>공휴일 할증비</p>
 				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
 			</div>
 		</div>
 		<div class="schedule">
+			<h6>예약 가능 날짜</h6>
+			<table style="width: 300px; border-spacing: 0;" >	
+				<tr height="35">
+					<td align="center">
+						<span class="btnDate" onclick="changeDate('${preMonth}');">＜</span>
+						<span class="titleDate">${year}년${month}월</span>
+						<span class="btnDate" onclick="changeDate('${nextMonth}');">＞</span>
+					</td>
+				</tr>
+			</table>	
+			
+			<table id="smallCalendar" style="width: 300px; margin-top:5px; border-spacing: 1px; background: #ccc; " >
+				<tr align="center" height="33" bgcolor="#fff" style="font-size: 14px;">
+					<td width="40" style="color:#ff0000;">일</td>
+					<td width="40">월</td>
+					<td width="40">화</td>
+					<td width="40">수</td>
+					<td width="40">목</td>
+					<td width="40">금</td>
+					<td width="40" style="color:#0000ff;">토</td>
+				</tr>
+									   		
+				<c:forEach var="row" items="${days}" >
+					<tr align="left" height="37" bgcolor="#fff">
+						<c:forEach var="d" items="${row}">
+							<td align="center" class="tdDay">
+								${d}
+							</td>
+						</c:forEach>
+					</tr>
+				</c:forEach>
+			</table>
+			<div class="scheduleBottom">
+				<div class="bottom">
+					<div class="boxL"></div>
+					<p>이용 가능 날짜</p>
+				</div>
+				<div class="bottom">
+					<div class="boxR"></div>
+					<p>예약 불가 날짜</p>
+				</div>
+			</div>			
 		</div>
 		<div class="lacation">
 		</div>
@@ -271,4 +386,6 @@ function deletePetsit() {
 	</div>	
 </div>
 </div>
+
+
 </div>

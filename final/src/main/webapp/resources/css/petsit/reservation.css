@@ -449,6 +449,126 @@
 	margin: 0 0;
 }
 
+.petsitReserve .selectB {
+	padding: 32px 32px 24px;
+	width: 310.99px;
+	height: 272.46px;
+	background-color: white;
+	z-index: 999;
+	box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.petsitReserve .boxLine {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	height: 40px;
+}
+
+
+.petsitReserve .lineL p:first-child{
+	font-family: "Noto Sans KR";
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(56, 60, 72);
+    margin: 0 0px;
+}
+
+.petsitReserve .lineL p:last-child{
+	font-size: 12px;
+    letter-spacing: -0.2px;
+    line-height: 17px;
+    color: rgb(94, 99, 109);
+    margin: 3px 0 0 0;
+}
+
+
+.petsitReserve .pmBtn{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(113, 162, 255);
+    cursor: pointer;
+    user-select: none;
+}
+
+.petsitReserve .lineR{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 108px;
+    height: 40px;
+}
+
+.petsitReserve .lineR p{
+	font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    line-height: 19px;
+    color: rgb(94, 99, 109);
+    margin: 0 20px;
+}
+
+.petsitReserve .sth{
+	margin-top: 24px;
+}
+
+.petsitReserve .bFooter{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.petsitReserve .bFooter p:first-child{
+	font-size: 12px;
+    line-height: 18px;
+    color: rgb(129, 137, 155);
+    margin: 0 0px;
+}
+
+.petsitReserve .bFooter p:last-child{
+	font-family: "Noto Sans KR";
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(113, 162, 255);
+    cursor: pointer;
+    margin: 0 0px;
+}
+
+.petsitReserve .bFooter button{
+	border:none;
+	background-color: white;
+}
+
+
+
+.petsitReserve .{
+	
+}
+
+.petsitReserve .{
+	
+}
+
+.petsitReserve .{
+	
+}
+
+
+
+
+
+
+
+
+
+
 .petsitReserve .type-L {
 	display: flex;
     flex-direction: row;
@@ -504,6 +624,95 @@
     padding-bottom: 32px;
 }
 
+.petsitReserve .schedule h6 {
+	margin-top: 23px;
+	margin-bottom: 7px;
+	text-align: left;
+	
+}
+
+.petsitReserve .btnDate {
+	display: inline-block;
+	font-size: 15px;
+	font-family: 나눔고딕, "맑은 고딕", 돋움, sans-serif;
+	color:#333333;
+	border:1px solid #ccc;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 25px;
+    background-color:#fff;
+    text-align:center;
+    cursor: pointer;
+}
+
+
+.petsitReserve .titleDate {
+	display: inline-block;
+	font-weight: 400; 
+	font-size: 15px;
+	font-family: 나눔고딕, "맑은 고딕", 돋움, sans-serif;
+	padding:2px 4px 4px;
+	text-align:center;
+	position: relative;
+	top: 4px;
+	margin: 0 45px;
+}
+
+.petsitReserve .scheduleBottom {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-left: 36px;
+    margin-right: 36px;
+}
+
+
+.petsitReserve .bottom {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.petsitReserve .bottom p{
+	font-size: 13px;
+    letter-spacing: -0.2px;
+    line-height: 19px;
+    color: rgb(78, 82, 90);
+    margin: 0 0px;
+}
+
+.petsitReserve .boxL {
+	background-color: rgb(113, 162, 255);
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}
+    
+.petsitReserve .boxR {
+	background-color: rgb(242, 243, 247);
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .petsitReserve .lacation {
 	height: 420px;
 	
@@ -555,3 +764,26 @@
     font-size: 13px;
     color: rgb(126, 126, 126);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

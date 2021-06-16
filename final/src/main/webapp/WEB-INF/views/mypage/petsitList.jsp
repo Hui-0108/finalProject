@@ -10,62 +10,62 @@
     font-weight: normal;
     font-style: normal;
 }
-.myStoreList {
+.myPetsitList {
 	margin-top: 50px;
 	font-size: 14px;
 	width: 100%;
 	padding: 0px;
 }
 
-.myStoreList .body-container {
+.myPetsitList .body-container {
 	width: 1300px;
 }
 
-.myStoreList .body-title h3 {
+.myPetsitList .body-title h3 {
     font-family: Cafe24Ssurround;
     text-align: left;
 }
 
-.myStoreList .body-main {
+.myPetsitList .body-main {
 	width: 100%;
 	height: 700px;
 }
 
-.myStoreList .body-itmeList table {
+.myPetsitList .body-itmeList table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0px;
 	text-align: center;
 }
-.myStoreList .body-itmeList table tr:nth-child(1) td {
+.myPetsitList .body-itmeList table tr:nth-child(1) td {
 	height: 40px;
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 }
 
-.myStoreList .body-itmeList table tr:nth-child(1) label {
+.myPetsitList .body-itmeList table tr:nth-child(1) label {
 	margin: 0px 0px 0px 0px;
 }
 
-.myStoreList .body-itmeList img {
+.myPetsitList .body-itmeList img {
 	width: 80px;
 	height: 80px;
 }
 
-.myStoreList .body-itmeList .items {
+.myPetsitList .body-itmeList .items {
 	height: 100px;
 	padding: 10px;
 }
 
-.myStoreList .body-itmeList .items p {
+.myPetsitList .body-itmeList .items p {
 	margin: 0px 0px 0px 0px;
 }
 
-.myStoreList .body-itmeList .items:hover {
+.myPetsitList .body-itmeList .items:hover {
 	background: #eee;
 }
 
-.myStoreList .modal {
+.myPetsitList .modal {
  	display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
 	z-index: 5; /* Sit on top */
@@ -78,7 +78,7 @@
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.myStoreList .modal-content {
+.myPetsitList .modal-content {
 	background-color: #fefefe;
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 30px;
@@ -87,11 +87,11 @@
 	text-align: left;
 }
 
-.myStoreList .modal-content table {
+.myPetsitList .modal-content table {
 	width: 100%;
 }
 
-.myStoreList label i {
+.myPetsitList label i {
 	color: #007bff;
 }
 
@@ -104,13 +104,11 @@ $(function() {
 	var f = document.reviewForm;
 	
 	var orderNumTemp;
-	var storeDetailOptNumTemp;
 	
 	// 후기 작성 버튼 클릭
 	$("body").on("click", "#writeReview", function(e) {
-		// 선택한 리스트에있는 값 중에서 주문번호, 상세옵션번호를 form에 셋팅하는 작업
+		// 선택한 리스트에있는 값 중에서 주문번호를 form에 셋팅하는 작업
 		orderNumTemp = $(this).closest(".items").find(".findOrderNum").text();
-		storeDetailOptNumTemp  = $(this).closest(".items").find(".findStoreDetailOptNum").text();
 		
 		$("#orderNum").attr("value", orderNumTemp);
 		$("#storeDetailOptNum").attr("value", storeDetailOptNumTemp);
@@ -158,33 +156,33 @@ $(function() {
 });
 </script>
 
-<div class="myStoreList" align="center">
+<div class="myPetsitList" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> 구매 내역 </h3>
+			<h3> 예약 내역 </h3>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
 				<table>
 					<tr>
 						<td width="35%" colspan="2">
-							<label> 상품정보 </label>
+							<label> 예약정보 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 주문일자 </label>
+							<label> 예약일자 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 주문번호 </label>
+							<label> 예약번호 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 주문금액(수량) </label>
+							<label> 예약금액 </label>
 						</td>
 						
 						<td width="20%" colspan="2">
-							<label> 주문 상태 </label>
+							<label> 예약 상태 </label>
 						</td>
 					</tr>
 					
@@ -194,13 +192,12 @@ $(function() {
 							<img src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
 						</td>
 						<td style="text-align: left;">
-							<p><b> ${dto.pname} </b></p>
-							<p style="color: #777777;"> [옵션] ${dto.storemainoptname} : ${dto.storesuboptname} </p>
-							<p class="findStoreDetailOptNum" style="display: none;">${dto.storeDetailOptNum}</p>
+							<p><b> ${dto.petTitle} </b></p>
+							<p style="color: #777777;"> ${dto.checkIn} - ${dto.checkOut} </p>
 						</td>
 						
 						<td>
-							<p> ${dto.sDate} </p>
+							<p> ${dto.rDate} </p>
 						</td>
 						
 						<td>
@@ -208,8 +205,7 @@ $(function() {
 						</td>
 						
 						<td>
-							<p> ${dto.sdetailprice * dto.sdetailqty}원 </p>
-							<p style="color: #777777;"> ${dto.sdetailqty}개 </p>
+							<p> ${dto.finalPrice}원 </p>
 						</td>
 						
 						<td>
@@ -221,7 +217,7 @@ $(function() {
 					</tr>
 					</c:forEach>
 				</table>
-				<p> ${dataCount==0? "구매내역이 없습니다." : paging} </p>
+				<p> ${dataCount==0? "예약내역이 없습니다." : paging} </p>
 			</div>		
 		
 		</div>
@@ -274,7 +270,6 @@ $(function() {
 				<tr>
 					<td>
 						<input type="hidden" id="orderNum" name="orderNum">
-						<input type="hidden" id="storeDetailOptNum" name="storeDetailOptNum">
 					</td>
 					<td style="text-align: right;">
 						<input id="sendRivew" type="button" value="전송">
@@ -287,6 +282,3 @@ $(function() {
 		</div>
 	</div>
 </div>
-	
-
-

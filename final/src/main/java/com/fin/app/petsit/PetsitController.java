@@ -43,8 +43,9 @@ public class PetsitController {
 	@RequestMapping(value="list")
 	public String list(
 			@RequestParam(value="page", defaultValue="1") int current_page, //현재페이지. 처음엔 1페이지 보여줌
+			@RequestParam(defaultValue="") String addr, 
 			@RequestParam(defaultValue="all") String condition, //조건 처음엔 모든조건을 보여줌 
-			@RequestParam(defaultValue="") String keyword,//조건 검색
+
 			@RequestParam(value="rows", defaultValue="5") int rows, //한페이지에 5개씩
 			HttpServletRequest req, //값을 받아옴
 			Model model	//Controller에서 생성한 데이터를 담아서 View로 전달
@@ -53,15 +54,16 @@ public class PetsitController {
 		
 		int total_page; //전체 페이지
 		int dataCount; //전체 데이터 갯수
-		
-		if(req.getMethod().equalsIgnoreCase("GET")) { //타입확인메서드.대소문자구분없이비교 //GET방식이면
-			keyword = URLDecoder.decode(keyword, "utf-8"); //인코딩해줌
+
+		if(req.getMethod().equals("GET")) {
+			addr = URLDecoder.decode(addr, "UTF-8");
 		}
 		
 		//전체 페이지 수 O
 		Map<String, Object> map = new HashMap<String, Object>(); //map객체 생성 //map=인터페이스=선언만가능, 자식=HashMap으로 객체생성 
+		map.put("addr", addr);
 		map.put("condition", condition);                         //HashMap: Map을 구현. Key와 value를 묶어 하나의 entry로 저장
-		map.put("keyword", keyword);//keyword(키)에 keyword(값)저장
+
 		
 		dataCount = service.dataCount(map);//데이터 갯수 //service->serviceImpl의 dataCount()메소드에 map입력하여 결과 가져옴
 		total_page = myUtil.pageCount(rows, dataCount); //총페이지수//myUtil에 있는 pageCount()메소드에  줄수와 총 데이터 갯수 넣어서 결과값 받음
@@ -95,9 +97,10 @@ public class PetsitController {
 		String listUrl = cp+"/petsit/list";
 		String reservationUrl = cp+"/petsit/reservation?page="+ current_page;
 		
-		if(keyword.length() !=0) { //keyword가 있으면 = 검색이면 
-			query = "condition=" +condition +
-					"&keyword=" + URLEncoder.encode(keyword, "utf-8");
+
+		query = "condition=" +condition;
+		if(addr.length()!=0) {
+			query+="&addr="+URLEncoder.encode(addr, "utf-8");
 		}
 		
 		if(query.length() !=0) {
@@ -115,7 +118,8 @@ public class PetsitController {
 		model.addAttribute("paging", paging);
 		
 		model.addAttribute("condition", condition);
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("addr", addr);
+
 				
 		return ".petsit.list";
 	}
