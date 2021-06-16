@@ -3,13 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<style type="text/css">
+.top-bar{
+	background: #f3ac29;
+}
+
+</style>
+
+
 <div class="storeHeader">
 
 <div class="top-bar fixed-top">
 	<div class="container flex-center">
 		<div class="top-info">
 		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
-                <span class="titleTop">개묘개묘</span>
+                <span class="titleTop">
+                <img alt=""  width="100px" src="${pageContext.request.contextPath}/resources/images/product/logoWW.png">                         
+                </span>
             </a>
 		</div>
 		<div class="top-links">

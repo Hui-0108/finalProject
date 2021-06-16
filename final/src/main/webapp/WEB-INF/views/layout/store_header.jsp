@@ -7,6 +7,9 @@
 .top-links, .navfont{
 	font-size: 17px;
 }
+.top-bar{
+	background: #f3ac29;
+}
 
 .navfont{
 	height: 70px;
