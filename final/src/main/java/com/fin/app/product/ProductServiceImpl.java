@@ -102,6 +102,8 @@ public class ProductServiceImpl implements ProductService{
 		try {
 			dao.updateData("product.updateProduct", dto);
 			
+			updateStoreDetail(dto);
+			
 			if(! dto.getSelectImg().isEmpty()) {
 				for(MultipartFile mf: dto.getSelectImg()) {
 					String saveFilename = fileManager.doFileUpload(mf, pathname);
@@ -167,8 +169,7 @@ public class ProductServiceImpl implements ProductService{
 			list = dao.selectList("product.listMainOpt");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}			
 		return list;
 	}
 
@@ -182,8 +183,6 @@ public class ProductServiceImpl implements ProductService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return list;
 	}
 
@@ -205,10 +204,8 @@ public class ProductServiceImpl implements ProductService{
 		try {
 			list = dao.selectList("product.listStoreDetail", map);
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 		}
-		
 		return list;
 	}
 	
@@ -225,7 +222,18 @@ public class ProductServiceImpl implements ProductService{
 	
 		return dto;
 	}
-
+	
+	@Override
+	public void updateStoreDetail(Product dto) throws Exception {
+		
+		try {
+			dao.updateData("product.updateStoreDetail", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	@Override
 	public void deleteStoreDetail(int storeDetailOptNum) throws Exception {
 		
@@ -279,13 +287,9 @@ public class ProductServiceImpl implements ProductService{
 			dao.deleteData("product.deleteProductImage", map);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
-		
+			throw e;		
 		}
-
-		
 	}
-
 
 
 }

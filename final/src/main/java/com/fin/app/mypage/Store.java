@@ -3,15 +3,17 @@ package com.fin.app.mypage;
 public class Store {
 	private int orderNum;
 	private String sDate;
-	private int sTotPrice;
-	private int sDelivCharge;
-	private String sDelivDate;
-	private String sZip;
-	private String sAddr1;
-	private String sAddr2;
-	private int cpNum;
-	private int mileNum;
-	private int finalPrice;
+	private int sdetailqty;
+	private int sdetailprice;
+	private String pname;
+	private String pimgname;
+	private String storesuboptname;
+	private String storemainoptname;
+	
+	//finalPrice 추가 해야함..
+	
+	private int storeDetailOptNum;
+	
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -24,62 +26,47 @@ public class Store {
 	public void setsDate(String sDate) {
 		this.sDate = sDate;
 	}
-	public int getsTotPrice() {
-		return sTotPrice;
+	public int getSdetailqty() {
+		return sdetailqty;
 	}
-	public void setsTotPrice(int sTotPrice) {
-		this.sTotPrice = sTotPrice;
+	public void setSdetailqty(int sdetailqty) {
+		this.sdetailqty = sdetailqty;
 	}
-	public int getsDelivCharge() {
-		return sDelivCharge;
+	public int getSdetailprice() {
+		return sdetailprice;
 	}
-	public void setsDelivCharge(int sDelivCharge) {
-		this.sDelivCharge = sDelivCharge;
+	public void setSdetailprice(int sdetailprice) {
+		this.sdetailprice = sdetailprice;
 	}
-	public String getsDelivDate() {
-		return sDelivDate;
+	public String getPname() {
+		return pname;
 	}
-	public void setsDelivDate(String sDelivDate) {
-		this.sDelivDate = sDelivDate;
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
-	public String getsZip() {
-		return sZip;
+	public String getPimgname() {
+		return pimgname;
 	}
-	public void setsZip(String sZip) {
-		this.sZip = sZip;
+	public void setPimgname(String pimgname) {
+		this.pimgname = pimgname;
 	}
-	public String getsAddr1() {
-		return sAddr1;
+	public String getStoresuboptname() {
+		return storesuboptname;
 	}
-	public void setsAddr1(String sAddr1) {
-		this.sAddr1 = sAddr1;
+	public void setStoresuboptname(String storesuboptname) {
+		this.storesuboptname = storesuboptname;
 	}
-	public String getsAddr2() {
-		return sAddr2;
+	public String getStoremainoptname() {
+		return storemainoptname;
 	}
-	public void setsAddr2(String sAddr2) {
-		this.sAddr2 = sAddr2;
+	public void setStoremainoptname(String storemainoptname) {
+		this.storemainoptname = storemainoptname;
 	}
-	public int getCpNum() {
-		return cpNum;
+	public int getStoreDetailOptNum() {
+		return storeDetailOptNum;
 	}
-	public void setCpNum(int cpNum) {
-		this.cpNum = cpNum;
+	public void setStoreDetailOptNum(int storeDetailOptNum) {
+		this.storeDetailOptNum = storeDetailOptNum;
 	}
-	public int getMileNum() {
-		return mileNum;
-	}
-	public void setMileNum(int mileNum) {
-		this.mileNum = mileNum;
-	}
-	public int getFinalPrice() {
-		return finalPrice;
-	}
-	public void setFinalPrice(int finalPrice) {
-		this.finalPrice = finalPrice;
-	}
-	
-	
-
 	
 }

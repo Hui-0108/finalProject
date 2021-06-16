@@ -5,7 +5,25 @@
 <!-- 상품 작성폼 (관리자) -->
 <style type="text/css">
 
+.imgLayout {
+	max-width: 600px;
+	padding: 5px;
+	box-sizing: border-box;
+	display: flex; /* 자손요소를 flexbox로 변경 */
+	flex-direction: row; /* 정방향 수평나열 */
+	flex-wrap: nowrap;
+	overflow-x: auto;
+}
+.imgLayout img {
+	width: 35px; height: 35px;
+	margin-right: 5px;
+	flex: 0 0 auto;
+	cursor: pointer;
+}
 
+.padding0{
+	padding: 0;
+}
 
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js" charset="utf-8"></script>
@@ -33,24 +51,26 @@ function ajaxFun(url, method, query, dataType, fn) {
 	});
 }
 
-/*
+<c:if test="${mode=='update'}">
+
+
 $(function(){
-	$(".delete-img").click(function(){
-		if(! confirm("상품사진을 삭제 하시겠습니까?")){
-			return false;
-		}
-		
-		var $img = $(this);
-		var pImgNum = $img.attr("data-ImgNum");
-		var url = "${pageContext.request.contextPath}/product/deleteImg";
-		$.post(url, {pImgNum:pImgNum}, function(data){
-			$img.remove();
-		}, "json");
-	}
+		$(".delete-img").click(function(){
+			if(! confirm("이미지를 삭제하시겠습니까?")){
+				return false;
+			}
+			var $img = $(this);
+			var pImgNum = $img.attr("data-ImgNum");
+			var url = "${pageContext.request.contextPath}/product/deleteImg";
+			$.post(url,{pImgNum:pImgNum}, function(data){
+				$img.remove();
+			}, "json");
+		});
+});
+
+</c:if>	
 	
-	
-}); 
- */
+
 
 	$(function(){
 		//이미지 미리보기
@@ -225,10 +245,9 @@ $(function(){
 					</li>
 				
 				<c:if test="${mode=='update'}">
-					<ul>
-					<li class="imgText">제품 대표 이미지</li>
+					<ul class="padding0">
 						<li>
-							<div class="">
+							<div class="imgLayout">
 								<c:forEach var="vo" items="${listImg}">
 									<img class="delete-img" src="${pageContext.request.contextPath}/uploads/product/${vo.pImgName}" 
 									data-ImgNum = "${vo.pImgNum}">
@@ -244,10 +263,14 @@ $(function(){
 						<input type="text" name="pName" value="${dto.pName}">
 					</li>
 	
-					<li>상품가격</li>
+					<li>상품원가</li>
 					<li>
 						<input type="text" name="pPrice" value="${dto.pPrice}">
 					</li>
+					<li>옵션가격</li>
+					<li>
+						<input type="text" name="pDetailPrice" value="${dto.pDetailPrice}">
+					</li>					
 	
 					<li>할인율</li>
 					<li>
@@ -265,10 +288,7 @@ $(function(){
 						<input type="text" name="pDetailCnt" value="${dto.pDetailCnt}">
 					</li>
 	
-					<li>최종가격</li>
-					<li>
-						<input type="text" name="pDetailPrice" value="${dto.pDetailPrice}">
-					</li>
+
 				</ul>
 				<ul class="contentClear">
 					<li>제품 상세정보</li>
@@ -285,7 +305,7 @@ $(function(){
 						<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
 						<c:if test="${mode='update'}">
 							<input type="hidden" name="page" value="${page}">
-							<input type="hidden" name="pName" value="${dto.pName}">
+							<input type="hidden" name="pNum" value="${dto.pNum}">
 						</c:if>
 					</li>
 				</ul>

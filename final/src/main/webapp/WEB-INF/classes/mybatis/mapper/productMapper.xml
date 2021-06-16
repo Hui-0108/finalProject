@@ -20,7 +20,6 @@
 			INSTR(pName, #{keyword}) &gt; 0
 		</if>
 	</sql>
-	
 
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
@@ -60,6 +59,31 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
+
+	<!-- 글보기 -->
+	<select id="readProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
+		SELECT p.pNum, pName, pDiscountRate, pContent, pPrice, pDetailPrice
+        ,pDetailCnt, s.storeSubOptNum, m.storeMainOptNum
+		FROM product p
+		JOIN storeDetailOpt d ON p.pNum = d.pNum
+        JOIN storeSubOpt s ON d.storeSubOptNum = s.storeSubOptNum
+        JOIN storeMainOpt m ON s.storeMainOptNum = m.storeMainOptNum	
+		WHERE p.pNum = #{pNum}
+	</select>
+
+	<!-- 글수정 -->
+	<update id="updateProduct" parameterType="com.fin.app.product.Product">
+		UPDATE product SET pName=#{pName}, pPrice=#{pPrice}, pDiscountRate=#{pDiscountRate}, pContent=#{pContent},
+		 delivType=#{delivType}
+		WHERE pNum=#{pNum}
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteProduct" parameterType="Integer">
+		DELETE FROM product WHERE pNum=#{pNum}	
+	</delete>
+
+
 	<!-- 카테고리 -->
 	<select id="listCategory" resultType="com.fin.app.product.Product">
 		SELECT pCateNum, pCateName FROM productCategory
@@ -82,27 +106,31 @@
 		VALUES(storeDetailOpt_seq.NEXTVAL, #{storeSubOptNum}, #{pNum}, #{pDetailCnt}, #{pDetailPrice})
 	</insert>
 	
-	<!-- 파일 -->
+	<update id="updateStoreDetail" parameterType="com.fin.app.product.Product">
+		UPDATE storeDetailOpt SET storeSubOptNum=#{storeSubOptNum}, pDetailCnt=#{pDetailCnt}, pDetailPrice=#{pDetailPrice}
+		WHERE pNum = #{pNum}
+	</update>
+		
+	<!-- 사진파일 -->
 	<insert id="insertProductImage" parameterType="com.fin.app.product.Product">
 		INSERT INTO productImage(pImgNum, pImgName, pNum)
 		VALUES(productImage_seq.NEXTVAL, #{pImgName}, #{pNum})
 	</insert>	
 	
-	<select id="listProductImage" parameterType="Integer">
+	<select id="listProductImage" parameterType="Integer" resultType="com.fin.app.product.Product">
 		SELECT pImgNum, pImgName, pNum
 		FROM productImage
 		WHERE pNum=#{pNum}
 	</select>
 	
-	<!-- 글보기 -->
-	
-	<select id="readProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
-		SELECT p.pNum, pName, pDiscountRate, pContent, pPrice, pDetailPrice, pImgName
-		FROM product p
-		JOIN storeDetailOpt d ON p.pNum = d.pNum
-		JOIN productImage i ON p.pNum = i.pNum
-		WHERE p.pNum = #{pNum}
+	<select id="readProductImage" parameterType="Integer" resultType="com.fin.app.product.Product">
+		SELECT pImgNum, pImgName, pNum
+		FROM productImage
+		WHERE pImgNum = #{pImgNum}
 	</select>
 	
+	<delete id="deleteProductImage" parameterType="map">
+		DELETE FROM productImage WHERE ${field} = #{pNum}
+	</delete>
 
 </mapper>

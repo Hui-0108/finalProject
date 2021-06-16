@@ -69,6 +69,11 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+      <li class="nav-item">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/">
+      		메인 홈으로
+      	</a>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -87,8 +92,8 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
         </div>
-        <div class="info">
-          <a href="#" class="d-block">관리자님</a>
+        <div class="info" style="color:white; text-align: center">
+          <span>${sessionScope.member.mNick}님</span>
         </div>
       </div>
 
@@ -112,7 +117,7 @@
           <li class="nav-item">
             <a href="${pageContext.request.contextPath}/admin" class="nav-link">
               <i class="fas fa-home"></i>
-              <p>&nbsp;메인 페이지</p>
+              <p>&nbsp;관리자 메인</p>
             </a>
           </li>
           <li class="nav-item">
