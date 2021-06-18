@@ -3,7 +3,7 @@ package com.fin.app.petsit.reservation;
 public class Reservation {
 	
 	//펫시터 예약
-	private int orderNum;//주문코드
+	private int orderNum;//주문코드 
 	private String checkIn;//체크인날짜
 	private String checkOut;//체크아웃날짜
 	private int mNum;//고객번호
