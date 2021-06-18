@@ -72,90 +72,29 @@
               <div class="card-body table-responsive p-0">
                 <table class="table table-striped table-valign-middle">
                   <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Sales</th>
-                    <th>More</th>
+                  <tr style="text-align: center">
+                    <th>상품명</th>
+                    <th>상품가격</th>
+                    <th>총 판매량</th>
+                    <th>상품 바로가기</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>
-                      <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Some Product
-                    </td>
-                    <td>$13 USD</td>
-                    <td>
-                      <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
-                        12%
-                      </small>
-                      12,000 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Another Product
-                    </td>
-                    <td>$29 USD</td>
-                    <td>
-                      <small class="text-warning mr-1">
-                        <i class="fas fa-arrow-down"></i>
-                        0.5%
-                      </small>
-                      123,234 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Amazing Product
-                    </td>
-                    <td>$1,230 USD</td>
-                    <td>
-                      <small class="text-danger mr-1">
-                        <i class="fas fa-arrow-down"></i>
-                        3%
-                      </small>
-                      198 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Perfect Item
-                    </td>
-                    <td>$199 USD</td>
-                    <td>
-                      <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
-                        63%
-                      </small>
-                      87 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
+					  <c:forEach var="dto" items="${bestStore}">
+	                  	<tr style="text-align: center">
+	                  	  <td>
+	                        <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
+	                        ${dto.pName} 
+	                      </td>
+	                  	  <td>${dto.pPrice}&nbsp;원</td>
+	                  	  <td>${dto.sumQty}&nbsp;개</td>
+	                      <td>
+	                      	<a href="#" class="text-muted">
+	                        	<i class="fas fa-search"></i> 
+	                     	</a>
+	                   	  </td>
+	                  	</tr>
+	                  </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -386,7 +325,7 @@ $(function () {
 	  // eslint-disable-next-line no-unused-vars
 	  var visitorsChart = new Chart($visitorsChart, {
 	    data: {
-	      labels: ['월', '화', '수', '목', '금', '토', '일'],
+	      labels: ['월', '화', '수', '목', '금', '토', '일'], 
 	      datasets: [{
 	        type: 'line',
 	        data: [${joinThisWeek.mon}, ${joinThisWeek.tue}, ${joinThisWeek.wed}, ${joinThisWeek.thu}, ${joinThisWeek.fri}, ${joinThisWeek.sat}, ${joinThisWeek.sun}],
@@ -440,7 +379,7 @@ $(function () {
 	        xAxes: [{
 	          display: true,
 	          gridLines: {
-	            display: false
+	            display: false 
 	          },
 	          ticks: ticksStyle
 	        }]

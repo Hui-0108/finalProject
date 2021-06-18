@@ -2,6 +2,7 @@ package com.fin.app.admin;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,12 +74,15 @@ public class AdminController {
 		petThisWeek.setpTotThisWeek(service.reservPet(tMap));
 		petLastWeek.setpTotLastWeek(service.reservPet(lMap));
 		
+		List<Admin> bestStore = service.bestStore();
+
 		model.addAttribute("joinThisWeek", joinThisWeek);
 		model.addAttribute("joinLastWeek", joinLastWeek);
 		model.addAttribute("storeThisWeek", storeThisWeek);
 		model.addAttribute("storeLastWeek", storeLastWeek);
 		model.addAttribute("petThisWeek", petThisWeek);
 		model.addAttribute("petLastWeek", petLastWeek);
+		model.addAttribute("bestStore", bestStore);
 		
 		return ".admin.main.main";
 	}

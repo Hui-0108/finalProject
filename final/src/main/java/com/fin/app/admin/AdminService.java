@@ -13,6 +13,5 @@ public interface AdminService {
 	public int reservPet(Map<String, Object> map);
 	
 	public List<Admin> bestStore();
-	public List<Admin> storePrice(int optNum);
 	
 }

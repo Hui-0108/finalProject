@@ -89,16 +89,5 @@ public class AdminServcieImpl implements AdminService {
 		}
 		return dto;
 	}
-
-	@Override
-	public List<Admin> storePrice(int optNum) {
-		List<Admin> dto = null;
-		try {
-			dto = dao.selectList("adminMain.storePrice", optNum);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
 	
 }
