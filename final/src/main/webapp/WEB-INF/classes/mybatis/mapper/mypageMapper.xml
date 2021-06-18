@@ -68,19 +68,33 @@
 	</select>
 	
 	<select id="selectPetsitList" parameterType="map" resultType="com.fin.app.mypage.Petsit">
-		SELECT r.orderNum, TO_CHAR(r.checkIn, 'YYYY-MM-DD') checkIn, TO_CHAR(r.checkOut, 'YYYY-MM-DD') checkOut, TO_CHAR(r.rDate, 'YYYY-MM-DD') rDate, r.mNum, r.petNum, r.finalPrice , p.petTitle
+		SELECT r.orderNum, TO_CHAR(r.checkIn, 'YYYY-MM-DD') checkIn, TO_CHAR(r.checkOut, 'YYYY-MM-DD') checkOut, TO_CHAR(r.rDate, 'YYYY-MM-DD') rDate, r.mNum, r.petNum, r.finalPrice , p.petTitle, i.petImg, op.orderState
 		FROM reservation r
 		JOIN petsit p  ON p.petNum = r.petNum
+		JOIN orderProduct op ON op.orderNum = r.orderNum
+		LEFT OUTER JOIN (
+			SELECT petImgNum, petNum, petImg FROM (
+				SELECT petImgNum, petNum, petImg,
+					ROW_NUMBER() OVER(PARTITION BY petNum ORDER BY petImg ASC) rank
+				 FROM petImage <!--ROW_NUMBER() OVER(PRTITION BY 그룹핑할 컬럼  ORDER BY 정렬할 컬럼  ASC(오름차순) :그룹짓고 그 안에서 순위매김. ROW_NUMBER(): 1등이 2명이어도 1,2등 나눔-->
+			) WHERE rank = 1 <!-- 순위가 1위인 것만 -->
+		) i ON p.petNum = i.petNum
 		WHERE r.mnum = #{mNum}
 		ORDER BY r.rDate DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="selectPetsitReview" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(r.orderNum),0)
+		FROM reservation r
+		JOIN review rv ON rv.orderNum = r.ordernum
+		WHERE r.orderNum = #{orderNum}
 	</select>
 	
 	
 	<insert id="insertReview" parameterType="com.fin.app.mypage.Review">
 		INSERT INTO review(rNum, rTitle, rContent, rGrade, rCreated, mId, orderNum) 
 			VALUES (#{rNum}, #{rTitle}, #{rContent}, #{rGrade}, SYSDATE, #{mId}, #{orderNum})
-	
 	</insert>
 	
 	<insert id="insertReviewImage" parameterType="com.fin.app.mypage.Review">

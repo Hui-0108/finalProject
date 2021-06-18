@@ -10,8 +10,32 @@ public class Petsit {
 	private int finalPrice;
 	
 	private String petTitle; // 글 제목
+	private String petImg; // 리스트에 사용할 대표사진
+	private String orderState; 
+	
+	private int reviewOk; // 리뷰 작성 여부 - service 단에서 생성
 	
 	
+	
+	
+	public String getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
+	}
+	public String getPetImg() {
+		return petImg;
+	}
+	public void setPetImg(String petImg) {
+		this.petImg = petImg;
+	}
+	public int getReviewOk() {
+		return reviewOk;
+	}
+	public void setReviewOk(int reviewOk) {
+		this.reviewOk = reviewOk;
+	}
 	public int getOrderNum() {
 		return orderNum;
 	}

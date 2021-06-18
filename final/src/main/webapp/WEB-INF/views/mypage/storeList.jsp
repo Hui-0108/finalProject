@@ -150,7 +150,7 @@ $(function() {
 				}
 			},
 			error:function(e){
-				alert("error");
+				alert("이미지 파일 용량 초과입니다.");
 			}
 		});
 		
@@ -231,6 +231,13 @@ $(function() {
 		<div class="modal-content">
 			<form id="reviewForm" method="post" enctype="multipart/form-data">
 			<table>
+			
+				<tr>
+					<td colspan="2">
+						<label> 구매 후기 작성 </label>
+					</td>				
+				</tr>
+				
 				<tr>
 					<td>
 						<label> 제목 </label>

@@ -119,6 +119,13 @@ public class MypageServiceImpl implements MypageService {
 		try {
 			list = dao.selectList("mypage.selectPetsitList", map);
 			
+			// 주문에 대해서 리뷰가 이미 작성 되어 있는지 확인해서 0,1을 리턴받음.
+			for( Petsit dto : list ) {
+				int orderNum = dto.getOrderNum();
+				int reviewOk = dao.selectOne("mypage.selectPetsitReview", orderNum);
+				dto.setReviewOk(reviewOk);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -56,7 +56,7 @@ public class MypageController {
 			dto.setmId(info.getmId());
 			
 			String root = session.getServletContext().getRealPath("/");
-			String pathname =root+"uploads"+File.separator+"profileImages";
+			String pathname =root+"upload"+File.separator+"profileImages";
 			
 			service.updateUserDetail(dto, pathname);
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class MypageController {
 			dto.setmId(currId);
 			
 			String root = session.getServletContext().getRealPath("/");
-			String path = root+"uploads"+File.separator+"reviewImage";
+			String path = root+"upload"+File.separator+"reviewImages";
 			
 			boolean b = service.insertReview(dto, path);
 			
@@ -174,7 +174,7 @@ public class MypageController {
 	}
 	
 	
-	// storeList.jsp
+	// petsitList.jsp
 	@RequestMapping(value = "petsitList", method = RequestMethod.GET)
 	public String petsitList(
 			Model model,

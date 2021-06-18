@@ -111,7 +111,6 @@ $(function() {
 		orderNumTemp = $(this).closest(".items").find(".findOrderNum").text();
 		
 		$("#orderNum").attr("value", orderNumTemp);
-		$("#storeDetailOptNum").attr("value", storeDetailOptNumTemp);
 		
 		
 		$(".modal").fadeIn();
@@ -148,7 +147,7 @@ $(function() {
 				}
 			},
 			error:function(e){
-				alert("error");
+				alert("이미지 파일 용량 초과입니다.");
 			}
 		});
 		
@@ -189,7 +188,7 @@ $(function() {
 					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
-							<img src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
+							<img src="${pageContext.request.contextPath}/upload/petsit/${dto.petImg}">
 						</td>
 						<td style="text-align: left;">
 							<p><b> ${dto.petTitle} </b></p>
@@ -209,10 +208,24 @@ $(function() {
 						</td>
 						
 						<td>
-							영역1
+							<c:choose>
+							 <c:when test="${dto.orderState == 0}">
+							 	<p> 결제대기 </p>
+							 </c:when>
+							 <c:when test="${dto.orderState == 1}">
+							 	<p> 결제완료 </p>
+							 </c:when>
+							</c:choose>
 						</td>
 						<td>
-							<input id="writeReview" type="button" value="후기작성">
+							<c:choose>
+							 <c:when test="${dto.reviewOk == 0}">
+							 	<input id="writeReview" type="button" value="후기작성">
+							 </c:when>
+							 <c:otherwise>
+							 	<input id="blockReview" type="button" value="작성완료" disabled="disabled">
+							 </c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 					</c:forEach>
@@ -227,6 +240,13 @@ $(function() {
 		<div class="modal-content">
 			<form id="reviewForm" method="post" enctype="multipart/form-data">
 			<table>
+			
+				<tr>
+					<td colspan="2">
+						<label> 예약 후기 작성 </label>
+					</td>				
+				</tr>
+			
 				<tr>
 					<td>
 						<label> 제목 </label>
