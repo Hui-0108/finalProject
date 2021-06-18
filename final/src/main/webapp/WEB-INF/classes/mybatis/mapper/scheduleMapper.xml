@@ -38,6 +38,14 @@
 			)
 		ORDER BY num DESC
 	</select>
+	
+	<select id="petsitRead" parameterType="String" resultType="com.fin.app.petsit.Petsit">
+		SELECT p.petNum, petYN, petYard, petLarge, petTitle, petContent, petFamily, petWalk, petLiving, petChild, petCertif, petAct, mId,
+			mon, tue, wed, thu, fri, sat, sun
+		FROM petsit p
+		JOIN petSchedule d ON p.petNum = d.petNum
+		WHERE mId = #{mId}		
+	</select>
 		
 	
 </mapper>

@@ -48,19 +48,35 @@
 }
 
 .petsitReserve .profile-p {
-	border: 1px solid #ccc;
-	width: 125px;
-	height: 125px;
-	line-height: 125px;
-	border-radius:45px;
-	background: #eee;
-	margin-left: 20px;
+	overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 12px;
+    margin-top: 5px;
+    background-color: #ccc;
 }
 
 .petsitReserve .frofile-t {
-	margin-left: 50px;
+	margin-left: 20px;
 	margin-top: 20px;
 }
+
+.petsitReserve .fofile-c{
+	display: flex;
+    flex-flow: row wrap;
+    margin-top: 12px;
+    width: 458px;
+}
+
+.petsitReserve .fofile-c p{
+	font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.2px;
+    color: rgb(94, 99, 109);
+    margin: 0 3px 0 0;
+}
+
 
 .petsitReserve .best {
 	margin-top: 60px;
@@ -277,6 +293,7 @@
     line-height: 20px;
     color: rgb(57, 60, 71);
     margin-top: 38px;
+    text-align: left;
 }
 
 
@@ -625,8 +642,8 @@
 }
 
 .petsitReserve .schedule h6 {
-	margin-top: 23px;
-	margin-bottom: 7px;
+	margin-top: 27px;
+	margin-bottom: 27px;
 	text-align: left;
 	
 }
@@ -713,7 +730,7 @@
 
 
 
-.petsitReserve .lacation {
+.petsitReserve .location {
 	height: 420px;
 	
 	display: flex;
@@ -724,6 +741,7 @@
     box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
     margin-top: 38px;
     overflow: hidden;
+  
 }
 
 .petsitReserve .bar{
@@ -765,25 +783,87 @@
     color: rgb(126, 126, 126);
 }
 
+.petsitReserve .lTop {
+	display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 38px;
+    
+    width: 297px;
+    height: 140px;
+    
+}  
 
+.petsitReserve .topContent {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 38px;
+    margin-bottom: 34px;
+    
+    width: 297px;
+    height: 140x;
+}
 
+.petsitReserve .topContent p{
+	font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.2px;
+    line-height: 25px;
+    color: rgb(57, 60, 71);
+    
+    width: 99px;
+    height: 80px;
+}
 
+.petsitReserve .ContentR {
+	box-sizing: border-box;
+}
 
+.petsitReserve .ContentR p:first-child {    
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57 60 71); 
+    width: 160px;
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 3px 0 0;
+    
+    height: 20px;
+}
 
+.petsitReserve .ContentR p:last-child {
+	font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(57 60 71);
+    width: 160px;
+    margin: 5px 0 0;
+    
+    height: 40px;
+}
 
+.petsitReserve .circle {
+	width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 86, 255, 0.3);
+    background-color: rgba(128, 171, 255, 0.3);
+    z-index: 999;
+}
 
+.petsitReserve . {
+	
+}
 
+.petsitReserve . {
+	
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.petsitReserve .lBottom {
+	width: 373px;
+	height: 270px;
+}
 
 

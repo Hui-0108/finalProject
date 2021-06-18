@@ -15,17 +15,17 @@ public class Petsit {
 	private String petAct; //급여계좌 (14자리) 
 	
 	//글등록정보
-	private int petYN; //반려동물유무 (0 무 1유);
-	private int petYard; //마당유무 (0무 1유);
-	private int petLarge; //대형견가능유무 (0무 1유);
 	private String petTitle; //글제목
 	private String petContent; //소개글 
-	private int petFamily;//가족형태
-	private int petWalk; //산책로
-	private int petLiving;//거주형태
-	private int petChild;//자녀
+	private int petYN; //반려동물유무 (0 무 1유)
+	private int petYard; //마당유무 (0무 1유)
+	private int petLarge; //대형견가능유무 (0무 1유)
+	private int petWalk; //산책로 (0무 1유)
+	private int petFamily; //가족형태
+	private int petLiving; //거주형태
+	private int petChild; //자녀
 	private String petCertif; //교육증취득일
-	private String petAddr;//근무주소
+	private String petAddr; //근무주소
 	
 	//펫시터 이미지
 	private int petImgNum; //파일번호
@@ -40,6 +40,9 @@ public class Petsit {
 	private int fri;
 	private int sat;
 	private int sun;
+	
+	//펫시터 상세 주소
+	private String mAddr1, mAddr2;
 	
 	
 	public int getPetNum() {
@@ -197,6 +200,18 @@ public class Petsit {
 	}
 	public void setSun(int sun) {
 		this.sun = sun;
+	}
+	public String getmAddr1() {
+		return mAddr1;
+	}
+	public void setmAddr1(String mAddr1) {
+		this.mAddr1 = mAddr1;
+	}
+	public String getmAddr2() {
+		return mAddr2;
+	}
+	public void setmAddr2(String mAddr2) {
+		this.mAddr2 = mAddr2;
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fin.app.common.dao.CommonDAO;
+import com.fin.app.petsit.Petsit;
 
 @Service("sch.petsitSchService")
 public class PetsitSchServiceImpl implements PetsitSchService {
@@ -47,6 +48,19 @@ public class PetsitSchServiceImpl implements PetsitSchService {
 	public void deleteSchedule(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Petsit veiwSchedule(String petsiterId) {
+		Petsit dto=null;
+		
+		try {
+			dto=dao.selectOne("sch.petsitRead", petsiterId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
 	}
 
 }

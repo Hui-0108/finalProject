@@ -3,7 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
+
+<style>
+
+.petsitReserve .textDate {
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+}
+
+</style>
+
 <script type="text/javascript">
+
 //글 수정시 이전 등록된 사진 삭제 
 <c:if test="${sessionScope.member.mId=='admin' || sessionScope.member.mId==dto.mId}">
 function deletePetsit() {
@@ -31,12 +43,73 @@ $(function() {
 	$("#selectBox").hide()
 });
 
-//달력 앞뒤로 이동
-function changeDate(date) {
-	var url="${pageContext.request.contextPath}/schedule/day?date="+date;
-	location.href=url;
+//글수정, 삭제 글쓴이 한테만 보이기
+$(function() {
+	$(".btn").hide()
+	
+	var uid="${sessionScope.member.mId}";
+	var id="${dto.mId}";
+	if(uid==id) 
+		$(".btn").show()
+});
+
+
+
+function login() {
+	location.href="${pageContext.request.contextPath}/member/login";
 }
 
+function ajaxFun(url, method, query, dataType, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data) {
+			fn(data);
+		},
+		beforeSend:function(jqXHR) {
+			jqXHR.setRequestHeader("AJAX", true);
+		},
+		error:function(jqXHR) {
+			if(jqXHR.status===403) {
+				login();
+				return false;
+			}
+	    	
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+$(function(){
+	var y, m, d;
+	var now = new Date();
+	y = now.getFullYear();
+	m = now.getMonth() + 1;
+	if(m<10) m = "0"+m;
+	d = now.getDate();
+	if(d<0) d = "0"+d;
+	var s = y+""+m+""+d;
+	schView(s);
+	
+	function schView(date) {
+		var fn = function(data){
+			$(".schedule").html(data);
+		};
+		
+		var url="${pageContext.request.contextPath}/petsitSchedule/sch";
+		query="date="+date+"&petsiterId=${dto.mId}";
+		
+		ajaxFun(url, "get", query, "html", fn);
+	}
+	
+	$("body").on("click", ".btnChange", function(){
+		var date = $(this).attr("data-date");
+		schView(date);
+	});
+	
+});
 
 
 
@@ -44,7 +117,7 @@ function changeDate(date) {
 
 <div class="petsitReserve">
 <!-- 사진 슬라이드 영역-->
-<div style="width:1300px; margin-left: 150px;" align="center" >	
+<div style="width:1300px; margin-left: 140px;" align="center" >	
 	<div class="slide-body" align="center">
 		<div id="carouselExampleIndicators" class="carousel slide picture" data-ride="carousel">
 			<ol class="carousel-indicators">
@@ -75,27 +148,27 @@ function changeDate(date) {
 <div style="width: 1300px;">
 	<div class="body-left">
 		<div class="profile">
-			<div class="profile-p">		
+			<div class="profile-p">
 			</div>
 			<div class="frofile-t">
-				<h4>${dto.petAddr} 펫시터 ${dto.mId}님</h4>
-				<p>${dto.petTitle}</p>
-				<p>
-				<c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if>
-				<c:if test="${dto.petYard ne 0}">#마당 보유&nbsp; </c:if>
-				<c:if test="${dto.petLarge ne 0}">#대형견 가능&nbsp; </c:if>								
-				<c:if test="${dto.petWalk ne 0}">#산책로 있어요&nbsp; </c:if>			
-				<c:if test="${dto.petLiving eq 1}">#아파트&nbsp; </c:if>
-				<c:if test="${dto.petLiving eq 2}">#단독주택&nbsp; </c:if>
-				<c:if test="${dto.petLiving eq 3}">#빌라&nbsp; </c:if>
-				<c:if test="${dto.petLiving eq 4}">#오피스텔&nbsp; </c:if>
-				<c:if test="${dto.petFamily eq 1}">#2인 이하 가구&nbsp; </c:if>
-				<c:if test="${dto.petFamily eq 2}">#3인 가구&nbsp; </c:if>
-				<c:if test="${dto.petFamily eq 3}">#4인 가구&nbsp; </c:if>
-				<c:if test="${dto.petFamily eq 4}">#5인 이상 가구&nbsp; </c:if>
-				<c:if test="${dto.petChild eq 2}">#미취학 아동 자녀 있어요&nbsp; </c:if>
-				<c:if test="${dto.petChild eq 3}">#초등생 자녀 있어요&nbsp; </c:if>	
-				</p>
+				<h6>${dto.petAddr} 펫시터 ${dto.mId}님</h6>
+				<h4>${dto.petTitle}</h4>
+				<div class="fofile-c">
+				<p><c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if></p>
+				<p><c:if test="${dto.petYard ne 0}">#마당 보유&nbsp; </c:if></p>
+				<p><c:if test="${dto.petLarge ne 0}">#대형견 가능&nbsp; </c:if></p>								
+				<p><c:if test="${dto.petWalk ne 0}">#산책로 있어요&nbsp; </c:if></p>			
+				<p><c:if test="${dto.petLiving eq 1}">#아파트&nbsp; </c:if></p>
+				<p><c:if test="${dto.petLiving eq 2}">#단독주택&nbsp; </c:if></p>
+				<p><c:if test="${dto.petLiving eq 3}">#빌라&nbsp; </c:if></p>
+				<p><c:if test="${dto.petLiving eq 4}">#오피스텔&nbsp; </c:if></p>
+				<p><c:if test="${dto.petFamily eq 1}">#2인 이하 가구&nbsp; </c:if></p>
+				<p><c:if test="${dto.petFamily eq 2}">#3인 가구&nbsp; </c:if></p>
+				<p><c:if test="${dto.petFamily eq 3}">#4인 가구&nbsp; </c:if></p>
+				<p><c:if test="${dto.petFamily eq 4}">#5인 이상 가구&nbsp; </c:if></p>
+				<p><c:if test="${dto.petChild eq 2}">#미취학 아동 자녀 있어요&nbsp; </c:if></p>
+				<p><c:if test="${dto.petChild eq 3}">#초등생 자녀 있어요&nbsp; </c:if></p>	
+				</div>
 			</div>
 		</div>
 		<div class="best">
@@ -178,7 +251,7 @@ function changeDate(date) {
 		</div>
 		</div>
 	</div>
-	<div class="body-right">
+	<div class="body-right" align="right">
 		<div class="reverve-detail">
 			<div class="reserve-date">
 				<p><i class="fas fa-calendar-alt"></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
@@ -215,6 +288,7 @@ function changeDate(date) {
 			<button type="button" class="pet-button" onclick="$('.selectB').slideDown()" >
 				<p>반려동물 선택</p><i class="fas fa-chevron-down"></i>
 			</button>
+				
 			<div class="selectB" id="selectBox">
 				<div class="boxLine">
 					<div class="lineL">
@@ -268,7 +342,7 @@ function changeDate(date) {
 			</div>	
 			<div class="reserve-send">
 				<p>예약요청</p>
-			</div>			
+			</div>		
 		</div>
 		<div class="price">
 			<div class="price-title">
@@ -318,51 +392,59 @@ function changeDate(date) {
 				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
 			</div>
 		</div>
-		<div class="schedule">
-			<h6>예약 가능 날짜</h6>
-			<table style="width: 300px; border-spacing: 0;" >	
-				<tr height="35">
-					<td align="center">
-						<span class="btnDate" onclick="changeDate('${preMonth}');">＜</span>
-						<span class="titleDate">${year}년${month}월</span>
-						<span class="btnDate" onclick="changeDate('${nextMonth}');">＞</span>
-					</td>
-				</tr>
-			</table>	
-			
-			<table id="smallCalendar" style="width: 300px; margin-top:5px; border-spacing: 1px; background: #ccc; " >
-				<tr align="center" height="33" bgcolor="#fff" style="font-size: 14px;">
-					<td width="40" style="color:#ff0000;">일</td>
-					<td width="40">월</td>
-					<td width="40">화</td>
-					<td width="40">수</td>
-					<td width="40">목</td>
-					<td width="40">금</td>
-					<td width="40" style="color:#0000ff;">토</td>
-				</tr>
-									   		
-				<c:forEach var="row" items="${days}" >
-					<tr align="left" height="37" bgcolor="#fff">
-						<c:forEach var="d" items="${row}">
-							<td align="center" class="tdDay">
-								${d}
-							</td>
-						</c:forEach>
-					</tr>
-				</c:forEach>
-			</table>
-			<div class="scheduleBottom">
-				<div class="bottom">
-					<div class="boxL"></div>
-					<p>이용 가능 날짜</p>
+		<div class="schedule"></div>
+		<div class="location">
+			<div class="lTop">
+				<div class="topContent">
+					<p>펫시터님 위치</p>
+					<div class="ContentR">
+						<p>${dto.petAddr}</p>
+						<p>정확한 주소는 예약 완료후 확인 가능합니다.</p>
+					</div>
 				</div>
-				<div class="bottom">
-					<div class="boxR"></div>
-					<p>예약 불가 날짜</p>
-				</div>
-			</div>			
-		</div>
-		<div class="lacation">
+			</div>
+			<div class="lBottom" id="map">
+				<div class="circle"></div>
+			</div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=615fa488f5c1cadec65f32fb7cdad8bc&libraries=services"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=615fa488f5c1cadec65f32fb7cdad8bc"></script>
+			<script>	
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    				mapOption = { center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        						  level: 5 // 지도의 확대 레벨
+    				};  
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+				var coords=""; 
+				
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch('${dto.mAddr1}', function(result, status) {
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+						 coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다				     		        				  
+				        map.setCenter(coords);
+				      	// 지도에 표시할 원을 생성합니다
+				        console.log(coords);
+				        var circle = new kakao.maps.Circle({
+						    center : new kakao.maps.LatLng(coords.Ma , coords.La),  // 원의 중심좌표 입니다 
+						    radius: 200, // 미터 단위의 원의 반지름입니다 
+						    strokeWeight: 3, // 선의 두께입니다 
+						    strokeColor: '#75B8FA', // 선의 색깔입니다
+						    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						    strokeStyle: 'solid', // 선의 스타일 입니다
+						    fillColor: '#CFE7FF', // 채우기 색깔입니다
+						    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+						}); 
+						// 지도에 원을 표시합니다 
+						circle.setMap(map);		        
+    				} 
+				}); 			
+				//map.setDraggable(false); //드래그 불가
+				//map.setZoomable(false); //확대,축소 불가
+			</script>
 		</div>
 		<div>
 			<c:choose>

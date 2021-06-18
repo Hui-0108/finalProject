@@ -68,10 +68,11 @@
 	
 	<!-- 글보기 --><!-- petsit, schedule조인 이미지는 밑에 따로 -->	
 	<select id="readPetsit" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
-		SELECT s.petNum, petTitle, petContent, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, petCertif, mId,
-				mon, tue, wed, thu, fri, sat, sun
+		SELECT s.petNum, petTitle, petContent, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, petCertif, s.mId,
+				mon, tue, wed, thu, fri, sat, sun, mAddr1, mAddr2, mProfileImg, mName, mTel, mZip, mEmail, mBirth
 		FROM petsit s
 		JOIN petSchedule d ON s.petNum = d.petNum	
+		JOIN memberDetail md ON s.mId = md.mId
 		WHERE s.petNum = #{s.petNum}
 	</select>
 		
