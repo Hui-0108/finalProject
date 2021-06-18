@@ -20,14 +20,14 @@ import com.fin.app.common.MyUtil;
 import com.fin.app.member.SessionInfo;
 
 @Controller("faq.faqController")
-@RequestMapping("/faq/*")
+@RequestMapping("/center/*")
 public class FaqController {
 	@Autowired
 	private FaqService service;
 	@Autowired
 	private MyUtil myUtil;
 	
-	@RequestMapping(value="main")
+	@RequestMapping(value="faq")
 	public String main(
 			@RequestParam(value="pageNo", defaultValue="1") int current_page,
 			Model model) throws Exception {
@@ -41,7 +41,7 @@ public class FaqController {
 		
 		model.addAttribute("menuIndex", 4);
 		
-		return ".faq.main";
+		return ".center.faq";
 	}
 	
 	// AJAX-Text(HTML)
