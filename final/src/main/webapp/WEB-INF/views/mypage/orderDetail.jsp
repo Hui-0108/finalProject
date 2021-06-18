@@ -10,62 +10,66 @@
     font-weight: normal;
     font-style: normal;
 }
-.myStoreList {
+.orderDetail {
 	margin-top: 50px;
 	font-size: 14px;
 	width: 100%;
 	padding: 0px;
 }
 
-.myStoreList .body-container {
+.orderDetail .body-container {
 	width: 1300px;
 }
 
-.myStoreList .body-title h3 {
+.orderDetail .body-title h3 {
     font-family: Cafe24Ssurround;
     text-align: left;
 }
 
-.myStoreList .body-main {
+.orderDetail .body-title p {
+    text-align: left;
+}
+
+.orderDetail .body-main {
 	width: 100%;
 	height: 700px;
 }
 
-.myStoreList .body-itmeList table {
+.orderDetail .body-itmeList table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0px;
 	text-align: center;
 }
-.myStoreList .body-itmeList table tr:nth-child(1) td {
+.orderDetail .body-itmeList table tr:nth-child(1) td {
 	height: 40px;
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 }
 
-.myStoreList .body-itmeList table tr:nth-child(1) label {
+.orderDetail .body-itmeList table tr:nth-child(1) label {
 	margin: 0px 0px 0px 0px;
 }
 
-.myStoreList .body-itmeList img {
+.orderDetail .body-itmeList img {
 	width: 80px;
 	height: 80px;
 }
 
-.myStoreList .body-itmeList .items {
+.orderDetail .body-itmeList .items {
 	height: 100px;
 	padding: 10px;
 }
 
-.myStoreList .body-itmeList .items p {
+.orderDetail .body-itmeList .items p {
 	margin: 0px 0px 0px 0px;
 }
 
-.myStoreList .body-itmeList .items:hover {
+.orderDetail .body-itmeList .items:hover {
 	background: #eee;
 }
 
-.myStoreList .modal {
+.orderDetail .modal {
  	display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
 	z-index: 5; /* Sit on top */
@@ -78,7 +82,7 @@
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.myStoreList .modal-content {
+.orderDetail .modal-content {
 	background-color: #fefefe;
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 30px;
@@ -87,13 +91,56 @@
 	text-align: left;
 }
 
-.myStoreList .modal-content table {
+.orderDetail .modal-content table {
 	width: 100%;
 }
 
-.myStoreList label i {
+.orderDetail label i {
 	color: #007bff;
 }
+
+
+.float-left {
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.orderDetail .detail {
+	width: 50%;
+}
+
+.orderDetail .detail-title {
+	font-size: 16px;
+	text-align: left;
+}
+.orderDetail .detail table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: left;
+	width: 100%;
+}
+.orderDetail .detail table p, .orderDetail .detail table label {
+	margin: 0;
+	padding: 0;
+}
+
+.orderDetail .detail table tr:nth-child(1) td {
+	border-top: 1px solid;
+}
+.orderDetail .detail table tr td {
+	height: 40px;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.orderDetail ul {
+	color: #777777;
+	text-align: left;
+}
+
+
 
 </style>
 
@@ -107,10 +154,11 @@ $(function() {
 	
 	// 후기 작성 버튼 클릭
 	$("body").on("click", "#writeReview", function(e) {
-		// 선택한 리스트에있는 값 중에서 주문번호, 상세옵션번호를 form에 셋팅하는 작업
+		// 선택한 리스트에있는 값 중에서 주문번호를 form에 셋팅하는 작업
 		orderNumTemp = $(this).closest(".items").find(".findOrderNum").text();
 		
 		$("#orderNum").attr("value", orderNumTemp);
+		
 		
 		$(".modal").fadeIn();
 	});
@@ -154,10 +202,11 @@ $(function() {
 });
 </script>
 
-<div class="myStoreList" align="center">
+<div class="orderDetail" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> 구매 내역 </h3>
+			<h3> 주문 상세 내역 </h3>
+			<p>주문번호 <b> 202106042127380001 </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> 2021.06.04 21:27 </b> </p>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
@@ -168,11 +217,11 @@ $(function() {
 						</td>
 						
 						<td width="15%">
-							<label> 주문일자 </label>
+							<label> 쿠폰할인 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 주문번호 </label>
+							<label> 마일리지 </label>
 						</td>
 						
 						<td width="15%">
@@ -187,15 +236,15 @@ $(function() {
 					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
-							<img src="${pageContext.request.contextPath}/upload/product/${dto.pimgname}">
+							<img src="${pageContext.request.contextPath}/upload/petsit/${dto.petImg}">
 						</td>
 						<td style="text-align: left;">
-							<p><b> ${dto.pname} </b></p>
-							<p style="color: #777777;"> [옵션] ${dto.storemainoptname} : ${dto.storesuboptname} </p>
+							<p><b> ${dto.petTitle} </b></p>
+							<p style="color: #777777;"> ${dto.checkIn} - ${dto.checkOut} </p>
 						</td>
 						
 						<td>
-							<p> ${dto.sDate} </p>
+							<p> ${dto.rDate} </p>
 						</td>
 						
 						<td>
@@ -204,7 +253,6 @@ $(function() {
 						
 						<td>
 							<p> ${dto.finalPrice}원 </p>
-							<p style="color: #777777;"> ${dto.sdetailqty}개 </p>
 						</td>
 						
 						<td>
@@ -230,11 +278,171 @@ $(function() {
 					</tr>
 					</c:forEach>
 				</table>
-				<p> ${dataCount==0? "구매내역이 없습니다." : paging} </p>
-			</div>		
-		
+				<p> ${dataCount==0? "예약내역이 없습니다." : paging} </p>
+			</div>
+			
+			<div>
+				<ul>
+					<li> 동일한 주문번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능) </li>
+					<li> 출고 완료 직후 교환 / 환불 요청을 하더라도 상품을 수령하신 후 택배 업체를 통해 보내주셔야 처리 가능합니다. </li>
+					<li> 별도의 구매 확정이 없더라도 상품 발송 후 9일이 지난 경우에는 자동 구매 확정 됩니다. </li>
+					<li> 자세한 내용은 FAQ를 확인하여 주시기 바랍니다. </li>
+				</ul>
+			</div>
+			
+			<div class = "body-detail">
+				<div class="detail float-left">
+					<div class="detail-title">
+						<p> 배송지 정보 </p>
+					</div>
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 이름 </label>
+							</td>
+							
+							<td>
+								<p> 이준용 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 연락처 </label>
+							</td>
+							
+							<td>
+								<p> 010-3890-3685 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 배송지 주소 </label>
+							</td>
+							
+							<td>
+								<p> (18416)   경기 화성시 서동탄로 53 107동 1905호 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 배송 메시지 </label>
+							</td>
+							
+							<td>
+								<p>  </p>
+							</td>
+						</tr>
+						
+					</table>
+					<div>
+						<ul>
+							<li> 자세한 내용은 FAQ를 확인하여 주시기 바랍니다. </li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<div class="detail float-left" style="padding-left: 10px;">
+					<div class="detail-title">
+						<p> 할인 정보 </p>
+					</div>
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 배송비 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -0원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 쿠폰 할인 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -0원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 마일리지사용 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -0원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> <b>할인 합계</b> </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -0원 </p>
+							</td>
+						</tr>
+						
+					</table>
+					<div>
+						<ul>
+							<li> 자세한 내용은 FAQ를 확인하여 주시기 바랍니다. </li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="detail float-left" style="padding-top: 50px;">
+					<div class="detail-title">
+						<p> 최종 결제 정보 </p>
+					</div>
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 상품 합계 </label>
+							</td>
+							
+							<td>
+								<p> 171,190원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 할인 합계 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -55,042원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 최종 결제 금액 </label>
+							</td>
+							
+							<td>
+								<h5>116,148원</h5>
+								<p> 예상 적립금 111원 </p>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				
+			</div>
+			
 		</div>
 	</div>
+	
+	
 	
 	<div id="modal" class="modal">
 		<div class="modal-content">
@@ -243,10 +451,10 @@ $(function() {
 			
 				<tr>
 					<td colspan="2">
-						<label> 구매 후기 작성 </label>
+						<label> 예약 후기 작성 </label>
 					</td>				
 				</tr>
-				
+			
 				<tr>
 					<td>
 						<label> 제목 </label>
@@ -302,6 +510,3 @@ $(function() {
 		</div>
 	</div>
 </div>
-	
-
-

@@ -146,33 +146,6 @@ public class MypageController {
 		return ".mypage.storeList";
 	}
 	
-	@RequestMapping(value = "review", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> review(
-			HttpSession session,
-			Review dto
-			) throws Exception {
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		try {
-			SessionInfo info = (SessionInfo)session.getAttribute("member");
-			String currId = info.getmId();
-			dto.setmId(currId);
-			
-			String root = session.getServletContext().getRealPath("/");
-			String path = root+"upload"+File.separator+"reviewImages";
-			
-			boolean b = service.insertReview(dto, path);
-			
-			result.put("state", b);
-			
-		} catch (Exception e) {
-		}
-		
-		return result;
-	}
-	
 	
 	// petsitList.jsp
 	@RequestMapping(value = "petsitList", method = RequestMethod.GET)
@@ -215,6 +188,42 @@ public class MypageController {
 		return ".mypage.petsitList";
 	}
 	
+	// review 작성
+	@RequestMapping(value = "review", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> review(
+			HttpSession session,
+			Review dto
+			) throws Exception {
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			SessionInfo info = (SessionInfo)session.getAttribute("member");
+			String currId = info.getmId();
+			dto.setmId(currId);
+			
+			String root = session.getServletContext().getRealPath("/");
+			String path = root+"upload"+File.separator+"reviewImages";
+			
+			boolean b = service.insertReview(dto, path);
+			
+			result.put("state", b);
+			
+		} catch (Exception e) {
+		}
+		
+		return result;
+	}
+	
+	// orderList.jsp
+	@RequestMapping(value = "orderDetail", method = RequestMethod.GET)
+	public String orderDetail(
+			) throws Exception {
+		
+		
+		return ".mypage.orderDetail";
+	}
 	
 	
 }
