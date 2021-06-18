@@ -6,7 +6,7 @@
 		SELECT m.mId, m.mNick, mRole, mNum, TO_CHAR(mBirth, 'YYYY-MM-DD') mBirth, mName
 		FROM member m
 		JOIN memberDetail d ON m.mId = d.mId
-		WHERE mRole >= 1
+		WHERE mRole <![CDATA[ >= ]]> 1
 	</select>
 	
 	<select id="readMember" parameterType="String" resultType="com.fin.app.admin.memberManagement.MemberManagement">

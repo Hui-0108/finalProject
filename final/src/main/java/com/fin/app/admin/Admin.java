@@ -14,6 +14,19 @@ public class Admin {
 	
 	private int jTotLastWeek;
 	private int jTotThisWeek;
+	
+	private int pTotLastWeek;
+	private int pTotThisWeek;
+	
+	private int storeDetailOptNum;
+	private int sumQty;
+	private int pPrice;
+	private String pName;
+	
+	private int rank;
+	private int rownum;
+	
+	
 	public int getMon() {
 		return mon;
 	}
@@ -80,9 +93,54 @@ public class Admin {
 	public void setjTotThisWeek(int jTotThisWeek) {
 		this.jTotThisWeek = jTotThisWeek;
 	}
-	
-
-	
+	public int getpTotLastWeek() {
+		return pTotLastWeek;
+	}
+	public void setpTotLastWeek(int pTotLastWeek) {
+		this.pTotLastWeek = pTotLastWeek;
+	}
+	public int getpTotThisWeek() {
+		return pTotThisWeek;
+	}
+	public void setpTotThisWeek(int pTotThisWeek) {
+		this.pTotThisWeek = pTotThisWeek;
+	}
+	public int getStoreDetailOptNum() {
+		return storeDetailOptNum;
+	}
+	public void setStoreDetailOptNum(int storeDetailOptNum) {
+		this.storeDetailOptNum = storeDetailOptNum;
+	}
+	public int getSumQty() {
+		return sumQty;
+	}
+	public void setSumQty(int sumQty) {
+		this.sumQty = sumQty;
+	}
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	
 	
 	

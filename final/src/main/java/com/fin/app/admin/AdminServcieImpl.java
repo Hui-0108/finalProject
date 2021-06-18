@@ -1,5 +1,6 @@
 package com.fin.app.admin;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,29 @@ public class AdminServcieImpl implements AdminService {
 		}
 		
 		return tot;
+	}
+
+	@Override
+	public List<Admin> bestStore() {
+		List<Admin> dto = null;
+		
+		try {
+			dto = dao.selectList("adminMain.bestStore");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public List<Admin> storePrice(int optNum) {
+		List<Admin> dto = null;
+		try {
+			dto = dao.selectList("adminMain.storePrice", optNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	
 }

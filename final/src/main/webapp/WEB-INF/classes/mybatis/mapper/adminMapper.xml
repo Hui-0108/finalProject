@@ -5,7 +5,7 @@
 	<select id="joinCount" parameterType="String" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM member
-		WHERE mRole >= 1 AND TO_CHAR(createdDate, 'yyyy-mm-dd') = '${cDate}'
+		WHERE mRole <![CDATA[ >= ]]> 1 AND TO_CHAR(createdDate, 'yyyy-mm-dd') = '${cDate}'
 	</select>
 	
 	<select id="salesSum" parameterType="String" resultType="Integer">
@@ -17,7 +17,7 @@
 	<select id="joinTot" parameterType="String" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM member
-		WHERE mRole >= 1 AND TO_CHAR(createdDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
+		WHERE mRole <![CDATA[ >= ]]> 1 AND TO_CHAR(createdDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
 	</select>
 	
 	<select id="salesTot" parameterType="String" resultType="Integer">
@@ -31,4 +31,18 @@
 		FROM reservation
 		WHERE TO_CHAR(rDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
 	</select>
+	
+	<select id="bestStore" resultType="com.fin.app.admin.Admin">
+		SELECT ROWNUM, a.*
+		FROM ( SELECT storeDetailOptNum, RANK() OVER (ORDER BY SUM(sDetailQty) DESC) rank, SUM(sDetailQty) sumQty FROM storeDetail GROUP BY storeDetailOptNum ) a 
+		WHERE ROWNUM <![CDATA[ <= ]]> 5
+	</select>
+	
+	<select id="storePrice" parameterType="Integer" resultType="com.fin.app.admin.Admin">
+		SELECT p.pPrice, pName
+		FROM product p
+		JOIN storeDetailOpt o ON p.pNum = o.pNum
+		WHERE storeDetailOptNum = ${optNum}
+	</select>
+	
 </mapper>
