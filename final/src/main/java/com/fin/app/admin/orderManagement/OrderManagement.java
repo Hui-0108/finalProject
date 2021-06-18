@@ -1,15 +1,12 @@
 package com.fin.app.admin.orderManagement;
 
-import java.sql.Date;
-
 public class OrderManagement {
 	private long orderNum;
 	private long mNum;
 	private int mType;
 	private int orderState;
-	private int orderPrice;
-	private Date orderName;
-	
+	private int finalPrice;
+	private String orderName;
 	public long getOrderNum() {
 		return orderNum;
 	}
@@ -34,18 +31,19 @@ public class OrderManagement {
 	public void setOrderState(int orderState) {
 		this.orderState = orderState;
 	}
-	public int getOrderPrice() {
-		return orderPrice;
+	public int getFinalPrice() {
+		return finalPrice;
 	}
-	public void setOrderPrice(int orderPrice) {
-		this.orderPrice = orderPrice;
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
 	}
-	public Date getOrderName() {
+	public String getOrderName() {
 		return orderName;
 	}
-	public void setOrderName(Date orderName) {
+	public void setOrderName(String orderName) {
 		this.orderName = orderName;
 	}
+	
 	
 	
 	

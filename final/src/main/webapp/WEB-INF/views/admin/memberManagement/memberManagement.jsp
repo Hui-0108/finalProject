@@ -104,7 +104,7 @@ function memberStateDetailView(mId) {
 		  width: 750,
 		  title: '계정상태 상세 ',
 		  close: function(event, ui) {
-				$('#member-dialog').dialog("close");
+				$(this).dialog("destroy");
 		  }
 	  });	
 }

@@ -81,7 +81,6 @@ public class MemberManagementServiceImpl implements MemberManagementService {
 	public void updateMemberState(Map<String, Object> map) throws Exception {
 		try {
 			dao.updateData("adminMember.updateMemberState", map);
-			map = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -93,7 +92,6 @@ public class MemberManagementServiceImpl implements MemberManagementService {
 	public void insertMemberState(MemberManagement dto) throws Exception {
 		try {
 			dao.updateData("adminMember.insertMemberState", dto);
-			dto = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

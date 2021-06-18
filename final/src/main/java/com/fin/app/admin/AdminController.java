@@ -1,15 +1,56 @@
 package com.fin.app.admin;
 
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("admin.adminController")
 public class AdminController {
+	@Autowired
+	private AdminService service;
 	
+	@SuppressWarnings("null")
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String method() {
-		return ".adminLayout";
+	public String method(Model model) {
+		Map<String, Object> tMap = new HashMap<String, Object>();
+		Map<String, Object> lMap = new HashMap<String, Object>();
+		
+		tMap.put("sDate", getCurMon());
+		tMap.put("eDate", getCurSun());
+		
+		lMap.put("sDate", getLastMon());
+		lMap.put("eDate", getLastSun());
+		
+		Admin joinThisWeek = new Admin();
+		joinThisWeek.setMon(service.joinCount(getCurMon()));
+		joinThisWeek.setTue(service.joinCount(getCurTue()));
+		joinThisWeek.setWed(service.joinCount(getCurWed()));
+		joinThisWeek.setThu(service.joinCount(getCurThu()));
+		joinThisWeek.setFri(service.joinCount(getCurFri()));
+		joinThisWeek.setSat(service.joinCount(getCurSat()));
+		joinThisWeek.setSun(service.joinCount(getCurSun()));
+		joinThisWeek.setjTotThisWeek(service.joinTot(tMap));
+		
+		Admin joinLastWeek = new Admin();
+		joinLastWeek.setMon(service.joinCount(getLastMon()));
+		joinLastWeek.setTue(service.joinCount(getLastTue()));
+		joinLastWeek.setWed(service.joinCount(getLastWed()));
+		joinLastWeek.setThu(service.joinCount(getLastThu()));
+		joinLastWeek.setFri(service.joinCount(getLastFri()));
+		joinLastWeek.setSat(service.joinCount(getLastSat()));
+		joinLastWeek.setSun(service.joinCount(getLastSun()));
+		joinLastWeek.setjTotLastWeek(service.joinTot(lMap));
+		
+		model.addAttribute("joinThisWeek", joinThisWeek);
+		model.addAttribute("joinLastWeek", joinLastWeek);
+		
+		return ".admin.main.main";
 	}
 	
 	@RequestMapping(value="/admin/saleStatus", method=RequestMethod.GET)
@@ -21,5 +62,150 @@ public class AdminController {
 	public String petsitStatus() {
 		return ".admin.petsitStatus.petsitStatus";
 	}
+	
+	
+	public static String getCurMon(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurTue(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 1);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurWed(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 2);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurThu(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 3);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurFri(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 4);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurSat(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 5);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getCurSun(){
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, 6);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	
+	
+	public static String getLastMon(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -7);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastTue(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -6);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastWed(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -5);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastThu(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -4);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastFri(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -3);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastSat(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -2);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	
+	public static String getLastSun(){
+	 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	 	Calendar c = Calendar.getInstance();
+	 	c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	 	c.add(Calendar.DATE, -1);
+	 	
+	 	return formatter.format(c.getTime());
+	}
+	/*
+	public static String getCurSunday(){
+ 		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy.MM.dd");
+ 		Calendar c = Calendar.getInstance();
+ 		c.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+ 		c.add(Calendar.DATE, 7);
 
+ 		return formatter.format(c.getTime());
+ 	}
+ 	
+	public static String getLastSunday(){
+ 		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy.MM.dd");
+ 		Calendar c = Calendar.getInstance();
+ 		c.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+
+ 		return formatter.format(c.getTime());
+ 	} 	
+	*/
 }

@@ -60,9 +60,9 @@
 		<h2 class="home-head donation-head">
 			후원은 유기동물에게 큰 도움이 됩니다
 		</h2> 
-		<div class="container maindonation" style="margin-top: 80px;">
+		<div class="container maindonation" style="margin-top: 100px;">
 			<div>
-				<img class="donaimg" style="height: 270px; margin-bottom:20px;" src="${pageContext.request.contextPath}/resources/images/home/dona_ani.jpg" class="card-img-top" alt="...">
+				<img class="donaimg" style="height: 350px; margin-bottom:20px;" src="${pageContext.request.contextPath}/resources/images/home/dona_ani.jpg" class="card-img-top" alt="...">
 			</div>
 			<div class="main-button donation-button">
 				<a href="${pageContext.request.contextPath}/donation/main"><button type="button" class="btn btn-light">후원 바로가기</button></a>

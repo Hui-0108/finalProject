@@ -50,7 +50,7 @@
                   		<td>${dto.orderNum}</td>
                   		<td>${dto.mNum}</td>
                   		<td>${dto.orderState}</td>
-                  		<td>${dto.orderPrice}</td>
+                  		<td>${dto.finalPrice}</td>
                   		<td>${dto.orderName}</td>
                   	</tr>
                   	</c:forEach>

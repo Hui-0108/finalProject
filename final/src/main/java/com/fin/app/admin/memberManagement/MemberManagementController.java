@@ -32,19 +32,13 @@ public class MemberManagementController {
 			@RequestParam String mId,
 			Model model) throws Exception {
 		
-		MemberManagement dto= null; 
-		MemberManagement memberState = null; 
-		List<MemberManagement> listState = null; 
-		
-		dto = service.readMember(mId);
-		memberState = service.readMemberState(mId);
-		listState = service.listMemberState(mId);
+		MemberManagement dto = service.readMember(mId);
+		MemberManagement memberState = service.readMemberState(mId);
+		List<MemberManagement> listState = service.listMemberState(mId);
 
 		model.addAttribute("dto", dto);
 		model.addAttribute("memberState", memberState);
 		model.addAttribute("listState", listState);
-		
-		mId = null;
 		
 		return "admin/memberManagement/memberManagementDetail";
 	}

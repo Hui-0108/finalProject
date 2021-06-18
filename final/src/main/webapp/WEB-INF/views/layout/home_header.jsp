@@ -90,14 +90,18 @@
     color: rgba(255, 255, 255);
 }
 
+.homeLogo{
+	margin-top: 30px;
+}
+
 </style>
 
 <header>
 <div class="top-bar fixed-top">
 	<div class="container flex-center">
 		<div class="top-info">
-		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
-                <span class="titleTop"><img class="imgLogo" src="${pageContext.request.contextPath}/resources/images/home/logoWhite.png" style="height:44px;"></span>
+		    <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
+                <span class="titleTop"></span>
             </a>
 		</div>
 		<div class="top-links">
@@ -129,6 +133,11 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+	</div>
+	<div class="container flex-center homeLogo">
+		<a href="${pageContext.request.contextPath}/" style="text-decoration: none;">
+			<img class="imgLogo" src="${pageContext.request.contextPath}/resources/images/home/logoWhite.png" style="height:80px;">
+		</a>
 	</div>
 </div>
 </header>

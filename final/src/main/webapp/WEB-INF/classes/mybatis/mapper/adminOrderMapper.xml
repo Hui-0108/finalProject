@@ -3,8 +3,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminOrder">
 	<select id="listOrder" resultType="com.fin.app.admin.orderManagement.OrderManagement">
-		SELECT orderNum, mNum, mType, orderState, orderPrice, orderName
-		FROM order 
+		SELECT p.orderNum, p.mNum, c.mType, p.orderState, s.finalPrice, p.orderName
+		FROM orderProduct p
+		JOIN store s ON p.orderNum = s.orderNum
+		JOIN client c ON p.mNum = c.mNum
 	</select>
 	
 </mapper>

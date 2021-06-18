@@ -102,6 +102,7 @@
 
 .home .card {
 	display: inline-block;
+	height: 70%;
 	float: left;
 	margin: 10px;
 	margin-top: 50px;
@@ -132,25 +133,24 @@
 
 .home .mainpetsit {
 	width: 1200px;
+	height: 500px;
 	
 }
 
-.home .mainsotre {
+.home .mainstore {
 	width: 1200px;
-}
-
-.home .mainsotre {
-	width: 1200px;
+	height: 500px;
 }
 
 .home .mainstatic {
 	width: 1200px;
+	height: 500px;
 }
 
 .home .mainchart {
 	display: inline-block;
 	width: 46%;
-	height: 300px;
+	height: 70%;
 	float: left;
 	border: 1px solid white;
 	margin: 10px;
