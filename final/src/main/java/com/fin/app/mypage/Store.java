@@ -10,10 +10,31 @@ public class Store {
 	private String storesuboptname;
 	private String storemainoptname;
 	
-	//finalPrice 추가 해야함..
-	
+	private int finalPrice;
+	private int orderState;
+	private int reviewOk; // 리뷰 작성 여부 - service 단에서 생성
 	private int storeDetailOptNum;
 	
+	
+	
+	public int getReviewOk() {
+		return reviewOk;
+	}
+	public void setReviewOk(int reviewOk) {
+		this.reviewOk = reviewOk;
+	}
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+	public int getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
+	}
 	public int getOrderNum() {
 		return orderNum;
 	}

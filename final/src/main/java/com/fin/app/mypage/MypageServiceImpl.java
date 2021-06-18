@@ -105,6 +105,13 @@ public class MypageServiceImpl implements MypageService {
 		try {
 			list = dao.selectList("mypage.selectStoreList", map);
 			
+			// 주문에 대해서 리뷰가 이미 작성 되어 있는지 확인해서 0,1을 리턴받음.
+			for( Store dto : list ) {
+				int orderNum = dto.getOrderNum();
+				int reviewOk = dao.selectOne("mypage.selectStoreReview", orderNum);
+				dto.setReviewOk(reviewOk);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,6 +182,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
+	public void insertReviewImage(Store dto) throws Exception {
+		
+		try {
+			dao.insertData("mypage.insertReviewImage", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
 	public void insertReviewImage(Review dto) throws Exception {
 		
 		try {
@@ -184,6 +202,8 @@ public class MypageServiceImpl implements MypageService {
 		}
 		
 	}
+	
+
 
 
 }

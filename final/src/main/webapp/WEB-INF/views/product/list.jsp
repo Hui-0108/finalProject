@@ -3,6 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<style type="text/css">
+.through{
+	text-decoration: line-through;
+	color: gray;	
+}
+</style>
+
+
+
 <script type="text/javascript">
 
 function article(pNum) {
@@ -40,9 +49,23 @@ function article(pNum) {
 						<div class="product productName" onclick="javascript:article('${dto.pNum}');" >
 							${dto.pName}
 						</div>	
-						<div class="product productPrice" >
-							 ₩${dto.totPrice}
-						</div>						
+						<c:choose>
+							<c:when test="${dto.pDiscountRate != 0}">
+							<div class="product productPrice">		
+								<span class="through">	
+									₩${dto.productPrice}													
+								</span>			
+								<span>	
+									₩${dto.totPrice}					
+								</span>
+							</div>	
+							</c:when>
+							<c:otherwise>
+							<div class="product productPrice" >
+								₩${dto.productPrice}									
+							</div>				
+							</c:otherwise>
+						</c:choose>											
 					</div>				
 				</td>		
 			</c:forEach>					

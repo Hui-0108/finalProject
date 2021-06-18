@@ -53,15 +53,21 @@
 	</select>
 	
 	<select id="selectStoreList" parameterType="map" resultType="com.fin.app.mypage.Store">
-		SELECT s.orderNum, TO_CHAR(s.sDate, 'YYYY-MM-DD') sDate, sd.sdetailqty, sd.sdetailprice, p.pname, img.pimgname, so.storesuboptname, mo.storemainoptname, sd.storeDetailOptNum
+		SELECT s.orderNum, TO_CHAR(s.sDate, 'YYYY-MM-DD') sDate, sd.sdetailqty, sd.sdetailprice, p.pname, i.pimgname, so.storesuboptname, mo.storemainoptname, s.finalPrice, op.orderState
 		FROM store s
 		JOIN storedetail sd ON sd.ordernum = s.ordernum
 		JOIN storedetailopt do ON do.storedetailoptnum = sd.storedetailoptnum
 		JOIN product p ON p.pnum = do.pnum
-		JOIN productImage img ON img.pnum = p.pnum
 		JOIN storesubopt so ON so.storesuboptnum = do.storesuboptnum
 		JOIN storemainopt mo ON mo.storemainoptnum = so.storemainoptnum
 		JOIN orderproduct op ON op.ordernum = s.ordernum
+          LEFT OUTER JOIN (
+			SELECT pImgNum, pNum, pImgName FROM (
+				SELECT pImgNum, pNum, pImgName,
+					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgName ASC) rank
+				 FROM productImage 
+			) WHERE rank = 1 
+		) i ON p.pnum = i.pnum
 		WHERE op.mnum = #{mNum}
 		ORDER BY s.sDate DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
@@ -82,6 +88,13 @@
 		WHERE r.mnum = #{mNum}
 		ORDER BY r.rDate DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="selectStoreReview" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(s.orderNum),0)
+		FROM store s
+		JOIN review rv ON rv.orderNum = s.ordernum
+		WHERE s.orderNum = #{orderNum}
 	</select>
 	
 	<select id="selectPetsitReview" parameterType="Integer" resultType="Integer">

@@ -107,15 +107,6 @@ function check() {
 		return;
 	}
 	
-	
-	str = f.selectImg.value;
-	if(! str){
-		alert("제품사진을 첨부하세요.");
-		f.selectImg.focus();
-		return;
-	}
-	
-	
 	str = f.pName.value;	
 	if(! str){
 		alert("상품명을 입력하세요.");
@@ -213,7 +204,7 @@ $(function(){
 				<ul class="categoryHead">
 					<li class="categoryList">			
 						<select name="pCateNum" class="productCreateSelect">
-							<option value="0" ${pCateNum==0?"selected='selected'":""}>카테고리</option>
+							<option value="0">카테고리</option>
 							<c:forEach var="vo" items="${categorys}">
 								<option value="${vo.pCateNum}" ${dto.pCateNum==vo.pCateNum?"selected='selected'":""}>${vo.pCateName}</option>
 							</c:forEach>

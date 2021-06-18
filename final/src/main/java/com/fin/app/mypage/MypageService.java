@@ -19,6 +19,7 @@ public interface MypageService {
 	
 	// 리뷰 작성
 	public boolean insertReview(Review dto, String pathname) throws Exception;
+	void insertReviewImage(Store dto) throws Exception;
 	void insertReviewImage(Review dto) throws Exception;
 	
 

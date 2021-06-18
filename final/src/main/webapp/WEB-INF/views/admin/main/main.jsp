@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">개묘개묘 관리자 페이지</h1>
+            <h1 class="m-0">떼껄룩 관리자 페이지</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -41,16 +41,9 @@
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="font-weight-bold">
-                    	<c:choose>
-                    		<c:when test="${joinLastWeek.jTotLastWeek <= joinThisWeek.jTotThisWeek}">
-                      			<i class="ion ion-android-arrow-up text-success"></i><span>&nbsp;&nbsp;${joinThisWeek.jTotThisWeek-joinLastWeek.jTotLastWeek}&nbsp;명</span>
-                      		</c:when>
-                      		<c:otherwise>
-                      			<i class="ion ion-android-arrow-down text-danger"></i><span>&nbsp;&nbsp;${joinLastWeek.jTotLastWeek-joinThisWeek.jTotThisWeek}&nbsp;명</span>
-                      		</c:otherwise>
-                     	</c:choose>
+					<span class="text-bold text-lg">${joinThisWeek.jTotThisWeek}&nbsp;명</span>
                     </span>
-                    <span class="text-muted">전주 대비 가입자 증감</span>
+                    <span class="text-muted">이번 주 총 가입자</span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -181,22 +174,14 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span class="text-bold text-lg">${storeLastWeek.sTotLastWeek}</span>
                     <span>지난주 총 매출액</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="font-weight-bold">
-                    	<c:choose>
-                    		<c:when test="${test >= 0}">
-                      			<i class="ion ion-android-arrow-up text-success"></i> 
-                      		</c:when>
-                      		<c:otherwise>
-                      			<i class="ion ion-android-arrow-down text-danger"></i>
-                      		</c:otherwise>
-                     	</c:choose>
-                     	30%
+                    <span class="text-bold text-lg">${storeThisWeek.sTotThisWeek}</span>
                     </span>
-                    <span class="text-muted">전주 대비 총 매출액 비율</span>
+                    <span class="text-muted">이번주 총 매출액</span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -230,14 +215,20 @@
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>
-                    		<c:when test="${test >= 0}">
-                      			<i class="ion ion-android-arrow-up text-success"></i> 
+                    		<c:when test="${petLastWeek.pTotLastWeek < petThisWeek.pTotThisWeek}">
+                      			<i class="ion ion-android-arrow-up text-success"></i><span>&nbsp;&nbsp;${petThisWeek.pTotThisWeek-petLastWeek.pTotLastWeek}&nbsp;건</span>
                       		</c:when>
                       		<c:otherwise>
-                      			<i class="ion ion-android-arrow-down text-danger"></i>
+                      			<c:choose>
+                      				<c:when test="${petLastWeek.pTotLastWeek > petThisWeek.pTotThisWeek}">
+                      					<i class="ion ion-android-arrow-down text-danger"></i><span>&nbsp;&nbsp;${petLastWeek.pTotLastWeek-petThisWeek.pTotThisWeek}&nbsp;건</span>
+                      				</c:when>
+                      				<c:otherwise>
+                      					<span>&nbsp;&nbsp;${petLastWeek.pTotLastWeek-petThisWeek.pTotThisWeek}&nbsp;건</span>
+                      				</c:otherwise>
+                      			</c:choose> 
                       		</c:otherwise>
                      	</c:choose>
-						12%
                     </span>
                     <span class="text-muted">전주 대비 제품 펫시터 예약 증감</span>
                   </p>
@@ -250,14 +241,20 @@
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>
-                    		<c:when test="${test >= 0}">
-                      			<i class="ion ion-android-arrow-up text-success"></i> 
+                    		<c:when test="${storeLastWeek.sTotLastWeek < storeThisWeek.sTotThisWeek}">
+                      			<i class="ion ion-android-arrow-up text-success"></i><span>&nbsp;&nbsp;${storeThisWeek.sTotThisWeek-storeLastWeek.sTotLastWeek}&nbsp;원</span>
                       		</c:when>
                       		<c:otherwise>
-                      			<i class="ion ion-android-arrow-down text-danger"></i>
+                      			<c:choose>
+                      				<c:when test="${storeLastWeek.sTotLastWeek > storeThisWeek.sTotThisWeek}">
+                      					<i class="ion ion-android-arrow-down text-danger"></i><span>&nbsp;&nbsp;${storeLastWeek.sTotLastWeek-storeThisWeek.sTotThisWeek}&nbsp;원</span>
+                      				</c:when>
+                      				<c:otherwise>
+                      					<span>&nbsp;&nbsp;${storeLastWeek.sTotLastWeek-storeThisWeek.sTotThisWeek}&nbsp;원</span>
+                      				</c:otherwise>
+                      			</c:choose> 
                       		</c:otherwise>
                      	</c:choose>
-                     	12%
                     </span>
                     <span class="text-muted">전주 대비 제품 판매 매출액 증감</span>
                   </p>
@@ -270,11 +267,18 @@
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>
-                    		<c:when test="${joinLastWeek.jTotLastWeek <= joinThisWeek.jTotThisWeek}">
+                    		<c:when test="${joinLastWeek.jTotLastWeek < joinThisWeek.jTotThisWeek}">
                       			<i class="ion ion-android-arrow-up text-success"></i><span>&nbsp;&nbsp;${joinThisWeek.jTotThisWeek-joinLastWeek.jTotLastWeek}&nbsp;명</span>
                       		</c:when>
                       		<c:otherwise>
-                      			<i class="ion ion-android-arrow-down text-danger"></i><span>&nbsp;&nbsp;${joinLastWeek.jTotLastWeek-joinThisWeek.jTotThisWeek}&nbsp;명</span>
+                      			<c:choose>
+                      				<c:when test="${joinLastWeek.jTotLastWeek > joinThisWeek.jTotThisWeek}">
+                      					<i class="ion ion-android-arrow-down text-danger"></i><span>&nbsp;&nbsp;${joinLastWeek.jTotLastWeek-joinThisWeek.jTotThisWeek}&nbsp;명</span>
+                      				</c:when>
+                      				<c:otherwise>
+                      					<span>&nbsp;&nbsp;${joinLastWeek.jTotLastWeek-joinThisWeek.jTotThisWeek}&nbsp;명</span>
+                      				</c:otherwise>
+                      			</c:choose>
                       		</c:otherwise>
                      	</c:choose>
                     </span>
@@ -322,12 +326,12 @@ $(function () {
 	        {
 	          backgroundColor: '#007bff',
 	          borderColor: '#007bff',
-	          data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+	          data: [${storeThisWeek.mon}, ${storeThisWeek.tue}, ${storeThisWeek.wed}, ${storeThisWeek.thu}, ${storeThisWeek.fri}, ${storeThisWeek.sat}, ${storeThisWeek.sun}]
 	        },
 	        {
 	          backgroundColor: '#ced4da',
 	          borderColor: '#ced4da',
-	          data: [700, 1700, 2700, 2000, 1800, 1500, 2000]
+	          data: [${storeLastWeek.mon}, ${storeLastWeek.tue}, ${storeLastWeek.wed}, ${storeLastWeek.thu}, ${storeLastWeek.fri}, ${storeLastWeek.sat}, ${storeLastWeek.sun}]
 	        }
 	      ]
 	    },
@@ -363,11 +367,11 @@ $(function () {
 	                value += 'k'
 	              }
 
-	              return '$' + value
+	              return '￦' + value
 	            }
 	          }, ticksStyle)
 	        }],
-	        xAxes: [{
+	        xAxes: [{ 
 	          display: true,
 	          gridLines: {
 	            display: false
@@ -403,7 +407,7 @@ $(function () {
 	        pointBackgroundColor: '#ced4da',
 	        fill: false
 	        // pointHoverBackgroundColor: '#ced4da',
-	        // pointHoverBorderColor    : '#ced4da'
+	        // pointHoverBorderColor    : '#ced4da' 
 	      }]
 	    },
 	    options: {

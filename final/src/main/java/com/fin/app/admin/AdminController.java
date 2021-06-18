@@ -47,8 +47,38 @@ public class AdminController {
 		joinLastWeek.setSun(service.joinCount(getLastSun()));
 		joinLastWeek.setjTotLastWeek(service.joinTot(lMap));
 		
+		Admin storeThisWeek = new Admin();
+		storeThisWeek.setMon(service.salesSum(getCurMon()));
+		storeThisWeek.setTue(service.salesSum(getCurTue()));
+		storeThisWeek.setWed(service.salesSum(getCurWed()));
+		storeThisWeek.setThu(service.salesSum(getCurThu()));
+		storeThisWeek.setFri(service.salesSum(getCurFri()));
+		storeThisWeek.setSat(service.salesSum(getCurSat()));
+		storeThisWeek.setSun(service.salesSum(getCurSun()));
+		storeThisWeek.setsTotThisWeek(service.salesTot(tMap));
+		
+		Admin storeLastWeek = new Admin();
+		storeLastWeek.setMon(service.salesSum(getLastMon()));
+		storeLastWeek.setTue(service.salesSum(getLastTue()));
+		storeLastWeek.setWed(service.salesSum(getLastWed()));
+		storeLastWeek.setThu(service.salesSum(getLastThu()));
+		storeLastWeek.setFri(service.salesSum(getLastFri()));
+		storeLastWeek.setSat(service.salesSum(getLastSat()));
+		storeLastWeek.setSun(service.salesSum(getLastSun()));
+		storeLastWeek.setsTotLastWeek(service.salesTot(lMap));
+		
+		Admin petThisWeek = new Admin();
+		Admin petLastWeek = new Admin();
+		
+		petThisWeek.setpTotThisWeek(service.reservPet(tMap));
+		petLastWeek.setpTotLastWeek(service.reservPet(lMap));
+		
 		model.addAttribute("joinThisWeek", joinThisWeek);
 		model.addAttribute("joinLastWeek", joinLastWeek);
+		model.addAttribute("storeThisWeek", storeThisWeek);
+		model.addAttribute("storeLastWeek", storeLastWeek);
+		model.addAttribute("petThisWeek", petThisWeek);
+		model.addAttribute("petLastWeek", petLastWeek);
 		
 		return ".admin.main.main";
 	}

@@ -41,6 +41,7 @@
 .inform tr:nth-child(1){
 	font-size: 20px;
 }
+
 .content{
 	clear: both;
 }
@@ -78,48 +79,24 @@
 }
 </style>
 <script type="text/javascript">
-/*
- var sell_price;
- var amount;
 
- function init () {
- 	sell_price = document.form.sell_price.value;
- 	amount = document.form.amount.value;
- 	document.form.sum.value = sell_price;
- 	change();
- }
+function payment(){
+	
+	var f = document.articleform;
+	
+	var str = f.sDetailQty.value;
+	
+	if(str=="" || str == 0){
+		alert("수량을 선택해 주세요.")
+		f.sDetailQty.focus();
+		return;
+	}
+	
+	f.action = "${pageContext.request.contextPath}/product/payment";
 
- function add () {
- 	hm = document.form.amount;
- 	sum = document.form.sum;
- 	hm.value ++ ;
-
- 	sum.value = parseInt(hm.value) * sell_price;
- }
-
- function del () {
- 	hm = document.form.amount;
- 	sum = document.form.sum;
- 		if (hm.value > 1) {
- 			hm.value -- ;
- 			sum.value = parseInt(hm.value) * sell_price;
- 		}
- }
-
- function change () {
- 	hm = document.form.amount;
- 	sum = document.form.sum;
-
- 		if(hm.value < 0) {
- 			hm.value = 0;
- 		}
- 		sum.value =  parseInt(hm.value) * sell_price;
- }  
- 
-
-
- */
-
+	f.submit();
+	
+}
 
 function deleteProduct(){
 	var query = "pNum=${dto.pNum}&${query}";
@@ -134,37 +111,42 @@ function deleteProduct(){
 $(function(){
 	
 	$(".productArticleBody").on("click", ".btnPlus", function(){
-		var qty = parseInt($("input[name=quantity]").val());
-		var price = parseInt($(".productPrice").attr("data-price"));
-		var productPrice = parseInt($(".productPrice").text());
-		var totalBuyQty = parseInt($("#totalBuyQty").text());
-		var totalBuyAmt = parseInt($("#totalBuyAmt").text());
-
-		qty = qty +1;
-		productPrice=parseInt(productPrice+price);
-		$("input[name=quantity]").val(qty);
-		$(".productPrice").text(productPrice);
+		var qty = parseInt($("input[name=sDetailQty]").val());
+		var price = parseInt($("input[name=sum]").attr("data-price"));
+				
+		qty=qty+1;
+		var s = qty * price;
 		
-		
+		$("input[name=sDetailQty]").val(qty);
+		$("input[name=sum]").val(s);
 	});
+	
 	$(".productArticleBody").on("click", ".btnMinus", function(){
-		var qty = parseInt($("input[name=quantity]").val());
-		var price = parseInt($(".productPrice").attr("data-price"));
-		var productPrice = parseInt($(".productPrice").text());
-		var totalBuyQty = parseInt($("#totalBuyQty").text());
-		var totalBuyAmt = parseInt($("#totalBuyAmt").text());		
-		qty = qty -1;
+		var qty = parseInt($("input[name=sDetailQty]").val());
+		var price = parseInt($("input[name=sum]").attr("data-price"));		
+		
+		qty=qty-1;
+		var s = qty*price;
 		if(qty<0){
 			qty=0;
+			
 		}
-		productPrice=parseInt(productPrice+price);
-		$("input[name=quantity]").val(qty);
-		$(".productPrice").text(productPrice);		
+		if(s<0){
+			s=0;
+		}
 		
+		$("input[name=sDetailQty]").val(qty);
+		$("input[name=sum]").val(s);				
 	});	
-
 	
 });
+
+$(function(){
+	$(".price").css({
+	"text-decoration" :"line-through"
+	});
+});
+
 
 </script>
 
@@ -174,7 +156,7 @@ $(function(){
 			<tr>
 				<td>
 					<c:if test="${sessionScope.member.mRole eq 0}">
-						<button type="button" class="btnBig margin" onclick="javascript:location.href='${pageContext.request.contextPath}/product/update?category=${category}&pNum=${dto.pNum}&page=${page}';">수정</button>
+						<button type="button" class="btnBig margin" onclick="javascript:payment('${dto.pNum}');">수정</button>
 						<button type="button" class="btnBig margin" onclick="deleteProduct();">삭제</button>
 					</c:if>
 				</td>
@@ -207,42 +189,50 @@ $(function(){
 						${dto.pName}
 					</td>
 				</tr>
-				
-				<tr>
-					<td>
-						판매가 ${dto.productPrice}
-					</td>
-				</tr>			
-				<tr>
-					<td>
-						할인가 ${dto.totPrice}
-					</td>
-				</tr>	
+				<c:choose>
+					<c:when test="${dto.pDiscountRate != 0}">		
+						<tr class="price">
+							<td>
+								판매가 ${dto.productPrice}									
+							</td>
+						</tr>			
+						<tr>
+							<td>
+								할인가 ${dto.totPrice}
+							</td>
+						</tr>	
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>
+								판매가 ${dto.productPrice}									
+							</td>
+						</tr>				
+					</c:otherwise>
+				</c:choose>
 				<tr>
 					<td>
 						수량선택
-	
-						<form name="form" method="get">
-						
-						수량 : <input type=hidden name="sell_price"  >
-						<input type="text" name="quantity" value="1" size="3" onchange="change();" class="quantityBorder">
-						<input type="button" value=" + " class="btnPlus quantityBorder" onclick="add();" >
-						<input type="button" value=" - " class="btnMinus quantityBorder" onclick="del();" ><br>
-						<!-- 금액 : 원<input type="text" name="sum" size="11"  value="${dto.totPrice}" readonly="readonly"> -->
-											
-						<span class="productPrice" data-price="${dto.totPrice}"></span>					
-						<button type="button" class="quantityBorder">x</button>
-										
+						<form name="articleform" method="post" >
+							수량 : <input type=hidden name="pNum" value="${dto.pNum}">
+							<input type="hidden" name="page" value="${page}">
+							<input type="text" name="sDetailQty" value="1" class="quantityBorder">
+							<input type="button" value=" + " class="btnPlus quantityBorder" >
+							<input type="button" value=" - " class="btnMinus quantityBorder"><br>
+							<c:choose>
+								<c:when test="${dto.pDiscountRate != 0}">
+									<input type="text" name="sum" data-price="${dto.totPrice}" value="${dto.totPrice}" readonly="readonly">
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="sum" data-price="${dto.productPrice}" value="${dto.productPrice}" readonly="readonly">								
+								</c:otherwise>
+							</c:choose>
+							<button class="btnBig" type="button" onclick="payment()">구매하기</button>
 						</form>					
-					</td>
-						
+					</td>						
 				</tr>			
 				<tr>
-	
-				</tr>
-				<tr>
 					<td>
-						<button class="btnBig" type="button">구매하기</button>
 					</td>
 				</tr>			
 				<tr>
@@ -256,11 +246,6 @@ $(function(){
 			${dto.pContent}
 		</div>
 
-
-	
-	
 	</div>
-
-
 
 </div>

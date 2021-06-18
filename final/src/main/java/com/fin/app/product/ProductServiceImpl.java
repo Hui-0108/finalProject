@@ -58,8 +58,6 @@ public class ProductServiceImpl implements ProductService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return result;
 	}
 
@@ -289,6 +287,20 @@ public class ProductServiceImpl implements ProductService{
 			e.printStackTrace();
 			throw e;		
 		}
+	}
+
+
+	@Override
+	public Product selectedProduct(int pNum) {
+		Product dto = null;
+		
+		try {
+			dto = dao.selectOne("product.selectedProduct", pNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return dto;
 	}
 
 
