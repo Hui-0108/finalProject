@@ -28,6 +28,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService service;
+	
+	
 	@Autowired
 	private MyUtil myUtil;
 	@Autowired
@@ -80,7 +82,7 @@ public class ProductController {
 		List<Product> list = service.listProduct(map);
 		
 		int listNum, n= 0;
-		int pDetailPrice,pPrice,totPrice,pDiscountRate =0;
+		int pDetailPrice,pPrice,totPrice,pDiscountRate, productPrice =0;
 		double discountPrice,discoutNum;
 		for(Product dto : list) {
 			listNum = dataCount - (offset + n);
@@ -91,11 +93,12 @@ public class ProductController {
 			pDetailPrice= dto.getpDetailPrice();
 			pPrice = dto.getpPrice();
 			pDiscountRate = dto.getpDiscountRate();
+			productPrice = pPrice+pDetailPrice;
 			discoutNum = pDiscountRate*0.01;
 			discountPrice =(pPrice+pDetailPrice)*discoutNum;
 			totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
 			dto.setTotPrice(totPrice);
-			
+			dto.setProductPrice(productPrice);
 		}		
 		
 		String cp = req.getContextPath();
@@ -204,7 +207,7 @@ public class ProductController {
 		List<Product> list = service.listProduct(map);
 	
 		int listNum, n= 0;
-		int pDetailPrice,pPrice,totPrice,pDiscountRate =0;
+		int pDetailPrice,pPrice,totPrice,pDiscountRate,productPrice =0;
 		double discountPrice,discoutNum;
 		for(Product dto : list) {
 			listNum = dataCount - (offset + n);
@@ -215,10 +218,12 @@ public class ProductController {
 			pDetailPrice= dto.getpDetailPrice();
 			pPrice = dto.getpPrice();
 			pDiscountRate = dto.getpDiscountRate();
+			productPrice = pPrice+pDetailPrice;
 			discoutNum = pDiscountRate*0.01;
 			discountPrice =(pPrice+pDetailPrice)*discoutNum;
 			totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
 			dto.setTotPrice(totPrice);
+			dto.setProductPrice(productPrice);
 		}
 
 		String cp = req.getContextPath();
@@ -245,7 +250,7 @@ public class ProductController {
 		//List<Product> subOptList = service.listSubOpt();
 			
 		Map<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("storeMainOptNum", storeMainOptNum); //여기 이렇게 넣는게 맞나?
+		map2.put("storeMainOptNum", storeMainOptNum); //?
 
 		List<Product> subOptList = service.listSubOpt(map2);
 		String paging = myUtil.paging(current_page, total_page, listUrl);
@@ -390,7 +395,6 @@ public class ProductController {
 		
 		List<Product> listProductImage = service.listProductImage(pNum);
 		
-        
 		model.addAttribute("listProductImage", listProductImage);
 		
 		model.addAttribute("pNum", pNum);
@@ -398,7 +402,6 @@ public class ProductController {
         model.addAttribute("dto", dto);    
         model.addAttribute("page", page);
         model.addAttribute("query", query);
-        
         
 		return ".product.article";
 	}
@@ -490,6 +493,52 @@ public class ProductController {
 		}
 		
 		return "redirect:/product/list?"+query;
+	}
+	
+	@RequestMapping(value = "payment", method = RequestMethod.POST)
+	public String payment(		
+			@RequestParam int pNum,
+			@RequestParam int sDetailQty,
+			@RequestParam int sum,
+			Model model	
+			)throws Exception{
+		
+		Product dto = service.selectedProduct(pNum);
+		//Product dto = service.readProduct(pNum);
+		
+		if(dto == null) {
+			return "redirect:/product/list";
+		}
+		
+        int pDetailPrice= dto.getpDetailPrice();
+		int pPrice = dto.getpPrice();
+		int pDiscountRate = dto.getpDiscountRate();
+		int productPrice = pPrice+pDetailPrice;
+		double discoutNum = pDiscountRate*0.01;
+		double discountPrice =(pPrice+pDetailPrice)*discoutNum;
+		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+		dto.setProductPrice(productPrice);
+		dto.setTotPrice(totPrice);
+		
+		
+		int mil= (int) (sum*0.001);
+		
+		dto.setMile(mil);
+		
+		List<Product> listProductImage = service.listProductImage(pNum);		
+		
+		model.addAttribute("listProductImage", listProductImage);
+		model.addAttribute("pNum", pNum);
+		model.addAttribute("sDetailQty", sDetailQty);
+		model.addAttribute("sum", sum);
+		model.addAttribute("dto", dto);
+		return ".product.payment";
+	}
+	
+	@RequestMapping("testpay")
+	public String test()throws Exception{
+		
+		return ".product.payment";
 	}
 	
 	

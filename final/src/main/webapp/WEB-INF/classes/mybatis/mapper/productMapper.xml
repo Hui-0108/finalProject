@@ -62,8 +62,8 @@
 
 	<!-- 글보기 -->
 	<select id="readProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
-		SELECT p.pNum, pName, pDiscountRate, pContent, pPrice, pDetailPrice
-        ,pDetailCnt, s.storeSubOptNum, m.storeMainOptNum
+		SELECT p.pNum, pName, pCateNum, pDiscountRate, pContent, pPrice, pDetailPrice
+        ,pDetailCnt,delivType, s.storeSubOptNum, m.storeMainOptNum, storeDetailOptNum
 		FROM product p
 		JOIN storeDetailOpt d ON p.pNum = d.pNum
         JOIN storeSubOpt s ON d.storeSubOptNum = s.storeSubOptNum
@@ -96,7 +96,7 @@
 
 	<select id="listSubOpt"  parameterType="map" resultType="com.fin.app.product.Product">
 		SELECT storeSubOptNum, storeSubOptName, storeMainOptNum 
-		FROM storeSubOpt s
+		FROM storeSubOpt
 		WHERE storeMainOptNum = #{storeMainOptNum}
 	</select>	
 	 
@@ -132,5 +132,40 @@
 	<delete id="deleteProductImage" parameterType="map">
 		DELETE FROM productImage WHERE ${field} = #{pNum}
 	</delete>
+
+	
+	<!-- 상품 결제 -->
+	<select id="selectedProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
+		SELECT p.pNum, pName, pCateNum, pDiscountRate, pPrice, pDetailPrice
+        ,pDetailCnt,delivType, s.storeSubOptNum, m.storeMainOptNum, storeDetailOptNum
+		FROM product p
+		JOIN storeDetailOpt d ON p.pNum = d.pNum
+        JOIN storeSubOpt s ON d.storeSubOptNum = s.storeSubOptNum
+        JOIN storeMainOpt m ON s.storeMainOptNum = m.storeMainOptNum	
+		WHERE p.pNum = #{pNum}
+	</select>
+
+	
+	<insert id="insertStore" parameterType="com.fin.app.product.Product">
+		INSERT INTO store(orderNum, sDate, sTotPrice, sDelivCharge,
+		 sDelivDate, sZip, sAddr1, sAddr2, cpNum, mileNum)
+		 VALUES(#{orderNum}, #{sDate}, #{sTotPrice}, #{sDelivCharge},
+		  #{sDelivDate}, #{sZip}, #{sAddr1}, #{sAddr2}, #{cpNum}, #{mileNum})
+	</insert>
+
+	<insert id="insertStoreDetails" parameterType="com.fin.app.product.Product">
+		INSERT INTO storeDetail(orderNum, storeDetailOptNum, sDetailQty, sDetailPrice)
+		VALUES(order_seq.NEXTVAL, #{storeDetailOptNum}, #{sDetailQty}, #{sDetailPrice} )
+	</insert>
+
+	<select id="listStore" parameterType="Integer" resultType="com.fin.app.product.Product">
+		SELECT d.orderNum, sDate, sTotPrice, sDelivCharge, sDelivDate, sZip, sAddr1, sAddr2, cpNum,
+		mileNum, finalPrice, storeDetailOptNum, sDetailQty, sDetailPrice
+		FROM store s
+		JOIN storeDetail d ON s.orderNum = d.orderNum
+		WHERE orderNum = #{orderNum}
+	</select>	
+	
+	
 
 </mapper>

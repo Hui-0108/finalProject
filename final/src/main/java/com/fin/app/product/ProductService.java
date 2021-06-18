@@ -30,4 +30,9 @@ public interface ProductService {
 	public List<Product> listProductImage(int pNum);
 	public Product readProductImage(int pImgNum);
 	public void deleteProductImage(Map<String, Object> map) throws Exception;	
+
+	public Product selectedProduct(int pNum);
+	
+
+
 }
