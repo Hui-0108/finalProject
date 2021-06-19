@@ -29,6 +29,9 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/add.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/icofont.min.css">
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/jquery-ui.min.css">
 
 	<!--  JQuery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>

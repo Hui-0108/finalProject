@@ -51,8 +51,7 @@ function detailedMember(mId) {
 		  height: 520,
 		  width: 800,
 		  title: "회원상세정보",
-		  close: function(event, ui) {
-		  }
+
 	});
 
 	var url = "${pageContext.request.contextPath}/admin/memberManagement/memberManagementDetail";
