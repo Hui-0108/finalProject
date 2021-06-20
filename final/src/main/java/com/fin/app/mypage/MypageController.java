@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +111,8 @@ public class MypageController {
 	public String storeList(
 			Model model,
 			HttpSession session,
-			@RequestParam(value = "pageNo", defaultValue = "1") int current_page
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page,
+			HttpServletRequest req
 			) throws Exception {
 		
 		int rows = 8;
@@ -121,6 +123,7 @@ public class MypageController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mNum", mNum);
+		map.put("type", "store");
 		
 		dataCount = service.dataCount(map);
 		total_page = myUtil.pageCount(rows, dataCount);
@@ -134,8 +137,13 @@ public class MypageController {
 		map.put("offset", offset);
 		map.put("rows", rows);
 		
+		String cp = req.getContextPath();
+		
+		String listUrl = cp+"/mypage/storeList?";
+		
+		
 		List<Store> list = service.selectStoreList(map);
-		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("dataCount", dataCount);
@@ -152,7 +160,8 @@ public class MypageController {
 	public String petsitList(
 			Model model,
 			HttpSession session,
-			@RequestParam(value = "pageNo", defaultValue = "1") int current_page
+			@RequestParam(value = "page", defaultValue = "1") int current_page,
+			HttpServletRequest req
 			) throws Exception {
 		
 		int rows = 8;
@@ -163,6 +172,7 @@ public class MypageController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mNum", mNum);
+		map.put("type", "petsit");
 		
 		dataCount = service.dataCount(map);
 		total_page = myUtil.pageCount(rows, dataCount);
@@ -177,7 +187,12 @@ public class MypageController {
 		map.put("rows", rows);
 		
 		List<Petsit> list = service.selectPetsitList(map);
-		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		String cp = req.getContextPath();
+		
+		String listUrl = cp+"/mypage/petsitList?";
+		
+		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("dataCount", dataCount);
@@ -217,9 +232,13 @@ public class MypageController {
 	}
 	
 	// orderList.jsp
-	@RequestMapping(value = "orderDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "orderDetail", method = RequestMethod.POST)
 	public String orderDetail(
+			Model model,
+			@RequestParam("orderNum") int orderNum
 			) throws Exception {
+		
+		
 		
 		
 		return ".mypage.orderDetail";

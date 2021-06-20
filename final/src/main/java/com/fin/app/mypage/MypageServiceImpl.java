@@ -89,7 +89,15 @@ public class MypageServiceImpl implements MypageService {
 		int result=0;
 		
 		try {
-			result=dao.selectOne("mypage.dataCount", map);
+			
+			String type = (String) map.get("type");
+			
+			if(type.equals("petsit")) {
+				result=dao.selectOne("mypage.petsitDataCount", map);
+			} else {
+				result=dao.selectOne("mypage.storeDataCount", map);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

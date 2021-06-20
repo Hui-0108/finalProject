@@ -28,7 +28,7 @@
 
 .myPetsitList .body-main {
 	width: 100%;
-	height: 700px;
+	height: 1000px;
 }
 
 .myPetsitList .body-itmeList table {
@@ -95,6 +95,11 @@
 	color: #007bff;
 }
 
+.myPetsitList .findOrderNum:hover {
+	color: #14aaff;
+	cursor: pointer;
+}
+
 </style>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.form.js"></script>
@@ -152,7 +157,19 @@ $(function() {
 		});
 		
 	});
+	
+	// 상세 주문 내역 페이지 이동
+	$("body").on("click", ".findOrderNum", function(e) {
+		openDetail();
+	});
+	
 });
+
+function openDetail() {
+	var f = document.orderNumForm;
+	f.action = "${pageContext.request.contextPath}/mypage/orderDetail";
+	f.submit();
+}
 </script>
 
 <div class="myPetsitList" align="center">
@@ -200,7 +217,10 @@ $(function() {
 						</td>
 						
 						<td>
+							<form name="orderNumForm" method="post">
 							<p class="findOrderNum"> ${dto.orderNum} </p>
+							<input type="hidden" name="orderNum" value="${dto.orderNum}">
+							</form>
 						</td>
 						
 						<td>
@@ -230,7 +250,7 @@ $(function() {
 					</tr>
 					</c:forEach>
 				</table>
-				<p> ${dataCount==0? "예약내역이 없습니다." : paging} </p>
+				<p> ${paging} </p>
 			</div>		
 		
 		</div>
