@@ -74,8 +74,6 @@ public class MemberManagementController {
 		Map<String, Object> model = new HashMap<>(); 
 		model.put("state", state);
 		
-		dto = null;
-		
 		return model;
 	}
 	

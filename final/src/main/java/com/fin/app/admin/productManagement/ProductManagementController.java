@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller("admin.productManagement.productManagementController")
 public class ProductManagementController {
@@ -20,5 +22,30 @@ public class ProductManagementController {
 		model.addAttribute("list", list);
 		
 		return ".admin.productManagement.productManagement";
+	}
+	
+	// 제품상세 정보 : AJAX-Text 응답
+	@RequestMapping(value="/admin/productManagement/productManagementDetail")
+	public String detailProduct(
+			@RequestParam int pNum,
+			Model model) throws Exception {
+		
+		ProductManagement dto = service.readProduct(pNum);
+
+		model.addAttribute("dto", dto);
+		
+		return "admin/productManagement/productManagementDetail";
+	}
+	
+	@RequestMapping(value="/admin/productManagement/updateProductState", method=RequestMethod.POST)
+	@ResponseBody
+	public void updateMemberState(
+			ProductManagement dto) throws Exception {
+		
+		try {			
+			service.updateProductState(dto);
+			
+		} catch (Exception e) {
+		}
 	}
 }

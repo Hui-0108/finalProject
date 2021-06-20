@@ -6,7 +6,7 @@
 <style type="text/css">
 .hover-tr:hover {
 	cursor: pointer;
-	background: #fffdfd;
+	background: #BDBDBD;
 }
 </style>
 

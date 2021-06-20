@@ -8,6 +8,10 @@ public class ProductManagement {
 	private int pPrice;
 	private String pCateName;
 	private Date pDate;
+	private int pDiscountRate;
+	private int delivType;
+	private int pDetailCnt;
+	private int pDetailPrice;
 	
 	public long getpNum() {
 		return pNum;
@@ -39,6 +43,30 @@ public class ProductManagement {
 	}
 	public void setpDate(Date pDate) {
 		this.pDate = pDate;
+	}
+	public int getpDiscountRate() {
+		return pDiscountRate;
+	}
+	public void setpDiscountRate(int pDiscountRate) {
+		this.pDiscountRate = pDiscountRate;
+	}
+	public int getDelivType() {
+		return delivType;
+	}
+	public void setDelivType(int delivType) {
+		this.delivType = delivType;
+	}
+	public int getpDetailCnt() {
+		return pDetailCnt;
+	}
+	public void setpDetailCnt(int pDetailCnt) {
+		this.pDetailCnt = pDetailCnt;
+	}
+	public int getpDetailPrice() {
+		return pDetailPrice;
+	}
+	public void setpDetailPrice(int pDetailPrice) {
+		this.pDetailPrice = pDetailPrice;
 	}
 	
 	

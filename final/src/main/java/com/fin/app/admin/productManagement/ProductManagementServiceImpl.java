@@ -23,5 +23,29 @@ public class ProductManagementServiceImpl implements ProductManagementService {
 		}
 		return list;
 	}
+
+	@Override
+	public ProductManagement readProduct(int pNum) {
+		ProductManagement dto = null;
+		
+		try {
+			dto = dao.selectOne("adminProduct.readProduct", pNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+	@Override
+	public void updateProductState(ProductManagement dto) throws Exception {
+		try {
+			dao.updateData("adminProduct.updateProductState", dto);
+			dao.updateData("adminProduct.updateProductDetail", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	
 }
