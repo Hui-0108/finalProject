@@ -24,19 +24,19 @@ public class UserController {
 	
 	@RequestMapping(value = "stat", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String covid(@RequestParam String date) throws Exception {
+	public String animal(@RequestParam String date) throws Exception {
 		String result=null;
-		
+
 		int numOfRows=20;
 		int pageNo=1;
-
 		String serviceKey="pxTXjrjVmateW0GnkBeONAQfjToozKbno8wEOjY7y7Fo7Klm%2Fl6oA5u0EwRpgVEFIewRTlHeFDaTcbJCz2RCHQ%3D%3D";
-		String spec="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido";
+		String spec="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic";
+		
 		spec+="?serviceKey="+serviceKey+"&numOfRows="+numOfRows+"&pageNo="+pageNo;
-		spec+="&startCreateDt="+date+"&endCreateDt="+date;
+		spec+="&bgnde="+date+"&endde="+date;
 		
 		result = apiSerializer.receiveXmlToJson(spec);
-		  
+		// System.out.println(result);  
 		return result;
 	}
 }
