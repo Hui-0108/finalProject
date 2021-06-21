@@ -22,6 +22,9 @@ public interface MypageService {
 	void insertReviewImage(Store dto) throws Exception;
 	void insertReviewImage(Review dto) throws Exception;
 	
+	// 주문 상세 페이지
+	public Detail readDetail(Map<String, Object> map) throws Exception;
+	
 
 
 }

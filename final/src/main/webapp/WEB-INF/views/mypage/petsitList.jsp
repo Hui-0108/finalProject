@@ -160,16 +160,14 @@ $(function() {
 	
 	// 상세 주문 내역 페이지 이동
 	$("body").on("click", ".findOrderNum", function(e) {
-		openDetail();
+		var f = document.orderNumForm;
+		f.orderNum.value = $(this).attr("data-orderNum");
+		f.action = "${pageContext.request.contextPath}/mypage/orderDetail";
+		f.submit();
 	});
 	
 });
 
-function openDetail() {
-	var f = document.orderNumForm;
-	f.action = "${pageContext.request.contextPath}/mypage/orderDetail";
-	f.submit();
-}
 </script>
 
 <div class="myPetsitList" align="center">
@@ -201,7 +199,7 @@ function openDetail() {
 							<label> 예약 상태 </label>
 						</td>
 					</tr>
-					
+					<form name="orderNumForm" method="post">
 					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
@@ -217,10 +215,7 @@ function openDetail() {
 						</td>
 						
 						<td>
-							<form name="orderNumForm" method="post">
-							<p class="findOrderNum"> ${dto.orderNum} </p>
-							<input type="hidden" name="orderNum" value="${dto.orderNum}">
-							</form>
+							<p class="findOrderNum" data-orderNum="${dto.orderNum}"> ${dto.orderNum} </p>
 						</td>
 						
 						<td>
@@ -249,6 +244,8 @@ function openDetail() {
 						</td>
 					</tr>
 					</c:forEach>
+					<input type="hidden" name="orderNum">
+					</form>
 				</table>
 				<p> ${paging} </p>
 			</div>		

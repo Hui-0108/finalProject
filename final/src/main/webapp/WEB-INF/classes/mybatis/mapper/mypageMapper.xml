@@ -102,7 +102,7 @@
 			) WHERE rank = 1 <!-- 순위가 1위인 것만 -->
 		) i ON p.petNum = i.petNum
 		WHERE r.mnum = #{mNum}
-		ORDER BY r.rDate DESC
+		ORDER BY r.rDate DESC, r.orderNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	

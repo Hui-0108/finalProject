@@ -190,7 +190,7 @@ public class MypageController {
 		
 		String cp = req.getContextPath();
 		
-		String listUrl = cp+"/mypage/petsitList?";
+		String listUrl = cp+"/mypage/petsitList";
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
@@ -238,8 +238,12 @@ public class MypageController {
 			@RequestParam("orderNum") int orderNum
 			) throws Exception {
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNum", orderNum);
 		
+		Detail dto = service.readDetail(map);
 		
+		model.addAttribute("dto", dto);
 		
 		return ".mypage.orderDetail";
 	}

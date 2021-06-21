@@ -196,6 +196,7 @@ public class MypageServiceImpl implements MypageService {
 			dao.insertData("mypage.insertReviewImage", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		
 	}
@@ -207,8 +208,27 @@ public class MypageServiceImpl implements MypageService {
 			dao.insertData("mypage.insertReviewImage", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		
+	}
+
+	@Override
+	public Detail readDetail(Map<String, Object> map) throws Exception {
+		Detail dto = null;
+		
+		try {
+			int orderNum = (int) map.get("orderNum");
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return dto;
 	}
 	
 
