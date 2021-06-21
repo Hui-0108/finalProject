@@ -32,7 +32,7 @@
 
 .orderDetail .body-main {
 	width: 100%;
-	height: 700px;
+	height: 1000px;
 }
 
 .orderDetail .body-itmeList table {
@@ -206,7 +206,7 @@ $(function() {
 	<div class="body-container">
 		<div class="body-title">
 			<h3> 주문 상세 내역 </h3>
-			<p>주문번호 <b> 202106042127380001 </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> 2021.06.04 21:27 </b> </p>
+			<p>주문번호 <b> ${dto.orderNum} </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> ${dto.rDate} </b> </p>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
@@ -233,10 +233,9 @@ $(function() {
 						</td>
 					</tr>
 					
-					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
-							<img src="${pageContext.request.contextPath}/upload/petsit/${dto.petImg}">
+							<img src="#">
 						</td>
 						<td style="text-align: left;">
 							<p><b> ${dto.petTitle} </b></p>
@@ -266,26 +265,18 @@ $(function() {
 							</c:choose>
 						</td>
 						<td>
-							<c:choose>
-							 <c:when test="${dto.reviewOk == 0}">
-							 	<input id="writeReview" type="button" value="후기작성">
-							 </c:when>
-							 <c:otherwise>
-							 	<input id="blockReview" type="button" value="작성완료" disabled="disabled">
-							 </c:otherwise>
-							</c:choose>
+						
+						
 						</td>
 					</tr>
-					</c:forEach>
 				</table>
-				<p> ${dataCount==0? "예약내역이 없습니다." : paging} </p>
 			</div>
 			
 			<div>
 				<ul>
-					<li> 동일한 주문번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능) </li>
+					<li> 스토어 구매 시 동일한 주문번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능) </li>
 					<li> 출고 완료 직후 교환 / 환불 요청을 하더라도 상품을 수령하신 후 택배 업체를 통해 보내주셔야 처리 가능합니다. </li>
-					<li> 별도의 구매 확정이 없더라도 상품 발송 후 9일이 지난 경우에는 자동 구매 확정 됩니다. </li>
+					<li> 쿠폰 및 마일리지는 스토어 이용 시에만 사용 가능합니다.  </li>
 					<li> 자세한 내용은 FAQ를 확인하여 주시기 바랍니다. </li>
 				</ul>
 			</div>

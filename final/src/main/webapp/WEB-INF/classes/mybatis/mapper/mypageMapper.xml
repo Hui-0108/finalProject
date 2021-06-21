@@ -134,5 +134,23 @@
 	<select id="seq" resultType="Integer">
 		SELECT REVIEW_SEQ.NEXTVAL FROM dual
 	</select>
+	
+	<!-- orderDetail.jsp -->
+	<select id="isPetsit" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*),0) 
+		FROM reservation 
+		WHERE orderNum = #{orderNum}
+	</select>
+	
+	<select id="selectDetailP" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
+		SELECT r.orderNum, r.rDate, r.checkIn, r.checkOut, r.mNum, r.petNum, r.finalPrice, 
+		        op.orderState, op.orderName, op.orderTel, op.orderEmail,
+		        p.petTitle
+		FROM reservation r
+		JOIN orderProduct op ON op.orderNum = r.orderNum
+		JOIN petsit p ON p.petNum = r.petNum
+		WHERE r.orderNum = #{orderNum}
+	</select>
+	
 
 </mapper>

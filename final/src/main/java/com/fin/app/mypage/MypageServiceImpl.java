@@ -219,15 +219,17 @@ public class MypageServiceImpl implements MypageService {
 		
 		try {
 			int orderNum = (int) map.get("orderNum");
+			int result = dao.selectOne("mypage.isPetsit", orderNum);
 			
-			
+			if (result != 0) {	// 검색한 주문번호가 펫시터예약 테이블에 존재하면.
+				dto = dao.selectOne("mypage.selectDetailP", orderNum);
+			} else {
+				dto = dao.selectOne("mypage.selectDetailS", orderNum);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return dto;
 	}
 	
