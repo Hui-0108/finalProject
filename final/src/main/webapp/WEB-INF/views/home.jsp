@@ -93,37 +93,18 @@
 			검증된 펫시터들을 만나보세요
 		</h2> 
 		<div class="container mainpetsit">
-			<div class="main-button petsit-button">
-				<a href="${pageContext.request.contextPath}/petsit/list"><button type="button" class="btn btn-light">펫시터 예약</button></a>
+			<div class="store-content">
+				<h2>가장 인기있는 펫시터</h2>
 			</div>
-			<div class="card">
-			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">후기제목</h5>
-			    <p class="card-text">후기내용</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">후기제목</h5>
-			    <p class="card-text">후기내용</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">후기제목</h5>
-			    <p class="card-text">후기내용</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">후기제목</h5>
-			    <p class="card-text">후기내용</p>
-			  </div>
-			</div>
+			<c:forEach var="dto" items="${bestPetsit}">
+				<div class="card">
+					<a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}"><img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="..."></a>
+			  		<div class="card-body">
+			    		<h5 class="card-title">${dto.mId} 님</h5>
+			    		<p class="card-text">${dto.petTitle}</p>
+			  		</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
@@ -131,40 +112,23 @@
 <div class="section window5">
 	<div class="cover cover3">
 		<h2 class="home-head store-head">
-			유기동물과 함께하는 개묘 스토어
+			유기동물과 함께하는 떼껄룩 스토어
 		</h2> 
 		<div class="container mainstore">
 			<div class="store-content">
 				<h2>인기상품을 만나보세요</h2>
 			</div>
-			<div class="card">
-			  <img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">상품명</h5>
-			    <p class="card-text">상품설명</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">상품명</h5>
-			    <p class="card-text">상품설명</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">상품명</h5>
-			    <p class="card-text">상품설명</p>
-			  </div>
-			</div>
-			<div class="card">
-			  <img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">상품명</h5>
-			    <p class="card-text">상품설명</p>
-			  </div>
-			</div>
+			
+			<c:forEach var="dto" items="${bestStore}">
+				<div class="card">
+					<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="..."></a>
+			  		<div class="card-body">
+			  			<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
+			    		<h5 class="card-title"> ${price} 원</h5>
+			    		<p class="card-text">${dto.pName}</p>
+			  		</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>

@@ -88,12 +88,63 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/saleStatus", method=RequestMethod.GET)
-	public String saleStatus() {
+	public String saleStatus(Model model) {
+		
+		Admin freeLastWeek = new Admin();
+		freeLastWeek.setMon(service.freeDelivCount(getLastMon()));
+		freeLastWeek.setTue(service.freeDelivCount(getLastTue()));
+		freeLastWeek.setWed(service.freeDelivCount(getLastWed()));
+		freeLastWeek.setThu(service.freeDelivCount(getLastThu()));
+		freeLastWeek.setFri(service.freeDelivCount(getLastFri()));
+		freeLastWeek.setSat(service.freeDelivCount(getLastSat()));
+		freeLastWeek.setSun(service.freeDelivCount(getLastSun()));
+		
+		Admin normalLastWeek = new Admin();
+		normalLastWeek.setMon(service.normalDelivCount(getLastMon()));
+		normalLastWeek.setTue(service.normalDelivCount(getLastTue()));
+		normalLastWeek.setWed(service.normalDelivCount(getLastWed()));
+		normalLastWeek.setThu(service.normalDelivCount(getLastThu()));
+		normalLastWeek.setFri(service.normalDelivCount(getLastFri()));
+		normalLastWeek.setSat(service.normalDelivCount(getLastSat()));
+		normalLastWeek.setSun(service.normalDelivCount(getLastSun()));
+		
+		List<Admin> bestProduct = service.bestProduct();
+		
+		model.addAttribute("freeLastWeek", freeLastWeek);
+		model.addAttribute("normalLastWeek", normalLastWeek);
+		model.addAttribute("bestProduct", bestProduct);
+		
 		return ".admin.saleStatus.saleStatus";
 	}
 	
 	@RequestMapping(value="/admin/petsitStatus", method=RequestMethod.GET)
-	public String petsitStatus() {
+	public String petsitStatus(Model model) {
+		
+		Admin petsitLastWeek = new Admin();
+		petsitLastWeek.setMon(service.reservCount(getLastMon()));
+		petsitLastWeek.setTue(service.reservCount(getLastTue()));
+		petsitLastWeek.setWed(service.reservCount(getLastWed()));
+		petsitLastWeek.setThu(service.reservCount(getLastThu()));
+		petsitLastWeek.setFri(service.reservCount(getLastFri()));
+		petsitLastWeek.setSat(service.reservCount(getLastSat()));
+		petsitLastWeek.setSun(service.reservCount(getLastSun()));
+		
+		Admin petsitThisWeek = new Admin();
+		petsitThisWeek.setMon(service.reservCount(getCurMon()));
+		petsitThisWeek.setTue(service.reservCount(getCurTue()));
+		petsitThisWeek.setWed(service.reservCount(getCurWed()));
+		petsitThisWeek.setThu(service.reservCount(getCurThu()));
+		petsitThisWeek.setFri(service.reservCount(getCurFri()));
+		petsitThisWeek.setSat(service.reservCount(getCurSat()));
+		petsitThisWeek.setSun(service.reservCount(getCurSun()));
+		
+		List<Admin> bestPetsit = service.bestPetsit();
+		
+		model.addAttribute("petsitLastWeek", petsitLastWeek);
+		model.addAttribute("petsitThisWeek", petsitThisWeek);
+		model.addAttribute("bestPetsit", bestPetsit);
+		
+		
 		return ".admin.petsitStatus.petsitStatus";
 	}
 	

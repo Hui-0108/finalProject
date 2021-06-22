@@ -79,7 +79,7 @@
                     <th>상품 바로가기</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
 					  <c:forEach var="dto" items="${bestStore}">
 	                  	<tr style="text-align: center">
 	                  	  <td>
@@ -89,7 +89,7 @@
 	                  	  <td>${dto.pPrice}&nbsp;원</td>
 	                  	  <td>${dto.sumQty}&nbsp;개</td>
 	                      <td>
-	                      	<a href="#" class="text-muted">
+	                      	<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}" class="text-muted"> 
 	                        	<i class="fas fa-search"></i> 
 	                     	</a>
 	                   	  </td>
@@ -266,7 +266,7 @@ $(function () {
 	          backgroundColor: '#007bff',
 	          borderColor: '#007bff',
 	          data: [${storeThisWeek.mon}, ${storeThisWeek.tue}, ${storeThisWeek.wed}, ${storeThisWeek.thu}, ${storeThisWeek.fri}, ${storeThisWeek.sat}, ${storeThisWeek.sun}]
-	        },
+	        }, 
 	        {
 	          backgroundColor: '#ced4da',
 	          borderColor: '#ced4da',
@@ -370,11 +370,11 @@ $(function () {
 	            lineWidth: '4px',
 	            color: 'rgba(0, 0, 0, .2)',
 	            zeroLineColor: 'transparent'
-	          },
+	          }, 
 	          ticks: $.extend({
 	            beginAtZero: true,
 	            suggestedMax: 30
-	          }, ticksStyle) 
+	          }, ticksStyle)
 	        }],
 	        xAxes: [{
 	          display: true,
@@ -386,6 +386,6 @@ $(function () {
 	      }
 	    }
 	  })
-	})
+	}) 
 
 </script>

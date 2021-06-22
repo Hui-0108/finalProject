@@ -89,5 +89,68 @@ public class AdminServcieImpl implements AdminService {
 		}
 		return dto;
 	}
+
+	@Override
+	public int reservCount(String cDate) {
+		int count = 0;
+		
+		try {
+			count = dao.selectOne("adminPetsitStatus.reservCount", cDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+
+	@Override
+	public int freeDelivCount(String sDate) {
+		int count = 0;
+		
+		try {
+			count = dao.selectOne("adminSaleStatus.freeDelivCount", sDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+
+	@Override
+	public int normalDelivCount(String sDate) {
+		int count = 0;
+		
+		try {
+			count = dao.selectOne("adminSaleStatus.normalDelivCount", sDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+
+	@Override
+	public List<Admin> bestPetsit() {
+		List<Admin> dto = null;
+		
+		try {
+			dto = dao.selectList("adminPetsitStatus.bestPetsit");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public List<Admin> bestProduct() {
+		List<Admin> dto = null;
+		
+		try {
+			dto = dao.selectList("adminSaleStatus.bestProduct");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
 }

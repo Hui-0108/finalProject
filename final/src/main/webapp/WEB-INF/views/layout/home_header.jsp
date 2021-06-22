@@ -99,11 +99,16 @@
 <header>
 <div class="top-bar fixed-top">
 	<div class="container flex-center">
+		<div class="top-links">
+			<a class="headerUserName" href="${pageContext.request.contextPath}/product/main"><span>스토어</span></a>
+			<a class="headerUserName" href="${pageContext.request.contextPath}/petsit/list"><span>펫시터</span></a>
+		</div>
 		<div class="top-info">
 		    <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
                 <span class="titleTop"></span>
             </a>
 		</div>
+
 		<div class="top-links">
 			<c:choose>
 				<c:when test="${not empty sessionScope.member}">

@@ -22,9 +22,15 @@ public class Admin {
 	private int sumQty;
 	private int pPrice;
 	private String pName;
+	private int pCateNum;
 	
 	private int rank;
 	private int rownum;
+	
+	private int pNum;
+	private String mId;
+	private int petNum;
+	private int count;
 	
 	
 	public int getMon() {
@@ -140,6 +146,36 @@ public class Admin {
 	}
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
+	}
+	public int getpNum() {
+		return pNum;
+	}
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+	public int getPetNum() {
+		return petNum;
+	}
+	public void setPetNum(int petNum) {
+		this.petNum = petNum;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getpCateNum() {
+		return pCateNum;
+	}
+	public void setpCateNum(int pCateNum) {
+		this.pCateNum = pCateNum;
 	}
 	
 	
