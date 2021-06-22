@@ -336,21 +336,6 @@ public class ProductServiceImpl implements ProductService{
 		return dto;
 	}
 
-/*
-	@Override
-	public List<Product> listMileage(String mId) {
-		List<Product> listMileage =null;
-		
-		try {
-			listMileage = dao.selectList("product.listMileage", mId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		return listMileage;
-	}
-*/
 
 	@Override
 	public void insertOrderProduct(Product dto) throws Exception {
@@ -370,8 +355,8 @@ public class ProductServiceImpl implements ProductService{
 			dto.setOrderNum(orderSeq);
 			dao.insertData("product.insertOrderProduct", dto);
 			
-			//insertMileage(dto);
 			
+			addMileage(dto);
 			insertStore(dto);
 			insertStoreDetails(dto);
 			
@@ -402,6 +387,63 @@ public class ProductServiceImpl implements ProductService{
 			e.printStackTrace();
 		}
 	}
+
+
+	@Override
+	public List<Product> listMileage(String mId) {
+		List<Product> listMileage = null;
+		
+		try {
+			listMileage = dao.selectList("product.listMileage", mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return listMileage;
+	}
+
+
+	@Override
+	public void addMileage(Product dto) throws Exception {
+		
+		try {
+			int addMileSeq = dao.selectOne("product.addMileSeq");
+			dto.setaMileNum(addMileSeq);
+			dao.insertData("product.addMileage", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+
+
+	@Override
+	public void usedMileage(Product dto) throws Exception {
+		
+		try {
+			dao.insertData("product.usedMileage", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/*
+	@Override
+	public List<Product> listMileage(String mId) {
+		List<Product> listMileage =null;
+		
+		try {
+			listMileage = dao.selectList("product.listMileage", mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return listMileage;
+	}
+*/
+	
+	
 
 /*
 	@Override

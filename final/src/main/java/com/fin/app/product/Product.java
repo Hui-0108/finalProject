@@ -62,25 +62,15 @@ public class Product {
 	private int sDetailQty;	//주문수량
 	private int sDetailPrice; //주문단가
 	
+	private String mId; //아이디
+/*	
 	private int mileNum;
 	private int mileType; //사용/적립
 	private int milePrice; //마일리지금액
 	private String mileDate; //날짜(사용,적립)
 	private String mileHistory; //내역
 	private String mId; //아이디
-	private int totMile; //회원이 갖고있는 마일리지 다 더한 것
-	
-	private String cpName; //쿠폰명
-	private String cpCreated; //쿠폰 지급일
-	private String cpGet; //지급방식
-	private String cpStart; //쿠폰적용시작일
-	private String cpEnd; //쿠폰적용마감일
-	private int dcPrice; //할인금액
-	private int dcRate; //할인울
-	private int cpUse; //사용여부	
-
-	
-	private int mile;
+*/
 	
 	private String mName;//회원이름
 	private String mTel; //회원전번
@@ -91,6 +81,101 @@ public class Product {
 	
 	private String buyerAddr;
 
+	private int totMile;
+	private int uMileNum; //마일리지번호
+	private int useType; //사용 =0
+	private int uMilePrice; //마일리지금액
+	private String uMileDate; //날짜
+	private String uMileHistory; //내역
+	
+	private int aMileNum; //마일리지번호
+	private int addType; //적립=1;
+	private int aMilePrice; //마일리지금액
+	private String aMileDate; //날짜
+	private String aMileHistory; //내역
+	private int miles;
+	
+	
+
+	public int getuMileNum() {
+		return uMileNum;
+	}
+
+	public void setuMileNum(int uMileNum) {
+		this.uMileNum = uMileNum;
+	}
+
+	public int getUseType() {
+		return useType;
+	}
+
+	public void setUseType(int useType) {
+		this.useType = useType;
+	}
+
+	public int getuMilePrice() {
+		return uMilePrice;
+	}
+
+	public void setuMilePrice(int uMilePrice) {
+		this.uMilePrice = uMilePrice;
+	}
+
+	public String getuMileDate() {
+		return uMileDate;
+	}
+
+	public void setuMileDate(String uMileDate) {
+		this.uMileDate = uMileDate;
+	}
+
+	public String getuMileHistory() {
+		return uMileHistory;
+	}
+
+	public void setuMileHistory(String uMileHistory) {
+		this.uMileHistory = uMileHistory;
+	}
+
+	public int getaMileNum() {
+		return aMileNum;
+	}
+
+	public void setaMileNum(int aMileNum) {
+		this.aMileNum = aMileNum;
+	}
+
+	public int getAddType() {
+		return addType;
+	}
+
+	public void setAddType(int addType) {
+		this.addType = addType;
+	}
+
+	public int getaMilePrice() {
+		return aMilePrice;
+	}
+
+	public void setaMilePrice(int aMilePrice) {
+		this.aMilePrice = aMilePrice;
+	}
+
+	public String getaMileDate() {
+		return aMileDate;
+	}
+
+	public void setaMileDate(String aMileDate) {
+		this.aMileDate = aMileDate;
+	}
+
+	public String getaMileHistory() {
+		return aMileHistory;
+	}
+
+	public void setaMileHistory(String aMileHistory) {
+		this.aMileHistory = aMileHistory;
+	}
 
 	public int getUsedMileNum() {
 		return usedMileNum;
@@ -194,14 +279,6 @@ public class Product {
 
 	public void setEmail2(String email2) {
 		this.email2 = email2;
-	}
-
-	public int getMile() {
-		return mile;
-	}
-
-	public void setMile(int mile) {
-		this.mile = mile;
 	}
 
 	public int getOrderNum() {
@@ -335,109 +412,6 @@ public class Product {
 		this.sDetailPrice = sDetailPrice;
 	}
 
-	public int getMileType() {
-		return mileType;
-	}
-
-	public void setMileType(int mileType) {
-		this.mileType = mileType;
-	}
-
-	public int getMilePrice() {
-		return milePrice;
-	}
-
-	public void setMilePrice(int milePrice) {
-		this.milePrice = milePrice;
-	}
-
-	public String getMileDate() {
-		return mileDate;
-	}
-
-	public void setMileDate(String mileDate) {
-		this.mileDate = mileDate;
-	}
-
-	public String getMileHistory() {
-		return mileHistory;
-	}
-
-	public void setMileHistory(String mileHistory) {
-		this.mileHistory = mileHistory;
-	}
-
-	public String getmId() {
-		return mId;
-	}
-
-	public void setmId(String mId) {
-		this.mId = mId;
-	}
-
-	public String getCpName() {
-		return cpName;
-	}
-
-	public void setCpName(String cpName) {
-		this.cpName = cpName;
-	}
-
-	public String getCpCreated() {
-		return cpCreated;
-	}
-
-	public void setCpCreated(String cpCreated) {
-		this.cpCreated = cpCreated;
-	}
-
-	public String getCpGet() {
-		return cpGet;
-	}
-
-	public void setCpGet(String cpGet) {
-		this.cpGet = cpGet;
-	}
-
-	public String getCpStart() {
-		return cpStart;
-	}
-
-	public void setCpStart(String cpStart) {
-		this.cpStart = cpStart;
-	}
-
-	public String getCpEnd() {
-		return cpEnd;
-	}
-
-	public void setCpEnd(String cpEnd) {
-		this.cpEnd = cpEnd;
-	}
-
-	public int getDcPrice() {
-		return dcPrice;
-	}
-
-	public void setDcPrice(int dcPrice) {
-		this.dcPrice = dcPrice;
-	}
-
-	public int getDcRate() {
-		return dcRate;
-	}
-
-	public void setDcRate(int dcRate) {
-		this.dcRate = dcRate;
-	}
-
-	public int getCpUse() {
-		return cpUse;
-	}
-
-	public void setCpUse(int cpUse) {
-		this.cpUse = cpUse;
-	}
 
 	public int getDiscountPrice() {
 		return discountPrice;
@@ -631,14 +605,6 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
-	public int getTotMile() {
-		return totMile;
-	}
-
-	public void setTotMile(int totMile) {
-		this.totMile = totMile;
-	}
-
 	public int getPdPrice() {
 		return pdPrice;
 	}
@@ -663,14 +629,29 @@ public class Product {
 		this.mNum = mNum;
 	}
 
-	public int getMileNum() {
-		return mileNum;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setMileNum(int mileNum) {
-		this.mileNum = mileNum;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
-	
+	public int getTotMile() {
+		return totMile;
+	}
+
+	public void setTotMile(int totMile) {
+		this.totMile = totMile;
+	}
+
+	public int getMiles() {
+		return miles;
+	}
+
+	public void setMiles(int miles) {
+		this.miles = miles;
+	}
+
 	
 }

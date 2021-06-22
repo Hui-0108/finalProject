@@ -334,7 +334,7 @@ function iamport(){
 	
 	var f = document.orderForm;
 	
-	var url = "${pageContext.request.contextPath}/product/order";
+	var url = "${pageContext.request.contextPath}/product/orders";
 
 	var query = $('form[name=orderForm]').serialize();
 	
@@ -442,7 +442,7 @@ function iamport(){
 					<input type="text" name="sDetailQty" value="${sDetailQty}">
 				</td>
 				<td class="w100 tbl_cell">
-					<input type="text" name="milePrice" value="${dto.milePrice}">
+					<input type="text" name="aMilePrice" value="${dto.aMilePrice}">
 				</td>
 				<td class="w100 tbl_cell">
 					₩${sum}	
@@ -556,8 +556,17 @@ function iamport(){
 					보유 마일리지
 				</th>
 				<td>
-					<input type="text" name="useMile"  value="0">
-					<input type="text" readonly="readonly" name="totMile" value="${dto.totMile}"> <!-- 전체 마일리지를 불러오고 사용마일리지랑 적립마일리지? -->
+					
+					<input type="text" readonly="readonly" name="totMile" value="${dto.totMile}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					적용 마일리지
+				</th>
+				<td>
+					<input type="text" name="uMilePrice"  value="0">
+					
 				</td>
 			</tr>
 		</table>	

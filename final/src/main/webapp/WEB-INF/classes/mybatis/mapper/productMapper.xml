@@ -152,7 +152,6 @@
 		WHERE m.mId = #{mId}
 	</select>
 
-	<!-- 마일리지 불러오기 -->
 
 
 	<!-- orderNum의 시퀀스 -->
@@ -169,9 +168,9 @@
 	
 	<insert id="insertStore" parameterType="com.fin.app.product.Product">
 		INSERT INTO store(orderNum, sDate, sTotPrice, sDelivCharge,
-		 sDelivDate, sZip, sAddr1, sAddr2,  finalPrice)
+		 sDelivDate, sZip, sAddr1, sAddr2, aMileNum, finalPrice)
 		 VALUES(#{orderNum}, SYSDATE, #{sTotPrice}, #{sDelivCharge},
-		  #{sDelivDate}, #{sZip}, #{sAddr1}, #{sAddr2}, #{finalPrice})
+		  #{sDelivDate}, #{sZip}, #{sAddr1}, #{sAddr2}, #{aMileNum}, #{finalPrice})
 	</insert>
 
 	<insert id="insertStoreDetails" parameterType="com.fin.app.product.Product">
@@ -179,9 +178,28 @@
 		VALUES(#{orderNum}, #{storeDetailOptNum}, #{sDetailQty}, #{sDetailPrice} )
 	</insert>
 
+	<!-- 마일리지 불러오기 -->
+	<select id="listMileage" parameterType="String" resultType="com.fin.app.product.Product">
+		SELECT aMilePrice FROM addedMileage 
+		WHERE mId = #{mId}	
+	</select>
+
+	<select id="addMileSeq" resultType="Integer">
+		SELECT aMileNum_seq.NEXTVAL FROM dual		
+	</select>
 
 
-	<!-- 마일리지 적립 -->	
+	<!-- 마일리지 적립 -->
+	<insert id="addMileage" parameterType="com.fin.app.product.Product">
+		INSERT INTO addedMileage(aMileNum, addType, aMilePrice, aMileDate, aMileHistory, mId)
+		VALUES(#{aMileNum}, 1, #{aMilePrice}, SYSDATE, '상품 구매 마일리지', #{mId} )
+	</insert>
+
+	<!-- 마일리지 사용 -->
+	<insert id="usedMileage" parameterType="com.fin.app.product.Product">
+		INSERT INTO usedMileage(uMileNum, useType, uMilePrice, uMileDate, uMileHistory, mId, orderNum)
+		VALUES(uMileNum_seq.NEXTVAL, 0, #{uMilePrice}, SYSDATE, '마일리지 사용', #{mId}, #{orderNum} )
+	</insert>
 
 
 

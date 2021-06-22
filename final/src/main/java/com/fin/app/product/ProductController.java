@@ -512,6 +512,7 @@ public class ProductController {
 			@RequestParam int pNum,
 			@RequestParam int sDetailQty,
 			@RequestParam int sum,
+			@RequestParam(defaultValue = "0")int storeMainOptNum,
 			HttpSession session,
 			Model model	
 			)throws Exception{
@@ -530,15 +531,14 @@ public class ProductController {
 			return "redirect:/member/login";
 		}
 
-		//List<Product> listMileage = service.listMileage(info.getmId());
-		int s=0; 		
-		/*
+		List<Product> listMileage = service.listMileage(info.getmId());
+		int s= 0;
 		for(Product mile : listMileage) {
-			s+=mile.getMilePrice();
+			s+=mile.getaMilePrice();
 		}
 		dto.setTotMile(s);
-		*/
 		
+
 		Member member = memberservice.readMember(info.getmId());
 		
 		if(member.getmAddr1().length()!=0 && member.getmAddr2().length()!=0) {
@@ -557,11 +557,10 @@ public class ProductController {
 		dto.setsDetailPrice(productPrice);
 		//dto.setProductPrice(productPrice);
 		dto.setTotPrice(totPrice);
-				
-		//적립 마일리지
-		int mil= (int) (sum*0.001);
-		dto.setMilePrice(mil);
-		
+
+		int mil = (int)(sum*0.001);
+		dto.setaMilePrice(mil);
+		dto.setMiles(mil);
 
 		//배달 날짜 = 주문일자+3일
 		Calendar cal = Calendar.getInstance();
@@ -572,16 +571,16 @@ public class ProductController {
 
 		dto.setsDelivDate(delivery);
 		
-		List<Product> mainOptList = service.listMainOpt();		
+		
 		List<Product> listProductImage = service.listProductImage(pNum);		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		map.put("storeMainOptNum", storeMainOptNum);
 		List<Product> subOptlist = service.listSubOpt(map);
 		
 		model.addAttribute("storeSubOptNum", subOptlist);
-		model.addAttribute("storeMainOptNum", mainOptList);	
-		//model.addAttribute("listMileage", listMileage);
+		
+		model.addAttribute("listMileage", listMileage);
 		model.addAttribute("dtto", dtto);	
 		model.addAttribute("listProductImage", listProductImage);
 		model.addAttribute("pNum", pNum);
@@ -593,7 +592,7 @@ public class ProductController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "order")
+	@RequestMapping(value = "orders")
 	public Map<String, Object> storeOrder(
 			Product dto,
 			HttpSession session
@@ -644,8 +643,8 @@ public class ProductController {
 		dto.setProductPrice(productPrice);
 		dto.setTotPrice(totPrice);
 				
-		int mil= (int) (sum*0.001);
-		dto.setMilePrice(mil);
+		//int mil= (int) (sum*0.001);
+		//dto.setMilePrice(mil);
 
 		List<Product> listProductImage = service.listProductImage(pNum);		
 		
