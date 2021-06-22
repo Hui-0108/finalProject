@@ -12,11 +12,66 @@
 	height: 33px;
 }
 
+.petsitReserve .rList {
+	display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(235, 235, 235);
+    padding: 38px 0px;
+    width: 100%;
+}
+
+.petsitReserve .reviewTop {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.petsitReserve .rTContent {
+	margin-left: 18px;
+}
+
+.petsitReserve .rTContent p:first-child {
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    line-height: 22px;
+    color: rgb(56, 60, 72);
+}
+
+.petsitReserve .rTContent p:last-child {
+	font-size: 13px;
+    line-height: 19px;
+    color: rgb(76, 80, 86);
+    margin-top: 6px;
+}
+   
+.petsitReserve .rList p:first-child{
+	font-size: 17px;
+	line-height: 25px;
+	color: rgb(57, 60, 71);
+	margin-top: 17px;
+}
+   
+.petsitReserve .rlist p:last-child{
+	font-size: 15px;
+    color: rgb(76, 80, 86);
+    margin-top: 18px;
+    margin-bottom: 18px;
+}   
+   
+.petsitReserve .reviewPic {
+	display: flex;
+}
+   
+.petsitReserve .rpicture {
+	margin-right: 10px;
+}   
+ 
+
 </style>
 
 <script type="text/javascript">
-
-//글 수정시 이전 등록된 사진 삭제 
+//펫시터글 수정시 이전 등록된 사진 삭제 
 <c:if test="${sessionScope.member.mId=='admin' || sessionScope.member.mId==dto.mId}">
 function deletePetsit() {
 	var query = "petNum=${dto.petNum}&${query}";
@@ -52,8 +107,6 @@ $(function() {
 	if(uid==id) 
 		$(".btn").show()
 });
-
-
 
 function login() {
 	location.href="${pageContext.request.contextPath}/member/login";
@@ -111,6 +164,103 @@ $(function(){
 	
 });
 
+$(function(){
+	listPage(1);
+});
+
+function listPage(page) {
+	var url="${pageContext.request.contextPath}/petsit/reviewList";
+	var query="pageNo="+page+"&petNum=${dto.petNum}";
+
+	var fn = function(data){
+		printReview(data);
+	};
+	
+	ajaxFun(url, "get", query, "json", fn);
+}
+
+
+function printReview(data) {
+	var memId="${sessionScope.member.mId}";
+	var dataCount = data.dataCount;
+	var page = data.pageNo;
+	var totalPage = data.total_page;
+	
+	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
+	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
+	
+	$("#lisReviewFooter").hide(); //숨겨놓음
+	
+	var out="";
+	if(dataCount==0) { //리뷰 데이터가 0개일 때 
+		out="<div class='paging'>";
+		out+="    <p>아직 등록된 후기가 없습니다.</p>";
+		out+="</div>"
+		
+		$("#listReviewBody").html(out);
+
+		return;
+	}
+	
+	if(page == 1) { //1페이지면 기존 내용 지우고 다시 추가 
+		$("#listReviewBody").empty();
+	}
+	
+	for(var idx=0; idx<data.reviewList.length; idx++) {
+		var rNum=data.reviewList[idx].rNum;
+		var mId=data.reviewList[idx].mId;
+		var rTitle=data.reviewList[idx].rTitle;
+		var rContent=data.reviewList[idx].rContent;
+		var rCreated=data.reviewList[idx].rCreated;
+		var rGrade=data.reviewList[idx].rGrade;
+		var imagefilename=data.reviewList[idx].imagefilename;
+		var img=[];
+		if(imagefilename){
+			img = imagefilename.split(",");
+		}
+
+		
+		out+="<div class='rList'>"
+		out+="<div class='reviewTop'>";
+		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img></div>";
+		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
+		out+="</div>";
+		
+		out+="<p>후기 평점:"+rGrade+"</p>";
+		out+="<p>"+rTitle+"</p>";
+		out+="<p>"+rContent+"</p>";
+		out+="<div calss='reviewPic' style='display:flex;'>"
+		if(img.length>0){
+			for(var i=0; i<img.length; i++) {
+				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
+				
+				out+="<div class='rpicture'><img src='"+s+"' width='100px;' height='100px';></div>";
+			}
+			
+		}
+		out+="</div>"
+	}
+	$("#listReviewBody").append(out); //append로 해야 기존 내용 지워지지 x
+	
+	if(page<totalPage) { //데이터가 더 존재하는 경우
+		$("#listReviewFooter").show(); //데이터를 보여줌
+	}
+	
+}
+
+//리뷰 더보기 
+$(function(){
+	$(".review-list .more").click(function(){
+		var page = $("#listReviewBody").attr("data-pageNo");
+		var totalPage = $("#listReviewBody").attr("data-totalPage");
+
+		if(page<totalPage) {
+			page++;	
+			listPage(page);
+		}
+	});
+});
+
 
 
 </script>
@@ -145,7 +295,7 @@ $(function(){
 </div>
 <!-- 실제 예약 영역-->
 <div class="body-main">
-<div style="width: 1300px;">
+<div style="width: 1100px; margin: auto;">
 	<div class="body-left">
 		<div class="profile">
 			<div class="profile-p">
@@ -196,65 +346,27 @@ $(function(){
 				</div>
 			</div>
 		</div>
-		<div class="review">
-		<div class="review-title">
-			<h4>펫시터 후기 10개</h4>
-			<div class="star">
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
+		<div class="review-list" id="listReview" style="margin-top: 50px;">
+			<div class="reviewT">
+				<h3>펫시터 후기</h3>
+				<div class="star">
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	         	</div>	         
+         	</div>
+			<div id="listReviewBody" data-pageNo="0" data-totalPage="0"></div>
+			<div id="listReviewFooter">
+				<span class="more">후기 더보기</span>
 			</div>
-		</div>
-		<div class="review-pictureSet">
-			<div class="review-psEach">
-				이미지<img>
-			</div >
-			<div class="review-psEach">
-				이미지<img>
-			</div>
-			<div class="review-psEach">
-				이미지<img>
-			</div>
-			<div  class="review-psEach">
-				이미지<img>
-			</div>
-		</div>
-		<div class="review-content">
-		<div class="review-writer">
-			<div class="review-writerP">
-				<img alt="" src="">
-			</div>	
-			<div class="review-writerI">
-				<p>김회원</p>
-				<p>작성날짜</p>
-			</div>
-		</div>	
-		<p style="margin-top: 40px;">
-		산책도 하루에 두번 시켜주시고 많이 예뻐해주신 덕에 공주가 넘 잘 지내고 왔네요! 
-		저희 집에서보다 훨씬 잘 있다 온 것 같아요 ㅎㅎ
-		원래 집에서는 밥도 잘 안먹었는데 펫시터님 댁 다녀와서는 밥도 잘먹고 행동도 교정되어 왔어요 너무 신기하네요 :)♥ 
-		공주 예뻐해주셔서 감사합니다.
-		</p>
-		<div class="review-picture">
-			<div class="review-pEach">
-				<img>
-			</div>
-			<div class="review-pEach">
-				<img>
-			</div>
-			<div class="review-pEach">
-				<img>
-			</div>
-		</div>
-		</div>
 		</div>
 	</div>
 	<div class="body-right" align="right">
 		<div class="reverve-detail">
 			<div class="reserve-date">
-				<p><i class="fas fa-calendar-alt"></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
+				<p><b>언제 펫시터가 필요한가요?</b></p>
 				<div class="dateBar">
 					<div class="checkinCal">
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
@@ -269,21 +381,7 @@ $(function(){
 						<input class="checkDate" type="text" id="datepicker2" placeholder=" 체크아웃 날짜">	
 					</div>
 				</div>
-			</div>
-			<div class="reserve-time">
-				<div class="time-checkin">
-					<p><b>체크인 시간</b></p>
-					<button>
-						<p>시간선택</p>
-					</button>
-				</div>
-				<div class="time-checkout">
-					<p><b>체크아웃 시간</b></p>
-					<button>
-						<p>시간선택</p>
-					</button>
-				</div>
-			</div>			
+			</div>		
 			<p class="pet-p"><b>맡기시는 반려동물</b></p>
 			<button type="button" class="pet-button" onclick="$('.selectB').slideDown()" >
 				<p>반려동물 선택</p><i class="fas fa-chevron-down"></i>
@@ -340,17 +438,18 @@ $(function(){
 					 <button type="button" onclick="$('.selectB').slideUp(400)"><p>닫기</p></button>
 				</div>
 			</div>	
+			<div class="reserve-time">
+				<p> 체크인 가능 시간은 오전 9:00 이후 이며,</p>
+				<p> 체크아웃 가능 시간은 오후  21:00 까지 입니다.</p>
+				<p> 정확한 시간은 펫시터와 상의하시기 바랍니다.</p>
+			</div>	
 			<div class="reserve-send">
 				<p>예약요청</p>
 			</div>		
 		</div>
 		<div class="price">
 			<div class="price-title">
-				<p>이용요금</p>
-				<p>1박 케어</p>
-				<p>|</p>
-				<p style="font-size: 13px;">데이 케어</p>
-				<p><i class="fas fa-question-circle"></i><p>
+				<p>이용요금</p>			
 			</div>		
 			<div class="pet-type">
 				<div class="type-L">
@@ -359,7 +458,6 @@ $(function(){
 				</div>
 				<div class="type-R">
 					<p>4,0000원</p>
-					<p>3,0000원</p>
 				</div>
 			</div>
 			<div class="pet-type">
@@ -369,7 +467,6 @@ $(function(){
 				</div>
 				<div class="type-R">
 					<p>5,0000원</p>
-					<p>4,0000원</p>
 				</div>
 			</div>
 			<div class="pet-type">
@@ -379,7 +476,6 @@ $(function(){
 				</div>
 				<div class="type-R">
 					<p>6,0000원</p>
-					<p>5,0000원</p>
 				</div>
 			</div>
 			<div class="bar" ></div>
@@ -404,7 +500,6 @@ $(function(){
 				</div>
 			</div>
 			<div class="lBottom" id="map">
-				<div class="circle"></div>
 			</div>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=615fa488f5c1cadec65f32fb7cdad8bc&libraries=services"></script>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=615fa488f5c1cadec65f32fb7cdad8bc"></script>
@@ -427,7 +522,7 @@ $(function(){
 				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다				     		        				  
 				        map.setCenter(coords);
 				      	// 지도에 표시할 원을 생성합니다
-				        console.log(coords);
+
 				        var circle = new kakao.maps.Circle({
 						    center : new kakao.maps.LatLng(coords.Ma , coords.La),  // 원의 중심좌표 입니다 
 						    radius: 200, // 미터 단위의 원의 반지름입니다 

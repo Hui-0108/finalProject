@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="petsit">
-	<!-- 글등록 -->
+	<!-- 펫시터 글등록 -->
 	<select id="seq" resultType="Integer">
 		SELECT petsit_seq.NEXTVAL FROM dual
 	</select>
@@ -43,7 +43,7 @@
 		</where>
 	</select>
 	
-	<!-- 리스트  --><!-- 사진,주소,제목,조건들,글번호 => petsit테이블, petImage테이블 조인-->
+	<!-- 펫시터 리스트  --><!-- 사진,주소,제목,조건들,글번호 => petsit테이블, petImage테이블 조인-->
 	<select id="listPetsit" parameterType="map" resultType="com.fin.app.petsit.Petsit">
 		SELECT petImgNum, petImg, petTitle, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, mId, s.petNum
 		FROM petsit s
@@ -66,7 +66,7 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY	<!-- 페이징 -->
 	</select>
 	
-	<!-- 글보기 --><!-- petsit, schedule조인 이미지는 밑에 따로 -->	
+	<!-- 펫시터 글보기 --><!-- petsit, schedule조인 이미지는 밑에 따로 -->	
 	<select id="readPetsit" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
 		SELECT s.petNum, petTitle, petContent, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, petCertif, s.mId,
 				mon, tue, wed, thu, fri, sat, sun, mAddr1, mAddr2, mProfileImg, mName, mTel, mZip, mEmail, mBirth
@@ -76,7 +76,7 @@
 		WHERE s.petNum = #{s.petNum}
 	</select>
 		
-	<!-- 수정 -->
+	<!-- 펫시터 수정 -->
 	<update id="updatePetsit" parameterType="com.fin.app.petsit.Petsit">
 		UPDATE petsit SET petTitle=#{petTitle}, petContent=#{petContent}, petAddr=#{petAddr}, petYN=#{petYN}, petYard=#{petYard}, petLarge=#{petLarge}, 
 		petFamily=#{petFamily}, petWalk=#{petWalk}, petLiving=#{petLiving}, petChild=#{petChild} 
@@ -88,30 +88,55 @@
 		WHERE petNum = #{petNum}
 	</update>
 	
-	<!-- 삭제 -->
+	<!-- 펫시터 삭제 -->
 	<delete id="deletePetsit" parameterType="Integer">
 		DELETE FROM petsit WHERE petNum=#{petNum}
 	</delete>
 	
-	<!-- 파일 -->
+	<!--펫시터 파일 -->
 	<insert id="insertFile" parameterType="com.fin.app.petsit.Petsit">
 		INSERT INTO petImage(petImgNum, petNum, petImg) VALUES
 				(petImage_seq.NEXTVAL, #{petNum}, #{petImg})
-	</insert>
+	</insert>	
 	
 	<select id="listFile" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
       SELECT petImgNum, petNum, petImg
       FROM petImage
       WHERE petNum=#{petNum}
-   </select>
+   </select>   
    
    <select id="readFile" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
 		SELECT petImgNum, petNum, petImg
 		FROM petImage
 	    WHERE petImgNum=#{petImgNum}      
 	</select>
-   	
+	
    	<delete id="deleteFile" parameterType="map">
 		DELETE FROM petImage WHERE ${field} = #{petNum}
 	</delete>
+	
+	<!-- 리뷰 part -->
+	
+	<!-- 리뷰 데이터  -->
+	<select id="rDataCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
+		FROM review
+	</select>
+	
+	<!-- 리뷰 리스트  --><!-- review, reviewImage 조인 -->
+	<select id="listReview" parameterType="map" resultType="com.fin.app.petsit.PetsitReview">
+		SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, mId ,rv.orderNum,
+            	checkIn, checkOut, mNum, petNum, finalPrice, rDate
+		FROM review r
+		LEFT OUTER JOIN (
+    		SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
+    		FROM reviewImage
+   			GROUP BY rNum
+		) ri ON r.rNum = ri.rNum		
+		JOIN reservation rv ON r.orderNum = rv.orderNum 
+        WHERE petNum=#{petNum}
+		ORDER BY rNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
 </mapper>

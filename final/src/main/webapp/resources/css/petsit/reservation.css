@@ -24,7 +24,7 @@
 	margin-top: 73px;
     margin-left: auto;
     margin-right: auto;
-    width: 1100px;
+    width: 1300px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;	
@@ -141,88 +141,7 @@
 	font-size: x-small;
 }
 
-.petsitReserve .review {
-	margin-top: 50px
-}
 
-.petsitReserve .review-title{
-	display: flex; 
-	align-items: center;
-	margin-bottom: 20px;
-}
-
-.petsitReserve .review h4 {
-	width: 200px;
-	margin: 0px 0px;
-}
-
-.petsitReserve .star{
-	width: 150px;
-	margin: 0px; 0px; 5px; 0px;
-}
-
-.petsitReserve .review-pictureSet{
-	display: flex;
-    flex-direction: row;
-    margin-top: 33px;
-}
-
-.petsitReserve .review-psEach{
-	border: 1px solid #ccc;
-	width: 120px;
-	height: 120px;
-	margin-right: 10px;
-}
-
-.petsitReserve .review-content{
-	padding: 38px 0px;
-}
-
-
-.petsitReserve .review-writer {
-	display: flex;
-    flex-direction: row;
-}
-
-.petsitReserve .review-writerP{
-	border: 1px solid #ccc;
-	width: 65px;
-	height: 65px;
-	line-height: 65px;
-	border-radius:45px;
-	background: #eee;
-	margin: 0px 0px;
-}
-
-.petsitReserve .review-writerI{
-	display: inline-block;
-	display: flex;
-	flex-direction: column;
-	width:80px;
-	height: 60px;
-	margin-left: 25px;
-}
-
-.petsitReserve .review-writerI p:first-child {
-	margin: 0px 0px;
-}
-
-.petsitReserve .review-writerI p:last-child {
-	margin: 20px 0 0 0;
-}
-
-.petsitReserve .review-picture{
-	display: flex;
-    flex-direction: row;
-    margin-top: 33px;
-}
-
-.petsitReserve .review-pEach{
-	border: 1px solid #ccc;
-	width: 100px;
-	height: 100px;
-	margin-right: 10px;
-}
 
 .petsitReserve .reverve-detail {
 	height: 530px;
@@ -286,6 +205,34 @@
 }
 
 
+
+.petsitReserve .reviewT{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-bottom: 38px
+}
+
+.petsitReserve .reviewT h3{
+   width: 30%;
+   margin: 5px 0;
+}
+
+.petsitReserve .star {
+   width: 150px;
+   margin: 0px 0px 5px 0px;
+
+}
+
+
+
+
+
+
+
+
+
+
 .petsitReserve .reverve-detail p {
 	font-family: "Noto Sans KR";
     font-size: 14px;
@@ -296,12 +243,13 @@
     text-align: left;
 }
 
-
 .petsitReserve .reserve-time {
-	display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     margin-top: 38px;	
+}
+
+.petsitReserve .reserve-time p {
+    margin: 3px; 0;
+    color: 	rgb(153, 153, 153);
 }
 
 .petsitReserve .time-checkin p:first-child {
@@ -842,15 +790,6 @@
     margin: 5px 0 0;
     
     height: 40px;
-}
-
-.petsitReserve .circle {
-	width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(0, 86, 255, 0.3);
-    background-color: rgba(128, 171, 255, 0.3);
-    z-index: 999;
 }
 
 .petsitReserve . {

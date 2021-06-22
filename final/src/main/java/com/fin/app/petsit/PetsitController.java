@@ -39,6 +39,11 @@ public class PetsitController {
 	public String main() throws Exception {
 		return ".petsit.main";
 	}
+	
+	@RequestMapping("payment")
+	public String payment() throws Exception {
+		return ".petsit.payment";
+	}
 
 	@RequestMapping(value="list")
 	public String list(
@@ -302,9 +307,47 @@ public class PetsitController {
 		return model;
 	}
 	
+	
+	/////리뷰 part /////	
+	
+	//리뷰리스트 AJAX - Map을 JSON으로 변환 반환 
+	@RequestMapping(value="reviewList")
+	@ResponseBody
+	public Map<String, Object> ReviewList(
+			@RequestParam int petNum,
+			@RequestParam(value="pageNo",defaultValue="1") int current_page
+			) throws Exception {
+		int rows=5;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("petNum", petNum);
+		
+		int dataCount=service.rDataCount(map);
+		int total_page=myUtil.pageCount(rows, dataCount);
+		if(current_page>total_page)
+			current_page=total_page;
+	
+		int offset = (current_page-1) * rows;
+		if(offset < 0) offset = 0;
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+
+		
+		List<PetsitReview> reviewList = service.listReview(map);		
+		
+		Map<String, Object> model = new HashMap<>();
+		
+		model.put("dataCount", dataCount); //데이터 갯수
+		model.put("total_page", total_page); //총 페이지 수 
+
+		model.put("pageNo", current_page);//페이지 번호
+		model.put("reviewList", reviewList); //리스트 
 		
 		
-		
+		return model;
+	}
 	
 	
 	

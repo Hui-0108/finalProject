@@ -192,6 +192,87 @@ public class PetsitServiceImpl implements PetsitService {
 			throw e;
 		}		
 	}
+	
+	//리뷰리스트
+	@Override
+	public List<PetsitReview> listReview(Map<String, Object> map) {
+		List<PetsitReview> list=null;
+		
+		try {
+			list=dao.selectList("petsit.listReview", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	//리뷰데이터 갯수
+	@Override
+	public int rDataCount(Map<String, Object> map) {
+		int result=0;
+		
+		try {
+			result=dao.selectOne("petsit.rDataCount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//리뷰 삭제
+	@Override
+	public void deleteReview(int rNum, String pathname) throws Exception {
+		try {
+			dao.deleteData("petsit.deleteReview", rNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	//리뷰사진리스트
+	@Override
+	public List<PetsitReview> listRFile(int rNum) {
+		List<PetsitReview> listFile=null;
+		
+		try {
+			listFile=dao.selectList("review.listFile", rNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listFile;
+	}
+
+	//리뷰사진읽기
+	@Override
+	public PetsitReview readRFile(int rImgNum) {
+		PetsitReview dto=null;
+		
+		try {
+			dto= dao.selectOne("petsit.readFile", rImgNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	//리뷰사진삭제
+	@Override
+	public void deleteRFile(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("petsit.deleteFile", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}		
+		
+	}
+
+	
+	
 
 	
 	
