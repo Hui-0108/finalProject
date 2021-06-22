@@ -173,7 +173,7 @@ $(function() {
 <div class="myPetsitList" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> 예약 내역 </h3>
+			<h3> <i class="fas fa-paw"></i> 예약 내역 </h3>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">

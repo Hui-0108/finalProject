@@ -70,40 +70,31 @@ $(function() {
 <div class="mypagePwd" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			 <h3> 비밀번호 변경 </h3>
+			 <h3> <i class="fas fa-key"></i> 비밀번호 변경 </h3>
 		</div>
 		<div class="body-main">
 			<table>
 			
 				<tr>
 					<td>
-						<label> 비밀번호 </label> 
-					</td>
-					<td>
-						<p><input id="mPwd" type="password"></p>
+						<p> <input type="password" id="mPwd" class="form-control" placeholder="변경할 비밀번호"> </p>
 					</td>
 				</tr>
 				
 				<tr>
 					<td>
-						<label> 비밀번호 확인 </label> 
-					</td>
-					<td>
-						<p><input id="pwdOk" type="password"></p>
+						<p> <input type="password" id="pwdOk" class="form-control" placeholder="비밀번호 확인"> </p>
 					</td>
 				</tr>
 				
 				<tr>
 					<td>
-						<label> 현재 비밀번호 </label> 
-					</td>
-					<td>
-						<p><input id="currPwd" type="password"></p>
+						<p> <input type="password" id="currPwd" class="form-control" placeholder="현재 비밀번호"> </p>
 					</td>
 				</tr>
 				
 			</table>
-			<input type="button" id="changePwd" value="제출">
+			<button type="button" id="changePwd"  class="btn btn-default" style="border: 1px solid black;"> 변경하기 </button>
 		</div>
 	</div>
 	

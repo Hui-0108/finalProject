@@ -16,5 +16,8 @@
 
 .mypagePwd .body-title h3 {
 	font-family: Cafe24Ssurround;
-	text-align: left;
+}
+
+.mypagePwd .body-main {
+	margin-top: 30px;
 }

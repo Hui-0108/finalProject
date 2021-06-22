@@ -65,36 +65,6 @@
 	margin: 0px 0px 0px 0px;
 }
 
-.orderDetail .body-itmeList .items:hover {
-	background: #eee;
-}
-
-.orderDetail .modal {
- 	display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-	z-index: 5; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0,0,0); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.orderDetail .modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 30px;
-	border: 1px solid #888;
-	width: 30%; /* Could be more or less, depending on screen size */
-	text-align: left;
-}
-
-.orderDetail .modal-content table {
-	width: 100%;
-}
-
 .orderDetail label i {
 	color: #007bff;
 }
@@ -153,7 +123,7 @@ $(function() {
 <div class="orderDetail" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> ${type=='petsit'?'예약 상세 정보':'주문 상세 정보'} </h3>
+			<h3> <i class="fas fa-dollar-sign"></i> 상세 내역 </h3>
 			<p>${type=='petsit'?'예약번호':'주문번호'} <b> ${dto.orderNum} </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> ${type=='petsit'?dto.rDate:dto.sDate} </b> </p>
 		</div>
 		<div class="body-main">
@@ -161,15 +131,15 @@ $(function() {
 				<table>
 					<tr>
 						<td width="35%" colspan="2">
-							<label> ${type=='petsit'?'예약정보':'상품정보'} </label>
+							<label> ${type=='petsit'?'펫시터':'상품'} </label>
 						</td>
 						
 						<td width="15%">
-							<label> 정보 1 </label>
+							<label> ${type=='petsit'?'체크인':'옵션'} </label>
 						</td>
 						
 						<td width="15%">
-							<label> 정보 2 </label>
+							<label> ${type=='petsit'?'체크아웃':'정보 1'} </label>
 						</td>
 						
 						<td width="15%">
@@ -186,22 +156,25 @@ $(function() {
 							<img src="${pageContext.request.contextPath}/upload/${type=='petsit'?'petsit':'product'}/${type=='petsit'?dto.petImg:dto.pImgName}">
 						</td>
 						<td style="text-align: left;">
+							<p> ${type=='petsit'?dto.petTitle:dto.pName} </p>
+						</td>
+						
+						<td>
 							<c:if test="${type == 'petsit'}">
-							<p><b> ${dto.petTitle} </b></p>
-							<p style="color: #777777;"> ${dto.checkIn} - ${dto.checkOut} </p>
+							<p style="color: #777777;"> ${dto.checkIn} 14:00 </p>
 							</c:if>
 							<c:if test="${type == 'store'}">
-							<p><b> ${dto.pName} </b></p>
 							<p style="color: #777777;"> [옵션] ${dto.storeMainOptName} : ${dto.storeSubOptName} </p>
 							</c:if>
 						</td>
 						
 						<td>
-							<p> ${dto.rDate} </p>
-						</td>
-						
-						<td>
-							<p class="findOrderNum"> ${dto.orderNum} </p>
+							<c:if test="${type == 'petsit'}">
+							<p style="color: #777777;"> ${dto.checkOut} 11:00 </p>
+							</c:if>
+							<c:if test="${type == 'store'}">
+								
+							</c:if>
 						</td>
 						
 						<td>

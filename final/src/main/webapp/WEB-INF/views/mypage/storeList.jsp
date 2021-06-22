@@ -173,7 +173,7 @@ $(function() {
 <div class="myStoreList" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> 구매 내역 </h3>
+			<h3> <i class="fas fa-shopping-cart"></i> 구매 내역 </h3>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
