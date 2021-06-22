@@ -3,6 +3,10 @@ package com.fin.app.product;
 import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fin.app.common.FileManager;
 import com.fin.app.common.MyUtil;
+import com.fin.app.member.Member;
+import com.fin.app.member.MemberService;
+import com.fin.app.member.SessionInfo;
 
 @Controller("product.productController")
 @RequestMapping("/product/*")
@@ -29,6 +36,8 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
+	@Autowired
+	private MemberService memberservice;
 	
 	@Autowired
 	private MyUtil myUtil;
@@ -290,7 +299,7 @@ public class ProductController {
 		List<Product> categoryList = service.listCategroy();
 		
 		List<Product> mainOptList = service.listMainOpt();
-
+		//List<Product> subOptList = service.listSubOpt(map);
 	
 		model.addAttribute("mode", "created");
 		model.addAttribute("categorys", categoryList);
@@ -435,6 +444,7 @@ public class ProductController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("listImg", listImg);
 		
+		model.addAttribute("pNum", pNum);
 		model.addAttribute("categorys", categoryList);		
 		model.addAttribute("mainOpts", mainOptList);
 		model.addAttribute("subOpts", subOptList);
@@ -448,7 +458,9 @@ public class ProductController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updateSubmit(
 			Product dto,
+	
 			@RequestParam String page,
+			@RequestParam int category,				
 			HttpSession session
 			)throws Exception{
 		String root = session.getServletContext().getRealPath("/");
@@ -459,8 +471,8 @@ public class ProductController {
 		} catch (Exception e) {
 		}
 		
-		
-		return "redirect:/product/article?pNum="+dto.getpNum()+"&page="+page;
+
+		return "redirect:/product/article?category="+category+"&page="+page+"&pNum="+dto.getpNum();
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -495,17 +507,129 @@ public class ProductController {
 		return "redirect:/product/list?"+query;
 	}
 	
-	@RequestMapping(value = "payment", method = RequestMethod.POST)
-	public String payment(		
+	@RequestMapping(value = "order", method = RequestMethod.GET)
+	public String paymentForm(		
+			@RequestParam int pNum,
+			@RequestParam int sDetailQty,
+			@RequestParam int sum,
+			HttpSession session,
+			Model model	
+			)throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Product dtto = service.readMember(info.getmId());	
+		Product dto = service.selectedProduct(pNum);
+		
+		if(dto == null) {
+			return "redirect:/product/list";
+		}
+		
+		if(dtto==null) {
+			session.invalidate();
+			return "redirect:/member/login";
+		}
+
+		//List<Product> listMileage = service.listMileage(info.getmId());
+		int s=0; 		
+		/*
+		for(Product mile : listMileage) {
+			s+=mile.getMilePrice();
+		}
+		dto.setTotMile(s);
+		*/
+		
+		Member member = memberservice.readMember(info.getmId());
+		
+		if(member.getmAddr1().length()!=0 && member.getmAddr2().length()!=0) {
+			dto.setBuyerAddr(member.getmAddr1()+member.getmAddr2());
+		}
+
+		//상품가격 계산
+        int pDetailPrice= dto.getpDetailPrice();
+		int pPrice = dto.getpPrice();
+		int pDiscountRate = dto.getpDiscountRate();
+		int productPrice = pPrice+pDetailPrice;
+		double discoutNum = pDiscountRate*0.01;
+		double discountPrice =(pPrice+pDetailPrice)*discoutNum;
+		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
+		
+		dto.setsDetailPrice(productPrice);
+		//dto.setProductPrice(productPrice);
+		dto.setTotPrice(totPrice);
+				
+		//적립 마일리지
+		int mil= (int) (sum*0.001);
+		dto.setMilePrice(mil);
+		
+
+		//배달 날짜 = 주문일자+3일
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());//"MM"+"월"+"dd"+"일"
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		cal.add(Calendar.DATE, +3);
+		String delivery = df.format(cal.getTime());
+
+		dto.setsDelivDate(delivery);
+		
+		List<Product> mainOptList = service.listMainOpt();		
+		List<Product> listProductImage = service.listProductImage(pNum);		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<Product> subOptlist = service.listSubOpt(map);
+		
+		model.addAttribute("storeSubOptNum", subOptlist);
+		model.addAttribute("storeMainOptNum", mainOptList);	
+		//model.addAttribute("listMileage", listMileage);
+		model.addAttribute("dtto", dtto);	
+		model.addAttribute("listProductImage", listProductImage);
+		model.addAttribute("pNum", pNum);
+		model.addAttribute("sDetailQty", sDetailQty);
+		model.addAttribute("sum", sum);
+		model.addAttribute("dto", dto);
+		model.addAttribute("member", member);
+		return ".product.order";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "order")
+	public Map<String, Object> storeOrder(
+			Product dto,
+			HttpSession session
+			){
+		//여기서파라미터들 넘겨주기 price값들
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		
+		String state = "true";
+		try {
+			dto.setmId(info.getmId());
+			dto.setmNum(info.getmNum());
+			service.insertOrderProduct(dto);
+		} catch (Exception e) {
+			state = "false";
+		}
+		
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("state", state);
+		
+		return model;
+	}
+	
+	
+
+	////////////////////
+	@RequestMapping(value = "paymentClient", method = RequestMethod.GET)
+	public String paymentClientForm(		
 			@RequestParam int pNum,
 			@RequestParam int sDetailQty,
 			@RequestParam int sum,
 			Model model	
 			)throws Exception{
-		
+
 		Product dto = service.selectedProduct(pNum);
-		//Product dto = service.readProduct(pNum);
-		
+	
 		if(dto == null) {
 			return "redirect:/product/list";
 		}
@@ -519,12 +643,10 @@ public class ProductController {
 		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
 		dto.setProductPrice(productPrice);
 		dto.setTotPrice(totPrice);
-		
-		
+				
 		int mil= (int) (sum*0.001);
-		
-		dto.setMile(mil);
-		
+		dto.setMilePrice(mil);
+
 		List<Product> listProductImage = service.listProductImage(pNum);		
 		
 		model.addAttribute("listProductImage", listProductImage);
@@ -532,14 +654,10 @@ public class ProductController {
 		model.addAttribute("sDetailQty", sDetailQty);
 		model.addAttribute("sum", sum);
 		model.addAttribute("dto", dto);
-		return ".product.payment";
-	}
+		return "";
+	}	
 	
-	@RequestMapping("testpay")
-	public String test()throws Exception{
-		
-		return ".product.payment";
-	}
+	
 	
 	
 }

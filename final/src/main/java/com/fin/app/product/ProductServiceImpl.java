@@ -39,6 +39,7 @@ public class ProductServiceImpl implements ProductService{
 					dto.setpImgName(saveFilename);
 					
 					insertProductImage(dto);
+					
 				}
 			}
 			
@@ -302,6 +303,124 @@ public class ProductServiceImpl implements ProductService{
 
 		return dto;
 	}
+
+
+	@Override
+	public Product readMember(String mId) {
+		Product dto = null;
+		
+		try {
+	
+			dto = dao.selectOne("product.readMember", mId);
+			
+			if(dto!=null) {
+				if(dto.getmEmail()!=null) {
+					String [] s = dto.getmEmail().split("@");
+					dto.setEmail1(s[0]);
+					dto.setEmail2(s[1]);
+				}
+				
+				if(dto.getmTel()!=null) {
+					String [] s = dto.getmTel().split("-");
+					dto.setTel1(s[0]);
+					dto.setTel2(s[1]);
+					dto.setTel3(s[2]);
+				}
+			}
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+/*
+	@Override
+	public List<Product> listMileage(String mId) {
+		List<Product> listMileage =null;
+		
+		try {
+			listMileage = dao.selectList("product.listMileage", mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return listMileage;
+	}
+*/
+
+	@Override
+	public void insertOrderProduct(Product dto) throws Exception {
+		
+		try {
+			
+			if(dto.getEmail1().length()!=0 && dto.getEmail2().length()!=0) {
+				dto.setmEmail(dto.getEmail1()+"@"+dto.getEmail2());
+				dto.setOrderEmail(dto.getEmail1()+"@"+dto.getEmail2());
+			}
+			if(dto.getTel1().length()!=0 && dto.getTel2().length()!=0 && dto.getTel3().length()!=0) {
+				dto.setmTel(dto.getTel1()+"-"+dto.getTel2()+"-"+dto.getTel3());
+				dto.setOrderTel(dto.getTel1()+"-"+dto.getTel2()+"-"+dto.getTel3());
+			}
+			
+			int orderSeq = dao.selectOne("product.orderSeq");
+			dto.setOrderNum(orderSeq);
+			dao.insertData("product.insertOrderProduct", dto);
+			
+			//insertMileage(dto);
+			
+			insertStore(dto);
+			insertStoreDetails(dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+
+	@Override
+	public void insertStore(Product dto) throws Exception {
+				
+		try {
+			dao.insertData("product.insertStore", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void insertStoreDetails(Product dto) throws Exception {
+		
+		try {
+			dao.insertData("product.insertStoreDetails", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+/*
+	@Override
+	public void insertMileage(Product dto) throws Exception {
+		
+		try {
+			
+			int mileSeq = dao.selectOne("product.mileageSeq");
+			dto.setMileNum(mileSeq);			
+			dao.insertData("product.insertMileage", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+ 
+ *
+ */
+
 
 
 }

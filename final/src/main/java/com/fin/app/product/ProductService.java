@@ -33,6 +33,16 @@ public interface ProductService {
 
 	public Product selectedProduct(int pNum);
 	
+	public Product readMember(String mId);
 
-
+	//public List<Product>listMileage(String mId);
+	
+	public void insertOrderProduct(Product dto) throws Exception;
+	public void insertStore(Product dto) throws Exception;
+	public void insertStoreDetails(Product dto) throws Exception;
+	
+	//public void insertMileage(Product dto) throws Exception;
+	
+	
+	
 }

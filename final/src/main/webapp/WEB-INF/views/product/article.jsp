@@ -80,7 +80,7 @@
 </style>
 <script type="text/javascript">
 
-function payment(){
+function pay(){
 	
 	var f = document.articleform;
 	
@@ -92,7 +92,7 @@ function payment(){
 		return;
 	}
 	
-	f.action = "${pageContext.request.contextPath}/product/payment";
+	f.action = "${pageContext.request.contextPath}/product/order";
 
 	f.submit();
 	
@@ -156,7 +156,7 @@ $(function(){
 			<tr>
 				<td>
 					<c:if test="${sessionScope.member.mRole eq 0}">
-						<button type="button" class="btnBig margin" onclick="javascript:payment('${dto.pNum}');">수정</button>
+						<button type="button" class="btnBig margin" onclick="javascript:location.href='${pageContext.request.contextPath}/product/update?category=${category}&page=${page}&pNum=${dto.pNum}';">수정</button>
 						<button type="button" class="btnBig margin" onclick="deleteProduct();">삭제</button>
 					</c:if>
 				</td>
@@ -213,7 +213,7 @@ $(function(){
 				<tr>
 					<td>
 						수량선택
-						<form name="articleform" method="post" >
+						<form name="articleform" method="get" >
 							수량 : <input type=hidden name="pNum" value="${dto.pNum}">
 							<input type="hidden" name="page" value="${page}">
 							<input type="text" name="sDetailQty" value="1" class="quantityBorder">
@@ -227,12 +227,12 @@ $(function(){
 									<input type="text" name="sum" data-price="${dto.productPrice}" value="${dto.productPrice}" readonly="readonly">								
 								</c:otherwise>
 							</c:choose>
-							<button class="btnBig" type="button" onclick="payment()">구매하기</button>
 						</form>					
 					</td>						
 				</tr>			
 				<tr>
 					<td>
+							<button class="btnBig" type="button" onclick="pay()">구매하기</button>
 					</td>
 				</tr>			
 				<tr>

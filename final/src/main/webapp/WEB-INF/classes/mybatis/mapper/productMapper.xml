@@ -83,7 +83,6 @@
 		DELETE FROM product WHERE pNum=#{pNum}	
 	</delete>
 
-
 	<!-- 카테고리 -->
 	<select id="listCategory" resultType="com.fin.app.product.Product">
 		SELECT pCateNum, pCateName FROM productCategory
@@ -134,7 +133,7 @@
 	</delete>
 
 	
-	<!-- 상품 결제 -->
+	<!-- 구매할 상품 불러오기 -->
 	<select id="selectedProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
 		SELECT p.pNum, pName, pCateNum, pDiscountRate, pPrice, pDetailPrice
         ,pDetailCnt,delivType, s.storeSubOptNum, m.storeMainOptNum, storeDetailOptNum
@@ -145,18 +144,46 @@
 		WHERE p.pNum = #{pNum}
 	</select>
 
+	<!-- 회원정보 불러오기 -->
+	<select id="readMember" parameterType="String" resultType="com.fin.app.product.Product">
+		SELECT mNum, mName, mTel, mZip, mAddr1, mAddr2, mEmail, m.mId
+		FROM member m
+		JOIN memberDetail m2 ON m.mId = m2.mId
+		WHERE m.mId = #{mId}
+	</select>
+
+	<!-- 마일리지 불러오기 -->
+
+
+	<!-- orderNum의 시퀀스 -->
+	<select id="orderSeq" resultType="Integer">
+		SELECT order_seq.NEXTVAL FROM dual
+	</select>
+
+
+	<!-- 주문, 스토어주문, 주문상세 -->
+	<insert id="insertOrderProduct" parameterType="com.fin.app.product.Product">
+		INSERT INTO orderProduct(orderNum, mNum, orderState, orderName, orderTel, orderEmail)
+		VALUES(#{orderNum}, #{mNum}, 0, #{orderName}, #{orderTel}, #{orderEmail} )
+	</insert>
 	
 	<insert id="insertStore" parameterType="com.fin.app.product.Product">
 		INSERT INTO store(orderNum, sDate, sTotPrice, sDelivCharge,
-		 sDelivDate, sZip, sAddr1, sAddr2, cpNum, mileNum)
-		 VALUES(#{orderNum}, #{sDate}, #{sTotPrice}, #{sDelivCharge},
-		  #{sDelivDate}, #{sZip}, #{sAddr1}, #{sAddr2}, #{cpNum}, #{mileNum})
+		 sDelivDate, sZip, sAddr1, sAddr2,  finalPrice)
+		 VALUES(#{orderNum}, SYSDATE, #{sTotPrice}, #{sDelivCharge},
+		  #{sDelivDate}, #{sZip}, #{sAddr1}, #{sAddr2}, #{finalPrice})
 	</insert>
 
 	<insert id="insertStoreDetails" parameterType="com.fin.app.product.Product">
 		INSERT INTO storeDetail(orderNum, storeDetailOptNum, sDetailQty, sDetailPrice)
-		VALUES(order_seq.NEXTVAL, #{storeDetailOptNum}, #{sDetailQty}, #{sDetailPrice} )
+		VALUES(#{orderNum}, #{storeDetailOptNum}, #{sDetailQty}, #{sDetailPrice} )
 	</insert>
+
+
+
+	<!-- 마일리지 적립 -->	
+
+
 
 	<select id="listStore" parameterType="Integer" resultType="com.fin.app.product.Product">
 		SELECT d.orderNum, sDate, sTotPrice, sDelivCharge, sDelivDate, sZip, sAddr1, sAddr2, cpNum,
@@ -165,6 +192,8 @@
 		JOIN storeDetail d ON s.orderNum = d.orderNum
 		WHERE orderNum = #{orderNum}
 	</select>	
+	
+	
 	
 	
 

@@ -36,6 +36,9 @@ public class Product {
 	private int discoutNum; //pDiscountRate *0.01
 	private int productPrice;//pPrice+pDetailPrice
 	
+	private int pdPrice; //결제에서 배송비랑 상품수량에 따른 상품가격 더한 값;
+	
+	//store
 	private int orderNum; //주문코드
 	private String sDate; //주문일자
 	private int sTotPrice; //주문총금액
@@ -45,24 +48,27 @@ public class Product {
 	private String sAddr1;//배송지 주소1
 	private String sAddr2;//배송지 주소2
 	private int cpNum; //쿠폰번호
-	private int mileNum;//마일리지 번호
-	private int finalPrice; //최종금액
+	private int usedMileNum; //사용마일리지
+	private int addedMileNum; //적립마일리지
+	private int finalPrice; //최종결제금액
 	
 	//orderProduct
-	private int mNum; // 고객번호
+	private long mNum; // 고객번호
 	private int orderState; // 주문상태
 	private String orderName; //구매자 이름
-	private String orderTel;//연락처
-	private String orderEmail;//이메일
+	private String orderTel, tel1, tel2, tel3;//연락처
+	private String orderEmail, email1, email2;//이메일
 	
 	private int sDetailQty;	//주문수량
 	private int sDetailPrice; //주문단가
 	
+	private int mileNum;
 	private int mileType; //사용/적립
 	private int milePrice; //마일리지금액
 	private String mileDate; //날짜(사용,적립)
 	private String mileHistory; //내역
 	private String mId; //아이디
+	private int totMile; //회원이 갖고있는 마일리지 다 더한 것
 	
 	private String cpName; //쿠폰명
 	private String cpCreated; //쿠폰 지급일
@@ -76,13 +82,120 @@ public class Product {
 	
 	private int mile;
 	
+	private String mName;//회원이름
+	private String mTel; //회원전번
+	private String mZip; //회원우편
+	private String mAddr1; //회원주소1
+	private String mAddr2; //회원주소2
+	private String mEmail; //회원이메일
 	
-	
-	
-	
-	
-	
-	
+	private String buyerAddr;
+
+
+	public int getUsedMileNum() {
+		return usedMileNum;
+	}
+
+	public void setUsedMileNum(int usedMileNum) {
+		this.usedMileNum = usedMileNum;
+	}
+
+	public int getAddedMileNum() {
+		return addedMileNum;
+	}
+
+	public void setAddedMileNum(int addedMileNum) {
+		this.addedMileNum = addedMileNum;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getmTel() {
+		return mTel;
+	}
+
+	public void setmTel(String mTel) {
+		this.mTel = mTel;
+	}
+
+	public String getmZip() {
+		return mZip;
+	}
+
+	public void setmZip(String mZip) {
+		this.mZip = mZip;
+	}
+
+	public String getmAddr1() {
+		return mAddr1;
+	}
+
+	public void setmAddr1(String mAddr1) {
+		this.mAddr1 = mAddr1;
+	}
+
+	public String getmAddr2() {
+		return mAddr2;
+	}
+
+	public void setmAddr2(String mAddr2) {
+		this.mAddr2 = mAddr2;
+	}
+
+	public String getmEmail() {
+		return mEmail;
+	}
+
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
+	}
+
+	public String getTel1() {
+		return tel1;
+	}
+
+	public void setTel1(String tel1) {
+		this.tel1 = tel1;
+	}
+
+	public String getTel2() {
+		return tel2;
+	}
+
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
+
+	public String getTel3() {
+		return tel3;
+	}
+
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
+	}
+
+	public String getEmail1() {
+		return email1;
+	}
+
+	public void setEmail1(String email1) {
+		this.email1 = email1;
+	}
+
+	public String getEmail2() {
+		return email2;
+	}
+
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
+
 	public int getMile() {
 		return mile;
 	}
@@ -163,13 +276,6 @@ public class Product {
 		this.cpNum = cpNum;
 	}
 
-	public int getMileNum() {
-		return mileNum;
-	}
-
-	public void setMileNum(int mileNum) {
-		this.mileNum = mileNum;
-	}
 
 	public int getFinalPrice() {
 		return finalPrice;
@@ -179,13 +285,7 @@ public class Product {
 		this.finalPrice = finalPrice;
 	}
 
-	public int getmNum() {
-		return mNum;
-	}
 
-	public void setmNum(int mNum) {
-		this.mNum = mNum;
-	}
 
 	public int getOrderState() {
 		return orderState;
@@ -529,6 +629,46 @@ public class Product {
 
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public int getTotMile() {
+		return totMile;
+	}
+
+	public void setTotMile(int totMile) {
+		this.totMile = totMile;
+	}
+
+	public int getPdPrice() {
+		return pdPrice;
+	}
+
+	public void setPdPrice(int pdPrice) {
+		this.pdPrice = pdPrice;
+	}
+
+	public String getBuyerAddr() {
+		return buyerAddr;
+	}
+
+	public void setBuyerAddr(String buyerAddr) {
+		this.buyerAddr = buyerAddr;
+	}
+
+	public long getmNum() {
+		return mNum;
+	}
+
+	public void setmNum(long mNum) {
+		this.mNum = mNum;
+	}
+
+	public int getMileNum() {
+		return mileNum;
+	}
+
+	public void setMileNum(int mileNum) {
+		this.mileNum = mileNum;
 	}
 
 	

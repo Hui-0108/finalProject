@@ -294,7 +294,8 @@ $(function(){
 						<button type="submit" class="">${mode=='update'?'상품수정':'상품등록'}</button>
 						<button type="reset" class="productReset">다시입력</button>
 						<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
-						<c:if test="${mode='update'}">
+						<c:if test="${mode=='update'}">
+							<input type="hidden" name="category" value="${category}">						
 							<input type="hidden" name="page" value="${page}">
 							<input type="hidden" name="pNum" value="${dto.pNum}">
 						</c:if>
