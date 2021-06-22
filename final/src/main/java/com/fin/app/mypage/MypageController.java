@@ -241,9 +241,13 @@ public class MypageController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("orderNum", orderNum);
 		
-		Detail dto = service.readDetail(map);
+		map = service.readDetail(map);
+		
+		Detail dto = (Detail) map.get("dto");
+		String type = (String) map.get("type");
 		
 		model.addAttribute("dto", dto);
+		model.addAttribute("type", type);
 		
 		return ".mypage.orderDetail";
 	}

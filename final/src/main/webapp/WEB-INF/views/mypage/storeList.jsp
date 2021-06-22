@@ -160,6 +160,8 @@ $(function() {
 	// 상세 주문 내역 페이지 이동
 	$("body").on("click", ".findOrderNum", function(e) {
 		var f = document.orderNumForm;
+		
+		f.orderNum.value = $(this).attr("data-orderNum");
 		f.action = "${pageContext.request.contextPath}/mypage/orderDetail";
 		f.submit();
 	});
@@ -175,6 +177,7 @@ $(function() {
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
+				<form name="orderNumForm" method="post">
 				<table>
 					<tr>
 						<td width="35%" colspan="2">
@@ -213,10 +216,7 @@ $(function() {
 						</td>
 						
 						<td>
-							<form name="orderNumForm" method="post">
-							<p class="findOrderNum"> ${dto.orderNum} </p>
-							<input type="hidden" name="orderNum" value="${dto.orderNum}">
-							</form>
+							<p class="findOrderNum" data-orderNum="${dto.orderNum}"> ${dto.orderNum} </p>
 						</td>
 						
 						<td>
@@ -247,6 +247,8 @@ $(function() {
 					</tr>
 					</c:forEach>
 				</table>
+				<input type="hidden" name="orderNum" value="${dto.orderNum}">
+				</form>
 				<p> ${dataCount==0? "구매내역이 없습니다." : paging} </p>
 			</div>		
 		

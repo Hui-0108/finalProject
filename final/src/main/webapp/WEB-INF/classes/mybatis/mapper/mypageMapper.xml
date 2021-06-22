@@ -61,7 +61,7 @@
 		JOIN storesubopt so ON so.storesuboptnum = do.storesuboptnum
 		JOIN storemainopt mo ON mo.storemainoptnum = so.storemainoptnum
 		JOIN orderproduct op ON op.ordernum = s.ordernum
-          LEFT OUTER JOIN (
+        LEFT OUTER JOIN (
 			SELECT pImgNum, pNum, pImgName FROM (
 				SELECT pImgNum, pNum, pImgName,
 					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgName ASC) rank
@@ -83,8 +83,8 @@
 			SELECT petImgNum, petNum, petImg FROM (
 				SELECT petImgNum, petNum, petImg,
 					ROW_NUMBER() OVER(PARTITION BY petNum ORDER BY petImg ASC) rank
-				 FROM petImage <!--ROW_NUMBER() OVER(PRTITION BY 그룹핑할 컬럼  ORDER BY 정렬할 컬럼  ASC(오름차순) :그룹짓고 그 안에서 순위매김. ROW_NUMBER(): 1등이 2명이어도 1,2등 나눔-->
-			) WHERE rank = 1 <!-- 순위가 1위인 것만 -->
+				 FROM petImage
+			) WHERE rank = 1
 		) i ON p.petNum = i.petNum
 		WHERE r.mnum = #{mNum}
 	</select>
@@ -145,11 +145,44 @@
 	<select id="selectDetailP" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
 		SELECT r.orderNum, r.rDate, r.checkIn, r.checkOut, r.mNum, r.petNum, r.finalPrice, 
 		        op.orderState, op.orderName, op.orderTel, op.orderEmail,
-		        p.petTitle
+		        p.petTitle,
+		        i.petImg
 		FROM reservation r
 		JOIN orderProduct op ON op.orderNum = r.orderNum
 		JOIN petsit p ON p.petNum = r.petNum
+		LEFT OUTER JOIN (
+			SELECT petImgNum, petNum, petImg FROM (
+				SELECT petImgNum, petNum, petImg,
+					ROW_NUMBER() OVER(PARTITION BY petNum ORDER BY petImg ASC) rank
+				 FROM petImage
+			) WHERE rank = 1
+		) i ON p.petNum = i.petNum
 		WHERE r.orderNum = #{orderNum}
+	</select>
+	
+	<select id="selectDetailS" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
+		SELECT s.orderNum, s.sDate, s.sDelivCharge, s.sDelivDate, s.sZip, s.sAddr1, s.sAddr2, s.addedMileNum, s.finalPrice,
+				op.orderState, op.orderName, op.orderTel, op.orderEmail,
+				sd.sDetailQty, sd.sDetailPrice,
+				so.storeSubOptName,
+				mo.storeMainOptName,
+				p.pName,
+				i.pImgName
+		FROM store s
+		JOIN orderProduct op ON op.orderNum = s.orderNum
+		JOIN storeDetail sd ON sd.orderNum = s.orderNum
+		JOIN storeDetailOpt do ON do.storeDetailOptNum = sd.storeDetailOptNum
+		JOIN storeSubOpt so ON so.storeSubOptNum = do.storeSubOptNum
+		JOIN storeMainOpt mo ON mo.storeMainOptNum = so.storeMainOptNum
+		JOIN product p ON p.pNum = do.pNum
+		LEFT OUTER JOIN (
+			SELECT pImgNum, pNum, pImgName FROM (
+				SELECT pImgNum, pNum, pImgName,
+					ROW_NUMBER() OVER(PARTITION BY pNum ORDER BY pImgName ASC) rank
+				 FROM productImage 
+			) WHERE rank = 1 
+		) i ON p.pnum = i.pnum
+		WHERE s.orderNum = #{orderNum}
 	</select>
 	
 

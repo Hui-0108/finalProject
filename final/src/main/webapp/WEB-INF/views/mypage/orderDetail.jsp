@@ -144,102 +144,56 @@
 
 </style>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.form.js"></script>
 <script>
 $(function() {
-	
-	var f = document.reviewForm;
-	
-	var orderNumTemp;
-	
-	// 후기 작성 버튼 클릭
-	$("body").on("click", "#writeReview", function(e) {
-		// 선택한 리스트에있는 값 중에서 주문번호를 form에 셋팅하는 작업
-		orderNumTemp = $(this).closest(".items").find(".findOrderNum").text();
-		
-		$("#orderNum").attr("value", orderNumTemp);
-		
-		
-		$(".modal").fadeIn();
-	});
-	
-	// 모달창 닫기
-	window.onclick = function(e) {
-		if (e.target == document.getElementById('modal')) {
-			document.getElementById('modal').style.display = "none";
-		}
-    }
-	
-	// 후기작성 완료
-	$("body").on("click", "#sendRivew", function(e) {
-		
-		//json 형식으로 데이터 set
-		var formData = new FormData($('#reviewForm')[0]);
-		
-		
-		// ajax
-		$.ajax({
-			type:"POST",
-			processData: false,
-			contentType: false,
-			data: formData,
-			url:"${pageContext.request.contextPath}/mypage/review",
-			success:function(data){
-				if(data.state == true) {
-					alert("리뷰 작성 완료 !!! 감사합니다^^");
-					location.reload();
-				}
-				if(data.state == false) {
-					alert("이미지 파일은 5개 이하만 가능합니다.");
-				}
-			},
-			error:function(e){
-				alert("이미지 파일 용량 초과입니다.");
-			}
-		});
-		
-	});
+
 });
 </script>
 
 <div class="orderDetail" align="center">
 	<div class="body-container">
 		<div class="body-title">
-			<h3> 주문 상세 내역 </h3>
-			<p>주문번호 <b> ${dto.orderNum} </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> ${dto.rDate} </b> </p>
+			<h3> ${type=='petsit'?'예약 상세 정보':'주문 상세 정보'} </h3>
+			<p>${type=='petsit'?'예약번호':'주문번호'} <b> ${dto.orderNum} </b> &nbsp;&nbsp;&nbsp; 주문일자 <b> ${type=='petsit'?dto.rDate:dto.sDate} </b> </p>
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
 				<table>
 					<tr>
 						<td width="35%" colspan="2">
-							<label> 상품정보 </label>
+							<label> ${type=='petsit'?'예약정보':'상품정보'} </label>
 						</td>
 						
 						<td width="15%">
-							<label> 쿠폰할인 </label>
+							<label> 정보 1 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 마일리지 </label>
+							<label> 정보 2 </label>
 						</td>
 						
 						<td width="15%">
-							<label> 주문금액(수량) </label>
+							<label> 정보 3 </label>
 						</td>
 						
 						<td width="20%" colspan="2">
-							<label> 주문 상태 </label>
+							<label> 정보 4</label>
 						</td>
 					</tr>
 					
 					<tr class="items">
 						<td width="10%">
-							<img src="#">
+							<img src="${pageContext.request.contextPath}/upload/${type=='petsit'?'petsit':'product'}/${type=='petsit'?dto.petImg:dto.pImgName}">
 						</td>
 						<td style="text-align: left;">
+							<c:if test="${type == 'petsit'}">
 							<p><b> ${dto.petTitle} </b></p>
 							<p style="color: #777777;"> ${dto.checkIn} - ${dto.checkOut} </p>
+							</c:if>
+							<c:if test="${type == 'store'}">
+							<p><b> ${dto.pName} </b></p>
+							<p style="color: #777777;"> [옵션] ${dto.storeMainOptName} : ${dto.storeSubOptName} </p>
+							</c:if>
 						</td>
 						
 						<td>
@@ -264,12 +218,14 @@ $(function() {
 							 </c:when>
 							</c:choose>
 						</td>
+						
 						<td>
 						
-						
 						</td>
+						
 					</tr>
-				</table>
+				</table>		
+				
 			</div>
 			
 			<div>
@@ -284,16 +240,16 @@ $(function() {
 			<div class = "body-detail">
 				<div class="detail float-left">
 					<div class="detail-title">
-						<p> 배송지 정보 </p>
+						<p>${type=='petsit'?'예약자 정보':'주문자 정보'}</p>
 					</div>
 					<table class="float-left">
 						<tr>
 							<td width="30%">
-								<label> 이름 </label>
+								<label> 주문자명 </label>
 							</td>
 							
 							<td>
-								<p> 이준용 </p>
+								<p> ${dto.orderName} </p>
 							</td>
 						</tr>
 						
@@ -303,7 +259,17 @@ $(function() {
 							</td>
 							
 							<td>
-								<p> 010-3890-3685 </p>
+								<p> ${dto.orderTel} </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 이메일 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.orderEmail} </p>
 							</td>
 						</tr>
 						
@@ -313,17 +279,7 @@ $(function() {
 							</td>
 							
 							<td>
-								<p> (18416)   경기 화성시 서동탄로 53 107동 1905호 </p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<label> 배송 메시지 </label>
-							</td>
-							
-							<td>
-								<p>  </p>
+								<p> (${dto.sZip}) &nbsp; ${dto.sAddr1} &nbsp; ${dto.sAddr2} </p>
 							</td>
 						</tr>
 						
@@ -393,6 +349,8 @@ $(function() {
 					<div class="detail-title">
 						<p> 최종 결제 정보 </p>
 					</div>
+					
+					<c:if test="${type == 'petsit'}">
 					<table class="float-left">
 						<tr>
 							<td width="30%">
@@ -400,7 +358,17 @@ $(function() {
 							</td>
 							
 							<td>
-								<p> 171,190원 </p>
+								<p> ${dto.sTotPrice}원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 배송료 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.sDelivCharge}원 </p>
 							</td>
 						</tr>
 						
@@ -410,7 +378,7 @@ $(function() {
 							</td>
 							
 							<td>
-								<p style="color: #14aaff;"> -55,042원 </p>
+								<p style="color: #14aaff;"> -0원 </p>
 							</td>
 						</tr>
 						
@@ -420,12 +388,63 @@ $(function() {
 							</td>
 							
 							<td>
-								<h5>116,148원</h5>
-								<p> 예상 적립금 111원 </p>
+								<h5> ${dto.finalPrice}원 </h5>
+								<p> 
+									
+								</p>
 							</td>
 						</tr>
 						
 					</table>
+					</c:if>
+					
+					<c:if test="${type == 'store'}">
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 상품 합계 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.finalPrice}원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 배송료 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.sDelivCharge}원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 할인 합계 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> -0원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 최종 결제 금액 </label>
+							</td>
+							
+							<td>
+								<h5> ${dto.finalPrice}원 </h5>
+								<p> 
+									
+								</p>
+							</td>
+						</tr>
+						
+					</table>
+					</c:if>
 				</div>
 				
 			</div>
@@ -434,70 +453,4 @@ $(function() {
 	</div>
 	
 	
-	
-	<div id="modal" class="modal">
-		<div class="modal-content">
-			<form id="reviewForm" method="post" enctype="multipart/form-data">
-			<table>
-			
-				<tr>
-					<td colspan="2">
-						<label> 예약 후기 작성 </label>
-					</td>				
-				</tr>
-			
-				<tr>
-					<td>
-						<label> 제목 </label>
-					</td>
-					<td>
-						<input id="rTitle" name="rTitle" type="text" style="width: 100%;">
-					</td>					
-				</tr>
-				
-				<tr>
-					<td>
-						<label> 내용 </label>
-					</td>
-					<td>
-						<textarea id="rContent" name="rContent" rows="5" style="width: 100%;"></textarea>
-					</td>					
-				</tr>
-				
-				<tr>
-					<td>
-					
-					</td>
-					<td>
-						<input id="uploads" name="uploads" multiple="multiple" type="file">
-					</td>					
-				</tr>
-				
-				<tr>
-					<td>
-					
-					</td>
-					<td>
-						<input type="radio" value="1" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i> </label> &nbsp;
-						<input type="radio" value="2" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i> </label> &nbsp;
-						<input type="radio" value="3" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </label> &nbsp;
-						<input type="radio" value="4" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </label> &nbsp;
-						<input type="radio" value="5" id="rGrade" name="rGrade" checked="checked"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </label>
-					</td>					
-				</tr>
-				
-				<tr>
-					<td>
-						<input type="hidden" id="orderNum" name="orderNum">
-					</td>
-					<td style="text-align: right;">
-						<input id="sendRivew" type="button" value="전송">
-					</td>					
-				</tr>
-				
-				
-			</table>
-			</form>
-		</div>
-	</div>
 </div>

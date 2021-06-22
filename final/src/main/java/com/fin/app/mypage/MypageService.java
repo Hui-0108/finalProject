@@ -23,7 +23,7 @@ public interface MypageService {
 	void insertReviewImage(Review dto) throws Exception;
 	
 	// 주문 상세 페이지
-	public Detail readDetail(Map<String, Object> map) throws Exception;
+	public Map<String, Object> readDetail(Map<String, Object> map) throws Exception;
 	
 
 

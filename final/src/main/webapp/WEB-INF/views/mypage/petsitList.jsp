@@ -177,6 +177,7 @@ $(function() {
 		</div>
 		<div class="body-main">
 			<div class="body-itmeList">
+				<form name="orderNumForm" method="post">
 				<table>
 					<tr>
 						<td width="35%" colspan="2">
@@ -199,7 +200,7 @@ $(function() {
 							<label> 예약 상태 </label>
 						</td>
 					</tr>
-					<form name="orderNumForm" method="post">
+					
 					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
@@ -244,9 +245,10 @@ $(function() {
 						</td>
 					</tr>
 					</c:forEach>
-					<input type="hidden" name="orderNum">
-					</form>
+					
 				</table>
+				<input type="hidden" name="orderNum">
+				</form>
 				<p> ${paging} </p>
 			</div>		
 		

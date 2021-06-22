@@ -9,9 +9,9 @@ public class Detail {
 	private String orderEmail;
 	
 	private int finalPrice; // p테이블과 s 테이블의 컬럼명이 같아 따로 분류
+	private int orderNum;
 	
 	// 펫시터
-	private int orderNum;
 	private String rDate;
 	private String checkIn;
 	private String checkOut;
@@ -19,9 +19,123 @@ public class Detail {
 	
 	private String petTitle;
 	
+	private String petImg;
+	
+	// 스토어
+	private String sDate;
+	private int sTotPrice;
+	private int sDelivCharge;
+	private String sDelivDate;
+	private String sZip;
+	private String sAddr1;
+	private String sAddr2;
+	private int addedMileNum;
+	
+	private String pName; // 제품명
+	private String storeMainOptName; // 상위옵션명
+	private String storeSubOptName;	// 하위옵션명
+	private int sDetailQty;	// 주문수량
+	private int sDetailPrice; // 주문단가 (1개당 가격)
+	
+	private String pImgName;
 	
 	
 	
+
+	
+	
+	
+	
+	public String getPetImg() {
+		return petImg;
+	}
+	public void setPetImg(String petImg) {
+		this.petImg = petImg;
+	}
+	public String getpImgName() {
+		return pImgName;
+	}
+	public void setpImgName(String pImgName) {
+		this.pImgName = pImgName;
+	}
+	public String getStoreMainOptName() {
+		return storeMainOptName;
+	}
+	public void setStoreMainOptName(String storeMainOptName) {
+		this.storeMainOptName = storeMainOptName;
+	}
+	public String getStoreSubOptName() {
+		return storeSubOptName;
+	}
+	public void setStoreSubOptName(String storeSubOptName) {
+		this.storeSubOptName = storeSubOptName;
+	}
+	public int getsDetailQty() {
+		return sDetailQty;
+	}
+	public void setsDetailQty(int sDetailQty) {
+		this.sDetailQty = sDetailQty;
+	}
+	public int getsDetailPrice() {
+		return sDetailPrice;
+	}
+	public void setsDetailPrice(int sDetailPrice) {
+		this.sDetailPrice = sDetailPrice;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getsDate() {
+		return sDate;
+	}
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+	public int getsTotPrice() {
+		return sTotPrice;
+	}
+	public void setsTotPrice(int sTotPrice) {
+		this.sTotPrice = sTotPrice;
+	}
+	public int getsDelivCharge() {
+		return sDelivCharge;
+	}
+	public void setsDelivCharge(int sDelivCharge) {
+		this.sDelivCharge = sDelivCharge;
+	}
+	public String getsDelivDate() {
+		return sDelivDate;
+	}
+	public void setsDelivDate(String sDelivDate) {
+		this.sDelivDate = sDelivDate;
+	}
+	public String getsZip() {
+		return sZip;
+	}
+	public void setsZip(String sZip) {
+		this.sZip = sZip;
+	}
+	public String getsAddr1() {
+		return sAddr1;
+	}
+	public void setsAddr1(String sAddr1) {
+		this.sAddr1 = sAddr1;
+	}
+	public String getsAddr2() {
+		return sAddr2;
+	}
+	public void setsAddr2(String sAddr2) {
+		this.sAddr2 = sAddr2;
+	}
+	public int getAddedMileNum() {
+		return addedMileNum;
+	}
+	public void setAddedMileNum(int addedMileNum) {
+		this.addedMileNum = addedMileNum;
+	}
 	public int getFinalPrice() {
 		return finalPrice;
 	}

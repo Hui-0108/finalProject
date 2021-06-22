@@ -1,5 +1,6 @@
 package com.fin.app.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -214,7 +215,10 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public Detail readDetail(Map<String, Object> map) throws Exception {
+	public Map<String, Object> readDetail(Map<String, Object> map) throws Exception {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String type = "";
 		Detail dto = null;
 		
 		try {
@@ -222,15 +226,19 @@ public class MypageServiceImpl implements MypageService {
 			int result = dao.selectOne("mypage.isPetsit", orderNum);
 			
 			if (result != 0) {	// 검색한 주문번호가 펫시터예약 테이블에 존재하면.
+				type = "petsit";
 				dto = dao.selectOne("mypage.selectDetailP", orderNum);
 			} else {
+				type = "store";
 				dto = dao.selectOne("mypage.selectDetailS", orderNum);
 			}
+			resultMap.put("dto", dto);
+			resultMap.put("type", type);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
+		return resultMap;
 	}
 	
 
