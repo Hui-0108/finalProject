@@ -69,7 +69,7 @@
 			) WHERE rank = 1 
 		) i ON p.pnum = i.pnum
 		WHERE op.mnum = #{mNum}
-		ORDER BY s.sDate DESC
+		ORDER BY s.sDate DESC, s.orderNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
@@ -161,7 +161,7 @@
 	</select>
 	
 	<select id="selectDetailS" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
-		SELECT s.orderNum, s.sDate, s.sDelivCharge, s.sDelivDate, s.sZip, s.sAddr1, s.sAddr2, s.addedMileNum, s.finalPrice,
+		SELECT s.orderNum, s.sDate, s.sDelivCharge, s.sDelivDate, s.sZip, s.sAddr1, s.sAddr2, s.aMileNum, s.finalPrice,
 				op.orderState, op.orderName, op.orderTel, op.orderEmail,
 				sd.sDetailQty, sd.sDetailPrice,
 				so.storeSubOptName,
@@ -183,6 +183,30 @@
 			) WHERE rank = 1 
 		) i ON p.pnum = i.pnum
 		WHERE s.orderNum = #{orderNum}
+	</select>
+	
+	<!-- mileage.jsp -->
+	<select id="mileageDataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) 
+		FROM (
+			SELECT addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
+			UNION
+			SELECT useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		)
+	</select>
+	
+	<select id="selectAllMile" parameterType="map" resultType="com.fin.app.mypage.Mileage">
+		SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
+		UNION
+		SELECT uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+	</select>
+	
+	<select id="selectMile" parameterType="map" resultType="com.fin.app.mypage.Mileage">
+		SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
+		UNION
+		SELECT uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		ORDER BY mileNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
 

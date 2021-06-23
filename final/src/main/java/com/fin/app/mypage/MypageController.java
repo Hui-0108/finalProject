@@ -1,6 +1,8 @@
 package com.fin.app.mypage;
 
 import java.io.File;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +113,7 @@ public class MypageController {
 	public String storeList(
 			Model model,
 			HttpSession session,
-			@RequestParam(value = "pageNo", defaultValue = "1") int current_page,
+			@RequestParam(value = "page", defaultValue = "1") int current_page,
 			HttpServletRequest req
 			) throws Exception {
 		
@@ -139,7 +141,7 @@ public class MypageController {
 		
 		String cp = req.getContextPath();
 		
-		String listUrl = cp+"/mypage/storeList?";
+		String listUrl = cp+"/mypage/storeList";
 		
 		
 		List<Store> list = service.selectStoreList(map);
@@ -252,5 +254,79 @@ public class MypageController {
 		return ".mypage.orderDetail";
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "mileage")
+	public String mileage(
+			@RequestParam(value="page", defaultValue="1") int current_page,
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(value="rows", defaultValue="10") int rows,
+			HttpServletRequest req,
+			Model model,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String mId = info.getmId();
+		
+		int total_page;
+		int dataCount;
+
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			keyword = URLDecoder.decode(keyword, "UTF-8");
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("mId", mId);
+		map.put("type", "mileage");
+
+		dataCount = service.dataCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);
+
+		if (total_page < current_page)
+			current_page = total_page;
+
+        int offset = (current_page-1) * rows;
+		if(offset < 0) offset = 0;
+        map.put("offset", offset);
+        map.put("rows", rows);
+        
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap = service.mileageList(map);
+        
+        // 보유 마일리지
+        int totMile = (int) resultMap.get("totMile");
+        // 리스트
+        List<Mileage> list = (List<Mileage>) resultMap.get("list");
+        
+        String cp = req.getContextPath();
+		String query = "rows="+rows;
+		String listUrl = cp + "/mypage/mileage";
+
+		if (keyword.length() != 0) {
+			query += "&keyword="
+					+ URLEncoder.encode(keyword, "UTF-8");
+		}
+		listUrl += "?" + query;
+		
+		String paging = myUtil.paging(current_page, total_page, listUrl);
+
+		model.addAttribute("list", list);
+		model.addAttribute("dataCount", dataCount);
+		model.addAttribute("page", current_page);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
+		model.addAttribute("totMile", totMile);
+		
+		model.addAttribute("rows", rows);
+		model.addAttribute("keyword", keyword);
+        
+		
+		
+		
+		
+		return ".mypage.mileage";
+	}
 	
 }

@@ -25,6 +25,9 @@ public interface MypageService {
 	// 주문 상세 페이지
 	public Map<String, Object> readDetail(Map<String, Object> map) throws Exception;
 	
+	// 마일리지
+	public Map<String, Object> mileageList(Map<String, Object> map) throws Exception;
+	
 
 
 }

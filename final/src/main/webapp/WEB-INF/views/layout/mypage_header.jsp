@@ -69,6 +69,9 @@
 		<li class="nav-item active item">
 	        <a class="nav-link" href="${pageContext.request.contextPath}/mypage/petsitList">예약 내역 <span class="sr-only">(current)</span></a>
 	    </li>
+	    <li class="nav-item active item">
+	        <a class="nav-link" href="${pageContext.request.contextPath}/mypage/mileage">마일리지 <span class="sr-only">(current)</span></a>
+	    </li> 
 		<li class="nav-item active item">
 	        <a class="nav-link" href="${pageContext.request.contextPath}/mypage/changePwd">비밀번호 변경 <span class="sr-only">(current)</span></a>
 	    </li>

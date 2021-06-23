@@ -29,7 +29,7 @@ public class Detail {
 	private String sZip;
 	private String sAddr1;
 	private String sAddr2;
-	private int addedMileNum;
+	private int aMileNum;
 	
 	private String pName; // 제품명
 	private String storeMainOptName; // 상위옵션명
@@ -46,6 +46,12 @@ public class Detail {
 	
 	
 	
+	public int getaMileNum() {
+		return aMileNum;
+	}
+	public void setaMileNum(int aMileNum) {
+		this.aMileNum = aMileNum;
+	}
 	public String getPetImg() {
 		return petImg;
 	}
@@ -129,12 +135,6 @@ public class Detail {
 	}
 	public void setsAddr2(String sAddr2) {
 		this.sAddr2 = sAddr2;
-	}
-	public int getAddedMileNum() {
-		return addedMileNum;
-	}
-	public void setAddedMileNum(int addedMileNum) {
-		this.addedMileNum = addedMileNum;
 	}
 	public int getFinalPrice() {
 		return finalPrice;

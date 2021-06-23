@@ -95,8 +95,10 @@ public class MypageServiceImpl implements MypageService {
 			
 			if(type.equals("petsit")) {
 				result=dao.selectOne("mypage.petsitDataCount", map);
-			} else {
+			} else if(type.equals("store")) {
 				result=dao.selectOne("mypage.storeDataCount", map);
+			} else if(type.equals("mileage")) {
+				result=dao.selectOne("mypage.mileageDataCount", map);
 			}
 			
 		} catch (Exception e) {
@@ -234,6 +236,37 @@ public class MypageServiceImpl implements MypageService {
 			}
 			resultMap.put("dto", dto);
 			resultMap.put("type", type);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> mileageList(Map<String, Object> map) throws Exception {
+		
+		Map<String, Object>  resultMap = new HashMap<String, Object>();
+		List<Mileage> list = null;
+		List<Mileage> list2 = null;
+		
+		
+		try {
+			list = dao.selectList("mypage.selectMile", map);
+			
+			list2 = dao.selectList("mypage.selectAllMile", map);
+			int totMile = 0; // 내 마일리지 잔액
+			
+			for( Mileage dto : list2 ) {
+				if(dto.getMileType() == 1) {
+					totMile += dto.getMilePrice();
+				} else {
+					totMile -= dto.getMilePrice();
+				}
+			}
+			
+			resultMap.put("list", list);
+			resultMap.put("totMile", totMile);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
