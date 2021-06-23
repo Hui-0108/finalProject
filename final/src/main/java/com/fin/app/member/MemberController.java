@@ -352,4 +352,9 @@ public class MemberController {
 		return "redirect:/member/complete";
 		
 	}
+	
+	@RequestMapping(value="noAuthorized")
+	public String noAuthorized(Model model) {
+		return ".member.noAuthorized";
+	}
 }

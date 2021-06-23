@@ -57,7 +57,29 @@
     </beans:bean>
 
 	<!-- Interceptor 설정 -->
-
+    <interceptors>
+        <interceptor>
+            <mapping path="/**"/>
+            <!-- 제외 -->
+            <exclude-mapping path="/"/>
+            <exclude-mapping path="/resources/**"/>
+            <exclude-mapping path="/member/signup"/>
+            <exclude-mapping path="/member/login"/>
+            <exclude-mapping path="/member/logout"/>
+            <exclude-mapping path="/member/member"/>
+            <exclude-mapping path="/member/mIdCheck"/>
+            <exclude-mapping path="/member/mNickCheck"/>
+            <exclude-mapping path="/member/complete"/>
+            <exclude-mapping path="/member/findId"/>
+            <exclude-mapping path="/member/findPwd"/>
+            <exclude-mapping path="/product/main"/>
+            <exclude-mapping path="/product/list"/>
+            <exclude-mapping path="/product/cateList/*"/>
+            <exclude-mapping path="/product/article**"/>
+            <exclude-mapping path="/petsit/list"/>
+            <beans:bean class="com.fin.app.member.LoginCheckInterceptor"/>
+        </interceptor>
+    </interceptors>	 
 
     <!-- 예외처리 -->
     <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
