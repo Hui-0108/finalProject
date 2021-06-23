@@ -625,6 +625,38 @@ public class ProductController {
 		return model;
 	}
 	
+	@RequestMapping(value = "reviewList")
+	@ResponseBody
+	public Map<String, Object> ReviewList(
+			@RequestParam int pNum,
+			@RequestParam(value = "page", defaultValue = "1") int current_page			
+			)throws Exception{
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pNum", pNum);
+		
+		int rows = 5;
+		int dataCount = service.rDataCount(map);
+		int total_page = myUtil.pageCount(rows, dataCount);
+		if(current_page>total_page) {
+			current_page=total_page;
+		}
+		int offset = (current_page-1)*rows;
+		if(offset < 0)offset = 0;
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<ProductReview> listReview = service.listReview(map);
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("dataCount", dataCount);
+		model.put("total_page", total_page);
+		model.put("page", current_page);
+		model.put("listReview", listReview);
+		
+		return model;
+	}
+	
 	
 	
 }

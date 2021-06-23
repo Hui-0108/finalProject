@@ -80,6 +80,29 @@
 </style>
 <script type="text/javascript">
 
+function ajaxFun(url, method, query, dataType, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data) {
+			fn(data);
+		},
+		beforeSend:function(jqXHR) {
+			jqXHR.setRequestHeader("AJAX", true);
+		},
+		error:function(jqXHR) {
+			if(jqXHR.status===403) {
+				login();
+				return false;
+			}
+	    	
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
 function pay(){
 	
 	var f = document.articleform;
@@ -144,6 +167,102 @@ $(function(){
 $(function(){
 	$(".price").css({
 	"text-decoration" :"line-through"
+	});
+});
+
+$(function(){
+	listPage(1);
+});
+
+
+function listPage(page){
+	var url = "${pageContext.request.contextPath}/petsit/reviewList";
+	var query = "category="+category+"&page="+page+"&pNum=${dto.pNum}";
+	
+	var fn = function(data){
+		printReview(data);
+	};	
+	ajaxFun(url, "get", query, "json", fn);
+
+}
+
+function printReview(data) {
+	var memId="${sessionScope.member.mId}";
+	var dataCount = data.dataCount;
+	var page = data.pageNo;
+	var totalPage = data.total_page;
+	
+	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
+	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
+	
+	$("#lisReviewFooter").hide(); //숨겨놓음
+	
+	var out="";
+	if(dataCount==0) { //리뷰 데이터가 0개일 때 
+		out="<div class='paging'>";
+		out+="    <p>아직 등록된 후기가 없습니다.</p>";
+		out+="</div>"
+		
+		$("#listReviewBody").html(out);
+
+		return;
+	}
+	
+	if(page == 1) { //1페이지면 기존 내용 지우고 다시 추가 
+		$("#listReviewBody").empty();
+	}
+	
+	for(var idx=0; idx<data.reviewList.length; idx++) {
+		var rNum=data.reviewList[idx].rNum;
+		var mId=data.reviewList[idx].mId;
+		var rTitle=data.reviewList[idx].rTitle;
+		var rContent=data.reviewList[idx].rContent;
+		var rCreated=data.reviewList[idx].rCreated;
+		var rGrade=data.reviewList[idx].rGrade;
+		var imagefilename=data.reviewList[idx].imagefilename;
+		var img=[];
+		if(imagefilename){
+			img = imagefilename.split(",");
+		}
+
+		
+		out+="<div class='rList'>"
+		out+="<div class='reviewTop'>";
+		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img></div>";
+		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
+		out+="</div>";
+		
+		out+="<p>후기 평점:"+rGrade+"</p>";
+		out+="<p>"+rTitle+"</p>";
+		out+="<p>"+rContent+"</p>";
+		out+="<div calss='reviewPic' style='display:flex;'>"
+		if(img.length>0){
+			for(var i=0; i<img.length; i++) {
+				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
+				
+				out+="<div class='rpicture'><img src='"+s+"' width='100px;' height='100px';></div>";
+			}
+			
+		}
+		out+="</div>"
+	}
+	$("#listReviewBody").append(out); //append로 해야 기존 내용 지워지지 x
+	
+	if(page<totalPage) { //데이터가 더 존재하는 경우
+		$("#listReviewFooter").show(); //데이터를 보여줌
+	}
+	
+}
+//더보기
+$(function(){
+	$(".review-list .more").click(function(){
+		var page = $("#listReviewBody").attr("data-pageNo");
+		var totalPage = $("#listReviewBody").attr("data-totalPage");
+
+		if(page<totalPage) {
+			page++;	
+			listPage(page);
+		}
 	});
 });
 
@@ -245,7 +364,17 @@ $(function(){
 		<div class="content">
 			${dto.pContent}
 		</div>
-
+		
+		<div class="review-list" id="listReview" style="margin-top: 50px;">
+			<div class="reviewT">
+				<h3>후기</h3>
+         	</div>
+			<div id="listReviewBody" data-pageNo="0" data-totalPage="0"></div>
+			<div id="listReviewFooter">
+				<span class="more">후기 더보기</span>
+			</div>
+		</div>
+		
 	</div>
 
 </div>

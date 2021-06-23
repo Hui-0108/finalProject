@@ -35,7 +35,7 @@ public interface PetsitService {
 	//데이터 개수(for paging)
 	public int rDataCount(Map<String, Object> map);
 	//글삭제
-	public void deleteReview(int num, String pathname) throws Exception;
+	public void deleteReview(int rNum, String pathname) throws Exception;
 	
 	//파일 list
 	public List<PetsitReview> listRFile(int rNum);			

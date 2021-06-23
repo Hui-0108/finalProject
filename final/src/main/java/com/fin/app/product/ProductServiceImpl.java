@@ -466,27 +466,32 @@ public class ProductServiceImpl implements ProductService{
 		int result = 0;
 		
 		try {
-			
+			result = dao.selectOne("product.rDataCount");
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		
-		
-		return 0;
+		return result;
 	}
 
 
 	@Override
-	public void deleteReview(int num, String pathname) throws Exception {
-		// TODO Auto-generated method stub
+	public void deleteReview(int rNum, String pathname) throws Exception {
+		
 		
 	}
 
 
 	@Override
 	public List<ProductReview> listReviewFile(int rNum) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ProductReview> listReviewFile = null;
+		
+		try {
+			listReviewFile = dao.selectList("product.listReviewFile", rNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listReviewFile;
 	}
 
 
