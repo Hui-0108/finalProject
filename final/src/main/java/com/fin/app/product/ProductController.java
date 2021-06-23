@@ -628,8 +628,9 @@ public class ProductController {
 	@RequestMapping(value = "reviewList")
 	@ResponseBody
 	public Map<String, Object> ReviewList(
+			@RequestParam String category,
 			@RequestParam int pNum,
-			@RequestParam(value = "page", defaultValue = "1") int current_page			
+			@RequestParam(value="pageNo",defaultValue="1") int current_page
 			)throws Exception{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -646,13 +647,13 @@ public class ProductController {
 		map.put("offset", offset);
 		map.put("rows", rows);
 		
-		List<ProductReview> listReview = service.listReview(map);
+		List<ProductReview> reviewList = service.listReview(map);
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("dataCount", dataCount);
 		model.put("total_page", total_page);
-		model.put("page", current_page);
-		model.put("listReview", listReview);
+		model.put("pageNo", current_page);
+		model.put("reviewList", reviewList);
 		
 		return model;
 	}

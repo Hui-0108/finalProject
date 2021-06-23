@@ -176,8 +176,8 @@ $(function(){
 
 
 function listPage(page){
-	var url = "${pageContext.request.contextPath}/petsit/reviewList";
-	var query = "category="+category+"&page="+page+"&pNum=${dto.pNum}";
+	var url = "${pageContext.request.contextPath}/product/reviewList";
+	var query = "category="+category+"&pageNo="+page+"&pNum=${dto.pNum}";
 	
 	var fn = function(data){
 		printReview(data);
@@ -192,12 +192,6 @@ function printReview(data) {
 	var page = data.pageNo;
 	var totalPage = data.total_page;
 	
-	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
-	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
-	
-	$("#lisReviewFooter").hide(); //숨겨놓음
-	
-	var out="";
 	if(dataCount==0) { //리뷰 데이터가 0개일 때 
 		out="<div class='paging'>";
 		out+="    <p>아직 등록된 후기가 없습니다.</p>";
@@ -208,10 +202,18 @@ function printReview(data) {
 		return;
 	}
 	
+	
+	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
+	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
+	
+	$("#lisReviewFooter").hide(); //숨겨놓음
+	
+	
 	if(page == 1) { //1페이지면 기존 내용 지우고 다시 추가 
 		$("#listReviewBody").empty();
 	}
 	
+	var out="";
 	for(var idx=0; idx<data.reviewList.length; idx++) {
 		var rNum=data.reviewList[idx].rNum;
 		var mId=data.reviewList[idx].mId;
@@ -238,7 +240,7 @@ function printReview(data) {
 		out+="<div calss='reviewPic' style='display:flex;'>"
 		if(img.length>0){
 			for(var i=0; i<img.length; i++) {
-				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
+				var s="${pageContext.request.contextPath}/uploads/reviewImages/"+img[i];		
 				
 				out+="<div class='rpicture'><img src='"+s+"' width='100px;' height='100px';></div>";
 			}
