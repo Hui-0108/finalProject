@@ -11,9 +11,10 @@
 	</select>
 	
 	<select id="bestPetsit" resultType="com.fin.app.Home">
-        SELECT ROWNUM, a.*, p.mId, p.petTitle
+        SELECT ROWNUM, a.*, p.mId, p.petTitle, m.mNick
 		FROM ( SELECT petNum, RANK() OVER (ORDER BY NVL(COUNT(*), 0) DESC) rank, NVL(COUNT(*), 0) count FROM reservation GROUP BY petNum) a
         JOIN petsit p ON a.petNum = p.petNum
+        JOIN member m ON p.mId = m.mId
         WHERE ROWNUM <![CDATA[ <= ]]> 4
 	</select>
 	

@@ -47,7 +47,7 @@
 <div class="footer">
 	<div class="footer-content">
 		<span class="footer-stat"><i class="fas fa-ambulance"></i> 오늘 구조된 동물 : 23마리 &nbsp;&nbsp;<i class="fas fa-heart"></i> 입양률 : 32% &nbsp;&nbsp;<i class="fas fa-heart-broken"></i> 안락사율 : 13%</span>
-		<span class="footer-contact">Contact Us &nbsp;&nbsp; GaeMyeo@gmail.com</span>
+		<span class="footer-contact">Contact Us &nbsp;&nbsp; TakeALook@TakeA.Look</span>
 	</div>
 	
 </div>

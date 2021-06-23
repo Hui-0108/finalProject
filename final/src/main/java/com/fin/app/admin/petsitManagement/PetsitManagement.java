@@ -23,6 +23,15 @@ public class PetsitManagement {
 	private int sat;
 	private int sun;
 	
+	private Date petCertif;
+	private int petYN;
+	private int petYard;
+	private int petLarge;
+	private int petWalk;
+	private int petFamily;
+	private int petLiving;
+	private int petChild;
+	
 
 	public int getPetOnoff() {
 		return petOnoff;
@@ -150,6 +159,70 @@ public class PetsitManagement {
 
 	public void setPetStart(Date petStart) {
 		this.petStart = petStart;
+	}
+
+	public Date getPetCertif() {
+		return petCertif;
+	}
+
+	public void setPetCertif(Date petCertif) {
+		this.petCertif = petCertif;
+	}
+
+	public int getPetYN() {
+		return petYN;
+	}
+
+	public void setPetYN(int petYN) {
+		this.petYN = petYN;
+	}
+
+	public int getPetYard() {
+		return petYard;
+	}
+
+	public void setPetYard(int petYard) {
+		this.petYard = petYard;
+	}
+
+	public int getPetLarge() {
+		return petLarge;
+	}
+
+	public void setPetLarge(int petLarge) {
+		this.petLarge = petLarge;
+	}
+
+	public int getPetWalk() {
+		return petWalk;
+	}
+
+	public void setPetWalk(int petWalk) {
+		this.petWalk = petWalk;
+	}
+
+	public int getPetFamily() {
+		return petFamily;
+	}
+
+	public void setPetFamily(int petFamily) {
+		this.petFamily = petFamily;
+	}
+
+	public int getPetLiving() {
+		return petLiving;
+	}
+
+	public void setPetLiving(int petLiving) {
+		this.petLiving = petLiving;
+	}
+
+	public int getPetChild() {
+		return petChild;
+	}
+
+	public void setPetChild(int petChild) {
+		this.petChild = petChild;
 	}
 	
 	

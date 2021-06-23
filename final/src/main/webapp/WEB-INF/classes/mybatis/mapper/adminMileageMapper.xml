@@ -3,8 +3,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMileage">
 	<select id="listMileage" resultType="com.fin.app.admin.mileageManagement.MileageManagement">
-		SELECT mileNum, mId, mileType, milePrice, mileDate
-		FROM mileage 
+        SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, aMileDate mileDate, aMileHistory mileHistory, mId FROM addedMileage
+        UNION
+        SELECT uMileNum, useType, uMilePrice, uMileDate, uMileHistory, mId FROM usedMileage
 	</select>
 	
 </mapper>

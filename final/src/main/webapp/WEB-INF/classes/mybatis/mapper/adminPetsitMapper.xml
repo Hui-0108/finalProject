@@ -46,6 +46,15 @@
     	WHERE d.petOnoff = 1  
     </select>
     
+    <select id="readPetsit" parameterType="String" resultType="com.fin.app.admin.petsitManagement.PetsitManagement">
+		SELECT m.mId, mNick, petStart, petYN, petYard, petLarge, petFamily,
+			petWalk, petLiving, petChild, petCertif, petAct
+		FROM member m
+		JOIN petDetail d ON m.mId = d.mId
+		JOIN petsit p ON d.mId = p.mId
+		WHERE m.mId = #{mId}
+	</select>
+    
     <!-- 모든 펫시터 리스트 가져오기 -->
     <select id="listPetsit" resultType="com.fin.app.admin.petsitManagement.PetsitManagement">
      	SELECT mId, petStart, petOnoff, null petAct, null mon, null tue, null wed, null thu, null fri, null sat, null sun

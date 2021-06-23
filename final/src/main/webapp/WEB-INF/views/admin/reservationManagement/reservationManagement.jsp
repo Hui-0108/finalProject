@@ -37,7 +37,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>주문코드</th>
+                    <th>예약번호(주문코드)</th>
                     <th>체크인</th>
                     <th>체크아웃</th>
                     <th>주문자 아이디</th>

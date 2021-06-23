@@ -100,7 +100,7 @@
 				<div class="card">
 					<a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}"><img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="..."></a>
 			  		<div class="card-body">
-			    		<h5 class="card-title">${dto.mId} 님</h5>
+			    		<h5 class="card-title">${dto.mNick} 님</h5>
 			    		<p class="card-text">${dto.petTitle}</p>
 			  		</div>
 				</div>

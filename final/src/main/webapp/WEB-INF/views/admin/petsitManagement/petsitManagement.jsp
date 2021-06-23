@@ -3,7 +3,66 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<style type="text/css">
+.hover-tr:hover {
+	cursor: pointer;
+	background: #BDBDBD;
+}
+</style>
+
 <script type="text/javascript">
+function ajaxFun(url, method, query, dataType, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data){
+			fn(data);
+		},
+		beforeSend : function(jqXHR) {
+			jqXHR.setRequestHeader("AJAX", true);
+		},
+		error : function(jqXHR) {
+			if (jqXHR.status == 403) {
+				location.href="${pageContext.request.contextPath}/member/login";
+				return false;
+			}
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function detailedPetsit(mId, petOnoff) {
+	if (petOnoff == 0) {
+		alert("활동중인 펫 시터의 세부정보만 확인할 수 있습니다.");
+		return;
+	}
+	
+	var dlg = $("#petsit-dialog").dialog({
+		  autoOpen: false,
+		  modal: true,
+		  buttons: {
+		       " 닫기 " : function() {
+		    	   $(this).dialog("close");
+		       }
+		  },
+		  height: 520,
+		  width: 800,
+		  title: "펫시터 상세정보",
+
+	});
+
+	var url = "${pageContext.request.contextPath}/admin/petsitManagement/petsitManagementDetail";
+	var query = "mId="+mId;
+	
+	var fn = function(data){
+		$('#petsit-dialog').html(data);
+		dlg.dialog("open");
+	};
+	ajaxFun(url, "post", query, "html", fn);
+}
+
 function petsitAdd() {
 	var str = $("#mId").text();
 	str = str.trim();
@@ -100,7 +159,7 @@ function petsitPrint() {
                   <tbody>
                   	<c:forEach var="dto" items="${list}">
                   		<tr>
-                  			<td>${dto.mId}</td>
+                  			<td class="hover-tr" onclick="detailedPetsit('${dto.mId}','${dto.petOnoff}');">${dto.mId}</td>
                   			<td>${dto.petStart}</td>
                   			<td>${dto.petOnoff==0?"-":"활동 중"}</td>
                   			<td>
@@ -141,6 +200,7 @@ function petsitPrint() {
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <div id="petsit-dialog" style="display: none;"></div>
   
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

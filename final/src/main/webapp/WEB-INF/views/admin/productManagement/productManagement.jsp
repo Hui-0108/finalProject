@@ -151,7 +151,7 @@ function deleteOk(pNum) {
                   	<tr>
                   		<td class="hover-tr" onclick="detailedProduct('${dto.pNum}');">${dto.pNum}</td>
                   		<td>${dto.pName}</td>
-                  		<td>${dto.delivType}</td>
+                  		<td>${dto.delivType==0?"무료배송":"일반배송"}</td>
                   		<td>${dto.pCateName}</td>
                   		<td>${dto.pDate}</td>
                   	</tr>

@@ -27,6 +27,18 @@ public class PetsitManagementController {
 		return ".admin.petsitManagement.petsitManagement";
 	}
 	
+	@RequestMapping(value="/admin/petsitManagement/petsitManagementDetail")
+	public String detailProduct(
+			@RequestParam String mId,
+			Model model) throws Exception {
+		
+		PetsitManagement dto = service.readPetsit(mId);
+
+		model.addAttribute("dto", dto);
+		
+		return "admin/petsitManagement/petsitManagementDetail";
+	}
+	
 	@RequestMapping(value="/admin/petsitAdd", method=RequestMethod.POST)
 	@ResponseBody
 	public void petsitAdd(PetsitManagement dto, @RequestParam String mId) {

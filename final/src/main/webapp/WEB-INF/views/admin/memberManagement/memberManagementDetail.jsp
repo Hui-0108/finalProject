@@ -5,8 +5,6 @@
 
 <style type="text/css">
 
-
-
 </style>
 
 <div class="modal-detail">

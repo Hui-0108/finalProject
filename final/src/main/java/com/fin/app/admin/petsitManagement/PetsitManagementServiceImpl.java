@@ -85,4 +85,17 @@ public class PetsitManagementServiceImpl implements PetsitManagementService {
 		return list;
 	}
 
+	@Override
+	public PetsitManagement readPetsit(String mId) {
+		PetsitManagement dto = null;
+		
+		try {
+			dto = dao.selectOne("adminPetsit.readPetsit", mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
 }

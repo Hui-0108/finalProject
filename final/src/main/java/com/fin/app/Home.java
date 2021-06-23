@@ -13,6 +13,7 @@ public class Home {
 	
 	private int pNum;
 	private String mId;
+	private String mNick;
 	private int petNum;
 	private int count;
 	
@@ -112,6 +113,13 @@ public class Home {
 	public void setpDiscountRate(int pDiscountRate) {
 		this.pDiscountRate = pDiscountRate;
 	}
+	public String getmNick() {
+		return mNick;
+	}
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
+	}
+	
 	
 	
 }

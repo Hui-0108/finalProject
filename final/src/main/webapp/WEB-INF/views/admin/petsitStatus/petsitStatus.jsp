@@ -67,6 +67,9 @@
                 <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body -->
+			  <c:forEach var="dto" items="${bestPetsit}">
+			      <p style="padding-left: 20px; font-weight:700;"><a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}" style="color:black;">${dto.rank}위 &nbsp; 펫시터ID : ${dto.mId}님 &nbsp; 누적예약수 : ${dto.count}건</a> </p>
+		      </c:forEach> 
             </div>
             <!-- /.card -->
 

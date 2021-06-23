@@ -21,11 +21,12 @@
 	</select>
 	
 	<select id="bestProduct" resultType="com.fin.app.admin.Admin">
-		SELECT ROWNUM, a.*, p.pNum, p.pCateNum
+		SELECT ROWNUM, a.*, p.pNum, p.pCateNum, p.pName
 		FROM ( SELECT storeDetailOptNum, RANK() OVER (ORDER BY SUM(sDetailQty) DESC) rank, SUM(sDetailQty) sumQty FROM storeDetail GROUP BY storeDetailOptNum ) a 
         LEFT OUTER JOIN storeDetailOpt d ON a.storeDetailOptNum = d.storeDetailOptNum
         JOIN product p ON d.pNum = p.pNum
 		WHERE ROWNUM <![CDATA[ <= ]]> 6
+		ORDER BY sumQty DESC
 	</select>
 	
 </mapper>

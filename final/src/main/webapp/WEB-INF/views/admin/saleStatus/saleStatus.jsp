@@ -64,8 +64,12 @@
               </div>
               <div class="card-body">
                 <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                
               </div>
               <!-- /.card-body -->
+			  <c:forEach var="dto" items="${bestProduct}">
+			      <p style="padding-left: 20px; font-weight:700;"><a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}" style="color:black;">${dto.rank}위 상품번호 : ${dto.pNum}번 &nbsp; 누적판매량 : ${dto.sumQty}개 &nbsp; 제품명 : ${dto.pName}</a> </p>
+		      </c:forEach> 
             </div>
             <!-- /.card -->
 

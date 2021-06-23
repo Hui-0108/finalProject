@@ -12,7 +12,7 @@
 	<title><tiles:insertAttribute name="title"/></title>
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
+	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 	
 	<!-- dataTable css -->
@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/add.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/icofont.min.css">
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
 
 	<!--  JQuery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
