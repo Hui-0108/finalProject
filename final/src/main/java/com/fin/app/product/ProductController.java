@@ -532,11 +532,21 @@ public class ProductController {
 		}
 
 		List<Product> listMileage = service.listMileage(info.getmId());
-		int s= 0;
+		//List<Product> useListMileage = service.useListMileage(info.getmId());
+		int s= 0, v=0;
+		int n;
 		for(Product mile : listMileage) {
 			s+=mile.getaMilePrice();
 		}
-		dto.setTotMile(s);
+		/*
+		for(Product umile : useListMileage) {
+			v+=umile.getuMilePrice();
+		}			
+		*/
+		
+		//n=s-v;
+		n=s;
+		dto.setTotMile(n);
 		
 
 		Member member = memberservice.readMember(info.getmId());
@@ -597,7 +607,7 @@ public class ProductController {
 			Product dto,
 			HttpSession session
 			){
-		//여기서파라미터들 넘겨주기 price값들
+		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		String state = "true";
@@ -609,52 +619,11 @@ public class ProductController {
 			state = "false";
 		}
 		
-		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("state", state);
 		
 		return model;
 	}
-	
-	
-
-	////////////////////
-	@RequestMapping(value = "paymentClient", method = RequestMethod.GET)
-	public String paymentClientForm(		
-			@RequestParam int pNum,
-			@RequestParam int sDetailQty,
-			@RequestParam int sum,
-			Model model	
-			)throws Exception{
-
-		Product dto = service.selectedProduct(pNum);
-	
-		if(dto == null) {
-			return "redirect:/product/list";
-		}
-		
-        int pDetailPrice= dto.getpDetailPrice();
-		int pPrice = dto.getpPrice();
-		int pDiscountRate = dto.getpDiscountRate();
-		int productPrice = pPrice+pDetailPrice;
-		double discoutNum = pDiscountRate*0.01;
-		double discountPrice =(pPrice+pDetailPrice)*discoutNum;
-		int totPrice = (int) ((pPrice+pDetailPrice)- discountPrice);
-		dto.setProductPrice(productPrice);
-		dto.setTotPrice(totPrice);
-				
-		//int mil= (int) (sum*0.001);
-		//dto.setMilePrice(mil);
-
-		List<Product> listProductImage = service.listProductImage(pNum);		
-		
-		model.addAttribute("listProductImage", listProductImage);
-		model.addAttribute("pNum", pNum);
-		model.addAttribute("sDetailQty", sDetailQty);
-		model.addAttribute("sum", sum);
-		model.addAttribute("dto", dto);
-		return "";
-	}	
 	
 	
 	

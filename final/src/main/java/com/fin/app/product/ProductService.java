@@ -40,10 +40,11 @@ public interface ProductService {
 	public void insertStoreDetails(Product dto) throws Exception;
 	
 	public List<Product>listMileage(String mId);
+	public List<Product>useListMileage(String mId);
+	
 	public void addMileage(Product dto) throws Exception;
 	public void usedMileage(Product dto)throws Exception;
 	
-	//public void insertMileage(Product dto) throws Exception;
 	
 	
 	
