@@ -431,7 +431,6 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 
-
 	@Override
 	public List<Product> useListMileage(String mId) {
 		List<Product> useListMileage = null;
@@ -443,6 +442,65 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		return useListMileage;
+	}
+
+
+	
+	@Override
+	public List<ProductReview> listReview(Map<String, Object> map) {
+		List<ProductReview> listReview = null;
+		
+		try {
+			listReview = dao.selectList("product.listReview", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return listReview;
+	}
+
+
+	@Override
+	public int rDataCount(Map<String, Object> map) {
+		int result = 0;
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return 0;
+	}
+
+
+	@Override
+	public void deleteReview(int num, String pathname) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<ProductReview> listReviewFile(int rNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ProductReview readReviewFile(int rImgNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void deleteReviewFile(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

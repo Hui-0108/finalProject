@@ -45,7 +45,12 @@ public interface ProductService {
 	public void addMileage(Product dto) throws Exception;
 	public void usedMileage(Product dto)throws Exception;
 	
+	public List<ProductReview> listReview(Map<String, Object>map);
+	public int rDataCount(Map<String, Object> map);
+	public void deleteReview(int num, String pathname) throws Exception;
 	
-	
+	public List<ProductReview> listReviewFile(int rNum);
+	public ProductReview readReviewFile(int rImgNum);
+	public void deleteReviewFile(Map<String, Object>map) throws Exception;
 	
 }

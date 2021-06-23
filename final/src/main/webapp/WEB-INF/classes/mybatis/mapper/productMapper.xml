@@ -152,8 +152,6 @@
 		WHERE m.mId = #{mId}
 	</select>
 
-
-
 	<!-- orderNum의 시퀀스 -->
 	<select id="orderSeq" resultType="Integer">
 		SELECT order_seq.NEXTVAL FROM dual
@@ -194,7 +192,6 @@
 		SELECT aMileNum_seq.NEXTVAL FROM dual		
 	</select>
 
-
 	<!-- 마일리지 적립 -->
 	<insert id="addMileage" parameterType="com.fin.app.product.Product">
 		INSERT INTO addedMileage(aMileNum, addType, aMilePrice, aMileDate, aMileHistory, mId)
@@ -204,17 +201,30 @@
 	<!-- 마일리지 사용 -->
 	<insert id="usedMileage" parameterType="com.fin.app.product.Product">
 		INSERT INTO usedMileage(uMileNum, useType, uMilePrice, uMileDate, uMileHistory, mId, orderNum)
-		VALUES(uMileNum_seq.NEXTVAL, 0, #{uMilePrice}, SYSDATE, '마일리지 사용', #{mId}, #{orderNum} )
+		VALUES(aMileNum_seq.NEXTVAL, 0, #{uMilePrice}, SYSDATE, '마일리지 사용', #{mId}, #{orderNum} )
 	</insert>
 
-	<select id="listStore" parameterType="Integer" resultType="com.fin.app.product.Product">
-		SELECT d.orderNum, sDate, sTotPrice, sDelivCharge, sDelivDate, sZip, sAddr1, sAddr2, cpNum,
-		mileNum, finalPrice, storeDetailOptNum, sDetailQty, sDetailPrice
-		FROM store s
-		JOIN storeDetail d ON s.orderNum = d.orderNum
-		WHERE orderNum = #{orderNum}
-	</select>	
-	
+	<!-- 리뷰 데이터  -->
+	<select id="rDataCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
+		FROM review
+	</select>
+
+	<select id="listReview" parameterType="map" resultType="com.fin.app.product.ProductReview">
+		SELECT r.rNum. rTitle, rContent, rGrade, rCreated, mId, r.orderNum, 
+		rNum, mNum, rImgNum, rNum, imagefilename, pNum
+		FROM review r
+		LEFT OUTER JOIN(
+    		SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
+    		FROM reviewImage
+   			GROUP BY rNum		
+		) ri ON r.rNum = ri.rNum
+		JOIN storeDetail sd ON r.orderNum = sd.orderNum
+		JOIN StoreDetailOpt so ON sd.storeDetailOptNum = so.storeDetailOptNum
+		WHERE pNum = #{pNum}
+		ORDER BY rNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY 
+	</select>
 	
 	
 	

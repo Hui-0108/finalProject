@@ -305,6 +305,7 @@ $(function(){//회원 정보로 기본 배송지 설정하기
 	
 	$("form[name=orderForm] #newAddr").click(function(){
 		
+
 		$("form[name=orderForm] input").val("");		
 		$(".selectmEmail").removeAttr("disabled", "disabled");		
 		
@@ -364,6 +365,19 @@ $(function(){//jquery
 function iamport(){
 	
 	var f = document.orderForm;
+
+	var url = "${pageContext.request.contextPath}/product/orders";
+
+	var query = $('form[name=orderForm]').serialize();
+	
+	//alert(query);
+	var fn = function(data){
+		var state = data.state;
+		console.log(state);
+	};
+	ajaxFun(url, "post", query, "json", fn);		
+	
+	/*
 	
 	var finalPrice = $("input[name=finalPrice]").val();
 	
@@ -383,16 +397,8 @@ function iamport(){
 	}, function(rsp) {
 		if ( rsp.success ) {
 	
-			var url = "${pageContext.request.contextPath}/product/orders";
 
-			var query = $('form[name=orderForm]').serialize();
 			
-			//alert(query);
-			var fn = function(data){
-				var state = data.state;
-				console.log(state);
-			};
-			ajaxFun(url, "post", query, "json", fn);	
 			if ( everythings_fine ) {
     			var msg = '결제가 완료되었습니다.';
     			msg += '\n고유ID : ' + rsp.imp_uid;
@@ -413,7 +419,7 @@ function iamport(){
 	        alert(msg);
 	    }
 	});
-	
+	*/
 }
 
 

@@ -63,15 +63,7 @@ public class Product {
 	private int sDetailPrice; //주문단가
 	
 	private String mId; //아이디
-/*	
-	private int mileNum;
-	private int mileType; //사용/적립
-	private int milePrice; //마일리지금액
-	private String mileDate; //날짜(사용,적립)
-	private String mileHistory; //내역
-	private String mId; //아이디
-*/
-	
+
 	private String mName;//회원이름
 	private String mTel; //회원전번
 	private String mZip; //회원우편
