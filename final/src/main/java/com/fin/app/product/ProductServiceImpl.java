@@ -359,6 +359,10 @@ public class ProductServiceImpl implements ProductService{
 			addMileage(dto);
 			insertStore(dto);
 			insertStoreDetails(dto);
+			usedMileage(dto);
+			if(dto.getuMilePrice()!=0) {
+			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -426,42 +430,21 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 	}
-	
-	/*
-	@Override
-	public List<Product> listMileage(String mId) {
-		List<Product> listMileage =null;
-		
-		try {
-			listMileage = dao.selectList("product.listMileage", mId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		return listMileage;
-	}
-*/
-	
-	
 
-/*
+
 	@Override
-	public void insertMileage(Product dto) throws Exception {
+	public List<Product> useListMileage(String mId) {
+		List<Product> useListMileage = null;
 		
 		try {
-			
-			int mileSeq = dao.selectOne("product.mileageSeq");
-			dto.setMileNum(mileSeq);			
-			dao.insertData("product.insertMileage", dto);
+			dao.insertData("product.useListMileage", mId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		return useListMileage;
 	}
- 
- *
- */
+	
 
 
 

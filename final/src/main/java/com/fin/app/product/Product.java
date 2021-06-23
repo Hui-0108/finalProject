@@ -81,6 +81,7 @@ public class Product {
 	
 	private String buyerAddr;
 
+	//사용한 마일리지
 	private int totMile;
 	private int uMileNum; //마일리지번호
 	private int useType; //사용 =0
@@ -88,6 +89,7 @@ public class Product {
 	private String uMileDate; //날짜
 	private String uMileHistory; //내역
 	
+	//적립할 마일리지
 	private int aMileNum; //마일리지번호
 	private int addType; //적립=1;
 	private int aMilePrice; //마일리지금액
