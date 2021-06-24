@@ -5,8 +5,10 @@ public class OrderManagement {
 	private long mNum;
 	private int mType;
 	private int orderState;
+	private int deliveryState;
 	private int finalPrice;
 	private String orderName;
+	
 	public long getOrderNum() {
 		return orderNum;
 	}
@@ -42,6 +44,12 @@ public class OrderManagement {
 	}
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
+	}
+	public int getDeliveryState() {
+		return deliveryState;
+	}
+	public void setDeliveryState(int deliveryState) {
+		this.deliveryState = deliveryState;
 	}
 	
 	

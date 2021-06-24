@@ -63,6 +63,8 @@
             <!-- 제외 -->
             <exclude-mapping path="/"/>
             <exclude-mapping path="/resources/**"/>
+            <exclude-mapping path="/upload/**"/>
+            <exclude-mapping path="/uploads/**"/>
             <exclude-mapping path="/member/signup"/>
             <exclude-mapping path="/member/login"/>
             <exclude-mapping path="/member/logout"/>
@@ -77,8 +79,9 @@
             <exclude-mapping path="/product/cateList/*"/>
             <exclude-mapping path="/product/article**"/>
             <exclude-mapping path="/petsit/list"/>
-            <exclude-mapping path="/donation/*"/>
-            <exclude-mapping path="/stat/*"/>
+            <exclude-mapping path="/petsit/reservation**"/>
+            <exclude-mapping path="/donation/**"/>
+            <exclude-mapping path="/stat/**"/>
             <beans:bean class="com.fin.app.member.LoginCheckInterceptor"/>
         </interceptor>
     </interceptors>	 
