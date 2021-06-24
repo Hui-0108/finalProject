@@ -139,15 +139,15 @@ $(function() {
 						</td>
 						
 						<td width="15%">
-							<label> ${type=='petsit'?'체크아웃':'정보 1'} </label>
+							<label> ${type=='petsit'?'체크아웃':'수량'} </label>
 						</td>
 						
 						<td width="15%">
-							<label> 정보 3 </label>
+							<label> ${type=='petsit'?'정보3':'가격'} </label>
 						</td>
 						
 						<td width="20%" colspan="2">
-							<label> 정보 4</label>
+							<label> ${type=='petsit'?'정보4':'주문 상태'} </label>
 						</td>
 					</tr>
 					
@@ -164,16 +164,16 @@ $(function() {
 							<p style="color: #777777;"> ${dto.checkIn} 14:00 </p>
 							</c:if>
 							<c:if test="${type == 'store'}">
-							<p style="color: #777777;"> [옵션] ${dto.storeMainOptName} : ${dto.storeSubOptName} </p>
+							<p style="color: #777777;"> ${dto.storeMainOptName}: ${dto.storeSubOptName} </p>
 							</c:if>
 						</td>
 						
 						<td>
 							<c:if test="${type == 'petsit'}">
-							<p style="color: #777777;"> ${dto.checkOut} 11:00 </p>
+								<p style="color: #777777;"> ${dto.checkOut} 11:00 </p>
 							</c:if>
 							<c:if test="${type == 'store'}">
-								
+								<p> ${dto.sDetailQty}개 </p>
 							</c:if>
 						</td>
 						

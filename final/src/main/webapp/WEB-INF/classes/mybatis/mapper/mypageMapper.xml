@@ -189,22 +189,39 @@
 	<select id="mileageDataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*),0) 
 		FROM (
-			SELECT addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
-			UNION
-			SELECT useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+			SELECT mId, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage
+			UNION ALL
+			SELECT mId, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
 		)
+		<where>
+			mId = #{mId}
+			<if test=" keyword!=null and keyword != '' "> AND mileType = #{keyword} </if>
+		</where>
 	</select>
 	
 	<select id="selectAllMile" parameterType="map" resultType="com.fin.app.mypage.Mileage">
-		SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
-		UNION
-		SELECT uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		SELECT * 
+		FROM 
+		(
+   		 SELECT mId, aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage 
+   		 UNION ALL
+   		 SELECT mId, uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		)		
+    	WHERE mId = #{mId}
 	</select>
 	
 	<select id="selectMile" parameterType="map" resultType="com.fin.app.mypage.Mileage">
-		SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage WHERE mId = #{mId}
-		UNION
-		SELECT uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		SELECT * 
+		FROM 
+		(
+   		 SELECT mId, aMileNum mileNum, addType mileType, aMilePrice milePrice, TO_CHAR(aMileDate, 'YYYY-MM-DD') mileDate, aMileHistory mileHistory FROM addedMileage 
+   		 UNION ALL
+   		 SELECT mId, uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
+		)
+		<where>
+			mId = #{mId}
+			<if test=" keyword!=null and keyword != '' "> AND mileType = #{keyword} </if>
+		</where>
 		ORDER BY mileNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
