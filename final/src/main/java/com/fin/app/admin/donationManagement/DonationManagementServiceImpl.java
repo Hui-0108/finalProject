@@ -23,5 +23,18 @@ public class DonationManagementServiceImpl implements DonationManagementService 
 		}
 		return list;
 	}
+
+	@Override
+	public int totalDonation() throws Exception {
+		int totalDonation = 0;
+		
+		try {
+			totalDonation = dao.selectOne("adminDonation.totalDonation");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalDonation;
+	}
 	
 }

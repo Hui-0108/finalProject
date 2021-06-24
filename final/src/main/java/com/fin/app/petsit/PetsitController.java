@@ -357,7 +357,7 @@ public class PetsitController {
 	
 	/////예약 part/////
 	
-
+/*
 	@RequestMapping(value="reservation", method=RequestMethod.POST)
 	public String createdSubmit(Reservation dto, HttpSession session) throws Exception{
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -369,8 +369,7 @@ public class PetsitController {
 		
 		return "redirect:/petsit/list";
 	}
-	
-	
+*/
 	//예약 완료(전송)
 	@RequestMapping(value="payment", method=RequestMethod.POST)
 	   public String reservationSubmit(
@@ -399,7 +398,7 @@ public class PetsitController {
 	   }
 	
 	//결제
-	@RequestMapping(value = "confirm")
+	@RequestMapping(value = "confirm" , method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> rvConfirm(
 			Reservation dto,

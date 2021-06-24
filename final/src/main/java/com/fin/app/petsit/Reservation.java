@@ -13,48 +13,24 @@ public class Reservation {
 	private int finalPrice;//최종금액
 	private String rDate; //예약을 신청한 날짜
 	
-	//펫시터 상위옵션
-	private int petMainOptNum; //상위옵션 번호 
-	private String petMainOptName; //상위 옵션명 (견종)
 	
-	//펫시터 하위옵션 
-	private int petSubOptionNum; //하위옵션번호 
-	private int petSubOptName; //하위옵션명 (소형, 중형, 대형)
-
-	//펫시터 상세 옵션
-	private int petDetailOptNum; //상세옵션번호
-	private int sitterPrice; //가격 
-	
-	//예약 상세
-	private int petAmount; // 마리수
 	
 	//예약 취소
 	private String cancelDate; //취소일자
 	private String cancelContent; //취소사유 
 	
 	
-	//옵션받기
+	//옵션받기 
 	private int small;
-	private int midium;
+	private int medium;
 	private int large;
+	
+	//옵션- 여기서만 쓰는 부분 
 	private int tax;
 	private int dayCnt;
 	private int sum;
-
-	public int getSum() {
-		return sum;
-	}
-	public void setSum(int sum) {
-		this.sum = sum;
-	}
-	private String petImg;
 	
-	public String getPetImg() {
-		return petImg;
-	}
-	public void setPetImg(String petImg) {
-		this.petImg = petImg;
-	}
+	
 	public String getmId() {
 		return mId;
 	}
@@ -103,42 +79,6 @@ public class Reservation {
 	public void setrDate(String rDate) {
 		this.rDate = rDate;
 	}
-	public int getPetMainOptNum() {
-		return petMainOptNum;
-	}
-	public void setPetMainOptNum(int petMainOptNum) {
-		this.petMainOptNum = petMainOptNum;
-	}
-	public String getPetMainOptName() {
-		return petMainOptName;
-	}
-	public void setPetMainOptName(String petMainOptName) {
-		this.petMainOptName = petMainOptName;
-	}
-	public int getPetSubOptionNum() {
-		return petSubOptionNum;
-	}
-	public void setPetSubOptionNum(int petSubOptionNum) {
-		this.petSubOptionNum = petSubOptionNum;
-	}
-	public int getPetSubOptName() {
-		return petSubOptName;
-	}
-	public void setPetSubOptName(int petSubOptName) {
-		this.petSubOptName = petSubOptName;
-	}
-	public int getPetDetailOptNum() {
-		return petDetailOptNum;
-	}
-	public void setPetDetailOptNum(int petDetailOptNum) {
-		this.petDetailOptNum = petDetailOptNum;
-	}
-	public int getSitterPrice() {
-		return sitterPrice;
-	}
-	public void setSitterPrice(int sitterPrice) {
-		this.sitterPrice = sitterPrice;
-	}
 	public String getCancelDate() {
 		return cancelDate;
 	}
@@ -151,23 +91,17 @@ public class Reservation {
 	public void setCancelContent(String cancelContent) {
 		this.cancelContent = cancelContent;
 	}
-	public int getPetAmount() {
-		return petAmount;
-	}
-	public void setPetAmount(int petAmount) {
-		this.petAmount = petAmount;
-	}
 	public int getSmall() {
 		return small;
 	}
 	public void setSmall(int small) {
 		this.small = small;
 	}
-	public int getMidium() {
-		return midium;
+	public int getmedium() {
+		return medium;
 	}
-	public void setMidium(int midium) {
-		this.midium = midium;
+	public void setMedium(int medium) {
+		this.medium = medium;
 	}
 	public int getLarge() {
 		return large;
@@ -187,7 +121,11 @@ public class Reservation {
 	public void setDayCnt(int dayCnt) {
 		this.dayCnt = dayCnt;
 	}
-	
-	
-	
-}
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+
+}	

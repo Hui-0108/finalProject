@@ -9,6 +9,13 @@ public class DonationManagement {
 	private Date donaStart;
 	private Date donaEnd;
 	
+	private int orderNum;
+	private String mName;
+	private int finalPrice;
+	private String sDate;
+	
+	private int totalDonation;
+	
 	public long getDonaNum() {
 		return donaNum;
 	}
@@ -38,6 +45,36 @@ public class DonationManagement {
 	}
 	public void setDonaEnd(Date donaEnd) {
 		this.donaEnd = donaEnd;
+	}
+	public int getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
+	}
+	public String getmName() {
+		return mName;
+	}
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+	public String getsDate() {
+		return sDate;
+	}
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+	public int getTotalDonation() {
+		return totalDonation;
+	}
+	public void setTotalDonation(int totalDonation) {
+		this.totalDonation = totalDonation;
 	}
 	
 	

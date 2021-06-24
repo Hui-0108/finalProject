@@ -278,18 +278,14 @@ public class PetsitServiceImpl implements PetsitService {
 			int orderSeq = dao.selectOne("reservation.orderSeq");
 			dto.setOrderNum(orderSeq);
 			
-			dao.insertData("petsit.insertPetsitReservation", dto);
-						
+			dao.insertData("petsit.insertReservation", dto);
+			dao.insertData("petsit.insertOrderProduct", dto);	
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
-
-	@Override
-	public Reservation readReservation(int orderNum) {
-		return null;
-	}
+	
 	
 	
 

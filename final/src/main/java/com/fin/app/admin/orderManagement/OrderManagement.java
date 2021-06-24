@@ -9,6 +9,18 @@ public class OrderManagement {
 	private int finalPrice;
 	private String orderName;
 	
+	private String orderTel;
+	private String orderEmail;
+	
+	private String sDate;
+	private int sDelivCharge;
+	private String sZip;
+	private String sAddr1;
+	private String sAddr2;
+	
+	private int aMileNum;
+	
+	
 	public long getOrderNum() {
 		return orderNum;
 	}
@@ -50,6 +62,54 @@ public class OrderManagement {
 	}
 	public void setDeliveryState(int deliveryState) {
 		this.deliveryState = deliveryState;
+	}
+	public String getOrderTel() {
+		return orderTel;
+	}
+	public void setOrderTel(String orderTel) {
+		this.orderTel = orderTel;
+	}
+	public String getOrderEmail() {
+		return orderEmail;
+	}
+	public void setOrderEmail(String orderEmail) {
+		this.orderEmail = orderEmail;
+	}
+	public String getsDate() {
+		return sDate;
+	}
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+	public int getsDelivCharge() {
+		return sDelivCharge;
+	}
+	public void setsDelivCharge(int sDelivCharge) {
+		this.sDelivCharge = sDelivCharge;
+	}
+	public String getsZip() {
+		return sZip;
+	}
+	public void setsZip(String sZip) {
+		this.sZip = sZip;
+	}
+	public String getsAddr1() {
+		return sAddr1;
+	}
+	public void setsAddr1(String sAddr1) {
+		this.sAddr1 = sAddr1;
+	}
+	public String getsAddr2() {
+		return sAddr2;
+	}
+	public void setsAddr2(String sAddr2) {
+		this.sAddr2 = sAddr2;
+	}
+	public int getaMileNum() {
+		return aMileNum;
+	}
+	public void setaMileNum(int aMileNum) {
+		this.aMileNum = aMileNum;
 	}
 	
 	

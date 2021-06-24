@@ -50,6 +50,5 @@ public interface PetsitService {
 	//예약 내용 입력하기
 	public void insertPetsitReservation(Reservation dto) throws Exception;
 	
-	//예약 내용 읽어오기
-	public Reservation readReservation(int orderNum);
+	
 }

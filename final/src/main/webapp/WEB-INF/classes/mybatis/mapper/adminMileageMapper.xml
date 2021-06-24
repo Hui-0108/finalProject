@@ -6,6 +6,7 @@
         SELECT aMileNum mileNum, addType mileType, aMilePrice milePrice, aMileDate mileDate, aMileHistory mileHistory, mId FROM addedMileage
         UNION
         SELECT uMileNum, useType, uMilePrice, uMileDate, uMileHistory, mId FROM usedMileage
+        WHERE uMilePrice != 0
 	</select>
 	
 </mapper>

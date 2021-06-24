@@ -150,7 +150,15 @@
 	</select>
 	
 	<!-- 예약 part -->
+	<insert id="insertOrderProduct" parameterType="com.fin.app.petsit.Reservation">
+		INSERT INTO reservation(orderNum, mNum, orderState, orderName, oederTel, orderEmail)
+		VALUES(orderProduct_seq.NEXTVAL, #{mNum}, #{orderState}, #{oederTel}, #{orderEmail})	
+	</insert>
 	
+	<insert id="insertReservation" parameterType="com.fin.app.petsit.Reservation">
+		INSERT INTO reservation(orderNum, checkIn, checkOut, mNum, petNum, finalPrice, rDate, small, medium, large)
+		VALUES(orderProduct_seq.NEXTVAL, #{checkIn}, #{checkOut}, #{mNum}, #{petNum}, #{finalPrice},#{rDate}, #{small},#{medium}, #{large})	
+	</insert>
 	
 	
 </mapper>
