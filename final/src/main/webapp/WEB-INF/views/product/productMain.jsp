@@ -51,26 +51,18 @@
 		<div class="popularProductText productTitle">
 			인기상품
 		</div>
-		
-			<div var="dto" class="popularProduct">
-				<c:forEach var="dto" items="$">
-					<div class="pproduct">
-						<div class="popularImg1 img">
-						<a class="storeClick">
-							<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-						</a>
-						</div>
-						<div class="popularName1 name">
-							<a class="storeClick">사료1</a>
-						</div>
-						<div class="popularPrice1 price">
-							2000원
+			
+				<c:forEach var="dto" items="${bestProduct}">
+					<div class="">
+						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="" alt="..."></a>
+						<div class="">
+							<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
+				    		<h5 class=""> ${price} 원</h5>
+			    			<p class="">${dto.pName}</p>					
 						</div>
 					</div>
-				</c:forEach>
-					
-																	
-			</div>
+				</c:forEach>												
+			
 		</div>
 		
 		<div class="banner donation">
