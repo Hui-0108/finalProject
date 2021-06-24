@@ -360,6 +360,7 @@ public class ProductServiceImpl implements ProductService{
 			insertStore(dto);
 			insertStoreDetails(dto);
 			usedMileage(dto);
+			insertDelivery(dto);
 			if(dto.getuMilePrice()!=0) {
 			}
 			
@@ -392,6 +393,18 @@ public class ProductServiceImpl implements ProductService{
 		}
 	}
 
+
+	@Override
+	public void insertDelivery(Product dto) throws Exception {
+		
+		try {
+			dao.insertData("product.insertDelivery", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 	@Override
 	public List<Product> listMileage(String mId) {
@@ -481,33 +494,6 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
-	@Override
-	public List<ProductReview> listReviewFile(int rNum) {
-		List<ProductReview> listReviewFile = null;
-		
-		try {
-			listReviewFile = dao.selectList("product.listReviewFile", rNum);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return listReviewFile;
-	}
-
-
-	@Override
-	public ProductReview readReviewFile(int rImgNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void deleteReviewFile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 
 

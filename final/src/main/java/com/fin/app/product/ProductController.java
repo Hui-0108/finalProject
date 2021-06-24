@@ -568,15 +568,16 @@ public class ProductController {
 		//dto.setProductPrice(productPrice);
 		dto.setTotPrice(totPrice);
 
-		int mil = (int)(sum*0.001);
+		int mil = (int)(sum*0.05);
 		dto.setaMilePrice(mil);
 		dto.setMiles(mil);
 
 		//배달 날짜 = 주문일자+3일
+		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());//"MM"+"월"+"dd"+"일"
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		cal.add(Calendar.DATE, +3);
+		//cal.add(Calendar.DATE, +3);
 		String delivery = df.format(cal.getTime());
 
 		dto.setsDelivDate(delivery);

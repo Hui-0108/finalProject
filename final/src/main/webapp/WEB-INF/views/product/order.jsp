@@ -357,11 +357,14 @@ $(function(){//최종가격에 마일리지 사용
 	
 	var defaultPrice = $("input[name=finalPrice]").attr("data-price");
 
-	if(uMilePrice > totMile ){
+	var uMilePrice =parseInt(uMilePrice)
+	var totMile = parseInt(totMile)
+	
+	if(uMilePrice> totMile ){
 		alert("마일리지가 부족합니다.")
 		return;
-	}else{
-		var totPrice = finalPrice-uMilePrice;				
+	}else{ 
+		var totPrice = finalPrice -uMilePrice;				
 	}
 	
 	if(uMilePrice == "" || uMilePrice == 0){

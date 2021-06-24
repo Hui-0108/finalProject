@@ -38,6 +38,7 @@ public interface ProductService {
 	public void insertOrderProduct(Product dto) throws Exception;
 	public void insertStore(Product dto) throws Exception;
 	public void insertStoreDetails(Product dto) throws Exception;
+	public void insertDelivery(Product dto)throws Exception;
 	
 	public List<Product>listMileage(String mId);
 	public List<Product>useListMileage(String mId);
@@ -47,10 +48,9 @@ public interface ProductService {
 	
 	public List<ProductReview> listReview(Map<String, Object>map);
 	public int rDataCount(Map<String, Object> map);
+	
 	public void deleteReview(int num, String pathname) throws Exception;
 	
-	public List<ProductReview> listReviewFile(int rNum);
-	public ProductReview readReviewFile(int rImgNum);
-	public void deleteReviewFile(Map<String, Object>map) throws Exception;
+
 	
 }

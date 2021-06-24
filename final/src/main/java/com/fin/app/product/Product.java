@@ -89,7 +89,27 @@ public class Product {
 	private String aMileHistory; //내역
 	private int miles;
 	
+	//배송
+	private int transportNum;
+	private int deliveryState;
 	
+	
+
+	public int getTransportNum() {
+		return transportNum;
+	}
+
+	public void setTransportNum(int transportNum) {
+		this.transportNum = transportNum;
+	}
+
+	public int getDeliveryState() {
+		return deliveryState;
+	}
+
+	public void setDeliveryState(int deliveryState) {
+		this.deliveryState = deliveryState;
+	}
 
 	public int getuMileNum() {
 		return uMileNum;
