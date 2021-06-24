@@ -328,7 +328,6 @@ $(function(){//배송비 더해서 최종가격 계산
 	
 	$("input[name=uMilePrice]").on("propertychange change keyup paste input", function(){		
 		var newValue = $(this).val();
-				
 	});
 
 	if("${dto.delivType == 0}"){	
