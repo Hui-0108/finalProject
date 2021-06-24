@@ -344,7 +344,7 @@ $(function () {
 	        borderColor: '#ced4da',
 	        pointBorderColor: '#ced4da',
 	        pointBackgroundColor: '#ced4da',
-	        fill: false
+	        fill: false 
 	        // pointHoverBackgroundColor: '#ced4da',
 	        // pointHoverBorderColor    : '#ced4da' 
 	      }]
@@ -354,7 +354,7 @@ $(function () {
 	      tooltips: {
 	        mode: mode,
 	        intersect: intersect
-	      },
+	      }, 
 	      hover: {
 	        mode: mode,
 	        intersect: intersect
