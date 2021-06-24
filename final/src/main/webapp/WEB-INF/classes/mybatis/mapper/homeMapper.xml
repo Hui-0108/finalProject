@@ -8,6 +8,7 @@
         LEFT OUTER JOIN storeDetailOpt d ON a.storeDetailOptNum = d.storeDetailOptNum
         JOIN product p ON d.pNum = p.pNum
 		WHERE ROWNUM <![CDATA[ <= ]]> 4
+		ORDER BY sumQty DESC
 	</select>
 	
 	<select id="bestPetsit" resultType="com.fin.app.Home">
@@ -16,6 +17,7 @@
         JOIN petsit p ON a.petNum = p.petNum
         JOIN member m ON p.mId = m.mId
         WHERE ROWNUM <![CDATA[ <= ]]> 4
+        ORDER BY count DESC
 	</select>
 	
 </mapper>

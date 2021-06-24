@@ -3,10 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminOrder">
 	<select id="listOrder" resultType="com.fin.app.admin.orderManagement.OrderManagement">
-		SELECT p.orderNum, p.mNum, c.mType, p.orderState, s.finalPrice, p.orderName
+        SELECT p.orderNum, p.mNum, c.mType, p.orderState, s.finalPrice, p.orderName, d.deliverystate
 		FROM orderProduct p
 		JOIN store s ON p.orderNum = s.orderNum
 		JOIN client c ON p.mNum = c.mNum
+        LEFT OUTER JOIN delivery d ON s.orderNum = d.orderNum
 	</select>
 	
 </mapper>

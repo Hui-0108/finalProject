@@ -41,9 +41,6 @@ function detailedMember(mId) {
 		       " 수정 " : function() {
 		    	   updateOk(); 
 		       },
-		       " 삭제 " : function() {
-		    	   deleteOk(mId);
-			   },
 		       " 닫기 " : function() {
 		    	   $(this).dialog("close");
 		       }
@@ -84,14 +81,6 @@ function updateOk() {
 	};
 	ajaxFun(url, "post", query, "json", fn);
 		
-	$('#member-dialog').dialog("close");
-}
-
-function deleteOk(mId) {
-	if(confirm("선택한 계정을 삭제 하시겠습니까 ?")) {
-			
-	}
-	
 	$('#member-dialog').dialog("close");
 }
 

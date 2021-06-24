@@ -66,6 +66,14 @@
 	background: #eee;
 }
 
+.myMileage .btm {
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.myMileage .noMar {
+	margin: 0px 0px 0px 0px;
+}
+
 </style>
 
 <script>
@@ -105,7 +113,7 @@ $(function () {
 		</div>
 		
 		<div>
-		<form name="searchForm" method="post">
+		<form name="searchForm" method="post" action="${pageContext.request.contextPath}/mypage/mileage">
 			<button id="all">전체</button>
 			<button id="add">적립</button>
 			<button id="use">사용</button>
@@ -132,17 +140,17 @@ $(function () {
 					
 					<c:forEach items="${list}" var="dto">
 						
-						<tr>
+						<tr class="btm">
 							<td style="height: 80px;">
-								<p> ${dto.mileType==1?'+':'-'}${dto.milePrice} <p>
+								<p class="noMar" style="padding-top: 17px;"> ${dto.mileType==1?'+':'-'}${dto.milePrice} <p>
 							</td>
 							
 							<td align="left">
-								<label> ${dto.mileHistory} </label>
+								<label class="noMar"> ${dto.mileHistory} </label>
 							</td>
 							
 							<td>
-								<label> ${dto.mileDate} </label>
+								<label class="noMar"> ${dto.mileDate} </label>
 							</td>
 						</tr>
 						

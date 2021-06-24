@@ -39,7 +39,7 @@
                   <tr>
                     <th>주문코드</th>
                     <th>고객번호</th>
-                    <th>주문상태</th>
+                    <th>결제상태</th>
                     <th>결제금액</th>
                     <th>구매자명</th>
                   </tr>
@@ -49,7 +49,7 @@
                   	<tr>
                   		<td>${dto.orderNum}</td>
                   		<td>${dto.mNum}</td>
-                  		<td>${dto.orderState}</td>
+                  		<td>${dto.orderState==0?"결제대기":"결제완료"}</td>
                   		<td>${dto.finalPrice}</td>
                   		<td>${dto.orderName}</td>
                   	</tr>

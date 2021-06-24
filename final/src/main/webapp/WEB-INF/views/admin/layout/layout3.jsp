@@ -35,7 +35,7 @@
 
 	<!--  JQuery -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util-jquery.js"></script>
 	
 	<script type="text/javascript">
@@ -78,9 +78,11 @@
 	<!-- Java Script -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/management.js"></script>
 	
-	
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-ui.min.js"></script>
+
 	<!-- AdminLTE -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.js"></script>
 	

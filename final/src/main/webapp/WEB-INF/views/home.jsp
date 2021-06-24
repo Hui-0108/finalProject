@@ -58,7 +58,7 @@
 <div class="section window2">
 	<div class="cover cover2">
 		<h2 class="home-head donation-head">
-			후원은 유기동물에게 큰 도움이 됩니다
+			Take A Look !
 		</h2> 
 		<div class="container maindonation" style="margin-top: 100px;">
 			<div>
