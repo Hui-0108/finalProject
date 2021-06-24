@@ -14,7 +14,7 @@ public class ProductReview {
 	private int rImgNum;//이미지파일번호
 	private String imagefilename; //이미지파일이름
 	private List<MultipartFile> uploads; //다중파일
-	
+	private String rContent;
 	
 	public int getrNum() {
 		return rNum;
@@ -69,6 +69,12 @@ public class ProductReview {
 	}
 	public void setUploads(List<MultipartFile> uploads) {
 		this.uploads = uploads;
+	}
+	public String getrContent() {
+		return rContent;
+	}
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
 	}
 	
 	

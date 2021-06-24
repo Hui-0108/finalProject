@@ -80,6 +80,10 @@
 </style>
 <script type="text/javascript">
 
+function login() {
+	   location.href="${pageContext.request.contextPath}/member/login";
+}
+	
 function ajaxFun(url, method, query, dataType, fn) {
 	$.ajax({
 		type:method,
@@ -177,7 +181,7 @@ $(function(){
 
 function listPage(page){
 	var url = "${pageContext.request.contextPath}/product/reviewList";
-	var query = "category="+category+"&pageNo="+page+"&pNum=${dto.pNum}";
+	var query = "pageNo="+page+"&pNum=${dto.pNum}";
 	
 	var fn = function(data){
 		printReview(data);
@@ -240,7 +244,7 @@ function printReview(data) {
 		out+="<div calss='reviewPic' style='display:flex;'>"
 		if(img.length>0){
 			for(var i=0; i<img.length; i++) {
-				var s="${pageContext.request.contextPath}/uploads/reviewImages/"+img[i];		
+				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
 				
 				out+="<div class='rpicture'><img src='"+s+"' width='100px;' height='100px';></div>";
 			}

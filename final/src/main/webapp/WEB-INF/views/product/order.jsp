@@ -56,7 +56,7 @@ h3{
     padding-left: 20px;    
 }
 
-.productPayMain input[type=text], .selectmEmail{
+.orderTable input[type=text], .selectmEmail{
 	height: 35px;
     border-radius: 8px;
     border: 1px solid darkgray;	
@@ -143,6 +143,11 @@ h3{
 	height: 50px;
     line-height: 50px;
     text-align: right;
+}
+
+.borderNone{
+	border: none;
+    text-align: center;
 }
 
 </style>
@@ -305,8 +310,8 @@ $(function(){//회원 정보로 기본 배송지 설정하기
 	
 	$("form[name=orderForm] #newAddr").click(function(){
 		
-
-		$("form[name=orderForm] input").val("");		
+		$(".middleTb input").attr("readonly", false);		
+		$(".middleTb input").val("");	
 		$(".selectmEmail").removeAttr("disabled", "disabled");		
 		
 	});
@@ -326,37 +331,47 @@ $(function(){//배송비 더해서 최종가격 계산
 				
 	});
 
-if("${dto.delivType == 0}"){
-	
-	
+	if("${dto.delivType == 0}"){	
 		var DelivNonePrice = $("input[name=sTotPrice]").val();
 
 		$("input[name=finalPrice]").val(DelivNonePrice);
+		$("input[name=finalPrice]").attr("data-price", DelivNonePrice);
 
-}
+	}
+	
 	if("${dto.delivType != 0}"){
 		var DelivTotPrice = $("input[name=sTotPrice]").val();	
 
-		$("input[name=finalPrice]").val(DelivTotPrice);				
+		$("input[name=finalPrice]").val(DelivTotPrice);			
+		$("input[name=finalPrice]").attr("data-price", DelivTotPrice);
 	}
 	
 });
 
-$(function(){//jquery
+$(function(){//최종가격에 마일리지 사용
 	$("input[name=uMilePrice]").on("blur", function(){
 		
 	var uMilePrice = $("input[name=uMilePrice]").val();
 	var totMile = $("input[name=totMile]").val();
 	var finalPrice = $("input[name=finalPrice]").val();
 	
+	var defaultPrice = $("input[name=finalPrice]").attr("data-price");
+
 	if(uMilePrice > totMile ){
 		alert("마일리지가 부족합니다.")
 		return;
 	}else{
 		var totPrice = finalPrice-uMilePrice;				
 	}
+	
+	if(uMilePrice == "" || uMilePrice == 0){
+		$("input[name=finalPrice]").val(defaultPrice);
+	}else{
+	 $("input[name=finalPrice]").val(totPrice);		
+	}
+	
+	
 
-	 $("input[name=finalPrice]").val(totPrice);
 	});
 	
 });
@@ -459,10 +474,10 @@ function iamport(){
 					${dto.pName}	
 				</td>
 				<td class="w100 tbl_cell">
-					<input type="text" name="sDetailQty" value="${sDetailQty}">
+					<input type="text" name="sDetailQty" value="${sDetailQty}" class="borderNone" readonly="readonly">
 				</td>
 				<td class="w100 tbl_cell">
-					<input type="text" name="aMilePrice" value="${dto.aMilePrice}">
+					<input type="text" name="aMilePrice" value="${dto.aMilePrice}" class="borderNone" readonly="readonly">
 				</td>
 				<td class="w100 tbl_cell">
 					₩${sum}	
@@ -473,18 +488,18 @@ function iamport(){
 					<span>합계 : 상품구매금액 + 배송비 = </span>  
 					<c:choose>
 						<c:when test="${dto.delivType != 0}">
-							<input type="text"  value="${sum}">
+							<input type="text"  value="${sum}" class="borderNone" readonly="readonly">
 							+
-							<input type="text" name="sDelivCharge" value="2000">
+							<input type="text" name="sDelivCharge" value="2000" class="borderNone" readonly="readonly">
 							&#61;
-							<input type="text" name="sTotPrice"  value="${sum+2000}">
+							<input type="text" name="sTotPrice"  value="${sum+2000}" class="borderNone" readonly="readonly">
 						</c:when>
 						<c:otherwise>
-							<input type="text" value="${sum}">
+							<input type="text" value="${sum}" class="borderNone" readonly="readonly">
 							+
-							<input type="text" name="sDelivCharge" value="${dto.sDelivCharge}" >
+							<input type="text" name="sDelivCharge" value="${dto.sDelivCharge}" class="borderNone" readonly="readonly">
 							&#61;
-							<input type="text" name="sTotPrice"  value="${sum}">
+							<input type="text" name="sTotPrice"  value="${sum}" class="borderNone" readonly="readonly">
 
 						</c:otherwise>
 					</c:choose>
@@ -585,7 +600,7 @@ function iamport(){
 					적용 마일리지
 				</th>
 				<td>
-					<input type="text" id="uMilePrice" name="uMilePrice" value="0" onchange="mileUse()"> <button type="button" onclick="mileUse()">확인</button>
+					<input type="text" id="uMilePrice"  name="uMilePrice" value="0"> 
 					<div id="result" ></div>
 			
 				</td>
@@ -601,7 +616,7 @@ function iamport(){
 					최종 결제 금액
 				</td>
 				<td>
-					<input type="text" id="finalPrice" name="finalPrice" value="${dto.finalPrice}" readonly="readonly">
+					<input type="text" id="finalPrice" name="finalPrice" data-price="${dto.finalPrice}" value="${dto.finalPrice}" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
@@ -616,9 +631,9 @@ function iamport(){
 				<td>
 					<button type="button" onclick="orderOk(); ">결제하기</button>
 					<input type="text" name="sDetailPrice" value="${dto.sDetailPrice}" hidden="hidden">
-					<input type="text" name="storeMainOptNum" value="${dto.storeMainOptNum}">
-					<input type="text" name="storeSubOptNum" value="${dto.storeSubOptNum}">
-					<input type="text" name="storeDetailOptNum" value="${dto.storeDetailOptNum}">
+					<input type="text" name="storeMainOptNum" value="${dto.storeMainOptNum}" hidden="hidden">
+					<input type="text" name="storeSubOptNum" value="${dto.storeSubOptNum}" hidden="hidden">
+					<input type="text" name="storeDetailOptNum" value="${dto.storeDetailOptNum}" hidden="hidden">
 				</td>
 			</tr>
 		</table>

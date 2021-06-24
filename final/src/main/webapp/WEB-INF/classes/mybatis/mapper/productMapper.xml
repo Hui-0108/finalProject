@@ -211,18 +211,17 @@
 	</select>
 
 	<select id="listReview" parameterType="map" resultType="com.fin.app.product.ProductReview">
-		SELECT r.rNum. rTitle, rContent, rGrade, rCreated, mId, r.orderNum, 
-		rNum, mNum, rImgNum, rNum, imagefilename, pNum
-		FROM review r
-		LEFT OUTER JOIN(
-    		SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
-    		FROM reviewImage
-   			GROUP BY rNum		
-		) ri ON r.rNum = ri.rNum
-		JOIN storeDetail sd ON r.orderNum = sd.orderNum
-		JOIN StoreDetailOpt so ON sd.storeDetailOptNum = so.storeDetailOptNum
-		WHERE pNum = #{pNum}
-		ORDER BY rNum DESC
+	 SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, mId ,sd.orderNum
+      FROM review r
+      LEFT OUTER JOIN (
+          SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
+          FROM reviewImage
+            GROUP BY rNum
+      ) ri ON r.rNum = ri.rNum      
+      JOIN storeDetail sd ON r.orderNum = sd.orderNum 
+        JOIN storeDetailOpt do ON sd.storeDetailOptNum = do.storeDetailOptNum 
+        WHERE pNum= #{pNum}
+      ORDER BY rNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY 
 	</select>
 	

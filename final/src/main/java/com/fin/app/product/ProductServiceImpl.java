@@ -419,7 +419,19 @@ public class ProductServiceImpl implements ProductService{
 		}		
 	}
 
-
+	@Override
+	public List<Product> useListMileage(String mId) {
+		List<Product> useListMileage = null;
+		
+		try {
+			useListMileage = dao.selectList("product.useListMileage", mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return useListMileage;
+	}
+	
 	@Override
 	public void usedMileage(Product dto) throws Exception {
 		
@@ -431,21 +443,9 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 
-	@Override
-	public List<Product> useListMileage(String mId) {
-		List<Product> useListMileage = null;
-		
-		try {
-			dao.insertData("product.useListMileage", mId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return useListMileage;
-	}
 
 
-	
+	//리뷰
 	@Override
 	public List<ProductReview> listReview(Map<String, Object> map) {
 		List<ProductReview> listReview = null;

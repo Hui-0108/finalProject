@@ -532,20 +532,20 @@ public class ProductController {
 		}
 
 		List<Product> listMileage = service.listMileage(info.getmId());
-		//List<Product> useListMileage = service.useListMileage(info.getmId());
+		List<Product> useListMileage = service.useListMileage(info.getmId());
 		int s= 0, v=0;
 		int n;
 		for(Product mile : listMileage) {
 			s+=mile.getaMilePrice();
 		}
-		/*
+		
 		for(Product umile : useListMileage) {
 			v+=umile.getuMilePrice();
 		}			
-		*/
 		
-		//n=s-v;
-		n=s;
+		
+		n=s-v;
+		//n=s;
 		dto.setTotMile(n);
 		
 
@@ -628,7 +628,6 @@ public class ProductController {
 	@RequestMapping(value = "reviewList")
 	@ResponseBody
 	public Map<String, Object> ReviewList(
-			@RequestParam String category,
 			@RequestParam int pNum,
 			@RequestParam(value="pageNo",defaultValue="1") int current_page
 			)throws Exception{
