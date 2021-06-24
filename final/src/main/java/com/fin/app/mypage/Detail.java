@@ -29,16 +29,19 @@ public class Detail {
 	private String sZip;
 	private String sAddr1;
 	private String sAddr2;
-	private int aMileNum;
+	private int aMilePrice;
+	private int uMilePrice;
 	
 	private String pName; // 제품명
+	private int delivType;
 	private String storeMainOptName; // 상위옵션명
 	private String storeSubOptName;	// 하위옵션명
 	private int sDetailQty;	// 주문수량
 	private int sDetailPrice; // 주문단가 (1개당 가격)
-	
+	private int deliveryState;
 	private String pImgName;
 	
+	private int totSale;
 	
 	
 
@@ -46,11 +49,36 @@ public class Detail {
 	
 	
 	
-	public int getaMileNum() {
-		return aMileNum;
+	
+	public int getDeliveryState() {
+		return deliveryState;
 	}
-	public void setaMileNum(int aMileNum) {
-		this.aMileNum = aMileNum;
+	public void setDeliveryState(int deliveryState) {
+		this.deliveryState = deliveryState;
+	}
+	public int getTotSale() {
+		return totSale;
+	}
+	public void setTotSale(int totSale) {
+		this.totSale = totSale;
+	}
+	public int getDelivType() {
+		return delivType;
+	}
+	public void setDelivType(int delivType) {
+		this.delivType = delivType;
+	}
+	public int getuMilePrice() {
+		return uMilePrice;
+	}
+	public void setuMilePrice(int uMilePrice) {
+		this.uMilePrice = uMilePrice;
+	}
+	public int getaMilePrice() {
+		return aMilePrice;
+	}
+	public void setaMilePrice(int aMilePrice) {
+		this.aMilePrice = aMilePrice;
 	}
 	public String getPetImg() {
 		return petImg;

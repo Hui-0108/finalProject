@@ -53,7 +53,7 @@
 	</select>
 	
 	<select id="selectStoreList" parameterType="map" resultType="com.fin.app.mypage.Store">
-		SELECT s.orderNum, TO_CHAR(s.sDate, 'YYYY-MM-DD') sDate, sd.sdetailqty, sd.sdetailprice, p.pname, i.pimgname, so.storesuboptname, mo.storemainoptname, s.finalPrice, op.orderState
+		SELECT s.orderNum, TO_CHAR(s.sDate, 'YYYY-MM-DD') sDate, sd.sdetailqty, sd.sdetailprice, p.pname, i.pimgname, so.storesuboptname, mo.storemainoptname, s.finalPrice, op.orderState, d.deliveryState
 		FROM store s
 		JOIN storedetail sd ON sd.ordernum = s.ordernum
 		JOIN storedetailopt do ON do.storedetailoptnum = sd.storedetailoptnum
@@ -61,6 +61,7 @@
 		JOIN storesubopt so ON so.storesuboptnum = do.storesuboptnum
 		JOIN storemainopt mo ON mo.storemainoptnum = so.storemainoptnum
 		JOIN orderproduct op ON op.ordernum = s.ordernum
+		JOIN delivery d ON d.ordernum = s.ordernum
         LEFT OUTER JOIN (
 			SELECT pImgNum, pNum, pImgName FROM (
 				SELECT pImgNum, pNum, pImgName,
@@ -161,12 +162,14 @@
 	</select>
 	
 	<select id="selectDetailS" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
-		SELECT s.orderNum, s.sDate, s.sDelivCharge, s.sDelivDate, s.sZip, s.sAddr1, s.sAddr2, s.aMileNum, s.finalPrice,
+		SELECT s.orderNum, s.sDate, s.sDelivCharge, s.sDelivDate, s.sZip, s.sAddr1, s.sAddr2, s.aMileNum, s.finalPrice, s.sTotPrice,
 				op.orderState, op.orderName, op.orderTel, op.orderEmail,
 				sd.sDetailQty, sd.sDetailPrice,
 				so.storeSubOptName,
 				mo.storeMainOptName,
-				p.pName,
+				p.pName, p.delivType,
+				am.aMilePrice, um.uMilePrice,
+				d.deliveryState,
 				i.pImgName
 		FROM store s
 		JOIN orderProduct op ON op.orderNum = s.orderNum
@@ -175,6 +178,9 @@
 		JOIN storeSubOpt so ON so.storeSubOptNum = do.storeSubOptNum
 		JOIN storeMainOpt mo ON mo.storeMainOptNum = so.storeMainOptNum
 		JOIN product p ON p.pNum = do.pNum
+		JOIN addedMileage am ON am.aMileNum = s.aMileNum
+		JOIN usedMileage um ON um.orderNum = s.orderNum
+		JOIN delivery d ON d.ordernum = s.ordernum
 		LEFT OUTER JOIN (
 			SELECT pImgNum, pNum, pImgName FROM (
 				SELECT pImgNum, pNum, pImgName,
@@ -194,7 +200,7 @@
 			SELECT mId, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
 		)
 		<where>
-			mId = #{mId}
+			mId = #{mId} AND NOT milePrice = '0'
 			<if test=" keyword!=null and keyword != '' "> AND mileType = #{keyword} </if>
 		</where>
 	</select>
@@ -219,7 +225,7 @@
    		 SELECT mId, uMileNum, useType, uMilePrice, TO_CHAR(uMileDate, 'YYYY-MM-DD'), uMileHistory FROM usedMileage
 		)
 		<where>
-			mId = #{mId}
+			mId = #{mId} AND NOT milePrice = '0'
 			<if test=" keyword!=null and keyword != '' "> AND mileType = #{keyword} </if>
 		</where>
 		ORDER BY mileNum DESC

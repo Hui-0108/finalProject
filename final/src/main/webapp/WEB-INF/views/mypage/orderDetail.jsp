@@ -91,6 +91,7 @@
 	border-spacing: 0;
 	text-align: left;
 	width: 100%;
+	margin-bottom: 10px;
 }
 .orderDetail .detail table p, .orderDetail .detail table label {
 	margin: 0;
@@ -109,6 +110,7 @@
 	color: #777777;
 	text-align: left;
 }
+
 
 
 
@@ -143,11 +145,11 @@ $(function() {
 						</td>
 						
 						<td width="15%">
-							<label> ${type=='petsit'?'정보3':'가격'} </label>
+							<label> ${type=='petsit'?'가격':'가격'} </label>
 						</td>
 						
 						<td width="20%" colspan="2">
-							<label> ${type=='petsit'?'정보4':'주문 상태'} </label>
+							<label> ${type=='petsit'?'주문 상태':'배송 상태'} </label>
 						</td>
 					</tr>
 					
@@ -178,16 +180,19 @@ $(function() {
 						</td>
 						
 						<td>
-							<p> ${dto.finalPrice}원 </p>
+							<p> ${dto.sDetailPrice}원 </p>
 						</td>
 						
 						<td>
 							<c:choose>
-							 <c:when test="${dto.orderState == 0}">
-							 	<p> 결제대기 </p>
+							 <c:when test="${dto.deliveryState == 0}">
+							 	<p> 배송 준비 </p>
 							 </c:when>
-							 <c:when test="${dto.orderState == 1}">
-							 	<p> 결제완료 </p>
+							 <c:when test="${dto.deliveryState == 1}">
+							 	<p> 배송중 </p>
+							 </c:when>
+							 <c:when test="${dto.deliveryState == 2}">
+							 	<p> 배송 완료 </p>
 							 </c:when>
 							</c:choose>
 						</td>
@@ -201,7 +206,7 @@ $(function() {
 				
 			</div>
 			
-			<div>
+			<div style="margin-bottom: 100px; margin-top: 15px">
 				<ul>
 					<li> 스토어 구매 시 동일한 주문번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능) </li>
 					<li> 출고 완료 직후 교환 / 환불 요청을 하더라도 상품을 수령하신 후 택배 업체를 통해 보내주셔야 처리 가능합니다. </li>
@@ -246,6 +251,7 @@ $(function() {
 							</td>
 						</tr>
 						
+						<c:if test="${type == 'store'}">
 						<tr>
 							<td>
 								<label> 배송지 주소 </label>
@@ -255,6 +261,7 @@ $(function() {
 								<p> (${dto.sZip}) &nbsp; ${dto.sAddr1} &nbsp; ${dto.sAddr2} </p>
 							</td>
 						</tr>
+						</c:if>
 						
 					</table>
 					<div>
@@ -265,7 +272,7 @@ $(function() {
 				</div>
 				
 				
-				<div class="detail float-left" style="padding-left: 10px;">
+				<div class="detail float-left" style="padding-left: 10px; height: 260px;">
 					<div class="detail-title">
 						<p> 할인 정보 </p>
 					</div>
@@ -276,39 +283,20 @@ $(function() {
 							</td>
 							
 							<td>
-								<p style="color: #14aaff;"> -0원 </p>
+								<p style="color: #14aaff;"> ${dto.delivType == '0'?'-2000원':'-0원'} </p>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<label> 쿠폰 할인 </label>
+								<label> 마일리지 사용 </label>
 							</td>
 							
 							<td>
-								<p style="color: #14aaff;"> -0원 </p>
+								<p style="color: #14aaff;"> -${dto.uMilePrice}원 </p>
 							</td>
 						</tr>
 						
-						<tr>
-							<td>
-								<label> 마일리지사용 </label>
-							</td>
-							
-							<td>
-								<p style="color: #14aaff;"> -0원 </p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<label> <b>할인 합계</b> </label>
-							</td>
-							
-							<td>
-								<p style="color: #14aaff;"> -0원 </p>
-							</td>
-						</tr>
 						
 					</table>
 					<div>
@@ -323,7 +311,6 @@ $(function() {
 						<p> 최종 결제 정보 </p>
 					</div>
 					
-					<c:if test="${type == 'petsit'}">
 					<table class="float-left">
 						<tr>
 							<td width="30%">
@@ -341,85 +328,38 @@ $(function() {
 							</td>
 							
 							<td>
-								<p> ${dto.sDelivCharge}원 </p>
+								<p> 2000원 </p>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<label> 할인 합계 </label>
+								<label> <b>할인 합계</b> </label>
 							</td>
 							
 							<td>
-								<p style="color: #14aaff;"> -0원 </p>
+								<p style="color: #14aaff;"> -${dto.totSale}원 </p>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<label> 최종 결제 금액 </label>
+								<label> <b>최종 결제 금액</b> </label>
 							</td>
 							
 							<td>
 								<h5> ${dto.finalPrice}원 </h5>
-								<p> 
-									
+								<c:if test="${type=='store'}">
+								<p style="color: #777777;"> 
+									예상 적립금 ${dto.aMilePrice}원
 								</p>
+								</c:if>
 							</td>
 						</tr>
 						
 					</table>
-					</c:if>
 					
-					<c:if test="${type == 'store'}">
-					<table class="float-left">
-						<tr>
-							<td width="30%">
-								<label> 상품 합계 </label>
-							</td>
-							
-							<td>
-								<p> ${dto.finalPrice}원 </p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<label> 배송료 </label>
-							</td>
-							
-							<td>
-								<p> ${dto.sDelivCharge}원 </p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<label> 할인 합계 </label>
-							</td>
-							
-							<td>
-								<p style="color: #14aaff;"> -0원 </p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<label> 최종 결제 금액 </label>
-							</td>
-							
-							<td>
-								<h5> ${dto.finalPrice}원 </h5>
-								<p> 
-									
-								</p>
-							</td>
-						</tr>
-						
-					</table>
-					</c:if>
 				</div>
-				
 			</div>
 			
 		</div>
