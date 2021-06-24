@@ -52,7 +52,7 @@
 			인기상품
 		</div>
 		
-			<div class="popularProduct">
+			<div var="dto" class="popularProduct">
 				<c:forEach var="dto" items="$">
 					<div class="pproduct">
 						<div class="popularImg1 img">
@@ -68,51 +68,8 @@
 						</div>
 					</div>
 				</c:forEach>
-					<div class="pproduct">
-						<div class="popularImg1 img">
-							<a class="storeClick">
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>						
-						</div>
-						<div class="popularName1 name">
-							<a class="storeClick">
-							장난감
-							</a>
-						</div>
-						<div class="popularPrice1 price" >
-							2000원
-						</div>
-					</div>
-					<div class="pproduct">
-						<div class="popularImg1 img">
-							<a class="storeClick">
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>	
-						</div>
-						<div class="popularName1 name">
-						<a class="storeClick">
-							장난감2						
-						</a>
-						</div>
-						<div class="popularPrice1 price">
-							2000원
-						</div>
-					</div>
-					<div class="pproduct">
-						<div class="popularImg1 img">
-							<a class="storeClick">
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>
-						</div>
-						<div class="popularName1 name">
-							<a class="storeClick">
-								류
-							</a>
-						</div>
-						<div class="popularPrice1 price">
-							2000원
-						</div>
-					</div>													
+					
+																	
 			</div>
 		</div>
 		

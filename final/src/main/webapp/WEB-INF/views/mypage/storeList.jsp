@@ -226,11 +226,14 @@ $(function() {
 						
 						<td>
 							<c:choose>
-							 <c:when test="${dto.orderState == 0}">
-							 	<p> 결제대기 </p>
+							 <c:when test="${dto.deliveryState == 0}">
+							 	<p> 배송 준비 </p>
 							 </c:when>
-							 <c:when test="${dto.orderState == 1}">
-							 	<p> 결제완료 </p>
+							 <c:when test="${dto.deliveryState == 1}">
+							 	<p> 배송중 </p>
+							 </c:when>
+							 <c:when test="${dto.deliveryState == 2}">
+							 	<p> 배송 완료 </p>
 							 </c:when>
 							</c:choose>
 						</td>

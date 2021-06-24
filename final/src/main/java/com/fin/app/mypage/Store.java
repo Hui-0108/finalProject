@@ -12,11 +12,18 @@ public class Store {
 	
 	private int finalPrice;
 	private int orderState;
+	private int deliveryState;
 	private int reviewOk; // 리뷰 작성 여부 - service 단에서 생성
 	private int storeDetailOptNum;
 	
 	
 	
+	public int getDeliveryState() {
+		return deliveryState;
+	}
+	public void setDeliveryState(int deliveryState) {
+		this.deliveryState = deliveryState;
+	}
 	public int getReviewOk() {
 		return reviewOk;
 	}

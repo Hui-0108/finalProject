@@ -233,6 +233,14 @@ public class MypageServiceImpl implements MypageService {
 			} else {
 				type = "store";
 				dto = dao.selectOne("mypage.selectDetailS", orderNum);
+				// 할인 합계금액 계산
+				int totSale;
+				if(dto.getDelivType()==0) {
+					totSale = 2000+ dto.getuMilePrice();
+				} else {
+					totSale = dto.getuMilePrice();
+				}
+				dto.setTotSale(totSale);
 			}
 			resultMap.put("dto", dto);
 			resultMap.put("type", type);

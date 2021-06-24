@@ -230,6 +230,16 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY 
 	</select>
 	
+	<!-- product 메인 상품 리스트 -->
+	
+	<select id="listBestProduct" resultType="com.fin.app.product.Product">
+		SELECT ROWNUM, a.*, p.pNum, pName, pPrice, pCateNum, pDiscountRate, pDetailPrice
+		FROM ( SELECT storeDetailOptNum, RANK() OVER (ORDER BY SUM(sDetailQty) DESC) rank, SUM(sDetailQty) sumQty FROM storeDetail GROUP BY storeDetailOptNum ) a 
+        LEFT OUTER JOIN storeDetailOpt d ON a.storeDetailOptNum = d.storeDetailOptNum
+        JOIN product p ON d.pNum = p.pNum
+		WHERE ROWNUM <![CDATA[ <= ]]> 4
+		ORDER BY sumQty DESC
+	</select>
 	
 	
 

@@ -19,7 +19,7 @@ public class UserController {
 	
 	@RequestMapping(value="stat")
 	public String main() {
-		return "stat/stat";
+		return ".stat.stat";
 	}
 	
 	@RequestMapping(value = "stat", produces = "application/json;charset=utf-8")
@@ -27,7 +27,7 @@ public class UserController {
 	public String animal(@RequestParam String date) throws Exception {
 		String result=null;
 
-		int numOfRows=20;
+		int numOfRows=10000;
 		int pageNo=1;
 		String serviceKey="pxTXjrjVmateW0GnkBeONAQfjToozKbno8wEOjY7y7Fo7Klm%2Fl6oA5u0EwRpgVEFIewRTlHeFDaTcbJCz2RCHQ%3D%3D";
 		String spec="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic";
