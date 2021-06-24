@@ -494,6 +494,20 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> listBestProduct() {
+		List<Product> listBestProduct = null;
+		
+		try {
+			listBestProduct = dao.selectList("product.listBestProduct");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listBestProduct;
+	}
+
+
 
 
 

@@ -330,7 +330,7 @@ $(function(){//배송비 더해서 최종가격 계산
 		var newValue = $(this).val();
 	});
 
-	if("${dto.delivType == 0}"){	
+	if("${dto.delivType == 0}"){//배송비가 없는 경우	
 		var DelivNonePrice = $("input[name=sTotPrice]").val();
 
 		$("input[name=finalPrice]").val(DelivNonePrice);
@@ -338,9 +338,12 @@ $(function(){//배송비 더해서 최종가격 계산
 
 	}
 	
-	if("${dto.delivType != 0}"){
-		var DelivTotPrice = $("input[name=sTotPrice]").val();	
+	if("${dto.delivType != 0}"){ //배송비가 있는경우
+		var DelivOkPrice = $("input[name=sTotPrice]").val();	
 
+		var DelivTotPrice = parseInt(DelivOkPrice)+2000;
+	
+	
 		$("input[name=finalPrice]").val(DelivTotPrice);			
 		$("input[name=finalPrice]").attr("data-price", DelivTotPrice);
 	}
@@ -494,7 +497,10 @@ function iamport(){
 							+
 							<input type="text" name="sDelivCharge" value="2000" class="borderNone" readonly="readonly">
 							&#61;
-							<input type="text" name="sTotPrice"  value="${sum+2000}" class="borderNone" readonly="readonly">
+							<input type="text" name="sdPrice" value="${sum+2000}" class="borderNone" readonly="readonly">
+							
+							<input type="text" name="sTotPrice" value="${sum}" class="borderNone" readonly="readonly">
+							
 						</c:when>
 						<c:otherwise>
 							<input type="text" value="${sum}" class="borderNone" readonly="readonly">

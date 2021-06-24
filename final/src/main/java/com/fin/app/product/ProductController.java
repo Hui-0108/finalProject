@@ -45,7 +45,14 @@ public class ProductController {
 	private FileManager fileManger;
 	
 	@RequestMapping("main")
-	public String main() throws Exception{
+	public String main(
+			Model model) throws Exception{
+
+		List<Product> listBestProduct = service.listBestProduct();
+		
+		model.addAttribute("listBestProduct", listBestProduct);
+		
+		
 		return ".product.productMain";
 	}
 	

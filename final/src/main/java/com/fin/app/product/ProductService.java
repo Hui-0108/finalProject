@@ -51,6 +51,8 @@ public interface ProductService {
 	
 	public void deleteReview(int num, String pathname) throws Exception;
 	
+	//메인
+	public List<Product>listBestProduct();
 
 	
 }
