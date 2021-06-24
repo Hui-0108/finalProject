@@ -67,6 +67,39 @@
 	margin-right: 10px;
 }   
  
+ 
+.petsitReserve .quantity {
+	border:none;
+	width: 46px;
+	height: 18px;
+	text-align: center;
+}
+
+.petsitReserve .subQty {
+	border:none;
+	width: 13px;
+	height: 18px;
+	text-align: center;
+}
+
+.petsitReserve .sum {
+	border: none;
+	width: 70px;
+	height: 20px;
+	text-align: right;
+}
+
+.petsitReserve .sumPrice input{
+	text-align: right;
+	
+}
+
+.petsitReserve .day {
+	border: none;
+	width: 20px;
+	height: 20px;
+	text-align: right;
+}
 
 </style>
 
@@ -85,11 +118,11 @@ function deletePetsit() {
 
 //datepicker의 기본 설정
 $(function() {
-	$("#datepicker1, #datepicker2").datepicker({
+	$("#checkIn, #checkOut").datepicker({
 		 showMonthAfterYear: true
 		,minDate:"0"
 		,maxDate:"+3M"
-		,showAnim:"slide"
+		,showAnim:"slide"		
 	});
 });
 
@@ -261,7 +294,164 @@ $(function(){
 	});
 });
 
+var date=0;
+//몇박인지 계산 
+$(function(){
+	var chIn=0;
+	$("input[name=checkIn]").change(function(){
+		if(! $(this).val()) return false;
+		var ch1 = $(this).val();
+		
+		var d = ch1.split("-");
+		chIn = parseInt(d[2]);
+	});
+	
+	$("input[name=checkOut]").change(function(){
+		if(! $(this).val()) return false;
+		var ch2 = $(this).val();
+		
+		var dd = ch2.split("-");
+		var chOut = parseInt(dd[2]);
+			
+		
+		date = (chOut-chIn);	
+		$("input[name=dayCnt]").val(date);
+		
+	});
+});
 
+//옵션 part
+function sendReservation() {
+	var f = document.rvForm;
+	
+	//날짜, 옵션 선태 안 했을시 alert창 띄우기 
+	
+	//결제 페이지로 넘기기
+	f.action="${pageContext.request.contextPath}/petsit/payment";
+	//서버로 넘김
+    f.submit();
+}
+
+
+//옵션수량 조정
+$(function(){		
+	var s=0;
+	var t=0;
+	var finalPrice=0;
+	$(".body-main").on("click", ".btnSP", function(){
+		var qty = parseInt($("input[name=small]").val());
+		var price = 40000;
+		
+		qty=qty+1;
+		s += price*date;
+		t += (price*0.1)*date;
+		finalPrice = (s+t);
+		$("input[name=small]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(finalPrice);
+	});			
+	
+	$(".body-main").on("click", ".btnSM", function(){
+		var qty = parseInt($("input[name=small]").val());
+		var price = 40000;
+	
+		qty=qty-1;
+		if(qty<0){
+			qty=0;
+		}
+		if(s<0){
+			s=0;
+		s -= price*date;
+		t -= (price*0.1)*date;
+		finalPrice = s+t;
+		
+		}
+		$("input[name=small]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(tot);
+	});	
+	$(".body-main").on("click", ".btnMP", function(){
+		var qty = parseInt($("input[name=midium]").val());
+		var price = 50000;
+	
+		qty=qty+1;
+		s += price*date;
+		t += (price*0.1)*date;
+		finalPrice = s+t;
+		$("input[name=midium]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(finalPrice);
+	});			
+	
+	$(".body-main").on("click", ".btnMM", function(){
+		var qty = parseInt($("input[name=midium]").val());
+		var price = 50000;
+	
+		qty=qty-1;
+		if(qty<0){
+			qty=0;
+		}
+		if(s<0){
+			s=0;
+		}
+		s -= price*date;
+		t -= (price*0.1)*date;
+		finalPrice =s+t;
+		
+		$("input[name=midium]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(finalPrice);
+	});	
+	$(".body-main").on("click", ".btnLP", function(){
+		var qty = parseInt($("input[name=large]").val());
+		var price = 60000;
+	
+		qty=qty+1;
+		s +=price*date;
+		t += (price*0.1)*date;
+		finalPrice =s+t;
+		$("input[name=large]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(finalPrice);
+	});			
+	
+	$(".body-main").on("click", ".btnLM", function(){
+		var qty = parseInt($("input[name=large]").val());
+		var price = 60000;
+	
+		qty=qty-1;
+		if(qty<0){
+			qty=0;
+		}
+		if(s<0){
+			s=0;
+		}
+		s -= price*date;
+		t -= (price*0.1)*date;
+		finalPrice = finalPrice+t;
+		
+		$("input[name=large]").val(qty);
+		$("input[name=sum]").val(s);
+		$("input[name=tax]").val(t);
+		$("input[name=finalPrice]").val(finalPrice);
+	});	
+});
+
+//예약하기
+function sendReservation() {
+	var f = document.rvForm;
+
+	//결제 페이지로 넘기기
+	f.action="${pageContext.request.contextPath}/petsit/payment";
+	//서버로 넘김
+    f.submit();
+	
+}
 
 </script>
 
@@ -365,6 +555,7 @@ $(function(){
 	</div>
 	<div class="body-right" align="right">
 		<div class="reverve-detail">
+			<form id="rvForm" name="rvForm" method="POST" >
 			<div class="reserve-date">
 				<p><b>언제 펫시터가 필요한가요?</b></p>
 				<div class="dateBar">
@@ -372,13 +563,13 @@ $(function(){
 						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
 					</div>
 					<div>
-						<input class="checkDate" type="text" id="datepicker1" placeholder=" 체크인 날짜">	
+						<input class="checkDate" type="text" id="checkIn" name="checkIn" value="" placeholder=" 체크인 날짜">	
 					</div>
 					<div class="pointR">
 						<i class="fas fa-arrow-right"></i>
 					</div>
 					<div>
-						<input class="checkDate" type="text" id="datepicker2" placeholder=" 체크아웃 날짜">	
+						<input class="checkDate" type="text" id="checkOut" name="checkOut" placeholder=" 체크아웃 날짜">	
 					</div>
 				</div>
 			</div>		
@@ -395,11 +586,11 @@ $(function(){
 					</div>
 					<div class="lineR">
 						<div class="pmBtn">
-						-
+						<input type="button" value=" - " class="pmBtn btnSM">
 						</div>
-						<p>0</p>
+						<input type="text" name="small" value="0" class="quantity" readonly="readonly">
 						<div class="pmBtn">
-						+
+						<input type="button" value=" + " class="pmBtn btnSP" >
 						</div>
 					</div>
 				</div>
@@ -410,26 +601,26 @@ $(function(){
 					</div>
 					<div class="lineR">
 						<div class="pmBtn">
-						-
+						<input type="button" value=" - " class="pmBtn btnMM">
 						</div>
-						<p>0</p>
+						<input type="text" name="midium" value="0" class="quantity" readonly="readonly">
 						<div class="pmBtn">
-						+
+						<input type="button" value=" + " class="pmBtn btnMP" >
 						</div>
 					</div>
 				</div>
 				<div class="boxLine sth">
 					<div class="lineL">
-						<p>소형견</p>
+						<p>대형견</p>
 						<p>15kg 이상</p>
 					</div>
 					<div class="lineR">
 						<div class="pmBtn">
-						-
+						<input type="button" value=" - " class="pmBtn btnLM">
 						</div>
-						<p>0</p>
+						<input type="text" name="large" value="0" class="quantity" readonly="readonly">
 						<div class="pmBtn">
-						+
+						<input type="button" value=" + " class="pmBtn btnLP" >
 						</div>
 					</div>
 				</div>
@@ -439,13 +630,34 @@ $(function(){
 				</div>
 			</div>	
 			<div class="reserve-time">
-				<p> 체크인 가능 시간은 오전 9:00 이후 이며,</p>
-				<p> 체크아웃 가능 시간은 오후  21:00 까지 입니다.</p>
-				<p> 정확한 시간은 펫시터와 상의하시기 바랍니다.</p>
+				<p> 체크인 가능 시간은 오후 14:00 이후 이며,</p>
+				<p> 체크아웃 가능 시간은 오전  11:00 까지 입니다.</p>
+				<p> 정확한 시간은 펫시터와 협의하시기 바랍니다.</p>
 			</div>	
+			<div class="paymentPart">
+				<div>
+				<span>합계비용</span> <span><input type="text" name="finalPrice" class="sum" value="" readonly="readonly">원</span>
+				</div>
+				<div class="sumPrice">
+				<span><input type="text" name="dayCnt" class="day" value="" readonly="readonly">박</span> /&nbsp; 
+				<span>소형</span><input type="text" name="small" value="0" class="quantity subQty" readonly="readonly">
+				<span>중형</span><input type="text" name="midium" value="0" class="quantity subQty" readonly="readonly">
+				<span>대형</span><input type="text" name="large" value="0" class="quantity subQty" readonly="readonly">
+				<span><input type="text" name="sum" class="sum" value="" readonly="readonly">원</span>
+				</div>
+				<br>
+				<div>
+				<span>부가세(10%)</span><span><input type="text" name="tax" class="sum" value="" readonly="readonly">원</span>
+				</div>				
+				<span></span>		
+			</div>
 			<div class="reserve-send">
-				<p>예약요청</p>
-			</div>		
+				<button type="button" class="rvBtn" onclick="sendReservation()"><p>예약요청</p></button>
+			</div>
+					
+         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->
+			
+			</form>		
 		</div>
 		<div class="price">
 			<div class="price-title">

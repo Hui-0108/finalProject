@@ -35,7 +35,7 @@ public interface PetsitService {
 	//데이터 개수(for paging)
 	public int rDataCount(Map<String, Object> map);
 	//글삭제
-	public void deleteReview(int rNum, String pathname) throws Exception;
+	public void deleteReview(int num, String pathname) throws Exception;
 	
 	//파일 list
 	public List<PetsitReview> listRFile(int rNum);			
@@ -44,4 +44,12 @@ public interface PetsitService {
 	//파일delete
 	public void deleteRFile(Map<String, Object> map) throws Exception;
 
+	
+	/////예약/////
+	
+	//예약 내용 입력하기
+	public void insertPetsitReservation(Reservation dto) throws Exception;
+	
+	//예약 내용 읽어오기
+	public Reservation readReservation(int orderNum);
 }

@@ -36,8 +36,13 @@
 			<if test="addr != null and addr !=''">
 				INSTR(petAddr, #{addr}) &gt; 0
 			</if>
-			<if test="condition != 'all'">
-				AND ${condition} = 1
+			<if test="conList != null ">
+				AND 
+				(
+					<foreach collection="conList" item="condition" separator="OR">
+						${condition} = 1 
+					</foreach>
+				)
 			</if>
 			
 		</where>
@@ -58,9 +63,14 @@
 			<if test="addr != null and addr !=''">
 				INSTR(petAddr, #{addr}) &gt; 0
 			</if>
-			<if test="condition != 'all'">
-				AND ${condition} = 1
-			</if>			
+			<if test="conList != null ">
+				AND 
+				(
+					<foreach collection="conList" item="condition" separator="OR">
+						${condition} = 1 
+					</foreach>
+				)
+			</if>		
 		</where>
 		ORDER BY petNum DESC <!-- 글번호 내림차순으로 정렬 -->
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY	<!-- 페이징 -->
@@ -138,5 +148,9 @@
 		ORDER BY rNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
+	
+	<!-- 예약 part -->
+	
+	
 	
 </mapper>

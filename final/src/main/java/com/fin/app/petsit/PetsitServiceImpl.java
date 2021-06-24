@@ -270,7 +270,26 @@ public class PetsitServiceImpl implements PetsitService {
 		}		
 		
 	}
+	
+	//예약 등록
+	@Override
+	public void insertPetsitReservation(Reservation dto) throws Exception {
+		try {
+			int orderSeq = dao.selectOne("reservation.orderSeq");
+			dto.setOrderNum(orderSeq);
+			
+			dao.insertData("petsit.insertPetsitReservation", dto);
+						
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
+	@Override
+	public Reservation readReservation(int orderNum) {
+		return null;
+	}
 	
 	
 

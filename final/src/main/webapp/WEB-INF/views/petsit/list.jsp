@@ -16,13 +16,31 @@ $(function() {
 });
 
 
+$(function(){
+	$(".condition").click(function(){
+		var c = $(this).attr("data-condition");
+		
+		var b = false;
+		$(".conList input[name=condition]").each(function(){
+			var $this = $(this);
+			if($(this).val() == c) {
+				$this.remove();
+				b = true;
+				return false;
+			}
+		});
+		
+		if(! b) {
+			$(".conList").append("<input type='hidden' name='condition' value='"+c+"'> ");
+		}
+		
+		var f=document.searchForm;
+		f.submit();
+		
+		
+	});
+});
 
-function searchList(category) {
-	alert(category);
-	var f=document.searchForm;
-	f.condition.value = category;
-	f.submit();
-}
 
 </script>
 
@@ -58,12 +76,16 @@ function searchList(category) {
 				<div class="searchCondition">
 					<p><i class="fas fa-check"></i>&nbsp;<b>원하는 조건을 설정하세요</b></p>
 					<ul>
-						<li><div class="condition" onclick="searchList('petLarge')"><p>대형견 가능</p></div></li>
-						<li><div class="condition"  onclick="searchList('petYard')"><p>마당 있음</p></div></li>
-						<li><div class="condition"  onclick="searchList('petYN')"><p>반려동물 없음</p></div></li>
-						<li><div class="condition"  onclick="searchList('petWalk')"><p>산책로 있음</p></div></li>
+						<li><div class="condition" data-condition="petLarge"><p>대형견 가능</p></div></li>
+						<li><div class="condition" data-condition="petYard"><p>마당 있음</p></div></li>
+						<li><div class="condition" data-condition="petYN"><p>반려동물 없음</p></div></li>
+						<li><div class="condition" data-condition="petWalk"><p>산책로 있음</p></div></li>
 					</ul>
-					<input type="hidden" name="condition" value="${condition}">
+					<div class="conList">
+						<c:forEach var="condition" items="${conList}">
+							<input type="hidden" name="condition" value="${condition}">
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</form>

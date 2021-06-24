@@ -2,6 +2,8 @@ package com.fin.app.petsit;
 
 public class Reservation {
 	
+	private String mId; //아이디
+	
 	//펫시터 예약
 	private int orderNum;//주문코드 
 	private String checkIn;//체크인날짜
@@ -23,6 +25,42 @@ public class Reservation {
 	private int petDetailOptNum; //상세옵션번호
 	private int sitterPrice; //가격 
 	
+	//예약 상세
+	private int petAmount; // 마리수
+	
+	//예약 취소
+	private String cancelDate; //취소일자
+	private String cancelContent; //취소사유 
+	
+	
+	//옵션받기
+	private int small;
+	private int midium;
+	private int large;
+	private int tax;
+	private int dayCnt;
+	private int sum;
+
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+	private String petImg;
+	
+	public String getPetImg() {
+		return petImg;
+	}
+	public void setPetImg(String petImg) {
+		this.petImg = petImg;
+	}
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -100,6 +138,54 @@ public class Reservation {
 	}
 	public void setSitterPrice(int sitterPrice) {
 		this.sitterPrice = sitterPrice;
+	}
+	public String getCancelDate() {
+		return cancelDate;
+	}
+	public void setCancelDate(String cancelDate) {
+		this.cancelDate = cancelDate;
+	}
+	public String getCancelContent() {
+		return cancelContent;
+	}
+	public void setCancelContent(String cancelContent) {
+		this.cancelContent = cancelContent;
+	}
+	public int getPetAmount() {
+		return petAmount;
+	}
+	public void setPetAmount(int petAmount) {
+		this.petAmount = petAmount;
+	}
+	public int getSmall() {
+		return small;
+	}
+	public void setSmall(int small) {
+		this.small = small;
+	}
+	public int getMidium() {
+		return midium;
+	}
+	public void setMidium(int midium) {
+		this.midium = midium;
+	}
+	public int getLarge() {
+		return large;
+	}
+	public void setLarge(int large) {
+		this.large = large;
+	}
+	public int getTax() {
+		return tax;
+	}
+	public void setTax(int tax) {
+		this.tax = tax;
+	}
+	public int getDayCnt() {
+		return dayCnt;
+	}
+	public void setDayCnt(int dayCnt) {
+		this.dayCnt = dayCnt;
 	}
 	
 	

@@ -21,9 +21,9 @@ public class Petsit {
 	private int petYard; //마당유무 (0무 1유)
 	private int petLarge; //대형견가능유무 (0무 1유)
 	private int petWalk; //산책로 (0무 1유)
-	private int petFamily; //가족형태
-	private int petLiving; //거주형태
-	private int petChild; //자녀
+	private int petFamily; //가족형태 (1:2인 이하 가구 2:3인 가구 3:4인 가구 4:5인 이상 가구)
+	private int petLiving; //거주형태 (1:아파트 2:단독주택 3:빌라 4:오피스텔)
+	private int petChild; //자녀 (1:없음  2:미취학 아동 3:초등생 자녀)
 	private String petCertif; //교육증취득일
 	private String petAddr; //근무주소
 	

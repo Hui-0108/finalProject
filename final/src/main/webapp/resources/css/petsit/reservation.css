@@ -357,7 +357,16 @@
     cursor: pointer;
 }
 
-.petsitReserve .reserve-send p{
+.petsitReserve .rvBtn{
+	width: 311px;
+    height: 59px;
+    border-radius: 3px;
+    background-color: rgb(113, 162, 255);
+    margin-top: 50px;	
+    margin: 0 0px;
+}
+
+.petsitReserve .rvBtn p{
 	font-family: "Noto Sans KR";
     font-weight: 600;
     font-size: 15px;
@@ -365,6 +374,7 @@
     line-height: 22px;
     color: white;
     margin:0 0;
+    text-align: center;
 }
 
 .petsitReserve .price {
@@ -459,6 +469,7 @@
     border: 1px solid rgb(113, 162, 255);
     cursor: pointer;
     user-select: none;
+    background-color: white;
 }
 
 .petsitReserve .lineR{

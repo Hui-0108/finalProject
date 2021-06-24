@@ -121,20 +121,87 @@
 }
 </style>
 
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
+
+/*
+function iamport(){
+	
+	var f = document.orderForm;
+
+	var url = "${pageContext.request.contextPath}/petsit/confirm";
+
+	var query = $('form[name=orderForm]').serialize();
+			
+	//alert(query);
+	var fn = function(data){
+		var state = data.state;
+		console.log(state);
+	};
+	ajaxFun(url, "post", query, "json", fn);		
+			
+
+	
+	/*
+	var finalPrice = $("input[name=finalPrice]").val();
+	
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp49401778');	
+	IMP.request_pay({
+	    pg : 'inicis',
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '',
+	    amount : finalPrice,
+	    buyer_email : '${member.mEmail}',
+	    buyer_name : '${member.mName}',
+	    buyer_tel : '${member.mTel}',
+	    buyer_addr : '${dto.buyerAddr}',
+	    buyer_postcode : '${member.mZip}'
+	}, function(rsp) {
+		if ( rsp.success ) {
+	
+	--여기다
+			
+	if ( everythings_fine ) {
+    	var msg = '결제가 완료되었습니다.';
+    	msg += '\n고유ID : ' + rsp.imp_uid;
+    	msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+    	msg += '\결제 금액 : ' + rsp.paid_amount;
+    	msg += '카드 승인번호 : ' + rsp.apply_num;
+
+    	alert(msg);
+    } else {
+    	//[3] 아직 제대로 결제가 되지 않았습니다.
+    	//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+   	}
+			
+	  } else {
+	      var msg = '결제에 실패하였습니다.';
+	      msg += '에러내용 : ' + rsp.error_msg;
+
+	      alert(msg);
+	  }
+});
+	
+}
+*/
+
 </script>
 
 <div class="petsitPayment">
 <div style="width:1300px;" align="center">
 <div class="paymentBody">
+	<form name="orderForm">
 	<h3>예약 정보</h3>
 	<div class="payPetsit">
 		<div class="ppPic">
-			사진
+			${dto.petImg }
 		</div>
 		<div class="ppDetail">
-			<p>예약날짜</p>
-			<p>펫시터 이름</p>
+			<p>예약 일자: ${dto.checkIn}&nbsp;~&nbsp;
+			"${dto.checkOut}"</p>
+			<p>${dto.mId}" </p>
 		</div>
 	</div>
 	<h3>결제 정보</h3>
@@ -143,17 +210,17 @@
 			<p>결제 예정 금액</p>
 		</div>
 		<div class="amountR">
-			<p>56,000원</p>
+			<p>${dto.finalPrice}"원 </p>
 		</div>
 	</div>
 	<div class="payDetail">
 		<div class="detailCon">
 			<div class="detailL">
-				<p>1박</p> &nbsp;/&nbsp;
+				<p>${dto.dayCnt}"&nbsp;박</p> &nbsp;/&nbsp;
 				<p>소형 1마리</p>
 			</div>
 			<div class="detailR">
-				<p>40,000원</p>
+				<p>${dto.sum}>원</p>
 			</div>
 		</div>
 		<div class="detailCon conB">
@@ -161,14 +228,18 @@
 				<p>부과세(10%)</p>
 			</div>
 			<div class="detailR">
-				<p>4,000원</p>
+				<p>${dto.tax}원</p>
 			</div>
 		</div>
-	</div>
+		<div>
+			<p>예약 일자:${dto.rDate}</p>
+		</div>
+		</div>
+	</form>
 </div>
 </div>
 <div class="paymentFooter" style="text-align: center;">
-	결제 API 들어갈 부분
+	
 </div>
 
 </div>

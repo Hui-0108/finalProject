@@ -4,6 +4,9 @@ package com.fin.app.petsit;
 import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,10 +68,17 @@ public class PetsitController {
 			addr = URLDecoder.decode(addr, "UTF-8");
 		}
 		
+
+		List<String> conList = null;
+		if( ! condition.equals("all") ) {
+			String [] ss = condition.split(",");
+			conList = Arrays.asList(ss);
+		}
+
 		//전체 페이지 수 O
 		Map<String, Object> map = new HashMap<String, Object>(); //map객체 생성 //map=인터페이스=선언만가능, 자식=HashMap으로 객체생성 
 		map.put("addr", addr);
-		map.put("condition", condition);                         //HashMap: Map을 구현. Key와 value를 묶어 하나의 entry로 저장
+		map.put("conList", conList);                         //HashMap: Map을 구현. Key와 value를 묶어 하나의 entry로 저장
 
 		
 		dataCount = service.dataCount(map);//데이터 갯수 //service->serviceImpl의 dataCount()메소드에 map입력하여 결과 가져옴
@@ -82,8 +93,6 @@ public class PetsitController {
 		if(offset <0) offset = 0;
 		map.put("offset", offset);//offset(키)에 offset(값)을 map에 저장
 		map.put("rows", rows);
-		
-		
 		
 		//글리스트 
 		List<Petsit> list = service.listPetsit(map);
@@ -102,8 +111,6 @@ public class PetsitController {
 		String listUrl = cp+"/petsit/list";
 		String reservationUrl = cp+"/petsit/reservation?page="+ current_page;
 		
-
-		query = "condition=" +condition;
 		if(addr.length()!=0) {
 			query+="&addr="+URLEncoder.encode(addr, "utf-8");
 		}
@@ -122,7 +129,7 @@ public class PetsitController {
 		model.addAttribute("total_page", total_page);
 		model.addAttribute("paging", paging);
 		
-		model.addAttribute("condition", condition);
+		model.addAttribute("conList", conList);
 		model.addAttribute("addr", addr);
 
 				
@@ -175,8 +182,7 @@ public class PetsitController {
 		if(keyword.length() !=0) { //검색조건이 있으면
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
-		
-		
+			
 		//해당 레코드 가져오기
 		Petsit dto = service.readPetsit(petNum);
 		if(dto==null)
@@ -193,7 +199,6 @@ public class PetsitController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
-		
 		
 		return ".petsit.reservation";
 	}	
@@ -350,5 +355,70 @@ public class PetsitController {
 	}
 	
 	
+	/////예약 part/////
+	
+
+	@RequestMapping(value="reservation", method=RequestMethod.POST)
+	public String createdSubmit(Reservation dto, HttpSession session) throws Exception{
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		try {
+			dto.setmId(info.getmId());
+			//service.insertPetsitReservation(dto, "reservation");
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/petsit/list";
+	}
+	
+	
+	//예약 완료(전송)
+	@RequestMapping(value="payment", method=RequestMethod.POST)
+	   public String reservationSubmit(
+			   @Parameter Reservation dto, 
+			   HttpSession session, 
+			   Model model) throws Exception {
+	      
+		//예약한 아이디                             
+	    SessionInfo info=(SessionInfo)session.getAttribute("member"); 
+	    
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");		
+		Date date = new Date();        
+		String dateToStr = dateFormat.format(date);
+		
+	    try {
+	       dto.setmId(info.getmId()); //세션에 저장된 아이디를 dto에 setmId를 통해 넣음
+	       dto.setrDate(dateToStr);         
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	    }
+	     
+	    model.addAttribute("dto", dto);
+	      
+	    //글쓰기 완료 후 페이지가 payment로    
+	    return ".petsit.payment";  
+	   }
+	
+	//결제
+	@RequestMapping(value = "confirm")
+	@ResponseBody
+	public Map<String, Object> rvConfirm(
+			Reservation dto,
+			HttpSession session
+			){
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+				
+		String state = "true";
+		try {
+			dto.setmId(info.getmId());
+			service.insertPetsitReservation(dto);
+		} catch (Exception e) {
+			state = "false";
+		}
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("state", state);
+		
+		return model;
+	}
 	
 }
