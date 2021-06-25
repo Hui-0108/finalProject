@@ -615,6 +615,17 @@ function sendReservation() {
 						<p>15kg 이상</p>
 					</div>
 					<div class="lineR">
+						<c:choose>
+						<c:when test="${dto.petLarge eq 0}">
+						<div class="pmBtn">
+						<input type="button" value=" - " class="pmBtn btnLM" disabled="disabled">
+						</div>
+						<input type="text" name="large" value="0" class="quantity" readonly="readonly" disabled="disabled">
+						<div class="pmBtn">
+						<input type="button" value=" + " class="pmBtn btnLP" disabled="disabled" >
+						</div>
+						</c:when>
+						<c:otherwise>
 						<div class="pmBtn">
 						<input type="button" value=" - " class="pmBtn btnLM">
 						</div>
@@ -622,6 +633,8 @@ function sendReservation() {
 						<div class="pmBtn">
 						<input type="button" value=" + " class="pmBtn btnLP" >
 						</div>
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="bFooter">
@@ -718,7 +731,7 @@ function sendReservation() {
 			<script>	
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     				mapOption = { center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        						  level: 5 // 지도의 확대 레벨
+        						  level: 4 // 지도의 확대 레벨
     				};  
 				// 지도를 생성합니다    
 				var map = new kakao.maps.Map(mapContainer, mapOption); 

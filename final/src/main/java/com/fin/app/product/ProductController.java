@@ -48,9 +48,9 @@ public class ProductController {
 	public String main(
 			Model model) throws Exception{
 
-		List<Product> listBestProduct = service.listBestProduct();
+		List<Product> bestProduct = service.listBestProduct();
 		
-		model.addAttribute("listBestProduct", listBestProduct);
+		model.addAttribute("listBestProduct", bestProduct);
 		
 		
 		return ".product.productMain";

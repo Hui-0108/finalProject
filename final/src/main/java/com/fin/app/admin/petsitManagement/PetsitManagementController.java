@@ -28,7 +28,7 @@ public class PetsitManagementController {
 	}
 	
 	@RequestMapping(value="/admin/petsitManagement/petsitManagementDetail")
-	public String detailProduct(
+	public String detailPetsit(
 			@RequestParam String mId,
 			Model model) throws Exception {
 		

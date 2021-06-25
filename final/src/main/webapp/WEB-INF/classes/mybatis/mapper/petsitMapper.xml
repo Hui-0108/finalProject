@@ -150,7 +150,27 @@
 	</select>
 	
 	<!-- 예약 part -->
+	<select id="orderSeq" resultType="Integer">
+		SELECT order_seq.NEXTVAL FROM dual
+	</select>
 	
+	<select id="readMnum" resultType="Integer" parameterType="String">
+		SELECT mNum FROM member WHERE mId = #{mId}
+	</select>
+	
+	<select id="readPetnum" resultType="Integer" parameterType="String">
+		SELECT petNum FROM petsit WHERE mId = #{mId}
+	</select>
+	
+	<insert id="insertOrderProduct" parameterType="com.fin.app.petsit.Reservation">
+		INSERT INTO orderProduct(orderNum, mNum, orderState, orderName, orderTel, orderEmail)
+		VALUES(#{orderNum}, #{mNum}, #{orderState}, #{orderTel}, #{orderEmail})		
+	</insert>
+	
+	<insert id="insertReservation" parameterType="com.fin.app.petsit.Reservation">
+		INSERT INTO reservation(orderNum, checkIn, checkOut, mNum, petNum, finalPrice, rDate, small, medium, large)
+		VALUES(#{orderNum}, #{checkIn}, #{checkOut}, #{mNum}, #{petNum}, #{finalPrice},#{rDate},#{small},#{medium},#{large})	
+	</insert>
 	
 	
 </mapper>

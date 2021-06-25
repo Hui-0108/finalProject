@@ -275,21 +275,20 @@ public class PetsitServiceImpl implements PetsitService {
 	@Override
 	public void insertPetsitReservation(Reservation dto) throws Exception {
 		try {
-			int orderSeq = dao.selectOne("reservation.orderSeq");
-			dto.setOrderNum(orderSeq);
+			int orderSeq=dao.selectOne("petsit.orderSeq");
+			dto.setOrderNum(orderSeq); 
+			dto.setmNum(dao.selectOne("petsit.readMnum", dto.getmId()));
+			dto.setPetNum(dao.selectOne("petsit.readPetNum", dto.getmId()));
 			
-			dao.insertData("petsit.insertPetsitReservation", dto);
-						
+			dao.insertData("petsit.insertReservation", dto);
+			dao.insertData("petsit.insertOrderProduct", dto);	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
-
-	@Override
-	public Reservation readReservation(int orderNum) {
-		return null;
-	}
+	
 	
 	
 

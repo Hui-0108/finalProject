@@ -124,7 +124,40 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
-/*
+function ajaxFun(url, method, query, dataType, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data) {
+			fn(data);
+		},
+		beforeSend:function(jqXHR) {
+			jqXHR.setRequestHeader("AJAX", true);
+		},
+		error:function(jqXHR) {
+			if(jqXHR.status===403) {
+				login();
+				return false;
+			}
+	    	
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function paymentOk() {
+	var f = document.rvForm;
+
+	//결제완료 후 list페이지로
+	//f.action="${pageContext.request.contextPath}/petsit/list";
+	//서버로 넘김
+    //f.submit();
+	iamport();
+	//f.submit();
+}
+
 function iamport(){
 	
 	var f = document.orderForm;
@@ -142,50 +175,9 @@ function iamport(){
 			
 
 	
-	/*
-	var finalPrice = $("input[name=finalPrice]").val();
-	
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp49401778');	
-	IMP.request_pay({
-	    pg : 'inicis',
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '',
-	    amount : finalPrice,
-	    buyer_email : '${member.mEmail}',
-	    buyer_name : '${member.mName}',
-	    buyer_tel : '${member.mTel}',
-	    buyer_addr : '${dto.buyerAddr}',
-	    buyer_postcode : '${member.mZip}'
-	}, function(rsp) {
-		if ( rsp.success ) {
-	
-	--여기다
-			
-	if ( everythings_fine ) {
-    	var msg = '결제가 완료되었습니다.';
-    	msg += '\n고유ID : ' + rsp.imp_uid;
-    	msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-    	msg += '\결제 금액 : ' + rsp.paid_amount;
-    	msg += '카드 승인번호 : ' + rsp.apply_num;
-
-    	alert(msg);
-    } else {
-    	//[3] 아직 제대로 결제가 되지 않았습니다.
-    	//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-   	}
-			
-	  } else {
-	      var msg = '결제에 실패하였습니다.';
-	      msg += '에러내용 : ' + rsp.error_msg;
-
-	      alert(msg);
-	  }
-});
 	
 }
-*/
+
 
 </script>
 
@@ -196,12 +188,12 @@ function iamport(){
 	<h3>예약 정보</h3>
 	<div class="payPetsit">
 		<div class="ppPic">
-			${dto.petImg }
+			사진
 		</div>
 		<div class="ppDetail">
-			<p>예약 일자: ${dto.checkIn}&nbsp;~&nbsp;
-			"${dto.checkOut}"</p>
-			<p>${dto.mId}" </p>
+			<p>예약 일자: <input type="text" name="checkIn" value="${dto.checkIn}">&nbsp;~&nbsp;
+			<input type="text" name="checkOut" value="${dto.checkOut}"></p>
+			<p>예약자:${sessionScope.member.mId}</p> 
 		</div>
 	</div>
 	<h3>결제 정보</h3>
@@ -210,17 +202,26 @@ function iamport(){
 			<p>결제 예정 금액</p>
 		</div>
 		<div class="amountR">
-			<p>${dto.finalPrice}"원 </p>
+			<p><input type="text" name="finalPrice" value="${dto.finalPrice}">원 </p>
 		</div>
 	</div>
 	<div class="payDetail">
 		<div class="detailCon">
 			<div class="detailL">
-				<p>${dto.dayCnt}"&nbsp;박</p> &nbsp;/&nbsp;
-				<p>소형 1마리</p>
+				<p>${dto.dayCnt}&nbsp;박</p> &nbsp;/&nbsp;
+				<p><input type="text" name="small" value="${dto.small}">
+				   <input type="text" name="medium" value="${dto.medium}">
+				   <input type="text" name="large" value="${dto.large}">
+				      마리</p>
+				
 			</div>
+			<p>구매자명<input type="text" name="orderName"></p>
+			<p>구매자 전화번호<input type="text" name="orderTel"></p>
+			<p>구매자 이메일<input type="text" name="orderEmail"></p>
+			
 			<div class="detailR">
-				<p>${dto.sum}>원</p>
+				<p>${dto.finalPrice}원</p>
+				<p>${dto.sum}원</p>
 			</div>
 		</div>
 		<div class="detailCon conB">
@@ -232,14 +233,14 @@ function iamport(){
 			</div>
 		</div>
 		<div>
-			<p>예약 일자:${dto.rDate}</p>
+			<p>예약 일자:<input type="text" name="rDate" value="${dto.rDate}"></p>
 		</div>
 		</div>
 	</form>
 </div>
 </div>
 <div class="paymentFooter" style="text-align: center;">
-	
+<button type="button" onclick="paymentOk();">결제하기</button>	
 </div>
 
 </div>

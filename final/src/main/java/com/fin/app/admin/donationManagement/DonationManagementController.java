@@ -17,8 +17,13 @@ public class DonationManagementController {
 	public String donationManagement(Model model) throws Exception {
 		List<DonationManagement> list = service.listDonation();
 		
+		int totalDonation = service.totalDonation();
+		
 		model.addAttribute("list", list);
+		model.addAttribute("totalDonation", totalDonation);
 		
 		return ".admin.donationManagement.donationManagement";
 	}
+	
+	
 }

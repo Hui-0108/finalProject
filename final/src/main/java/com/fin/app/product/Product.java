@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
+	
+		
+	
+	
 	private int pNum; //제품코드 
 	private int listNum; //리스트번호
 	private String pName;//상품명
@@ -93,7 +97,36 @@ public class Product {
 	private int transportNum;
 	private int deliveryState;
 	
+	//메인
+	private int rank;
+	private int rownum;
+	private int sumQty;
 	
+	
+	
+	public int getSumQty() {
+		return sumQty;
+	}
+
+	public void setSumQty(int sumQty) {
+		this.sumQty = sumQty;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 
 	public int getTransportNum() {
 		return transportNum;

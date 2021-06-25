@@ -30,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">총 누적 후원금액 : ${totalDonation}</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -39,19 +39,20 @@
                   <tr>
                     <th>후원 번호</th>
                     <th>아이디</th>
-                    <th>후원금액</th>
-                    <th>후원시작일(월)</th>
-                    <th>후원종료일(월)</th>
+                    <th>후원자명</th>
+                    <th>후원금액(원)</th>
+                    <th>후원일자</th>
                   </tr>
                   </thead>
                   <tbody>
                   	<c:forEach var="dto" items="${list}">
                   	<tr>
-                  		<td>${dto.donaNum}</td>
+                  		<td>${dto.orderNum}</td>
                   		<td>${dto.mId}</td>
-                  		<td>${dto.donaPrice}</td>
-                  		<td>${dto.donaStart}</td>
-                  		<td>${dto.donaEnd}</td>
+                  		<td>${dto.mName}</td>
+                  		<fmt:parseNumber value="${dto.finalPrice/2}" var="price" type="number" integerOnly="true"/>
+                  		<td>${price}</td>
+                  		<td>${dto.sDate}</td>
                   	</tr>
                   	</c:forEach>
                   </tbody>

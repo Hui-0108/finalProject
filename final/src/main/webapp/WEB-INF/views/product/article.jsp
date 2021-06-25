@@ -232,15 +232,17 @@ function printReview(data) {
 		}
 
 		
-		out+="<div class='rList'>"
-		out+="<div class='reviewTop'>";
-		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img></div>";
+		out+="<div class=''>"
+		out+="<div class=''>";
+		out+="    <div class=''style='border: 1px solid black; width:70px; height:70px;'><img></div>";
 		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
 		out+="</div>";
 		
+		out+="<div class 'reviewBottom'>";
 		out+="<p>후기 평점:"+rGrade+"</p>";
 		out+="<p>"+rTitle+"</p>";
 		out+="<p>"+rContent+"</p>";
+		
 		out+="<div calss='reviewPic' style='display:flex;'>"
 		if(img.length>0){
 			for(var i=0; i<img.length; i++) {
@@ -251,6 +253,7 @@ function printReview(data) {
 			
 		}
 		out+="</div>"
+			out+="</div>";
 	}
 	$("#listReviewBody").append(out); //append로 해야 기존 내용 지워지지 x
 	
