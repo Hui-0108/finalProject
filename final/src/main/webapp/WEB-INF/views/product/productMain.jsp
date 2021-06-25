@@ -52,7 +52,7 @@
 			인기상품
 		</div>
 			
-				<c:forEach var="dto" items="${bestProduct}">
+				<c:forEach var="dto" items="${listBestProduct}">
 					<div class="">
 						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="" alt="..."></a>
 						<div class="">
