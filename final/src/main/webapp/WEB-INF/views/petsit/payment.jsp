@@ -155,7 +155,7 @@ function paymentOk() {
 	//서버로 넘김
     //f.submit();
 	iamport();
-	f.submit();
+	//f.submit();
 }
 
 function iamport(){
@@ -192,7 +192,7 @@ function iamport(){
 		</div>
 		<div class="ppDetail">
 			<p>예약 일자: <input type="text" name="checkIn" value="${dto.checkIn}">&nbsp;~&nbsp;
-			<input type="text" name="checkIn" value="${dto.checkOut}"></p>
+			<input type="text" name="checkOut" value="${dto.checkOut}"></p>
 			<p>예약자:${sessionScope.member.mId}</p> 
 		</div>
 	</div>
@@ -202,7 +202,7 @@ function iamport(){
 			<p>결제 예정 금액</p>
 		</div>
 		<div class="amountR">
-			<p>${dto.finalPrice}"원 </p>
+			<p><input type="text" name="finalPrice" value="${dto.finalPrice}">원 </p>
 		</div>
 	</div>
 	<div class="payDetail">
@@ -215,6 +215,10 @@ function iamport(){
 				      마리</p>
 				
 			</div>
+			<p>구매자명<input type="text" name="orderName"></p>
+			<p>구매자 전화번호<input type="text" name="orderTel"></p>
+			<p>구매자 이메일<input type="text" name="orderEmail"></p>
+			
 			<div class="detailR">
 				<p>${dto.finalPrice}원</p>
 				<p>${dto.sum}원</p>
