@@ -4,10 +4,82 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <style type="text/css">
+
+/*
+파란색
+#023047;
+hover#116a96;
+
+#219ebc;
+hover#1f91ad;
+
+하늘색
+background: #8ecae6;
+background: #8cbdd4;
+
+background: #023047;
+그림자 거의 없는 것
+0px 0px 2px 0px rgb(0 0 0 / 10%);
+
+그림자 약간 있는 것
+box-shadow: 1px 3px 3px 0px rgb(0 0 0 / 10%);	
+box-shadow: 2px 4px 3px 0px rgb(0 0 0 / 10%);
+
+그림자 진한것
+box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);
+box-shadow: inset -6px -7px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);
+	
+.testbtn{
+   	background-color: #219ebc;
+   	color: white;
+   	border-radius: 3px;
+   	border: 1px solid white;
+   	width: 130px;
+   	height: 50px;
+	box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);
+  	cursor: pointer;
+ 	transition: 0.5s;   	
+   	
+}
+.testbtn:hover{
+	background: #1f91ad;
+	box-shadow: inset -6px -7px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);
+	
+}
+
+
+
+*/
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .through{
 	text-decoration: line-through;
 	color: gray;	
 }
+
+.productListBody .prodcutListTop{
+	font-family: GmarketSansMedium;
+}
+
+.productListBody{
+	font-family: Cafe24SsurroundAir
+}
+
+
+
 </style>
 
 
@@ -51,19 +123,19 @@ function article(pNum) {
 						</div>	
 						<c:choose>
 							<c:when test="${dto.pDiscountRate != 0}">
-							<div class="product productPrice">		
-								<span class="through">	
-									₩${dto.productPrice}													
-								</span>			
-								<span>	
-									₩${dto.totPrice}					
-								</span>
-							</div>	
+								<div class="product productPrice">		
+									<span class="through">	
+										₩${dto.productPrice}													
+									</span>			
+									<span class="bold">	
+										₩${dto.totPrice}					
+									</span>
+								</div>	
 							</c:when>
 							<c:otherwise>
-							<div class="product productPrice" >
-								₩${dto.productPrice}									
-							</div>				
+								<div class="product productPrice bold" >
+									₩${dto.productPrice}									
+								</div>				
 							</c:otherwise>
 						</c:choose>											
 					</div>				

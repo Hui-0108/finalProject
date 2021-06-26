@@ -7,9 +7,21 @@
     font-style: normal;
 }
 
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .productListBody{
-	font-family: 맑은고딕
+	font-family: Cafe24SsurroundAir
 }
 
 .productListBody ul{
@@ -25,7 +37,7 @@
 }
 
 .productListBody .prodcutListTop{
-	font-family: Cafe24Ssurround, sans-serif;
+	font-family: GmarketSansMedium;
 }
 
 .productListBody .prooductSearchBar{
@@ -63,6 +75,7 @@
     float: right;
     width: auto;
     clear: both;
+    font-family: GmarketSansMedium;
 }
 .productListBody .productPrice{
     float: right;

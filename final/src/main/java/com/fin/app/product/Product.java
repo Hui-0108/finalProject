@@ -6,9 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 	
-		
-	
-	
 	private int pNum; //제품코드 
 	private int listNum; //리스트번호
 	private String pName;//상품명

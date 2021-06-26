@@ -3,7 +3,54 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<style type="text/css">
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.storeBody .productTitle{
+	font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+	color: #023047; 
+	font-family: Cafe24Ssurround;
 
+}
+.popularCard{
+	 height: 350px;
+}
+.toycardImg{
+	width: 1000px;
+	margin: auto;
+}
+.card-title{
+	font-family: GmarketSansMedium;
+}
+.card-text{
+	font-family: Cafe24SsurroundAir;
+}
+.btn{
+	color: white;
+	background: #219ebc;
+}
+.btn:hover{
+	color: white;
+	background: #023047;
+}
+.storeBody .imgstore{
+	height: 300px;
+}
+
+</style>
 
 <div class="storeBody">
 		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -14,21 +61,21 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active imgstore">
-		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/dogPlay.jpg" class="d-block w-100 " alt="...">
+		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/slide1.png" class="d-block w-100 " alt="...">
 		      <div class="carousel-caption d-none d-md-block">
 		        <h5>활동량이 많은 강아지를 위한 장난감</h5>
 		        <p>집에서도 신나게 놀아볼까요</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item imgstore">
-		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/catPlay.jpg" class="d-block w-100 " alt="...">
+		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/slide4.png" class="d-block w-100 " alt="...">
 		      <div class="carousel-caption d-none d-md-block">
 		        <h5>굴려보고 만져보고 호기심을 자극시켜봐요</h5>
 		        <p>고양이에게 놀이는 선택이 아니라 필수! 고양이를 위한 장난감들 구경해보세요</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item imgstore">
-		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/dogEating.jpg" class="d-block w-100 "  alt="...">
+		      <img src="${pageContext.request.contextPath}/resources/images/storeMain/slide3.png" class="d-block w-100 "  alt="...">
 		      <div class="carousel-caption d-none d-md-block">
 		        <h5>입맛이 까다로운 동물들도</h5>
 		        <p>식성에 맞는 다양한 사료가 구비되어있습니다. </p>
@@ -49,21 +96,30 @@
 		
 		<div id="popularWhole">
 		<div class="popularProductText productTitle">
-			인기상품
-		</div>
-			
+			떼껄룩의 인기상품들을 만나보세요
+		</div>	
+			<div class="card-deck ">
 				<c:forEach var="dto" items="${listBestProduct}">
-					<div class="">
-						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="" alt="..."></a>
-						<div class="">
+					<div class="card popularCard">
+						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="main-img " alt="..."></a>
+						<div class="card-body">
 							<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
-				    		<h5 class=""> ${price} 원</h5>
-			    			<p class="">${dto.pName}</p>					
+				    		<h5 class="card-text"> ${price} 원</h5>
+			    			<p class="card-text">${dto.pName}</p>					
 						</div>
 					</div>
-				</c:forEach>												
-			
+				</c:forEach>	
+			</div>														
 		</div>
+		<div class="card border-light cardBoarder">
+		  <img src="${pageContext.request.contextPath}/resources/images/storeMain/dogRun.jpg" class="card-img-top toycardImg">
+			  <div class="card-body">
+			    <h5 class="card-title">가족과 함께하는 시간</h5>
+			    <p class="card-text">가벼운 소재부터 여러 색상의 장난감을 통해 반려동물과 즐거운 시간을 보내보세요</p>
+			    <a href="${pageContext.request.contextPath}/product/cateList/3" class="btn" style="color: white;">구매하기</a>
+			  </div>
+		</div>		
+		
 		
 		<div class="banner donation">
 			<a class="storeClick">
@@ -74,44 +130,22 @@
 			<img src="${pageContext.request.contextPath}/resources/images/storeMain/do3.jpg" class="d-block w-100 " alt="...">
 		</div>
 		<div class="newProductText productTitle">
-			신상품
+			새로 들어온 상품들을 어떠세요?
 		</div>			
+			<div class="card-deck ">
+				<c:forEach var="dto" items="${listBestProduct}">
+					<div class="card popularCard">
+						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="main-img " alt="..."></a>
+						<div class="card-body">
+							<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
+				    		<h5 class="card-text"> ${price} 원</h5>
+			    			<p class="card-text">${dto.pName}</p>					
+						</div>
+					</div>
+				</c:forEach>	
+			</div>
 
-		<div class="card-deck storeCard">
-		  <div class="card">
-		    <img src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <img src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-		      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <img src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-		      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		    </div>
-		  </div>
-		</div>
 
-		<div class="card border-light cardBoarder">
-		  <img src="${pageContext.request.contextPath}/resources/images/storeMain/dogRun.jpg" class="card-img-top" alt="...">
-		  <div class="card-body">
-		    <h5 class="card-title">가족과 함께하는 시간</h5>
-		    <p class="card-text">가벼운 소재부터 여러 색상의 장난감을 통해 반려동물과 즐거운 시간을 보내보세요</p>
-		    <a href="#" class="btn btn-primary">구매하기</a>
-		  </div>
-		</div>
 	
 		
 		<div id="totalProductWhole">
@@ -119,81 +153,25 @@
 			전체상품
 		</div>			
 	
-			<div class="totalProduct">
-				<c:forEach var="dto" items="$">
-					<div class="ttproduct">
-						<div class="totalImg1 img">
-							<a class="storeClick">
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>
-						</div>
-						<div class="totalName1 name">
-							<a class="storeClick">
-								사료1
-							</a>
-						</div>
-						<div class="totalPrice1 price">
-							2000원
+			<div class="card-deck ">
+				<c:forEach var="dto" items="${listBestProduct}">
+					<div class="card popularCard">
+						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="main-img " alt="..."></a>
+						<div class="card-body">
+							<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
+				    		<h5 class="card-text"> ${price} 원</h5>
+			    			<p class="card-text">${dto.pName}</p>					
 						</div>
 					</div>
-				</c:forEach>
-					<div class="ttproduct">
-						<div class="totalImg1 img">
-							<a class="storeClick">
-								<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>
-						</div>
-						<div class="totalName1 name">
-							<a class="storeClick">						
-								장난감1
-							</a>
-						</div>
-						<div class="totalPrice1 price" >
-							2000원
-						</div>
-					</div>		
-					<div class="ttproduct">
-						<div class="totalImg1 img">
-							<a class="storeClick">
-							<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>
-						</div>
-						<div class="totalName1 name">
-							<a class="storeClick">							
-							장난감2
-							</a>
-						</div>
-						<div class="totalPrice1 price" >
-							2000원
-						</div>
-					</div>	
-					<div class="ttproduct">
-						<div class="totalImg1 img">
-							<a class="storeClick">
-							<img alt="" src="${pageContext.request.contextPath}/resources/images/storeMain/food.jpg">
-							</a>
-						</div>
-						<div class="totalName1 name">
-							<a class="storeClick">
-							장난감3
-							</a>
-						</div>
-						<div class="totalPrice1 price" >
-							2000원
-						</div>
-					</div>	
-			</div>	
+				</c:forEach>	
+			</div>
 		</div>	
-			
-			<div class="card border-light text-white banner">
-			  <img src="${pageContext.request.contextPath}/resources/images/storeMain/ban.jpg" class="card-img" alt="...">
-			  <div class="card-img-overlay">
-			    <h5 class="card-title">개묘개묘는 동물과 사람이 함께하는 문화를 만듭니다</h5>
-			    <p class="card-text"></p>
-			    <p class="card-text"></p>
-			  </div>
-			</div>				
-		</div>
+		<div class="banner donation">
+			<a class="storeClick">
+				<img src="${pageContext.request.contextPath}/resources/images/storeMain/bannerBottom.jpg" class="card-img" alt="...">
+			</a>
+		</div>								
+	</div>
 </div>
 
 

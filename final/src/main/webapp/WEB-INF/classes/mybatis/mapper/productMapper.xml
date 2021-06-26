@@ -135,12 +135,13 @@
 	
 	<!-- 구매할 상품 불러오기 -->
 	<select id="selectedProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
-		SELECT p.pNum, pName, pCateNum, pDiscountRate, pPrice, pDetailPrice
+		SELECT p.pNum, pName, pCateNum, pDiscountRate, pPrice, pDetailPrice, pImgName
         ,pDetailCnt,delivType, s.storeSubOptNum, m.storeMainOptNum, storeDetailOptNum
 		FROM product p
 		JOIN storeDetailOpt d ON p.pNum = d.pNum
         JOIN storeSubOpt s ON d.storeSubOptNum = s.storeSubOptNum
-        JOIN storeMainOpt m ON s.storeMainOptNum = m.storeMainOptNum	
+        JOIN storeMainOpt m ON s.storeMainOptNum = m.storeMainOptNum
+        JOIN productImage i on p.pNum = i.pNum
 		WHERE p.pNum = #{pNum}
 	</select>
 
