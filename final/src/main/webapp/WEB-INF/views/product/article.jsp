@@ -5,6 +5,24 @@
 <!-- 상품 상세정보 소비자에게 보임-->
 
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .imgLayout {
 	max-width: 700px;
 	padding: 5px;
@@ -33,13 +51,22 @@
 	width: 500px;
 	float: left;
 }
+
 .inform{
 	float: left;
 	width: 500px;
 	margin-top: 50px;
+	font-family: GmarketSansMedium;	
 }
+
 .inform tr:nth-child(1){
 	font-size: 20px;
+}
+.buyingProduct{
+	float: left;
+	width: 500px;
+	margin-top: 50px;
+	font-family: GmarketSansMedium;
 }
 
 .content{
@@ -58,6 +85,21 @@
 .adminController td{
 	padding-left: 50px;
 }
+.btnQty{
+	background-color: whitesmoke;
+    font-size: 18px;
+    border-radius: 8px;	
+    transition: 0.5s;
+	box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 10%);     
+	border: none;	
+
+}
+.btnQty:hover{
+	background-color: #023047;
+	color: #efefef;
+	box-shadow: 1px 0px 2px 0px rgb(0 0 0 / 10%);  
+
+}
 
 .btnBig{
 	width: 300px;
@@ -67,6 +109,25 @@
     border-radius: 5px;
 	color: white;
     font-size: 17px;    
+}
+
+.btnBuy{
+	width: 300px;
+    height: 35px;
+    border: none;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 17px; 
+	background: #023047;
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+	transition: 0.3s;  
+	font-family: GmarketSansMedium;	 
+}
+.btnBuy:hover{
+    color: whitesmoke;
+	background: #073f5a;
+	box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);	
+	font-family: GmarketSansMedium;
 }
 
 .margin{
@@ -338,6 +399,9 @@ $(function(){
 						</tr>				
 					</c:otherwise>
 				</c:choose>
+				</table>
+
+				<table class="buyingProduct">
 				<tr>
 					<td>
 						수량선택
@@ -345,8 +409,8 @@ $(function(){
 							수량 : <input type=hidden name="pNum" value="${dto.pNum}">
 							<input type="hidden" name="page" value="${page}">
 							<input type="text" name="sDetailQty" value="1" class="quantityBorder">
-							<input type="button" value=" + " class="btnPlus quantityBorder" >
-							<input type="button" value=" - " class="btnMinus quantityBorder"><br>
+							<input type="button" value=" + " class="btnPlus btnQty" >
+							<input type="button" value=" - " class="btnMinus btnQty"><br>
 							<c:choose>
 								<c:when test="${dto.pDiscountRate != 0}">
 									<input type="text" name="sum" data-price="${dto.totPrice}" value="${dto.totPrice}" readonly="readonly">
@@ -358,17 +422,11 @@ $(function(){
 						</form>					
 					</td>						
 				</tr>			
-				<tr>
-					<td>
-							<button class="btnBig" type="button" onclick="pay()">구매하기</button>
-					</td>
-				</tr>			
-				<tr>
-					<td>
-						<button class="btnBig" type="button">장바구니</button>
-					</td>	
-				</tr>			
-			</table>
+				</table>
+				<div>				
+					<button class="btnBuy" type="button" onclick="pay()">구매하기</button>
+				</div>						
+			
 		</div>
 		<div class="content">
 			${dto.pContent}

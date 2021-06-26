@@ -135,11 +135,9 @@ public class ProductController {
 		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		List<Product> mainOptList = service.listMainOpt();
-		
-		//List<Product> subOptList = service.listSubOpt();
 			
 		Map<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("storeMainOptNum", storeMainOptNum); //여기 이렇게 넣는게 맞나?
+		map2.put("storeMainOptNum", storeMainOptNum); 
 
 		List<Product> subOptList = service.listSubOpt(map2);
 		 	

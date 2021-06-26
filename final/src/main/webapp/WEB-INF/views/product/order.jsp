@@ -4,10 +4,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <style type="text/css">
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .productPayBody{
 	margin: 0;
 	padding: 0;
-	font-family: 'Montserrat', -apple-system, 'NotoSansCJKkr', 'AppleSDGothicNeo', 'Roboto','dotum', '돋움', sans-serif;
+	font-family: Cafe24SsurroundAir;
+}
+
+.payTitle,.addressInform,.addressInform,.finalPayment{
+	font-family: GmarketSansMedium;
 }
 
 .table{
@@ -62,8 +80,6 @@ h3{
     border: 1px solid darkgray;	
 }
 
-
-
 .topTb th{
 	height: 60px;
     border-top: 2px solid #d6d6d6;
@@ -102,19 +118,28 @@ h3{
 }
 
 
-
 .addr{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-
 .address1{
 	margin-bottom: 10px;
 }
 
-.middleTb td {
+.addrBtn{
+    border: none;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 10%);  
+}
 
+.addrBtn:hover{
+	 box-shadow: inset -2px -1px 2px 0px rgb(0 0 0 / 10%);
+}
+
+.middleTb td {
 	padding-left: 20px;
 }
 
@@ -148,6 +173,11 @@ h3{
 .borderNone{
 	border: none;
     text-align: center;
+}
+
+.orderProductBtn{
+	border: 1px solid white;
+    border-radius: 5px;	
 }
 
 </style>
@@ -547,7 +577,7 @@ function iamport(){
 						<div class="address1">
 							<span>우편번호</span>
 								<input type="text" id="sZip" name="sZip" data-name="${dtto.mZip}" value="${dto.sZip}" readonly="readonly">
-								<button type="button" name="" onclick="daumPostcode();">검색</button>	
+								<button type="button" name="" class="addrBtn" onclick="daumPostcode();">검색</button>	
 							</div>
 						<div class="address2">						
 							<span>주소</span>
@@ -590,7 +620,7 @@ function iamport(){
 			</tr> 		
 			</table >
 		
-		<div class="discountInform">
+		<div class="addressInform">
 			<h3>할인 정보</h3>
 		</div>		
 		<table class="orderTable bottomTb table">
@@ -615,8 +645,8 @@ function iamport(){
 			</tr>
 		</table>	
 		
-		<div>
-			<h3>결제 수단 선택</h3>
+		<div class="finalPayment">
+			<h3>결제 확인</h3>
 		</div>		
 		<table class="orderTable table">
 			<tr>
@@ -637,7 +667,7 @@ function iamport(){
 			</tr>			
 			<tr>
 				<td>
-					<button type="button" onclick="orderOk(); ">결제하기</button>
+					<button type="button" class="orderProductBtn" onclick="orderOk(); ">결제하기</button>
 					<input type="text" name="sDetailPrice" value="${dto.sDetailPrice}" hidden="hidden">
 					<input type="text" name="storeMainOptNum" value="${dto.storeMainOptNum}" hidden="hidden">
 					<input type="text" name="storeSubOptNum" value="${dto.storeSubOptNum}" hidden="hidden">

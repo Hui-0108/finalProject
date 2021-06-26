@@ -3,14 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<style type="text/css">
-.top-bar{
-	background: #f3ac29;
-}
-
-</style>
-
-
 <div class="storeHeader">
 
 <div class="top-bar fixed-top">

@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-/*
-상단 헤더 css 
-//#ffa500
-//#fa9b0f;
-//#e98b2e;
-//#ff9d25
-*/
 .fixed-top {
 	position: relative;
 	top: 0;
@@ -105,8 +98,15 @@
 
 .headerBottom{
 	position: relative;
+    height: 70px;
+    line-height: 40px;
+    font-size: 20px;	
 }
 
 .titleTop{
 	color: wheat;
+}
+
+.mainBtn{
+	margin-right: 200px;
 }
