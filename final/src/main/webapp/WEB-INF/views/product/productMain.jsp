@@ -50,18 +50,19 @@
 		<div id="popularWhole">
 		<div class="popularProductText productTitle">
 			인기상품
-		</div>
-			
+		</div>	
+			<div class="card-deck storeCard">
 				<c:forEach var="dto" items="${listBestProduct}">
-					<div class="">
-						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="" alt="..."></a>
-						<div class="">
+					<div class="card">
+						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img " src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="" alt="..."></a>
+						<div class="card-body">
 							<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
-				    		<h5 class=""> ${price} 원</h5>
-			    			<p class="">${dto.pName}</p>					
+				    		<h5 class="card-text"> ${price} 원</h5>
+			    			<p class="card-text">${dto.pName}</p>					
 						</div>
 					</div>
-				</c:forEach>												
+				</c:forEach>	
+			</div>											
 			
 		</div>
 		

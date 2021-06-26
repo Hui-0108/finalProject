@@ -115,26 +115,21 @@
 					<c:choose>
 						<c:when test="${sessionScope.member.mRole eq 0}">
 			                <a class="headerUserName" href="${pageContext.request.contextPath}/admin"><span>${sessionScope.member.mNick}님</span></a>
+			                <a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-cog"></i></a>
 			                &nbsp;|&nbsp;
-			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
-			                &nbsp;|&nbsp;             
-							<a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-secret"></i></a>
+			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>         
 						</c:when>
 						<c:otherwise>
 			                <a class="headerUserName" href="${pageContext.request.contextPath}/mypage/profile"><span>${sessionScope.member.mNick}님</span></a>
-			                &nbsp;|&nbsp;
+							<a href="${pageContext.request.contextPath}/mypage/profile"><i class="fas fa-user-alt"></i>
+			            	</a>
+			            	&nbsp;|&nbsp;	
 			                <a href="${pageContext.request.contextPath}/member/logout"><span>로그아웃</span></a>
-			                &nbsp;|&nbsp;
 						</c:otherwise>
 					</c:choose>
                 </c:when>
 				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/member/login" title="로그인">로그인</a>			
-					<a href="${pageContext.request.contextPath}/"><i class="fas fa-user-alt"></i>
-	            	</a>
-	            	&nbsp;&nbsp;|
-	            	<a class="headerIcon" href="${pageContext.request.contextPath}/"><i class="fas fa-shopping-cart"></i>
-	        		</a>
+					<a href="${pageContext.request.contextPath}/member/login" title="로그인">회원 로그인</a>			
 				</c:otherwise>
 			</c:choose>
 		</div>

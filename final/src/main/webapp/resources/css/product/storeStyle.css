@@ -2,6 +2,10 @@
 
 /*
 상단 헤더 css 
+//#ffa500
+//#fa9b0f;
+//#e98b2e;
+//#ff9d25
 */
 .fixed-top {
 	position: relative;
@@ -23,15 +27,23 @@
 }
 
 .top-bar {
-	background: #f3ac29;
-  padding: 10px 0;
-  font-size: 14px;
-  color: #fff;
-  width: 100%;
+	background: orange;
+	  padding: 10px 0;
+	  font-size: 14px;
+	  color: #fff;
+	  width: 100%;
+	  height: 70px;
 }
 .top-bar .top-info{
 	margin-right: auto;
 }
+.top-bar .top-links{
+	font-size: 17px;
+    height: 50px;
+    font-size: 20px;
+    padding-top: 15px;
+}
+
 .top-bar .top-links a {
     color: rgba(255, 255, 255, 0.6);
     padding-left: 15px;
