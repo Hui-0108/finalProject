@@ -63,10 +63,11 @@
 	font-size: 20px;
 }
 .buyingProduct{
-	float: left;
-	width: 500px;
-	margin-top: 50px;
-	font-family: GmarketSansMedium;
+    float: right;
+    width: 300px;
+    margin-top: 50px;
+    font-family: GmarketSansMedium;
+    margin-right: 200px;
 }
 
 .content{
@@ -137,7 +138,19 @@
 
 .quantityBorder{
 	border: none;
+	width: 50px;
 }
+.payProduct{
+	clear: both;
+    width: 500px;
+    float: right;
+
+}
+
+.qty{
+	width: 50px;
+}
+
 </style>
 <script type="text/javascript">
 
@@ -187,7 +200,7 @@ function pay(){
 }
 
 function deleteProduct(){
-	var query = "pNum=${dto.pNum}&${query}";
+	var query = "${query}&pNum=${dto.pNum}";
 	var url = "${pageContext.request.contextPath}/product/delete?"+query;
 	
 	if(confirm("해당 상품 게시물을 삭제하시겠습니까? ")){
@@ -406,7 +419,7 @@ $(function(){
 					<td>
 						수량선택
 						<form name="articleform" method="get" >
-							수량 : <input type=hidden name="pNum" value="${dto.pNum}">
+							수량 : <input type=hidden name="pNum"  value="${dto.pNum}">
 							<input type="hidden" name="page" value="${page}">
 							<input type="text" name="sDetailQty" value="1" class="quantityBorder">
 							<input type="button" value=" + " class="btnPlus btnQty" >
@@ -423,7 +436,7 @@ $(function(){
 					</td>						
 				</tr>			
 				</table>
-				<div>				
+				<div class="payProduct">				
 					<button class="btnBuy" type="button" onclick="pay()">구매하기</button>
 				</div>						
 			

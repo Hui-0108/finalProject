@@ -26,14 +26,13 @@
     text-align: center;
     margin-top: 100px;
     margin-bottom: 30px;
-	color: #c39755;    
-	font-family: Cafe24Ssurround, sans-serif;    
+	color: #219ebc;  
+	font-family: Cafe24Ssurround, sans-serif;
+	text-shadow: 2px 2px 2px gray;    
 }
 
 .storeBody .imgstore{
-
-	height: 700px;
-
+	height: 300px;
 }
 
 .storeBody .imgstore > img{

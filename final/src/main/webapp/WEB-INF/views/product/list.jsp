@@ -77,6 +77,9 @@ box-shadow: inset -6px -7px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 /
 .productListBody{
 	font-family: Cafe24SsurroundAir
 }
+
+
+
 </style>
 
 
@@ -120,19 +123,19 @@ function article(pNum) {
 						</div>	
 						<c:choose>
 							<c:when test="${dto.pDiscountRate != 0}">
-							<div class="product productPrice">		
-								<span class="through">	
-									₩${dto.productPrice}													
-								</span>			
-								<span>	
-									₩${dto.totPrice}					
-								</span>
-							</div>	
+								<div class="product productPrice">		
+									<span class="through">	
+										₩${dto.productPrice}													
+									</span>			
+									<span class="bold">	
+										₩${dto.totPrice}					
+									</span>
+								</div>	
 							</c:when>
 							<c:otherwise>
-							<div class="product productPrice" >
-								₩${dto.productPrice}									
-							</div>				
+								<div class="product productPrice bold" >
+									₩${dto.productPrice}									
+								</div>				
 							</c:otherwise>
 						</c:choose>											
 					</div>				
