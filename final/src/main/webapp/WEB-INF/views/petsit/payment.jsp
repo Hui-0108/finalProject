@@ -24,8 +24,10 @@
 
 
 .petsitPayment .payPetsit {
-	display:flex;
+	margin: 0 auto;
 	padding: 10px 30px;
+	text-align: center;
+	
 }
 
 .petsitPayment .ppPic {
@@ -37,11 +39,6 @@
 
 .petsitPayment .ppDetail {
 	margin: 5px 30px;
-}
-
-.petsitPayment .ppDetail p:first-child{
-	margin-top: 10px;
-	margin-bottom: 50px;
 }
 
 .petsitPayment .payAmount {
@@ -117,8 +114,37 @@
     margin: 0 20px;
 }
 
-.petsitPayment .detailTop {
+.petsitPayment .bookDate {
+	border: none;
+	width: 130px;
+	
 }
+
+.petsitPayment .ppDetail {	
+}
+
+.petsitPayment .ppDetail p:nth-child(1) {	
+	width: 100px;
+	border-bottom: 2px solid #ccc;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+
+.petsitPayment .ppDetail p:nth-child(1) {	
+	width: 100px;
+	border-bottom: 2px solid #ccc;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+
+.petsitPayment .ppDetail p:nth-child(2) {	
+	width: 70px;
+	border-bottom: 2px solid #ccc;
+}
+
+.petsitPayment .ppDetail {	
+}
+
 </style>
 
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -177,26 +203,33 @@ function iamport(){
 	
 	
 }
-
-
 </script>
 
 <div class="petsitPayment">
 <div style="width:1300px;" align="center">
 <div class="paymentBody">
 	<form name="orderForm">
-	<h3>예약 정보</h3>
+	<h3 align="center">펫시터 예약 정보</h3>
 	<div class="payPetsit">
 		<div class="ppPic">
 			사진
 		</div>
 		<div class="ppDetail">
-			<p>예약 일자: <input type="text" name="checkIn" value="${dto.checkIn}">&nbsp;~&nbsp;
-			<input type="text" name="checkOut" value="${dto.checkOut}"></p>
-			<p>예약자:${sessionScope.member.mId}</p> 
+			<p>예약 날짜</p> 
+			<input type="text" name="checkIn" class="bookDate" value="${dto.checkIn}">&nbsp;~&nbsp;
+			<input type="text" name="checkOut" class="bookDate" value="${dto.checkOut}">
+			<p>예약자</p>
+			<p>${sessionScope.member.mId}</p>
+			<p>연락 받으실 휴대폰 번호와 이메일을 입려해 주세요</p>
+			<p>연락처</p>
+			<input type="text" name="orderTel">
+			<p>이메일</p>
+			<input type="text" name="orderEmail">
+			<p>예약일</p>
+			<input type="text" name="rDate" value="${dto.rDate}">
 		</div>
 	</div>
-	<h3>결제 정보</h3>
+	<h3 align="center">결제 정보</h3>
 	<div class="payAmount">
 		<div class="amountL">
 			<p>결제 예정 금액</p>
@@ -212,12 +245,10 @@ function iamport(){
 				<p><input type="text" name="small" value="${dto.small}">
 				   <input type="text" name="medium" value="${dto.medium}">
 				   <input type="text" name="large" value="${dto.large}">
-				      마리</p>
-				
+				      마리</p>	
 			</div>
-			<p>구매자명<input type="text" name="orderName"></p>
-			<p>구매자 전화번호<input type="text" name="orderTel"></p>
-			<p>구매자 이메일<input type="text" name="orderEmail"></p>
+			<input type="hidden" name="orderName" value="${sessionScope.member.mId}">
+			
 			
 			<div class="detailR">
 				<p>${dto.finalPrice}원</p>
@@ -231,9 +262,6 @@ function iamport(){
 			<div class="detailR">
 				<p>${dto.tax}원</p>
 			</div>
-		</div>
-		<div>
-			<p>예약 일자:<input type="text" name="rDate" value="${dto.rDate}"></p>
 		</div>
 		</div>
 	</form>

@@ -213,7 +213,7 @@ public class PetsitServiceImpl implements PetsitService {
 		int result=0;
 		
 		try {
-			result=dao.selectOne("petsit.rDataCount");
+			result=dao.selectOne("petsit.rDataCount", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -277,11 +277,13 @@ public class PetsitServiceImpl implements PetsitService {
 		try {
 			int orderSeq=dao.selectOne("petsit.orderSeq");
 			dto.setOrderNum(orderSeq); 
+			
 			dto.setmNum(dao.selectOne("petsit.readMnum", dto.getmId()));
 			dto.setPetNum(dao.selectOne("petsit.readPetNum", dto.getmId()));
 			
+			dao.insertData("petsit.insertOrderProduct", dto);
 			dao.insertData("petsit.insertReservation", dto);
-			dao.insertData("petsit.insertOrderProduct", dto);	
+				
 			
 		} catch (Exception e) {
 			e.printStackTrace();

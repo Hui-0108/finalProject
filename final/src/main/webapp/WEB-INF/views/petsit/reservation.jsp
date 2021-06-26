@@ -16,8 +16,15 @@
 	display: flex;
     flex-direction: column;
     border-top: 1px solid rgb(235, 235, 235);
-    padding: 38px 0px;
+    padding: 38px 0px 0px 0px;
     width: 100%;
+}
+
+
+.petsitReserve .paging {
+	text-align: center;
+	color: orange;
+	font-weight: 500;
 }
 
 .petsitReserve .reviewTop {
@@ -61,6 +68,7 @@
    
 .petsitReserve .reviewPic {
 	display: flex;
+	margin-bottom: 25px;
 }
    
 .petsitReserve .rpicture {
@@ -99,6 +107,16 @@
 	width: 20px;
 	height: 20px;
 	text-align: right;
+}
+
+.petsitReserve .listReviewFooter{
+	text-align: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.petsitReserve .more{
+	font-weight: 500;
+	
 }
 
 </style>
@@ -168,6 +186,7 @@ function ajaxFun(url, method, query, dataType, fn) {
 	});
 }
 
+//달력 part
 $(function(){
 	var y, m, d;
 	var now = new Date();
@@ -222,12 +241,13 @@ function printReview(data) {
 	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
 	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
 	
-	$("#lisReviewFooter").hide(); //숨겨놓음
+	$(".more").hide(); //숨겨놓음
 	
 	var out="";
 	if(dataCount==0) { //리뷰 데이터가 0개일 때 
 		out="<div class='paging'>";
-		out+="    <p>아직 등록된 후기가 없습니다.</p>";
+		out+="    <p style='font-size:16px;'>아직 등록된 후기가 없습니다 <i class='far fa-sad-tear'></i></p>";
+		out+="    <p style='font-size:16px;'>펫시터 서비스를 이용하고 이용 후기를 남겨보세요!</p>";
 		out+="</div>"
 		
 		$("#listReviewBody").html(out);
@@ -257,12 +277,11 @@ function printReview(data) {
 		out+="<div class='reviewTop'>";
 		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img></div>";
 		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
-		out+="</div>";
-		
+		out+="</div>";		
 		out+="<p>후기 평점:"+rGrade+"</p>";
 		out+="<p>"+rTitle+"</p>";
 		out+="<p>"+rContent+"</p>";
-		out+="<div calss='reviewPic' style='display:flex;'>"
+		out+="<div calss='reviewPic' style='display:flex; margin-bottom:25px;'>"
 		if(img.length>0){
 			for(var i=0; i<img.length; i++) {
 				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
@@ -276,9 +295,10 @@ function printReview(data) {
 	$("#listReviewBody").append(out); //append로 해야 기존 내용 지워지지 x
 	
 	if(page<totalPage) { //데이터가 더 존재하는 경우
-		$("#listReviewFooter").show(); //데이터를 보여줌
+		$(".more").show(); //데이터를 보여줌
 	}
-	
+	console.log(page);
+	console.log(totalPage);
 }
 
 //리뷰 더보기 
@@ -548,12 +568,14 @@ function sendReservation() {
 	         	</div>	         
          	</div>
 			<div id="listReviewBody" data-pageNo="0" data-totalPage="0"></div>
-			<div id="listReviewFooter">
+			<div id="listReviewFooter" class="listReviewFooter">
 				<span class="more">후기 더보기</span>
 			</div>
 		</div>
 	</div>
+	
 	<div class="body-right" align="right">
+		<div class="schedule"></div>
 		<div class="reverve-detail">
 			<form id="rvForm" name="rvForm" method="POST" >
 			<div class="reserve-date">
@@ -682,7 +704,7 @@ function sendReservation() {
 					<p>7kg 미만</p>
 				</div>
 				<div class="type-R">
-					<p>4,0000원</p>
+					<p>40,000원</p>
 				</div>
 			</div>
 			<div class="pet-type">
@@ -691,7 +713,7 @@ function sendReservation() {
 					<p>15kg 미만</p>
 				</div>
 				<div class="type-R">
-					<p>5,0000원</p>
+					<p>50,000원</p>
 				</div>
 			</div>
 			<div class="pet-type">
@@ -700,20 +722,10 @@ function sendReservation() {
 					<p>15kg 이상</p>
 				</div>
 				<div class="type-R">
-					<p>6,0000원</p>
+					<p>60,000원</p>
 				</div>
 			</div>
-			<div class="bar" ></div>
-			<div class="extra" style="margin: 0px;">
-				<p>반려동물 추가비</p>
-				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할인</p></div>
-			</div>
-			<div class="extra">
-				<p>공휴일 할증비</p>
-				<div class="secondline"><p>기본요금에서 <span>10,000원</span> 할증</p></div>
-			</div>
 		</div>
-		<div class="schedule"></div>
 		<div class="location">
 			<div class="lTop">
 				<div class="topContent">

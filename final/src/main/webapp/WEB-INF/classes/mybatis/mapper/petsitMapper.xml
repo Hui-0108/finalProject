@@ -39,12 +39,11 @@
 			<if test="conList != null ">
 				AND 
 				(
-					<foreach collection="conList" item="condition" separator="OR">
+					<foreach collection="conList" item="condition" separator="AND">
 						${condition} = 1 
 					</foreach>
 				)
-			</if>
-			
+			</if>			
 		</where>
 	</select>
 	
@@ -66,7 +65,7 @@
 			<if test="conList != null ">
 				AND 
 				(
-					<foreach collection="conList" item="condition" separator="OR">
+					<foreach collection="conList" item="condition" separator="AND">
 						${condition} = 1 
 					</foreach>
 				)
@@ -128,9 +127,11 @@
 	<!-- 리뷰 part -->
 	
 	<!-- 리뷰 데이터  -->
-	<select id="rDataCount" parameterType="Integer" resultType="Integer">
+	<select id="rDataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
-		FROM review
+		FROM review r
+		JOIN reservation rv ON r.orderNum = rv.orderNum 		
+		WHERE petNum=#{petNum}
 	</select>
 	
 	<!-- 리뷰 리스트  --><!-- review, reviewImage 조인 -->
@@ -158,13 +159,13 @@
 		SELECT mNum FROM member WHERE mId = #{mId}
 	</select>
 	
-	<select id="readPetnum" resultType="Integer" parameterType="String">
+	<select id="readPetNum" resultType="Integer" parameterType="String">
 		SELECT petNum FROM petsit WHERE mId = #{mId}
 	</select>
-	
+
 	<insert id="insertOrderProduct" parameterType="com.fin.app.petsit.Reservation">
 		INSERT INTO orderProduct(orderNum, mNum, orderState, orderName, orderTel, orderEmail)
-		VALUES(#{orderNum}, #{mNum}, #{orderState}, #{orderTel}, #{orderEmail})		
+		VALUES(#{orderNum}, #{mNum}, 1, #{orderName},#{orderTel}, #{orderEmail})		
 	</insert>
 	
 	<insert id="insertReservation" parameterType="com.fin.app.petsit.Reservation">

@@ -141,10 +141,9 @@
 	font-size: x-small;
 }
 
-
-
 .petsitReserve .reverve-detail {
-	height: 530px;
+	height: 690px;
+	margin-top: 38px;
 	
 	width: 375px;
     border-radius: 8px;
@@ -223,15 +222,6 @@
    margin: 0px 0px 5px 0px;
 
 }
-
-
-
-
-
-
-
-
-
 
 .petsitReserve .reverve-detail p {
 	font-family: "Noto Sans KR";
@@ -589,8 +579,7 @@
 
 .petsitReserve .schedule {
 	height: 470px;
-	margin-top: 38px;
-	
+
 	width: 375px;
     border-radius: 8px;
     border: 1px solid rgb(223, 227, 234);

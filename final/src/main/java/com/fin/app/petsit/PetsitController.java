@@ -322,7 +322,7 @@ public class PetsitController {
 			@RequestParam int petNum,
 			@RequestParam(value="pageNo",defaultValue="1") int current_page
 			) throws Exception {
-		int rows=5;
+		int rows=3;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -337,8 +337,6 @@ public class PetsitController {
 		if(offset < 0) offset = 0;
 		map.put("offset", offset);
 		map.put("rows", rows);
-		
-
 		
 		List<PetsitReview> reviewList = service.listReview(map);		
 		
@@ -393,7 +391,7 @@ public class PetsitController {
 	     
 	    model.addAttribute("dto", dto);
 	      
-	    //글쓰기 완료 후 페이지가 payment로    
+	    //완료 후 페이지가 payment로    
 	    return ".petsit.payment";  
 	   }
 	

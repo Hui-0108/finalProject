@@ -3,7 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<style>
+.searchCondition ul li {
+	cursor: pointer;
+}
 
+</style>
 <script type="text/javascript">
 //datepicker의 기본 설정
 $(function() {
@@ -18,6 +23,7 @@ $(function() {
 
 $(function(){
 	$(".condition").click(function(){
+				
 		var c = $(this).attr("data-condition");
 		
 		var b = false;
@@ -36,72 +42,73 @@ $(function(){
 		
 		var f=document.searchForm;
 		f.submit();
-		
-		
 	});
 });
 
+$(function(){
+	$(".conList input[name=condition]").each(function(){
+		var s = $(this).val();
+		
+		$(".searchCondition ul .condition").each(function(){
+			var a = $(this).attr("data-condition");
+			if(s === a) {
+				$(this).css("color", "red");
+				return false;
+			}
+		});
+	});
+});
 
 </script>
 
 <div class="petsitList">
 	<!-- 검색영역 -->
+	<div style="width: 1300px;" align="center" >
 	<div class="search" align="center">
-		<form name="searchForm" method="post">
-			<div style="width: 1300px;">
-				<div class="searchAddr">
-					<p><i class="fas fa-home"></i>&nbsp;<b>어디에 사시나요?</b></p>
-					<div class="inputbtn">
-					<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)" value="${addr}">
-					<button class="serchbtn" onclick="serchList()"><i class="fas fa-search"></i>&nbsp;검색</button>
-					</div>
-				</div>
-				<div class="reserve-detail">
-					<p><i class="fas fa-paw"></i>&nbsp;<b>언제 펫시터가 필요한가요?</b></p>
-					<div class="dateBar">
-						<div class="checkinCal">
-						<button class="dateButton"><i class="fas fa-calendar-alt"></i></button>
-						</div>
-						<div>
-							<input class="checkDate" type="text" name="checkDate1" id="datepicker1" placeholder=" 체크인 날짜">	
-						</div>
-						<div class="pointR">
-							<i class="fas fa-arrow-right"></i>
-						</div>
-						<div>
-							<input class="checkDate" type="text" name="checkDate2" id="datepicker2" placeholder=" 체크아웃 날짜">	
+		<form name="searchForm" method="post">			
+				<div class="searchL">
+					<div class="searchAddr">
+						<p><i class="fas fa-home"></i>&nbsp;<b>어디에 사시나요?</b></p>
+						<div class="inputbtn">
+						<input class="searchDong" type="text" name="addr" placeholder=" 동 이름을 검색하세요(예.논현동)" value="${addr}">
+						<button class="serchbtn" onclick="serchList()"><i class="fas fa-search"></i>&nbsp;검색</button>
 						</div>
 					</div>
+					<div class="searchCondition">
+						<p><i class="fas fa-check"></i>&nbsp;<b>원하는 조건을 설정하세요</b></p>
+						<ul>
+							<li><div class="condition" data-condition="petLarge">대형견 가능</div></li>
+							<li><div class="condition" data-condition="petYard">마당 있음</div></li>
+							<li><div class="condition" data-condition="petYN">반려동물 없음</div></li>
+							<li><div class="condition" data-condition="petWalk">산책로 있음</div></li>
+						</ul>
+						<div class="conList">
+							<c:forEach var="condition" items="${conList}">
+								<input type="hidden" name="condition" value="${condition}">
+							</c:forEach>
+						</div>
+					</div>			 							
 				</div>
-				<div class="searchCondition">
-					<p><i class="fas fa-check"></i>&nbsp;<b>원하는 조건을 설정하세요</b></p>
-					<ul>
-						<li><div class="condition" data-condition="petLarge"><p>대형견 가능</p></div></li>
-						<li><div class="condition" data-condition="petYard"><p>마당 있음</p></div></li>
-						<li><div class="condition" data-condition="petYN"><p>반려동물 없음</p></div></li>
-						<li><div class="condition" data-condition="petWalk"><p>산책로 있음</p></div></li>
-					</ul>
-					<div class="conList">
-						<c:forEach var="condition" items="${conList}">
-							<input type="hidden" name="condition" value="${condition}">
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-		</form>
+				<div class="searchR" style="margin: 0px 0px;">
+					<img class="searchPic" src="${pageContext.request.contextPath}/resources/images/petsit/dog.jpg">
+				</div>						
+			</form>			
+		</div>
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="list" align="center">
 		<div style="width: 1300px;">	
 			<div class="list-body">
 				<div class="list-title">
-					<p>해당 지역의 펫시터는 평균 만족도 99.8%의 3167개의 후기를 가지고 있습니다</p>
+					<p>원하는 조건의 검증된 펫시터들을 확인해 보세요. 생생한 후기와 만족도까지 확인할 수 있습니다!</p>
 					<div style="display: flex;">
 						<div class="list-titleR">
-							<p>가까운순</p>
-							<p>인기순</p>
-							<p>가격순</p>
-							<p>아이콘</p>
+							<p><i class="fas fa-dog"></i></p>
+							<p><i class="fas fa-baby-carriage"></i></p>
+							<p><i class="fas fa-child"></i></p>
+							<p><i class="fas fa-seedling"></i></p>
+							<p><i class="fas fa-tree"></i></p>
+							<p><i class="fas fa-users"></i></p>
 						</div>
 					</div>
 				</div>

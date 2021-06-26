@@ -3,6 +3,12 @@ package com.fin.app.petsit;
 public class Reservation {
 	
 	private String mId; //아이디
+	private String orderName;
+	private String orderTel;
+	private String orderEmail;
+	
+	
+	
 	
 	//펫시터 예약
 	private int orderNum;//주문코드 
@@ -29,13 +35,29 @@ public class Reservation {
 	private int tax;
 	private int dayCnt;
 	private int sum;
-	
-	
 	public String getmId() {
 		return mId;
 	}
 	public void setmId(String mId) {
 		this.mId = mId;
+	}
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
+	public String getOrderTel() {
+		return orderTel;
+	}
+	public void setOrderTel(String orderTel) {
+		this.orderTel = orderTel;
+	}
+	public String getOrderEmail() {
+		return orderEmail;
+	}
+	public void setOrderEmail(String orderEmail) {
+		this.orderEmail = orderEmail;
 	}
 	public int getOrderNum() {
 		return orderNum;
@@ -97,7 +119,7 @@ public class Reservation {
 	public void setSmall(int small) {
 		this.small = small;
 	}
-	public int getmedium() {
+	public int getMedium() {
 		return medium;
 	}
 	public void setMedium(int medium) {
@@ -127,5 +149,8 @@ public class Reservation {
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
+	
+	
 
+	
 }	
