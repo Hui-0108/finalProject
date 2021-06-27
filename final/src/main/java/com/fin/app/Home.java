@@ -23,6 +23,9 @@ public class Home {
 	private int pDetailPrice;
 	private int pDiscountRate;
 	
+	private String pImgName;
+	private String petImg;
+	
 	public int getRank() {
 		return rank;
 	}
@@ -118,6 +121,18 @@ public class Home {
 	}
 	public void setmNick(String mNick) {
 		this.mNick = mNick;
+	}
+	public String getpImgName() {
+		return pImgName;
+	}
+	public void setpImgName(String pImgName) {
+		this.pImgName = pImgName;
+	}
+	public String getPetImg() {
+		return petImg;
+	}
+	public void setPetImg(String petImg) {
+		this.petImg = petImg;
 	}
 	
 	

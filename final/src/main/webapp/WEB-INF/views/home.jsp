@@ -109,7 +109,7 @@
 			</div>
 			<c:forEach var="dto" items="${bestPetsit}">
 				<div class="card">
-					<a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}"><img class="main-img imgpetsit" src="${pageContext.request.contextPath}/resources/images/home/main_petsit.jfif" class="card-img-top" alt="..."></a>
+					<a href="${pageContext.request.contextPath}/upload/petsit/${dto.petImg}" class="card-img-top" alt="..."></a>
 			  		<div class="card-body">
 			    		<h5 class="card-title">${dto.mNick} 님</h5>
 			    		<p class="card-text">${dto.petTitle}</p>
@@ -132,7 +132,7 @@
 			
 			<c:forEach var="dto" items="${bestStore}">
 				<div class="card">
-					<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img class="main-img imgstore" src="${pageContext.request.contextPath}/resources/images/home/main_product.jfif" class="card-img-top" alt="..."></a>
+					<a href="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="card-img-top" alt="..."></a>
 			  		<div class="card-body">
 			  			<fmt:parseNumber value="${(dto.pPrice + dto.pDetailPrice)*(1-(dto.pDiscountRate/100))}" var="price" type="number" integerOnly="true"/>
 			    		<h5 class="card-title"> ${price} 원</h5>

@@ -82,10 +82,7 @@
                   <tbody> 
 					  <c:forEach var="dto" items="${bestStore}">
 	                  	<tr>
-	                  	  <td>
-	                        <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
-	                        ${dto.pName} 
-	                      </td>
+	                  	  <td>${dto.pName}</td>
 	                  	  <td style="text-align: right">${dto.pPrice}&nbsp;원</td>
 	                  	  <td style="text-align: right">${dto.sumQty}&nbsp;개</td>
 	                      <td style="text-align: center">

@@ -82,6 +82,10 @@
 	font-size: 25px;
 }
 
+.home .btn-main:hover {
+	color: orange;
+}
+
 .home .donaimg {
 	width: 50%;
 	height: 270px;
