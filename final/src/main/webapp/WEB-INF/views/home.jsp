@@ -24,7 +24,7 @@
 			    <div class="carousel-item">
 			      <img class="imghome" src="${pageContext.request.contextPath}/resources/images/home/home_ani2.jpg" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <a href="${pageContext.request.contextPath}/donation/main"><button type="button" class="btn btn-outline-light btn-main">Donation</button></a>
+			        <a href="${pageContext.request.contextPath}/stat/stat"><button type="button" class="btn btn-outline-light btn-main">Statistics</button></a>
 			        <p class="carousel-content">여러분의 후원금은 유기동물의 처우개선을 위해 사용됩니다</p>
 			      </div>
 			    </div>
@@ -60,12 +60,23 @@
 		<h2 class="home-head donation-head">
 			Take A Look !
 		</h2> 
-		<div class="container maindonation" style="margin-top: 100px;">
+		<div class="container maindonation" style=" text-align: center;">
 			<div>
-				<img class="donaimg" style="height: 350px; margin-bottom:20px;" src="${pageContext.request.contextPath}/resources/images/home/dona_ani.jpg" class="card-img-top" alt="...">
+				<img class="donaimg" style="height: 60%; margin-top: 100px; margin-bottom:20px; float: left;" src="${pageContext.request.contextPath}/resources/images/home/dona_ani.jpg" class="card-img-top" alt="...">
 			</div>
-			<div class="main-button donation-button">
-				<a href="${pageContext.request.contextPath}/donation/main"><button type="button" class="btn btn-light">후원 바로가기</button></a>
+			<div>
+				<div style="margin-top: 100px; width: 40%; float: right; color: #4C4C4C; font-size: 25px;">
+					안녕하세요 <br>
+					펫시터 예약 & 반려동물 스토어 <br>
+					<span style="font-size: 35px">Take A Look</span> 입니다 <br><br>
+					매년 10만마리 이상의 유기동물이<br>
+					보호소로 구조되고 있습니다<br>
+					안타깝게도 이 중 절반에 가까운 동물들이<br>
+					안락사되거나 자연사하고 있습니다
+				</div>
+				<div style="width: 100%; margin-top:10px; float:left; color: white; font-size: 31px;">
+					Take A Look 스토어 수익금의 50%는 유기동물의 처우개선을 위해 사용됩니다
+				</div>
 			</div>
 		</div>
 	</div>

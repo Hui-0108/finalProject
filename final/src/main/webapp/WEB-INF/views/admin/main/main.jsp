@@ -81,14 +81,14 @@
                   </thead>
                   <tbody> 
 					  <c:forEach var="dto" items="${bestStore}">
-	                  	<tr style="text-align: center">
+	                  	<tr>
 	                  	  <td>
 	                        <img src="${pageContext.request.contextPath}/resources/images/home/home_ani1.jpg" alt="Product 1" class="img-circle img-size-32 mr-2">
 	                        ${dto.pName} 
 	                      </td>
-	                  	  <td>${dto.pPrice}&nbsp;원</td>
-	                  	  <td>${dto.sumQty}&nbsp;개</td>
-	                      <td>
+	                  	  <td style="text-align: right">${dto.pPrice}&nbsp;원</td>
+	                  	  <td style="text-align: right">${dto.sumQty}&nbsp;개</td>
+	                      <td style="text-align: center">
 	                      	<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}" class="text-muted"> 
 	                        	<i class="fas fa-search"></i> 
 	                     	</a>
@@ -148,9 +148,33 @@
               </div>
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-success text-xl">
-                    <i class="fas fa-dog"></i>
-                  </p>
+                    	<c:choose>
+                    		<c:when test="${petLastWeek.pTotLastWeek < petThisWeek.pTotThisWeek}">
+                    			<p class="text-success text-xl">
+                    				<i class="fas fa-dog"></i>
+                    				<i class="fas fa-dog"></i>
+                    				<i class="fas fa-dog"></i>
+                    				<i class="fas fa-dog"></i>
+                    				<i class="fas fa-dog"></i>
+                  				</p>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<c:choose>
+                      				<c:when test="${petLastWeek.pTotLastWeek > petThisWeek.pTotThisWeek}">
+		                    			<p class="text-danger text-xl">
+		                    				<i class="fas fa-dog"></i>
+		                  				</p>
+                      				</c:when>
+                      				<c:otherwise>
+		                    			<p class="text-warning text-xl">
+		                    				<i class="fas fa-dog"></i>
+		                    				<i class="fas fa-dog"></i>
+		                    				<i class="fas fa-dog"></i>
+		                  				</p>
+                      				</c:otherwise>
+                      			</c:choose>
+                      		</c:otherwise>
+                     	</c:choose>
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>
@@ -174,9 +198,33 @@
                 </div>
                 <!-- /.d-flex -->
                 <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-warning text-xl">
-                    <i class="fas fa-shopping-cart"></i>
-                  </p>
+                    	<c:choose>
+                    		<c:when test="${storeLastWeek.sTotLastWeek < storeThisWeek.sTotThisWeek}">
+                    			<p class="text-success text-xl">
+                    				<i class="fas fa-shopping-cart"></i>
+                    				<i class="fas fa-shopping-cart"></i>
+                    				<i class="fas fa-shopping-cart"></i>
+                    				<i class="fas fa-shopping-cart"></i>
+                    				<i class="fas fa-shopping-cart"></i>
+                  				</p>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<c:choose>
+                      				<c:when test="${storeLastWeek.sTotLastWeek > storeThisWeek.sTotThisWeek}">
+		                    			<p class="text-danger text-xl">
+		                    				<i class="fas fa-shopping-cart"></i>
+		                  				</p>
+                      				</c:when>
+                      				<c:otherwise>
+		                    			<p class="text-warning text-xl">
+		                    				<i class="fas fa-shopping-cart"></i>
+		                    				<i class="fas fa-shopping-cart"></i>
+		                    				<i class="fas fa-shopping-cart"></i>
+		                  				</p>
+                      				</c:otherwise>
+                      			</c:choose>
+                      		</c:otherwise>
+                     	</c:choose>
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>
@@ -200,9 +248,33 @@
                 </div>
                 <!-- /.d-flex -->
                 <div class="d-flex justify-content-between align-items-center mb-0">
-                  <p class="text-danger text-xl">
-                    <i class="fas fa-users"></i>
-                  </p>
+                    	<c:choose>
+                    		<c:when test="${joinLastWeek.jTotLastWeek < joinThisWeek.jTotThisWeek}">
+                    			<p class="text-success text-xl">
+                    				<i class="fas fa-users"></i>
+                    				<i class="fas fa-users"></i>
+                    				<i class="fas fa-users"></i>
+                    				<i class="fas fa-users"></i>
+                    				<i class="fas fa-users"></i>
+                  				</p>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<c:choose>
+                      				<c:when test="${joinLastWeek.jTotLastWeek > joinThisWeek.jTotThisWeek}">
+		                    			<p class="text-danger text-xl">
+		                    				<i class="fas fa-users"></i>
+		                  				</p>
+                      				</c:when>
+                      				<c:otherwise>
+		                    			<p class="text-warning text-xl">
+		                    				<i class="fas fa-users"></i>
+		                    				<i class="fas fa-users"></i>
+		                    				<i class="fas fa-users"></i>
+		                  				</p>
+                      				</c:otherwise>
+                      			</c:choose>
+                      		</c:otherwise>
+                     	</c:choose>
                   <p class="d-flex flex-column text-right">
                     <span class="font-weight-bold">
                     	<c:choose>

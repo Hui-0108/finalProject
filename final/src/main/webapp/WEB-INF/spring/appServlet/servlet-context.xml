@@ -76,10 +76,10 @@
             <exclude-mapping path="/member/findPwd"/>
             <exclude-mapping path="/product/main"/>
             <exclude-mapping path="/product/list"/>
-            <exclude-mapping path="/product/cateList/*"/>
-            <exclude-mapping path="/product/article**"/>
+            <exclude-mapping path="/product/cateList/**"/>
+            <exclude-mapping path="/product/article/**"/>
             <exclude-mapping path="/petsit/list"/>
-            <exclude-mapping path="/petsit/reservation**"/>
+            <exclude-mapping path="/petsit/reservation/**"/>
             <exclude-mapping path="/donation/**"/>
             <exclude-mapping path="/stat/**"/>
             <beans:bean class="com.fin.app.member.LoginCheckInterceptor"/>

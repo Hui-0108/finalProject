@@ -18,6 +18,7 @@ function ajaxFun(url, method, dataType, query, fn) {
 		dataType:dataType,
 		success:function(data){
 			 fn(data);
+			 
 		},
 		error:function(e) {
 			console.log(e.responseText);
@@ -42,11 +43,18 @@ $(function(){
 	if(m<10) m="0"+m;
 	var d = now.getDate();
 	if(d<0) d="0"+d;
-	var date=y+""+m+""+d;
+/* 	var date1=y+""+m+"0"+1; */
+	var date2=y+""+m+""+d;
 	
-	var query="date="+date;
+	var query=/* "date1="+date1+ */"date2="+date2;
+	/* console.log(date1); */
+	console.log(date2);
 	var fn = function(data){
 		// console.log(data);
+		var a= data.response.body.items.item;
+		 for(var i=0; i <a.length; i++){
+			 console.log(a[i].processState);
+		 }
 		printAnimal(data);
 	}
 	
@@ -85,19 +93,19 @@ $(function(){
 		arr.push({name:"안락사", y:a});
 
 		
-		/*
-		out+="보호 중:"+p+"마리"+"<br>"+"종료(입양):"+ad+"마리"+"<br>"
+		
+/* 		out+="보호 중:"+p+"마리"+"<br>"+"종료(입양):"+ad+"마리"+"<br>"
 		+"종료(반환):"+e+"마리"+"<br>"+"종료(방사):"+b+"마리"+"<br>"
 		+"종료(기증):"+don+"마리"+"<br>"+"종료(자연사):"+n+"마리"+"<br>"
 		+"종료(안락사):"+a+"마리"+"<br>";
 		
  		 $("#today").html(out);
-		*/
+		
  		
 		$.each(data.response.body.items.item, function(index, item){
 			// out+="전체 마릿수:"+items.totalCount+"<br>";
 			out+="발생 지역:"+item.orgNm+"<br>";
-		});
+		}); */
 		
 		
 		// out+="오늘 보호 중인 동물 수:"+totalCount+"<br>";
@@ -172,11 +180,11 @@ $(function(){
 		    series: [{
 		        name: '보호 중', // '입양', '반환', '방사', '기증', '자연사', '안락사',
 		        data: arr
-/* 		    }, {
+/*  		    }, {
 		    	name: '입양',
-		    	data: arr */
+		    	data: arr  */
 		    }]
-		});		
+		});
 	}
 });
 

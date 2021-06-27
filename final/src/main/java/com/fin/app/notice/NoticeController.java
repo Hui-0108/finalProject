@@ -161,7 +161,7 @@ public class NoticeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/notice/notice";	
+			return "redirect:/center/notice/notice";	
 		}
 
 		try {
@@ -173,7 +173,7 @@ public class NoticeController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/notice/notice";
+		return "redirect:/center/notice/notice";
 	}
 
 	@RequestMapping(value="article")
@@ -195,7 +195,7 @@ public class NoticeController {
 
 		Notice dto = service.readNotice(num);
 		if(dto==null) {
-			return "redirect:/notice/notice?"+query;
+			return "redirect:/center/notice/notice?"+query;
 		}
 		
         dto.setnContent(dto.getnContent().replaceAll("\n", "<br>"));

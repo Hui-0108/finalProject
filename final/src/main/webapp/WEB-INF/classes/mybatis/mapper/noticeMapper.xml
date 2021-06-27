@@ -7,9 +7,9 @@
 	</select>
 	
 	<insert id="insertNotice" parameterType="com.fin.app.notice.Notice">
-		INSERT INTO notice(nNum, mId, nTitle, nContent, nHit, nCreated)
+		INSERT INTO notice(nNum, mId, nTitle, nContent, nImg, nHit, nCreated, nCateNum)
 				VALUES(#{nNum}, #{mId}, #{nTitle},
-					#{nContent}, 0, SYSDATE)
+					#{nContent}, #{nImg}, 0, SYSDATE, '1')
 	</insert>
 
 	<sql id="where-list">

@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
 		try {
 			int seq=dao.selectOne("notice.seq");
 			dto.setnNum(seq);
-
+			System.out.println("##"+dto);
 			dao.insertData("notice.insertNotice", dto);
 			
 			// 파일 업로드

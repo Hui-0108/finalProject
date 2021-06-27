@@ -11,6 +11,7 @@ public class Notice {
 	private String nContent;
 	private String nCreated;
 	private String nCateName;
+	private String nImg;
 	private int nHit;
 	private int notice;
 	private int nCateNum;
@@ -67,6 +68,13 @@ public class Notice {
 	}
 	public void setnCateName(String nCateName) {
 		this.nCateName = nCateName;
+	}
+	
+	public String getnImg() {
+		return nImg;
+	}
+	public void setnImg(String nImg) {
+		this.nImg = nImg;
 	}
 	public int getnHit() {
 		return nHit;
@@ -130,4 +138,10 @@ public class Notice {
 	public void setGap(long gap) {
 		this.gap = gap;
 	}
+	@Override
+	public String toString() {
+		return "Notice [nNum=" + nNum + ", mId=" + mId + ", nTitle=" + nTitle + ", nContent=" + nContent
+				+ ", nCateNum=" + nCateNum + ", nImg=" + nImg + "]";
+	}
+
 }
