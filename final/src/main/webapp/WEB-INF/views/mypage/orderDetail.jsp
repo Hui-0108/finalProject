@@ -156,7 +156,7 @@ $(function() {
 						</td>
 						
 						<td width="20%" colspan="2">
-							<label> ${type=='petsit'?'주문 상태':'배송 상태'} </label>
+							<label> ${type=='petsit'?'예약 상태':'배송 상태'} </label>
 						</td>
 					</tr>
 					
@@ -187,10 +187,21 @@ $(function() {
 						</td>
 						
 						<td>
-							<p> ${dto.sDetailPrice}원 </p>
+							<p> ${type == 'petsit'?dto.finalPrice:dto.sDetailPrice}원 </p>
 						</td>
 						
 						<td>
+							<c:if test="${type == 'petsit'}">
+							<c:choose>
+							 <c:when test="${dto.orderState == 0}">
+							 	<p> 입금 대기 </p>
+							 </c:when>
+							 <c:when test="${dto.orderState == 1}">
+							 	<p> 예약 완료 </p>
+							 </c:when>
+							</c:choose>
+							</c:if>
+							<c:if test="${type == 'store'}">
 							<c:choose>
 							 <c:when test="${dto.deliveryState == 0}">
 							 	<p> 배송 준비 </p>
@@ -202,6 +213,7 @@ $(function() {
 							 	<p> 배송 완료 </p>
 							 </c:when>
 							</c:choose>
+							</c:if>
 						</td>
 						
 						<td>
@@ -230,7 +242,7 @@ $(function() {
 					<table class="float-left">
 						<tr>
 							<td width="30%">
-								<label> 주문자명 </label>
+								<label> ${type=='petsit'?'예약자명':'주문자명'} </label>
 							</td>
 							
 							<td>
@@ -278,7 +290,114 @@ $(function() {
 					</div>
 				</div>
 				
+				<c:if test="${type == 'petsit'}">
+				<div class="detail float-left" style="padding-left: 10px; height: 260px;">
+					<div class="detail-title">
+						<p> 펫시터 정보 </p>
+					</div>
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 소형견 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.small} 마리 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 중형견 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.medium} 마리 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 대형견 </label>
+							</td>
+							
+							<td>
+								<p> ${dto.large} 마리 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 추가 요금 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> ${-(dto.small*10000)+(dto.large*10000)} 원 </p>
+							</td>
+						</tr>
+						
+						
+					</table>
+					<div>
+						<ul>
+							<li> 자세한 내용은 FAQ를 확인하여 주시기 바랍니다. </li>
+						</ul>
+					</div>
+				</div>
 				
+				
+				<div class="detail float-left" style="padding-top: 50px;">
+					<div class="detail-title">
+						<p> 최종 결제 정보 </p>
+					</div>
+					
+					<table class="float-left">
+						<tr>
+							<td width="30%">
+								<label> 기본 이용료 </label>
+							</td>
+							
+							<td>
+								<p> 50000 * ${dto.gap} = ${50000*dto.gap} 원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> 추가 요금 </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> ${-(dto.small*10000)+(dto.large*10000)} 원 </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> <b>부가 가치세</b> </label>
+							</td>
+							
+							<td>
+								<p style="color: #14aaff;"> 10% </p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label> <b>최종 결제 금액</b> </label>
+							</td>
+							
+							<td>
+								<h5> ${dto.finalPrice}원 </h5>
+							</td>
+						</tr>
+						
+					</table>
+					
+				</div>
+				</c:if>
+					
+				<c:if test="${type == 'store'}">
 				<div class="detail float-left" style="padding-left: 10px; height: 260px;">
 					<div class="detail-title">
 						<p> 할인 정보 </p>
@@ -312,6 +431,7 @@ $(function() {
 						</ul>
 					</div>
 				</div>
+				
 				
 				<div class="detail float-left" style="padding-top: 50px;">
 					<div class="detail-title">
@@ -367,6 +487,7 @@ $(function() {
 					</table>
 					
 				</div>
+				</c:if>
 			</div>
 			
 		</div>

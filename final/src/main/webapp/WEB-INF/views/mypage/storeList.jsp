@@ -108,6 +108,14 @@
 	cursor: pointer;
 }
 
+.myStoreList .stBtn {
+    border: none;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 10%);
+}
+
 </style>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery.form.js"></script>
@@ -248,10 +256,10 @@ $(function() {
 						<td>
 							<c:choose>
 							 <c:when test="${dto.reviewOk == 0}">
-							 	<input id="writeReview" type="button" value="후기작성">
+							 	<input class="stBtn" id="writeReview" type="button" value="후기작성">
 							 </c:when>
 							 <c:otherwise>
-							 	<input id="blockReview" type="button" value="작성완료" disabled="disabled">
+							 	<input class="stBtn" id="blockReview" type="button" value="작성완료" disabled="disabled">
 							 </c:otherwise>
 							</c:choose>
 						</td>
@@ -272,8 +280,11 @@ $(function() {
 			<table>
 			
 				<tr>
-					<td colspan="2">
-						<label> 구매 후기 작성 </label>
+					<td>
+						<label>  </label>
+					</td>	
+					<td>
+						<label style="font-size: 16px; font-weight: 600;"> <i class="far fa-edit" style="color: #023047;"></i> 구매 후기 작성 </label>
 					</td>				
 				</tr>
 				
@@ -308,7 +319,7 @@ $(function() {
 					<td>
 					
 					</td>
-					<td>
+					<td style="padding-top: 10px;">
 						<input type="radio" value="1" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i> </label> &nbsp;
 						<input type="radio" value="2" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i> </label> &nbsp;
 						<input type="radio" value="3" id="rGrade" name="rGrade"> <label> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </label> &nbsp;
@@ -322,7 +333,7 @@ $(function() {
 						<input type="hidden" id="orderNum" name="orderNum">
 					</td>
 					<td style="text-align: right;">
-						<input id="sendRivew" type="button" value="전송">
+						<input class="stBtn" id="sendRivew" type="button" value="작성하기">
 					</td>					
 				</tr>
 				

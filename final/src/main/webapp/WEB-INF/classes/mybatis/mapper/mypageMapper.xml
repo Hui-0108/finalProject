@@ -144,7 +144,7 @@
 	</select>
 	
 	<select id="selectDetailP" parameterType="Integer" resultType="com.fin.app.mypage.Detail">
-		SELECT r.orderNum, TO_CHAR(r.checkIn, 'YYYY-MM-DD') checkIn, TO_CHAR(r.checkOut, 'YYYY-MM-DD') checkOut, TO_CHAR(r.rDate, 'YYYY-MM-DD') rDate, r.mNum, r.petNum, r.finalPrice, 
+		SELECT r.orderNum, TO_CHAR(r.checkIn, 'YYYY-MM-DD') checkIn, TO_CHAR(r.checkOut, 'YYYY-MM-DD') checkOut, TO_CHAR(r.rDate, 'YYYY-MM-DD') rDate, r.mNum, r.petNum, r.finalPrice, r.small, r.medium, r.large, TO_DATE(r.checkOut, 'YYYY-MM-DD') - TO_DATE(r.checkIn, 'YYYY-MM-DD') gap,
 		        op.orderState, op.orderName, op.orderTel, op.orderEmail,
 		        p.petTitle,
 		        i.petImg

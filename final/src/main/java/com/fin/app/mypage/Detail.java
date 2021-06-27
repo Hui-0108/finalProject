@@ -15,9 +15,13 @@ public class Detail {
 	private String rDate;
 	private String checkIn;
 	private String checkOut;
+	private int gap;
 	private int petNum;
 	
 	private String petTitle;
+	private int small;
+	private int medium;
+	private int large;
 	
 	private String petImg;
 	
@@ -50,6 +54,30 @@ public class Detail {
 	
 	
 	
+	public int getGap() {
+		return gap;
+	}
+	public void setGap(int gap) {
+		this.gap = gap;
+	}
+	public int getSmall() {
+		return small;
+	}
+	public void setSmall(int small) {
+		this.small = small;
+	}
+	public int getMedium() {
+		return medium;
+	}
+	public void setMedium(int medium) {
+		this.medium = medium;
+	}
+	public int getLarge() {
+		return large;
+	}
+	public void setLarge(int large) {
+		this.large = large;
+	}
 	public int getDeliveryState() {
 		return deliveryState;
 	}

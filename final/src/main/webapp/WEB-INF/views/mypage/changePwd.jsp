@@ -93,8 +93,13 @@ $(function() {
 					</td>
 				</tr>
 				
+				<tr>
+					<td>
+						<p> <button type="button" id="changePwd"  class="btn btn-lg btn-primary" style="width: 100%;"> 변경하기 </button> </p>
+					</td>
+				</tr>
+				
 			</table>
-			<button type="button" id="changePwd"  class="btn btn-default" style="border: 1px solid black;"> 변경하기 </button>
 		</div>
 	</div>
 	

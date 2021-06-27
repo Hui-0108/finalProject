@@ -40,7 +40,7 @@
 .myMileage .body-main {
 	width: 100%;
 	height: 1000px;
-	padding-top: 40px;
+	padding-top: 5px;
 }
 
 .myMileage .body-itmeList table {
@@ -81,6 +81,14 @@
 	margin: 0px 0px 0px 0px;
 }
 
+.myMileage .stBtn {
+    border: none;
+    width: 70px;
+    height: 30px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 10%);
+}
+
 </style>
 
 <script>
@@ -116,20 +124,20 @@ $(function () {
 		</div>
 		
 		<div class="body-status">
-			보유 마일리지 : <span> ${totMile}점 </span>
+			보유 마일리지 : <span> <b>${totMile}점</b> </span>
 		</div>
 		
-		<div>
+		<div align="left">
 		<form name="searchForm" method="post" action="${pageContext.request.contextPath}/mypage/mileage">
-			<button id="all">전체</button>
-			<button id="add">적립</button>
-			<button id="use">사용</button>
+			<button class="stBtn" id="all">전체</button>
+			<button class="stBtn" id="add">적립</button>
+			<button class="stBtn" id="use">사용</button>
 			<input type="hidden" name="keyword">
 		</form>	
 		</div>
 		
 		<div class="body-main">
-			<div class="body-itmeList">
+			<div class="body-itmeList" style="min-height: 100px;">
 				<table>
 					<tr>
 						<td width="20%">
@@ -163,9 +171,9 @@ $(function () {
 						
 					</c:forEach>
 				</table>
-				<p> ${dataCount==0? "내역이 없습니다." : paging} </p>
+				
 			</div>		
-		
+				<p> ${dataCount==0? "내역이 없습니다." : paging} </p>
 		</div>
 	</div>
 	
