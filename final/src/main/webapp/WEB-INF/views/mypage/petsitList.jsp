@@ -190,7 +190,7 @@ $(function() {
 			<h3> <i class="fas fa-paw"></i> 예약 내역 </h3>
 		</div>
 		<div class="body-main">
-			<div class="body-itmeList">
+			<div class="body-itmeList" style="min-height: 100px;">
 				<form name="orderNumForm" method="post">
 				<table>
 					<tr>
@@ -263,8 +263,9 @@ $(function() {
 				</table>
 				<input type="hidden" name="orderNum">
 				</form>
-				<p> ${paging} </p>
+				
 			</div>		
+			<p> ${dataCount==0? "내역이 없습니다." : paging} </p>
 		
 		</div>
 	</div>

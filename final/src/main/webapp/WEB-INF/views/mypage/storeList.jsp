@@ -192,7 +192,7 @@ $(function() {
 			<h3> <i class="fas fa-shopping-cart"></i> 구매 내역 </h3>
 		</div>
 		<div class="body-main">
-			<div class="body-itmeList">
+			<div class="body-itmeList" style="min-height: 100px;">
 				<form name="orderNumForm" method="post">
 				<table>
 					<tr>
@@ -268,9 +268,9 @@ $(function() {
 				</table>
 				<input type="hidden" name="orderNum" value="${dto.orderNum}">
 				</form>
-				<p> ${dataCount==0? "구매내역이 없습니다." : paging} </p>
+			
 			</div>		
-		
+			<p> ${dataCount==0? "내역이 없습니다." : paging} </p>
 		</div>
 	</div>
 	
