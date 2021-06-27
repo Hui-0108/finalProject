@@ -18,6 +18,7 @@ public interface NoticeService {
 	public void updateNotice(Notice dto, String pathname) throws Exception;
 	public void deleteNotice(int num, String pathname) throws Exception;
 	
+	public List<Notice> listCategory();
 	public void insertFile(Notice dto) throws Exception;
 	public List<Notice> listFile(int num);
 	public Notice readFile(int fileNum);

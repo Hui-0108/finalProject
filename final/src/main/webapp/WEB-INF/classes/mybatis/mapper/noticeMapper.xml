@@ -6,10 +6,15 @@
 		SELECT notice_seq.NEXTVAL FROM dual
 	</select>
 	
+	<select id="listCategory" resultType="com.fin.app.notice.Notice">
+		SELECT nCateNum, nCateName
+		FROM noticeCategory
+	</select>
+	
 	<insert id="insertNotice" parameterType="com.fin.app.notice.Notice">
 		INSERT INTO notice(nNum, mId, nTitle, nContent, nImg, nHit, nCreated, nCateNum)
 				VALUES(#{nNum}, #{mId}, #{nTitle},
-					#{nContent}, #{nImg}, 0, SYSDATE, '1')
+					#{nContent}, #{nImg, jdbcType=VARCHAR}, 0, SYSDATE, #{nCateNum})
 	</insert>
 
 	<sql id="where-list">
@@ -31,11 +36,12 @@
 	
 	<!-- 공지 글  리스트 -->
 	<select id="listNoticeTop" resultType="com.fin.app.notice.Notice">
-		SELECT n.nNum, n.mId, nTitle, nHit, 
+		SELECT n.nNum, n.mId, nTitle, nHit, n.nCateNum, nCateName, 
 				TO_CHAR(nCreated, 'YYYY-MM-DD') nCreated,
 				NVL(fileCount, 0) fileCount
 		FROM notice n
 		JOIN member m ON n.mId=m.mId
+		JOIN noticeCategory nc ON n.nCateNum = nc.nCateNum
 		LEFT OUTER JOIN (
 			SELECT nNum, COUNT(*) fileCount FROM noticeFile
 			GROUP BY nNum
@@ -57,10 +63,11 @@
 	
 	<!-- 리스트 -->
 	<select id="listNotice" parameterType="map" resultType="com.fin.app.notice.Notice">
-		SELECT n.nNum, n.mId, nTitle, nHit, 
+		SELECT n.nNum, n.mId, nTitle, nHit, nImg, n.nCateNum, nCateName, 
 		       nCreated, NVL(fileCount, 0) fileCount
 		FROM notice n
 		JOIN member m ON n.mId=m.mId
+		JOIN noticeCategory nc ON n.nCateNum = nc.nCateNum
 		LEFT OUTER JOIN (
 			SELECT nNum, COUNT(*) fileCount FROM noticeFile
 			GROUP BY nNum
@@ -76,8 +83,9 @@
 
     <!-- 글보기 -->
     <select id="readNotice" parameterType="Integer" resultType="com.fin.app.notice.Notice">
-		SELECT nNum, n.mId, nTitle, nContent, nCreated, nHit
+		SELECT nNum, n.mId, nTitle, nContent, nCreated, nHit, nImg,n.nCateNum, nCateName
 		FROM notice n
+		JOIN noticeCategory nc ON n.nCateNum = nc.nCateNum
 		JOIN member m ON n.mId=m.mId 
 		WHERE nNum = #{nNum}
 	</select>
@@ -119,7 +127,7 @@
     
 	<!-- 수정 -->
 	<update id="updateNotice" parameterType="com.fin.app.notice.Notice">
-		UPDATE notice SET nTitle=#{nTitle},
+		UPDATE notice SET nTitle=#{nTitle},nCateNum=#{nCateNum},
 				nContent=#{nContent}
 		WHERE nNum=#{nNum}
 	</update>

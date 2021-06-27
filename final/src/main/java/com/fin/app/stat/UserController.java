@@ -11,8 +11,6 @@ import com.fin.app.common.APISerializer;
 @Controller("stat.userController")
 @RequestMapping("/stat/*")
 public class UserController {
-	@Autowired
-	private UserService service;
 	
 	@Autowired
 	private APISerializer apiSerializer;
@@ -27,6 +25,7 @@ public class UserController {
 	public String animal(@RequestParam String date2) throws Exception {
 		String result=null;
 
+		/* String date1="20210601"; */
 		int numOfRows=3000;
 		int pageNo=1;
 		String serviceKey="pxTXjrjVmateW0GnkBeONAQfjToozKbno8wEOjY7y7Fo7Klm%2Fl6oA5u0EwRpgVEFIewRTlHeFDaTcbJCz2RCHQ%3D%3D";

@@ -28,6 +28,7 @@ import com.fin.app.member.SessionInfo;
 
 @Controller("notice.noticeController")
 @RequestMapping("/center/notice/*")
+
 public class NoticeController {
 	@Autowired
 	private NoticeService service;
@@ -106,7 +107,7 @@ public class NoticeController {
         
         String cp=req.getContextPath();
         String query = "";
-        String listUrl = cp+"/notice/notice";
+        String listUrl = cp+"center/notice/";
         String articleUrl = cp+"/notice/article?page=" + current_page;
         if(keyword.length()!=0) {
         	query = "condition=" + condition + 
@@ -147,6 +148,8 @@ public class NoticeController {
 			return "redirect:/notice/notice";
 		}
 		
+		List<Notice> listCategory = service.listCategory();
+		model.addAttribute("listCategory", listCategory);
 		model.addAttribute("mode", "created");
 		model.addAttribute("menuIndex", 4);
 		
@@ -241,7 +244,8 @@ public class NoticeController {
 		}
 		
 		List<Notice> listFile=service.listFile(num);
-			
+		List<Notice> listCategory = service.listCategory();
+		model.addAttribute("listCategory", listCategory);	
 		model.addAttribute("mode", "update");
 		model.addAttribute("page", page);
 		model.addAttribute("dto", dto);

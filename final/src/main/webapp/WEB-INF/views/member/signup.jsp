@@ -183,7 +183,7 @@ function mIdCheck() {
 function mNickCheck() {
 	var str = $("#mNick").val();
 	str = str.trim();
-	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
+	if(!/^[가-힣][가-힣0-9_]{2,9}$/i.test(str)) {
 		$("#mNick").focus();
 		return;
 	}

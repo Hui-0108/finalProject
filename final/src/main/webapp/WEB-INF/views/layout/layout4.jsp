@@ -28,8 +28,11 @@
 	<!-- petsit css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/petsit/main.css" type="text/css">
 	
-		<!-- donation -->
+	<!-- donation -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/donation/main.css" type="text/css">
+	
+	<!-- stat -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/stat/stat.css" type="text/css">
 	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fontawesome/css/all.css" rel="stylesheet">

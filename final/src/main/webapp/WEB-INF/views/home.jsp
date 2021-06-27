@@ -2,6 +2,152 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script type="text/javascript">
+
+function ajaxFun(url, method, dataType, query, fn) {
+	$.ajax({
+		type:method,
+		url:url,
+		data:query,
+		dataType:dataType,
+		success:function(data){
+			 fn(data);
+			 //console.log(data);
+			 var count='<i class="fas fa-ambulance"></i> 오늘 구조된 동물 :'+data.response.body.items.item.length+'마리 &nbsp;&nbsp;';
+			 $("#count").html(count);
+			 
+		},
+		error:function(e) {
+			console.log(e.responseText);
+		}
+	});
+}
+
+$(function(){
+	var url="${pageContext.request.contextPath}/stat/stat";
+	
+	var now = new Date();
+	var y = now.getFullYear();
+	var m = now.getMonth()+1;
+	if(m<10) m="0"+m;
+	var d = now.getDate();
+	if(d<0) d="0"+d;
+	var date2=y+""+m+""+d-1;
+	
+	var query="date2="+date2;
+	
+	var fn = function(data){
+		// console.log(data);
+		
+		printAnimal(data);
+	}
+	
+	ajaxFun(url, "get", "json", query, fn);
+	
+	function printAnimal(data) {
+		console.log(data);
+	
+		var p=0, ad=0, e=0, b=0, don=0, n=0, a=0;
+
+		$.each(data.response.body.items.item, function(index, item) {
+ 			
+			if(item.processState=="보호중") p++;
+			else if(item.processState=="종료(입양)") ad++;
+			else if(item.processState=="종료(반환)") e++;
+			else if(item.processState=="종료(방사)") b++;
+			else if(item.processState=="종료(기증)") don++;
+			else if(item.processState=="종료(자연사)") n++;
+			else if(item.processState=="종료(안락사)") a++;
+		});
+		
+		var arr=[];
+ 		
+		arr.push({name:"보호 중", y:p});
+		arr.push({name:"입양", y:ad}); // y:ad==0?5:0
+		arr.push({name:"반환", y:e});
+		arr.push({name:"방사", y:b});
+		arr.push({name:"기증", y:don});
+		arr.push({name:"자연사", y:n});
+		arr.push({name:"안락사", y:a});
+		
+		Highcharts.chart('dogCatcontainer', {
+			colors: ['#ffa500', '#F4FA58', '#82FA58', '#58FA82', '#81F7F3', '#BCA9F5', '#FA5858'],
+		    chart: {
+		    	backgroundColor: '#FFFFFF',
+		        plotBackgroundColor: '#FFFFFF',
+		        plotBorderWidth: null,
+		        plotShadow: false,
+		        type: 'pie'
+		    },
+		    
+		    title: {
+		        text: '오늘의 유기동물 현황'
+		    },
+		    tooltip: {
+		        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		    },
+		    accessibility: {
+		        point: {
+		            valueSuffix: '%'
+		        }
+		    },
+		    plotOptions: {
+		        pie: {
+		            allowPointSelect: true,
+		            cursor: 'pointer',
+		            dataLabels: {
+		                enabled: true,
+		                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+		            }
+		        }
+		    },
+		    series: [{
+		        name: '동물수',
+		        colorByPoint: true,
+		        data: arr
+		    }]
+		});		
+		
+		Highcharts.chart('Catdogcontainer', {
+			colors: ['#ffa500', '#F4FA58', '#82FA58', '#58FA82', '#81F7F3', '#BCA9F5', '#FA5858'],
+		    chart: {
+		    	backgroundColor: '#FFFFFF',
+		        plotBackgroundColor: '#FFFFFF',
+		        plotBorderWidth: null,
+		        plotShadow: false,
+		        type: 'bar'
+		    },
+		    
+		    title: {
+		        text: '오늘의 유기동물 현황'
+		    },
+		    xAxis: {
+		        categories: ['보호중', '입양', '반환', '방사', '기증', '자연사', '안락사'],
+		    },
+		    yAxis: {
+		        min: 0,
+		        title: {
+		            text: '단위: 마리'
+		        }
+		    },
+		    legend: {
+		        reversed: true
+		    },
+		    plotOptions: {
+		        series: {
+		            stacking: 'normal'
+		        }
+		    },
+		    series: [{
+		        name: '마릿수', 
+		        data: arr
+		    } ]
+		});
+	}
+});
+</script>
 
 <div class="home">
 <div class="section window1">
@@ -88,11 +234,9 @@
 			유기동물 통계
 		</h2> 
 		<div class="container mainstatic">
-			<div class="mainchart" style="margin-top: 70px">
-				데이터를 받아서 차트 1
+			<div class="mainchart" id="dogCatcontainer" style="margin-top: 70px">
 			</div>
-			<div class="mainchart" style="margin-top: 70px">
-				데이터를 받아서 차트 2
+			<div class="mainchart" id="Catdogcontainer" style="margin-top: 70px">
 			</div>
 		</div>
 	</div>
