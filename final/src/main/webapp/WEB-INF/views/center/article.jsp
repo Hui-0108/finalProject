@@ -12,9 +12,9 @@
 <c:if test="${sessionScope.member.mId=='admin'}">
 	function deleteSend() {
 		var query = "nNum=${dto.nNum}&${query}";
-		var url = "${pageContext.request.contextPath}/center/notice/delete?" + query;
+		var url = "${pageContext.request.contextPath}/center/delete?" + query;
 	
-		if(confirm("위 자료를 삭제 하시 겠습니까 ? ")) {
+		if(confirm("위 자료를 삭제하시겠습니까 ? ")) {
 			location.href=url;
 		}
 	}
@@ -59,7 +59,7 @@
 				<td colspan="2">
 					이전글 :
 					<c:if test="${not empty preReadDto}">
-						<a href="${pageContext.request.contextPath}/center/notice/article?${query}&num=${preReadDto.nNum}">${preReadDto.nTitle}</a>
+						<a href="${pageContext.request.contextPath}/center/article?${query}&num=${preReadDto.nNum}">${preReadDto.nTitle}</a>
 					</c:if>
 				</td>
 			</tr>
@@ -68,7 +68,7 @@
 				<td colspan="2">
 					다음글 :
 					<c:if test="${not empty nextReadDto}">
-						<a href="${pageContext.request.contextPath}/center/notice/article?${query}&num=${nextReadDto.nNum}">${nextReadDto.nTitle}</a>
+						<a href="${pageContext.request.contextPath}/center/article?${query}&num=${nextReadDto.nNum}">${nextReadDto.nTitle}</a>
 					</c:if>
 				</td>
 			</tr>
@@ -79,7 +79,7 @@
 				<td width="50%" align="left">
 					<c:choose>
 						<c:when test="${sessionScope.member.mId=='admin'}">
-			    			<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/update?num=${dto.nNum}&page=${page}';">수정</button>
+			    			<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/update?num=${dto.nNum}&page=${page}';">수정</button>
 			    		</c:when>
 			    		<c:otherwise>
 			    			<button type="button" class="btn" disabled="disabled">수정</button>
@@ -97,7 +97,7 @@
 				</td>
 			
 				<td align="right">
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/list?${query}';">리스트</button>
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice?${query}';">리스트</button>
 				</td>
 			</tr>
 		</table>

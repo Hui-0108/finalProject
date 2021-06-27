@@ -81,7 +81,7 @@ function searchList() {
 				<td>${dto.nHit}</td>
 				<td>
 					<c:if test="${dto.fileCount != 0}">
-						<a href="${pageContext.request.contextPath}/notice/zipdownload?num=${dto.num}"><i class="icofont-file-zip"></i></a>
+						<a href="${pageContext.request.contextPath}/notice/zipdownload?num=${dto.nNum}"><i class="icofont-file-zip"></i></a>
 					</c:if>		      
 				</td>
 			</tr>
@@ -99,10 +99,10 @@ function searchList() {
 		<table class="table">
 			<tr>
 				<td align="left" width="100">
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/notice';">새로고침</button>
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice';">새로고침</button>
 				</td>
 				<td align="center">
-					<form name="searchForm" action="${pageContext.request.contextPath}/center/notice/notice" method="post">
+					<form name="searchForm" action="${pageContext.request.contextPath}/center/notice" method="post">
 						<select name="condition" class="selectField">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
@@ -116,7 +116,7 @@ function searchList() {
 				</td>
 				<td align="right" width="100">
 					<c:if test="${sessionScope.member.mId=='admin'}">
-						<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/created';">글올리기</button>
+						<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/created';">글올리기</button>
 					</c:if>
 				</td>
 			</tr>

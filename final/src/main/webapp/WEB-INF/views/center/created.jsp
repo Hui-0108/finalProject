@@ -75,7 +75,7 @@ $(function(){
 
   <c:if test="${mode=='update'}">
   function deleteFile(fileNum) {
-		var url="${pageContext.request.contextPath}/notice/deleteFile";
+		var url="${pageContext.request.contextPath}/center/notice/deleteFile";
 		$.post(url, {fileNum:fileNum}, function(data){
 			$("#f"+fileNum).remove();
 		}, "json");
@@ -101,7 +101,7 @@ $(function(){
             return;
         }
 
-    	f.action="${pageContext.request.contextPath}/center/notice/${mode}";
+    	f.action="${pageContext.request.contextPath}/center/${mode}";
 
         f.submit();
     }
@@ -178,7 +178,7 @@ $(function(){
 				<td align="center">
 					<button type="button" class="btn btn-dark" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 					<button type="reset" class="btn">다시입력</button>
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/notice';">${mode=='update'?'수정취소':'등록취소'}</button>
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice';">${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode=='update'}">
 						<input type="hidden" name="num" value="${dto.nNum}">
 						<input type="hidden" name="page" value="${page}">

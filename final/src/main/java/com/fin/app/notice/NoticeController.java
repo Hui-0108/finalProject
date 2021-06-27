@@ -27,7 +27,7 @@ import com.fin.app.common.MyUtil;
 import com.fin.app.member.SessionInfo;
 
 @Controller("notice.noticeController")
-@RequestMapping("/center/notice/*")
+@RequestMapping("/center/*")
 
 public class NoticeController {
 	@Autowired
@@ -107,16 +107,16 @@ public class NoticeController {
         
         String cp=req.getContextPath();
         String query = "";
-        String listUrl = cp+"center/notice/";
-        String articleUrl = cp+"/notice/article?page=" + current_page;
+        String listUrl = cp+"/notice/";
+        String articleUrl = cp+"/center/article?page=" + current_page;
         if(keyword.length()!=0) {
         	query = "condition=" + condition + 
         	         "&keyword=" + URLEncoder.encode(keyword, "utf-8");	
         }
         
         if(query.length()!=0) {
-        	listUrl = cp+"/notice/list?" + query;
-        	articleUrl = cp+"/notice/article?page=" + current_page + "&"+ query;
+        	listUrl = cp+"/center/notice/list?" + query;
+        	articleUrl = cp+"/center/article?page=" + current_page + "&"+ query;
         }
         
         String paging = myUtil.paging(current_page, total_page, listUrl);
@@ -134,7 +134,7 @@ public class NoticeController {
 		
 		model.addAttribute("menuIndex", 4);
 		
-		return ".center.notice.notice";
+		return ".center.notice";
 	}
 
 	@RequestMapping(value="created", method=RequestMethod.GET)
@@ -145,7 +145,7 @@ public class NoticeController {
 
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/notice/notice";
+			return "redirect:/center/notice";
 		}
 		
 		List<Notice> listCategory = service.listCategory();
@@ -153,7 +153,7 @@ public class NoticeController {
 		model.addAttribute("mode", "created");
 		model.addAttribute("menuIndex", 4);
 		
-		return ".center.notice.created";
+		return ".center.created";
 	}
 
 	@RequestMapping(value="created", method=RequestMethod.POST)
@@ -164,7 +164,7 @@ public class NoticeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/center/notice/notice";	
+			return "redirect:/center/notice";	
 		}
 
 		try {
@@ -176,7 +176,7 @@ public class NoticeController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/center/notice/notice";
+		return "redirect:/center/notice";
 	}
 
 	@RequestMapping(value="article")
@@ -198,7 +198,7 @@ public class NoticeController {
 
 		Notice dto = service.readNotice(num);
 		if(dto==null) {
-			return "redirect:/center/notice/notice?"+query;
+			return "redirect:/center/notice?"+query;
 		}
 		
         dto.setnContent(dto.getnContent().replaceAll("\n", "<br>"));
@@ -223,7 +223,7 @@ public class NoticeController {
 		model.addAttribute("query", query);
 		model.addAttribute("menuIndex", 4);
 		
-		return ".center.notice.article";
+		return ".center.article";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.GET)
@@ -235,12 +235,12 @@ public class NoticeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/notice/notice?page="+page;
+			return "redirect:/center/notice?page="+page;
 		}
 
 		Notice dto = service.readNotice(num);
 		if(dto==null) {
-			return "redirect:/notice/notice?page="+page;
+			return "redirect:/center/notice?page="+page;
 		}
 		
 		List<Notice> listFile=service.listFile(num);
@@ -252,7 +252,7 @@ public class NoticeController {
 		model.addAttribute("listFile", listFile);
 		model.addAttribute("menuIndex", 4);
 		
-		return ".center.notice.created";
+		return ".center.created";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
@@ -263,7 +263,7 @@ public class NoticeController {
 
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/notice/list?page="+page;
+			return "redirect:/center/list?page="+page;
 		}
 		
 		try {
@@ -275,7 +275,7 @@ public class NoticeController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/notice/notice?page="+page;
+		return "redirect:/center/notice?page="+page;
 	}
 
 	@RequestMapping(value="delete")
@@ -294,7 +294,7 @@ public class NoticeController {
 		}
 		
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/notice/notice?"+query;
+			return "redirect:/center?"+query;
 		}
 		
 		try {
@@ -304,7 +304,7 @@ public class NoticeController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/notice/notice?"+query;
+		return "redirect:/center/?"+query;
 	}
 
 	@RequestMapping(value="download")
@@ -329,7 +329,7 @@ public class NoticeController {
 			try {
 				resp.setContentType("text/html; charset=utf-8");
 				PrintWriter out = resp.getWriter();
-				out.println("<script>alert('파일 다운로드가 불가능 합니다 !!!');history.back();</script>");
+				out.println("<script>alert('파일 다운로드가 불가능합니다 !!!');history.back();</script>");
 			} catch (Exception e) {
 			}
 		}
