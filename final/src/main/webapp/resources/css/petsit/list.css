@@ -28,10 +28,10 @@
 .petsitList .serchbtn {
 	width: 95px;
    height: 59px;
-   border: 1.5px solid rgb(223, 227, 234);
+   border: 1.5px solid #023047;
    border-radius: 28px;
    box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
-   background-color: rgb(113, 162, 255);
+   background-color: #023047;
    margin: 0 auto; 
    float: left;
    color: white;
@@ -110,6 +110,7 @@
 	border-bottom: 1px solid rgb(231, 233, 235);
 	box-shadow: rgb(0 0 0 / 5%) 0px 2px 20px;
 	margin-left: 115px;
+	margin-top: 40px;
 	text-align: center;
 }
 .petsitList .searchAddr {
@@ -135,7 +136,7 @@
     height: 55px;
     line-height: 52px;
     display: flex;
-	border: 1.5px solid rgb(223, 227, 234);
+	border: 1.5px solid #023047;
 	border-radius: 28px;
 	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
 	text-align:center;
@@ -148,8 +149,8 @@
 }
 
 .petsitList .condition:hover {	
-    border: 1.5px solid rgb(113, 162, 255);
-    color: rgb(113, 162, 255);
+    border: 1.5px solid #023047;
+    color: #023047;
 }
 
 
@@ -283,7 +284,8 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding-top: 18px;
+    padding-top: 48px;
+    padding-left: 7px;
     
 }
 
@@ -352,4 +354,7 @@
 	padding: 0px 50px;
 }   
    
+.petsitList .paging {
+	margin-top: 55px;
+}   
   

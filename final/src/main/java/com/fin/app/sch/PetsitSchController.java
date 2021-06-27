@@ -110,7 +110,7 @@ public class PetsitSchController {
 					
 					bg = "rgb(242, 243, 247)";
 					if((i==0 && dto.getSun()==1)|| (i==1 && dto.getMon()==1)||(i==2 && dto.getTue()==1)|| (i==3 && dto.getWed()==1)|| (i==4 && dto.getThu()==1)||(i==5 && dto.getFri()==1)||(i==6 && dto.getSat()==1)) {
-						bg="rgb(113, 162, 255)";
+						bg="#8ecae6";
 					}
 					
 					

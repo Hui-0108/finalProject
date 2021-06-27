@@ -75,7 +75,7 @@ public class PetsitController {
 			conList = Arrays.asList(ss);
 		}
 
-		//전체 페이지 수 O
+		//전체 페이지 수
 		Map<String, Object> map = new HashMap<String, Object>(); //map객체 생성 //map=인터페이스=선언만가능, 자식=HashMap으로 객체생성 
 		map.put("addr", addr);
 		map.put("conList", conList);                         //HashMap: Map을 구현. Key와 value를 묶어 하나의 entry로 저장

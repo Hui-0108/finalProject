@@ -551,7 +551,7 @@ function sendReservation() {
 			<img src="${pageContext.request.contextPath}/upload/profileImages/${dto.mProfileImg}">
 			</div>
 			<div class="frofile-t">
-				<h6>${dto.petAddr} 펫시터 ${dto.mId}님</h6>
+				<h6>${dto.petAddr} 펫시터 ${dto.mId}&nbsp;님</h6>
 				<h4>${dto.petTitle}</h4>
 				<div class="fofile-c">
 				<p><c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if></p>
@@ -571,12 +571,14 @@ function sendReservation() {
 				</div>
 			</div>
 		</div>
-		<div class="best">
-			<div>
-				<i class="fas fa-medal"></i>&nbsp;&nbsp;<span>땡시터님은 우수 펫시터 입니다</span>
+		
+			<div class="best">
+				<div>
+					<i class="fas fa-medal"></i>&nbsp;&nbsp;<span>땡시터님은 우수 펫시터 입니다</span>
+				</div>
+				<p>프로 펫시터는 다수의 예약 진행 경험과 함께, 높은 고객 만족도를 받은 펫시터입니다</p>
 			</div>
-			<p>프로 펫시터는 다수의 예약 진행 경험과 함께, 높은 고객 만족도를 받은 펫시터입니다</p>
-		</div>
+
 		<div class="intro">
 			<h5><span>${dto.mId}</span>님을 소개합니다</h5>
 			<p class="intro-d">
@@ -596,7 +598,7 @@ function sendReservation() {
 				</div>
 			</div>
 		</div>
-		<div class="review-list" id="listReview" style="margin-top: 50px;">
+		<div class="review-list" id="listReview" style="margin-top: 60px;">
 			<div class="reviewT">
 				<h3>펫시터 후기</h3>
 				<div class="star">
@@ -811,7 +813,7 @@ function sendReservation() {
 				//map.setZoomable(false); //확대,축소 불가
 			</script>
 		</div>
-		<div>
+		<div class="sitBottom">
 			<c:choose>
 				<c:when test="${sessionScope.member.mId==dto.mId}">
 			    	<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/update?petNum=${dto.petNum}&page=${page}';">수정</button>

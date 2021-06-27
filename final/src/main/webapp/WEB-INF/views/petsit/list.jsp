@@ -52,7 +52,7 @@ $(function(){
 		$(".searchCondition ul .condition").each(function(){
 			var a = $(this).attr("data-condition");
 			if(s === a) {
-				$(this).css("color", "red");
+				$(this).css("color", "#073f5a");
 				return false;
 			}
 		});
@@ -97,7 +97,7 @@ $(function(){
 	</div>
 	<!-- 펫시터 리스트 -->
 	<div class="list" align="center">
-		<div style="width: 1300px;">	
+		<div style="width: 1300px; min-height: 1800px;">	
 			<div class="list-body">
 				<div class="list-title">
 					<p>원하는 조건의 검증된 펫시터들을 확인해 보세요. 생생한 후기와 만족도까지 확인할 수 있습니다!</p>
@@ -141,18 +141,6 @@ $(function(){
 									<c:if test="${dto.petChild eq 2}">#미취학 아동 자녀 있어요&nbsp; </c:if>
 									<c:if test="${dto.petChild eq 3}">#초등생 자녀 있어요&nbsp; </c:if>			
 									</p>
-									<div class="left-bottom">
-										<div class="list-star">
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-										</div>
-										<p>
-										후기 8개
-										</p>
-									</div>
 								</div>
 								<div class="main-R">
 								</div>
@@ -161,7 +149,8 @@ $(function(){
 					</div>
 				</div>
 				</c:forEach>
-			</div>	
+			</div>
+			<div class="paging">${paging}</div>	
 		</div>
 	</div>
 </div>
