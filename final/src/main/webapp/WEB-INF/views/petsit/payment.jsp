@@ -485,6 +485,7 @@ function iamport(){
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" name="petNum" value="${dto.petNum}">
 	</form>
 </div>
 </div>

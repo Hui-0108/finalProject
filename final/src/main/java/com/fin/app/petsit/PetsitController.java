@@ -185,6 +185,7 @@ public class PetsitController {
 			
 		//해당 레코드 가져오기
 		Petsit dto = service.readPetsit(petNum);
+		
 		if(dto==null)
 			return "redirect:/petsit/list?"+query;
 					

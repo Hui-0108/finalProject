@@ -725,7 +725,8 @@ function sendReservation() {
 			<div class="reserve-send">
 				<button type="button" class="rvBtn" onclick="sendReservation()"><p>예약요청</p></button>
 			</div>
-         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->			
+         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->	
+         	<input type="hidden" name="petNum" value="${dto.petNum}">	<!-- 현재 글의 petNum -->	
 			</form>		
 		</div>
 		<div class="price">

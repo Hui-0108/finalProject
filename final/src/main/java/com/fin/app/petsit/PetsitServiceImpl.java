@@ -278,8 +278,8 @@ public class PetsitServiceImpl implements PetsitService {
 			int orderSeq=dao.selectOne("petsit.orderSeq");
 			dto.setOrderNum(orderSeq); 
 			
-			dto.setmNum(dao.selectOne("petsit.readMnum", dto.getmId()));
-			dto.setPetNum(dao.selectOne("petsit.readPetNum", dto.getmId()));
+//			dto.setmNum(dao.selectOne("petsit.readMnum", dto.getmId()));
+//			dto.setPetNum(dao.selectOne("petsit.readPetNum", dto.getmId()));
 			
 			dao.insertData("petsit.insertOrderProduct", dto);
 			dao.insertData("petsit.insertReservation", dto);
