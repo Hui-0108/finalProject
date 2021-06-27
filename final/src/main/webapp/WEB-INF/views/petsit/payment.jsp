@@ -141,38 +141,40 @@
 	border-bottom: 2px solid #ccc;
 }
 
-.petsitPayment .ppDetail {	
+.petsitPayment .input {	
+	border:none;
+	text-align: center;
 }
 
 
 <!-- //////////////// -->
-.productPayBody{
+.petsitPayment .productPayBody{
 	margin: 0;
 	padding: 0;
 	font-family: Cafe24SsurroundAir;
 }
 
-.payTitle,.addressInform,.addressInform,.finalPayment{
+.petsitPayment .payTitle,.addressInform,.addressInform,.finalPayment{
 	font-family: GmarketSansMedium;
 }
 
-.table{
+.petsitPayment .table{
 	width: 100%;
 }
 
-.productPayMain{
+.petsitPayment .productPayMain{
 	width: 1300px;
 	margin: auto;	
 }
-h3{
+.petsitPayment h3{
 	margin-top: 40px;
 }
 
-.orderTable tr:first-child th, .orderTable tr:first-child td{
+.petsitPayment .orderTable tr:first-child th, .orderTable tr:first-child td{
     border-top: 2px solid #d6d6d6;
 }
 
-.orderTable th{
+.petsitPayment .orderTable th{
 	width:20%;
     background: #f4f4f4;
     padding: 15px 0 15px 18px;
@@ -181,7 +183,7 @@ h3{
     border-bottom: 1px solid #e6e6e6;
 
 }
-.orderTable td{
+.petsitPayment .orderTable td{
     padding: 15px 20px;
     border-bottom: 1px solid #e6e6e6;
     font-size: 14px;
@@ -190,10 +192,10 @@ h3{
 
 }
 
-.payTitle{
+.petsitPayment .payTitle{
     margin-top: 30px;
 }
-.cntNotice{
+.petsitPayment .cntNotice{
     margin-top: 30px;
     margin-bottom: 15px;
     background: #fff8f5;
@@ -202,13 +204,13 @@ h3{
     padding-left: 20px;    
 }
 
-.orderTable input[type=text], .selectmEmail{
+.petsitPayment .orderTable input[type=text], .selectmEmail{
 	height: 35px;
     border-radius: 8px;
     border: 1px solid darkgray;	
 }
 
-.topTb th{
+.petsitPayment .topTb th{
 	height: 60px;
     border-top: 2px solid #d6d6d6;
     border-bottom: 1px solid #ccc;
@@ -222,42 +224,42 @@ h3{
 	
 }
 
-.alignNone{
+.petsitPayment .alignNone{
 	text-align: left;
 	padding-left: 50px;
 }
-.tbl_cell{
+.petsitPayment .tbl_cell{
     display: table-cell;
     vertical-align: middle;
 }
 
-.priceTop{
+.petsitPayment .priceTop{
 	padding-right: 30px;
 }
-.w600{
+.petsitPayment .w600{
 	width: 600px;
 }
-.w100{
+.petsitPayment .w100{
 	width: 100px;
 }
 
-.adderSelect{
+.petsitPayment .adderSelect{
 	margin-top: 50px;
     border-top: 1px solid gray;
     padding-top: 30px;
 }
 
 
-.addr{
+.petsitPayment .addr{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-.address1{
+.petsitPayment .address1{
 	margin-bottom: 10px;
 }
 
-.addrBtn{
+.petsitPayment .addrBtn{
     border: none;
     width: 60px;
     height: 30px;
@@ -265,47 +267,47 @@ h3{
     box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 10%);  
 }
 
-.addrBtn:hover{
+.petsitPayment .addrBtn:hover{
 	 box-shadow: inset -2px -1px 2px 0px rgb(0 0 0 / 10%);
 }
 
-.middleTb td {
+.petsitPayment .middleTb td {
 	padding-left: 20px;
 }
 
-.bottomTb td{
+.petsitPayment .bottomTb td{
 	padding-left: 20px;
 }
 
-.content{
+.petsitPayment .content{
     height: 200px;
     line-height: 200px;
     border-bottom: 1px solid lightgray;
     text-align: center;
 }
 
-.content span{
+.petsitPayment .content span{
 	margin-left: 100px;
     font-size: 25px;	
 }
-.mile{
+.petsitPayment .mile{
     height: 50px;
     line-height: 50px;
     border-bottom: 1px solid lightgray;
     text-align: right;
 }
-.totmon{
+.petsitPayment .totmon{
 	height: 50px;
     line-height: 50px;
     text-align: right;
 }
 
-.borderNone{
+.petsitPayment .borderNone{
 	border: none;
     text-align: center;
 }
 
-.orderProductBtn{
+.petsitPayment .orderProductBtn{
 	border: 1px solid white;
     border-radius: 5px;	
 }
@@ -328,10 +330,6 @@ h3{
 .petsitPayment .inputTriple input{
 	height: 30px;
 	width: 30px;
-}
-
-.petsitPayment .inputTriple {
-	
 }
 
 
@@ -418,14 +416,14 @@ function iamport(){
 				&nbsp;<img width="100" height="200" border="0">
 			</td>
 			<td class="w100 tbl_cell">
-				<input style="width: 95px;" type="text" name="checkIn" class="bookDate" value="${dto.checkIn}">&nbsp;~&nbsp;
-				<input style="width: 95px;" type="text" name="checkOut" class="bookDate" value="${dto.checkOut}">&nbsp;(${dto.dayCnt}&nbsp;박)
+				<input style="width: 95px;" type="text" name="checkIn" class="bookDate input" value="${dto.checkIn}" >&nbsp;~&nbsp;
+				<input style="width: 95px;" type="text" name="checkOut" class="bookDate input" value="${dto.checkOut}">&nbsp;(${dto.dayCnt}&nbsp;박)
 			</td>
 			<td class="w100 inputTriple">
 				
-				소형견<input type="text" name="small" value="${dto.small}">
-				중형견<input type="text" name="medium" value="${dto.medium}">
-				대형견<input type="text" name="large" value="${dto.large}">
+				소형견<input type="text" name="small" value="${dto.small}" class="input ipSmall">
+				중형견<input type="text" name="medium" value="${dto.medium}" class="input ipMedium">
+				대형견<input type="text" name="large" value="${dto.large}" class="input ipLarge">
 			</td>
 			<td class="w100 tbl_cell">
 				<p>${dto.finalPrice}원</p>	
@@ -442,7 +440,7 @@ function iamport(){
 	</div>	
 	<table class="orderTable table">
 			<tr>
-				<td>
+				<td style="width:200px;">
 					최종 결제 금액
 				</td>
 				<td>
@@ -451,10 +449,10 @@ function iamport(){
 			</tr>
 			<tr>
 				<td>
-					예약자 이름
+					예약자
 				</td>
 				<td>
-					${sessionScope.member.mId}
+					<input type="text" name="orderName" value="${sessionScope.member.mNick}" class="input ipName">
 				</td>
 			</tr>
 			<tr>
@@ -462,7 +460,7 @@ function iamport(){
 					휴대폰 번호
 				</td>
 				<td>
-					<input type="text" name="orderTel">
+					<input type="text" name="orderTel" class="input ipTel">
 				</td>
 			</tr>	
 			<tr>
@@ -470,7 +468,7 @@ function iamport(){
 					이메일 주소
 				</td>
 				<td>
-					<input type="text" name="orderEmail">
+					<input type="text" name="orderEmail" class="input ipEmail">
 				</td>
 			</tr>	
 			<tr>
@@ -478,12 +476,12 @@ function iamport(){
 					예약일자
 				</td>
 				<td>
-					<input type="text" name="rDate" value="${dto.rDate}">
+					<input type="text" name="rDate" value="${dto.rDate}" class="input ipRdate">
 				</td>
 			</tr>	
 			<tr>
 				<td>
-					<button type="button" class="orderProductBtn" onclick="paymentOk(); ">결제하기</button>
+					<button type="button" class="orderProductBtn" onclick="paymentOk();">결제하기</button>
 				</td>
 			</tr>
 		</table>
