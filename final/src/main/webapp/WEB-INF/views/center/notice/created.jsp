@@ -87,17 +87,17 @@ $(function(){
     function sendOk() {
         var f = document.noticeForm;
 
-    	var str = f.subject.value;
+    	var str = f.nTitle.value;
         if(!str) {
             alert("제목을 입력하세요. ");
-            f.subject.focus();
+            f.nTitle.focus();
             return;
         }
 
-    	str = f.content.value;
+    	str = f.nContent.value;
         if(!str) {
             alert("내용을 입력하세요. ");
-            f.content.focus();
+            f.nContent.focus();
             return;
         }
 
@@ -116,10 +116,17 @@ $(function(){
 		<form name="noticeForm" method="post" enctype="multipart/form-data">
 		<table class="table table-border table-content">
 			<tbody id="tb">
+				<tr>
+					<td>카테고리</td>
+					<td>
+						<input type="text" name="nCateNum" maxlength="100" class="boxTF" value="${dto.nCateNum}">
+					</td>
+				</tr>
 				<tr> 
+					
 					<td>제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
 					<td> 
-						<input type="text" name="subject" maxlength="100" class="boxTF" value="${dto.subject}">
+						<input type="text" name="nTitle" maxlength="100" class="boxTF" value="${dto.nTitle}">
 					</td>
 				</tr>
 			
@@ -135,7 +142,7 @@ $(function(){
 				<tr> 
 					<td valign="top">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
 					<td valign="top"> 
-						<textarea name="content" class="boxTA">${dto.nContent}</textarea>
+						<textarea name="nContent" class="boxTA">${dto.nContent}</textarea>
 					</td>
 				</tr>
 			  
@@ -167,7 +174,7 @@ $(function(){
 				<td align="center">
 					<button type="button" class="btn btn-dark" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 					<button type="reset" class="btn">다시입력</button>
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/notice/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice/notice';">${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode=='update'}">
 						<input type="hidden" name="num" value="${dto.nNum}">
 						<input type="hidden" name="page" value="${page}">
