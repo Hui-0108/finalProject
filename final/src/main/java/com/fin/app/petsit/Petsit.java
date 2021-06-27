@@ -45,6 +45,10 @@ public class Petsit {
 	private String mAddr1, mAddr2;
 	
 	
+	//프로필
+	private String mProfileImg;
+	
+	
 	public int getPetNum() {
 		return petNum;
 	}
@@ -212,6 +216,12 @@ public class Petsit {
 	}
 	public void setmAddr2(String mAddr2) {
 		this.mAddr2 = mAddr2;
+	}
+	public String getmProfileImg() {
+		return mProfileImg;
+	}
+	public void setmProfileImg(String mProfileImg) {
+		this.mProfileImg = mProfileImg;
 	}
 	
 	

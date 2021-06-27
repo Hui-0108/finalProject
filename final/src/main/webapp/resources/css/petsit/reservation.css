@@ -142,7 +142,7 @@
 }
 
 .petsitReserve .reverve-detail {
-	height: 690px;
+	height: 810px;
 	margin-top: 38px;
 	
 	width: 375px;
@@ -229,12 +229,13 @@
     letter-spacing: -0.2px;
     line-height: 20px;
     color: rgb(57, 60, 71);
-    margin-top: 38px;
+    margin-top: 28px;
     text-align: left;
 }
 
 .petsitReserve .reserve-time {
-    margin-top: 38px;	
+    margin-top: 28px;	
+    padding-left: 10px;
 }
 
 .petsitReserve .reserve-time p {
@@ -368,7 +369,7 @@
 }
 
 .petsitReserve .price {
-	height: 340px;
+	height: 200px;
 	
 	width: 375px;
     border-radius: 8px;
@@ -376,7 +377,7 @@
     box-shadow: rgb(0 0 0 / 7%) 1px 3px 7px;
     padding: 38px 32px;
     margin-top: 38px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .petsitReserve .price-title {
@@ -385,7 +386,7 @@
     align-items: center;
     justify-content: space-between;
     height: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .petsitReserve .price-title p:first-child {
@@ -578,7 +579,7 @@
 
 
 .petsitReserve .schedule {
-	height: 470px;
+	height: 420px;
 
 	width: 375px;
     border-radius: 8px;
@@ -696,7 +697,7 @@
 	width: 310px;
     height: 3px;
     background-color: rgb(235, 235, 235);
-    margin: 32px 0px;
+    margin: 12px 0px;
 }
 
 .petsitReserve .extra {
@@ -739,7 +740,7 @@
     margin: 0 38px;
     
     width: 297px;
-    height: 140px;
+    height: 120px;
     
 }  
 

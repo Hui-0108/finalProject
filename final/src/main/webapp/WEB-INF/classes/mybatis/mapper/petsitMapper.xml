@@ -136,9 +136,10 @@
 	
 	<!-- 리뷰 리스트  --><!-- review, reviewImage 조인 -->
 	<select id="listReview" parameterType="map" resultType="com.fin.app.petsit.PetsitReview">
-		SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, mId ,rv.orderNum,
-            	checkIn, checkOut, mNum, petNum, finalPrice, rDate
+		SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, r.mId ,rv.orderNum,
+            	checkIn, checkOut, mNum, petNum, finalPrice, rDate, mProfileImg
 		FROM review r
+		JOIN memberDetail md ON r.mId = md.mId
 		LEFT OUTER JOIN (
     		SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
     		FROM reviewImage

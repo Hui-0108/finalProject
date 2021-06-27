@@ -205,7 +205,7 @@ function iamport(){
 }
 </script>
 
-<div class="petsitPayment">
+<div class="petsitPayment"  style="min-height: 2000px;" >
 <div style="width:1300px;" align="center">
 <div class="paymentBody">
 	<form name="orderForm">

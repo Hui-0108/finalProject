@@ -19,6 +19,8 @@ public class PetsitReview {
 	private String imagefilename;//이미지파일이름
 	private List<MultipartFile> uploads; // 다중파일
 	
+	private String mProfileImg;
+	
 	public int getrNum() {
 		return rNum;
 	}
@@ -79,6 +81,12 @@ public class PetsitReview {
 	}
 	public void setUploads(List<MultipartFile> uploads) {
 		this.uploads = uploads;
+	}
+	public String getmProfileImg() {
+		return mProfileImg;
+	}
+	public void setmProfileImg(String mProfileImg) {
+		this.mProfileImg = mProfileImg;
 	}
 	
 	

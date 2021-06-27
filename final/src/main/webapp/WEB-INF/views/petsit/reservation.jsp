@@ -91,10 +91,15 @@
 }
 
 .petsitReserve .sum {
+	
+}
+
+.petsitReserve .sumInput {
 	border: none;
 	width: 70px;
 	height: 20px;
 	text-align: right;
+	margin: 0px 0px;
 }
 
 .petsitReserve .sumPrice input{
@@ -117,6 +122,44 @@
 .petsitReserve .more{
 	font-weight: 500;
 	
+}
+
+.petsitReserve .paymentPart{
+	margin-top: 17px;
+}
+
+.petsitReserve .sum span{
+	font-weight: 300px;
+	font-size: 20px;
+}
+
+.petsitReserve .inputSum{
+	font-weight: 300px;
+	font-size: 20px;
+}
+
+.petsitReserve .sumPrice{
+	margin-bottom: 7px;
+}
+
+.petsitReserve .paymentPart{
+
+}
+
+.petsitReserve .paymentPart{
+
+}
+
+.petsitReserve .paymentPart{
+
+}
+
+.petsitReserve .paymentPart{
+
+}
+
+.petsitReserve .paymentPart{
+
 }
 
 </style>
@@ -142,11 +185,6 @@ $(function() {
 		,maxDate:"+3M"
 		,showAnim:"slide"		
 	});
-});
-
-//옵션선택 숨겨두기
-$(function() {
-	$("#selectBox").hide()
 });
 
 //글수정, 삭제 글쓴이 한테만 보이기
@@ -267,6 +305,7 @@ function printReview(data) {
 		var rCreated=data.reviewList[idx].rCreated;
 		var rGrade=data.reviewList[idx].rGrade;
 		var imagefilename=data.reviewList[idx].imagefilename;
+		var mProfileImg=data.reviewList[idx].mProfileImg;
 		var img=[];
 		if(imagefilename){
 			img = imagefilename.split(",");
@@ -275,7 +314,7 @@ function printReview(data) {
 		
 		out+="<div class='rList'>"
 		out+="<div class='reviewTop'>";
-		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img></div>";
+		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img style='width:70px; height:70px;'src='${pageContext.request.contextPath}/upload/profileImages/"+mProfileImg+"'></div>";
 		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
 		out+="</div>";		
 		out+="<p>후기 평점:"+rGrade+"</p>";
@@ -505,10 +544,11 @@ function sendReservation() {
 </div>
 <!-- 실제 예약 영역-->
 <div class="body-main">
-<div style="width: 1100px; margin: auto;">
+<div style="width: 1100px; margin: auto; min-height: 2000px;">
 	<div class="body-left">
 		<div class="profile">
 			<div class="profile-p">
+			<img src="${pageContext.request.contextPath}/upload/profileImages/${dto.mProfileImg}">
 			</div>
 			<div class="frofile-t">
 				<h6>${dto.petAddr} 펫시터 ${dto.mId}님</h6>
@@ -594,12 +634,12 @@ function sendReservation() {
 						<input class="checkDate" type="text" id="checkOut" name="checkOut" placeholder=" 체크아웃 날짜">	
 					</div>
 				</div>
-			</div>		
-			<p class="pet-p"><b>맡기시는 반려동물</b></p>
-			<button type="button" class="pet-button" onclick="$('.selectB').slideDown()" >
-				<p>반려동물 선택</p><i class="fas fa-chevron-down"></i>
-			</button>
-				
+			</div>
+			<div class="reserve-time">
+				<p> 체크인 가능 시간은 오후 14:00 이후 이며,</p>
+				<p> 체크아웃 가능 시간은 오전  11:00 까지 입니다.</p>
+			</div>			
+			<p class="pet-p"><b>맡기시는 반려동물</b></p>		
 			<div class="selectB" id="selectBox">
 				<div class="boxLine">
 					<div class="lineL">
@@ -661,43 +701,36 @@ function sendReservation() {
 				</div>
 				<div class="bFooter">
 					<p>최대 4마리 까지만 선택 가능합니다.</p>
-					 <button type="button" onclick="$('.selectB').slideUp(400)"><p>닫기</p></button>
 				</div>
-			</div>	
-			<div class="reserve-time">
-				<p> 체크인 가능 시간은 오후 14:00 이후 이며,</p>
-				<p> 체크아웃 가능 시간은 오전  11:00 까지 입니다.</p>
-				<p> 정확한 시간은 펫시터와 협의하시기 바랍니다.</p>
 			</div>	
 			<div class="paymentPart">
-				<div>
-				<span>합계비용</span> <span><input type="text" name="finalPrice" class="sum" value="" readonly="readonly">원</span>
+				<div class="sum">
+				<span>합계비용</span><input type="text" name="finalPrice" class="sumInput inputSum"  value="" readonly="readonly">원
 				</div>
+				<div class="bar" ></div>	
 				<div class="sumPrice">
 				<span><input type="text" name="dayCnt" class="day" value="" readonly="readonly">박</span> /&nbsp; 
 				<span>소형</span><input type="text" name="small" value="0" class="quantity subQty" readonly="readonly">
 				<span>중형</span><input type="text" name="midium" value="0" class="quantity subQty" readonly="readonly">
 				<span>대형</span><input type="text" name="large" value="0" class="quantity subQty" readonly="readonly">
-				<span><input type="text" name="sum" class="sum" value="" readonly="readonly">원</span>
-				</div>
-				<br>
+				<span><input type="text" name="sum" class="sumInput" value="" readonly="readonly">원</span>
+				</div>			
 				<div>
-				<span>부가세(10%)</span><span><input type="text" name="tax" class="sum" value="" readonly="readonly">원</span>
+				<span>부가세(10%)</span><span><input type="text" name="tax" class="sumInput" value="" readonly="readonly">원</span>
 				</div>				
 				<span></span>		
 			</div>
 			<div class="reserve-send">
 				<button type="button" class="rvBtn" onclick="sendReservation()"><p>예약요청</p></button>
 			</div>
-					
-         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->
-			
+         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->			
 			</form>		
 		</div>
 		<div class="price">
 			<div class="price-title">
 				<p>이용요금</p>			
-			</div>		
+			</div>	
+			<div class="bar" ></div>	
 			<div class="pet-type">
 				<div class="type-L">
 					<p>소형견</p>
@@ -725,7 +758,7 @@ function sendReservation() {
 					<p>60,000원</p>
 				</div>
 			</div>
-		</div>
+		</div>	
 		<div class="location">
 			<div class="lTop">
 				<div class="topContent">
