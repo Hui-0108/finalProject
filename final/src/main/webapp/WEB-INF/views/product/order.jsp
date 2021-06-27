@@ -183,7 +183,7 @@ h3{
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript" >
+<script type="text/javascript">
 function ajaxFun(url, method, query, dataType, fn) {
 	$.ajax({
 		type:method,
@@ -359,21 +359,26 @@ $(function(){//배송비 더해서 최종가격 계산
 	$("input[name=uMilePrice]").on("propertychange change keyup paste input", function(){		
 		var newValue = $(this).val();
 	});
-
-	if("${dto.delivType == 0}"){//배송비가 없는 경우	
+	
+	var delivCharge = $("#delivTest").val();
+	
+	
+	//배송비가 없는 경우	
+	if(delivCharge==0){
 		var DelivNonePrice = $("input[name=sTotPrice]").val();
 
 		$("input[name=finalPrice]").val(DelivNonePrice);
 		$("input[name=finalPrice]").attr("data-price", DelivNonePrice);
-
+		
 	}
 	
-	if("${dto.delivType != 0}"){ //배송비가 있는경우
+	//배송비가 있는경우
+	if(delivCharge!=0){ 
 		var DelivOkPrice = $("input[name=sTotPrice]").val();	
 
 		var DelivTotPrice = parseInt(DelivOkPrice)+2000;
 	
-	
+
 		$("input[name=finalPrice]").val(DelivTotPrice);			
 		$("input[name=finalPrice]").attr("data-price", DelivTotPrice);
 	}
@@ -420,12 +425,12 @@ function iamport(){
 
 	var query = $('form[name=orderForm]').serialize();
 	
-	//alert(query);
+	alert(query);
 	var fn = function(data){
 		var state = data.state;
 		console.log(state);
 	};
-	ajaxFun(url, "post", query, "json", fn);		
+	//ajaxFun(url, "post", query, "json", fn);		
 	
 	/*
 	
@@ -472,8 +477,6 @@ function iamport(){
 	*/
 }
 
-
-
 </script>
 
 
@@ -500,6 +503,7 @@ function iamport(){
 				</th>
 				<th>
 					구매가
+					<input type="text" value="${dto.delivType}" id="delivTest" hidden="hidden">
 				</th>
 			</tr>	
 		
@@ -522,7 +526,7 @@ function iamport(){
 				<td colspan="4" class="priceTop">
 					<span>합계 : 상품구매금액 + 배송비 = </span>  
 					<c:choose>
-						<c:when test="${dto.delivType != 0}">
+						<c:when test="${dto.delivType != 0}"> 
 							<input type="text"  value="${sum}" class="borderNone" readonly="readonly">
 							+
 							<input type="text" name="sDelivCharge" value="2000" class="borderNone" readonly="readonly">
