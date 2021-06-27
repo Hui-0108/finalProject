@@ -18,24 +18,24 @@ function memberOk() {
 
 	str = f.mId.value;
 	if(!str) {
-		alert("아이디를 입력하세요. ");
+		alert("아이디를 입력하세요.");
 		f.mId.focus();
 		return;
 	}
 	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
-		alert("아이디는 5~10자이며 첫글자는 영문자이어야 합니다.");
+		alert("아이디는 5~10자이며 첫 글자는 영문자이어야 합니다.");
 		f.mId.focus();
 		return;
 	}
 	
 	str = f.mNick.value;
 	if(!str) {
-		alert("닉네임을 입력하세요. ");
+		alert("닉네임을 입력하세요.");
 		f.mNick.focus();
 		return;
 	}
-	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
-		alert("닉네임은 5~10자이며 첫글자는 영문자이어야 합니다.");
+	if(!/^[가-힣][가-힣0-9_]{2,9}$/i.test(str)) { 
+		alert("닉네임은 3~10자이며 한글과 숫자만 사용할 수 있습니다.");
 		f.mNick.focus();
 		return;
 	}
@@ -253,7 +253,7 @@ div {
 							${mode=="update" ? "readonly='readonly' ":""}
 							onchange="mNickCheck();"
 							placeholder="닉네임">
-					<small class="form-text text-muted help-block">닉네임은 5~10자 이내이며, 첫 글자는 영문자로 시작해야 합니다.</small>
+					<small class="form-text text-muted help-block">닉네임은 3~10자이며 한글과 숫자만 사용할 수 있습니다.</small>
 				</div>
 			</div>
 		 
