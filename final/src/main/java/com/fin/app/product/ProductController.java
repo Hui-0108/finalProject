@@ -484,7 +484,6 @@ public class ProductController {
 	public String delete(
 			@RequestParam int pNum,
 			@RequestParam String page,
-			@RequestParam String pImgName,
 			@RequestParam int category,
 			@RequestParam(defaultValue = "title") String condition,
 			@RequestParam(defaultValue = "") String keyword,
@@ -497,7 +496,7 @@ public class ProductController {
 		}
 		
 		String root = session.getServletContext().getRealPath("/");
-		String pathname = root+"uploads"+File.separator+"product"+File.separator+pImgName;
+		String pathname = root+"uploads"+File.separator+"product";
 		
 		Product dto = service.readProduct(pNum);
 		if(dto == null) {

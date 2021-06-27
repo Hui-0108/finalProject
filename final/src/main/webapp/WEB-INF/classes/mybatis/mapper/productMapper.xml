@@ -9,9 +9,9 @@
 
 	<!-- 상품 정보 -->
 	<insert id="insertProduct" parameterType="com.fin.app.product.Product">
-		INSERT INTO product(pNum, pCateNum, pName, pPrice, pDiscountRate, pContent, delivType, pDate)
+		INSERT INTO product(pNum, pCateNum, pName, pPrice, pDiscountRate, pContent, delivType, pDate, pVisible)
 		VALUES(#{pNum}, #{pCateNum}, #{pName}, #{pPrice}, #{pDiscountRate}, #{pContent},
-		 #{delivType}, SYSDATE)
+		 #{delivType}, SYSDATE, 0)
 	</insert>
 
 	<!-- 검색조건 -->
@@ -59,7 +59,6 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
-
 	<!-- 글보기 -->
 	<select id="readProduct" parameterType="Integer" resultType="com.fin.app.product.Product">
 		SELECT p.pNum, pName, pCateNum, pDiscountRate, pContent, pPrice, pDetailPrice
@@ -74,7 +73,7 @@
 	<!-- 글수정 -->
 	<update id="updateProduct" parameterType="com.fin.app.product.Product">
 		UPDATE product SET pName=#{pName}, pPrice=#{pPrice}, pDiscountRate=#{pDiscountRate}, pContent=#{pContent},
-		 delivType=#{delivType}
+		delivType=#{delivType}
 		WHERE pNum=#{pNum}
 	</update>
 	

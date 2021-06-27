@@ -529,8 +529,7 @@ function iamport(){
 							&#61;
 							<input type="text" name="sdPrice" value="${sum+2000}" class="borderNone" readonly="readonly">
 							
-							<input type="text" name="sTotPrice" value="${sum}" class="borderNone" readonly="readonly">
-							
+							<input type="text" name="sTotPrice" value="${sum}" class="borderNone" hidden="hidden">
 						</c:when>
 						<c:otherwise>
 							<input type="text" value="${sum}" class="borderNone" readonly="readonly">
@@ -538,7 +537,6 @@ function iamport(){
 							<input type="text" name="sDelivCharge" value="${dto.sDelivCharge}" class="borderNone" readonly="readonly">
 							&#61;
 							<input type="text" name="sTotPrice"  value="${sum}" class="borderNone" readonly="readonly">
-
 						</c:otherwise>
 					</c:choose>
 					

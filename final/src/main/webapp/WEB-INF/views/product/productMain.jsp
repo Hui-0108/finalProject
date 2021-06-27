@@ -163,8 +163,6 @@
 					</div>
 				</c:forEach>	
 			</div>
-
-
 		<div class="banner donation">
 				<img src="${pageContext.request.contextPath}/resources/images/storeMain/bannerBottom.jpg" class="card-img" alt="...">
 		</div>								
