@@ -425,12 +425,12 @@ function iamport(){
 
 	var query = $('form[name=orderForm]').serialize();
 	
-	alert(query);
+	//alert(query);
 	var fn = function(data){
 		var state = data.state;
 		console.log(state);
 	};
-	//ajaxFun(url, "post", query, "json", fn);		
+	ajaxFun(url, "post", query, "json", fn);		
 	
 	/*
 	
