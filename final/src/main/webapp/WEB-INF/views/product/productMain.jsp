@@ -148,8 +148,6 @@
 			    <a href="${pageContext.request.contextPath}/product/cateList/2" class="btn btnToy" style="color: white;">구매하기</a>
 			  </div>
 		</div>		
-					
-
 		<div class="newProductText productTitle">
 			새로 들어온 상품들을 구경해 보세요!
 		</div>			
