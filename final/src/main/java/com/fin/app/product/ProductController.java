@@ -632,19 +632,20 @@ public class ProductController {
 		return model;
 	}
 	
-	@RequestMapping(value = "reviewList")
+	@RequestMapping(value = "reviewList", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> ReviewList(
 			@RequestParam int pNum,
 			@RequestParam(value="pageNo",defaultValue="1") int current_page
 			)throws Exception{
 		
+		int rows = 3;
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pNum", pNum);
 		
-		int rows = 5;
 		int dataCount = service.rDataCount(map);
 		int total_page = myUtil.pageCount(rows, dataCount);
+		
 		if(current_page>total_page) {
 			current_page=total_page;
 		}

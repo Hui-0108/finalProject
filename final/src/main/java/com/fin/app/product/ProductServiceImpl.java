@@ -479,7 +479,7 @@ public class ProductServiceImpl implements ProductService{
 		int result = 0;
 		
 		try {
-			result = dao.selectOne("product.rDataCount");
+			result = dao.selectOne("product.rDataCount", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -141,15 +141,41 @@
 	width: 50px;
 }
 .payProduct{
+/*
 	clear: both;
     width: 500px;
     float: right;
 
+*/
 }
 
 .qty{
 	width: 50px;
 }
+
+ .paging {
+   text-align: center;
+   color: orange;
+   font-weight: 500;
+}
+
+.listReviewFooter{
+   text-align: center;
+   margin-top: 25px;
+}
+.more{
+   font-weight: 500;
+   
+}
+
+.rList {
+   display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(235, 235, 235);
+    padding: 38px 0px 0px 0px;
+    width: 100%;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -270,9 +296,16 @@ function printReview(data) {
 	var page = data.pageNo;
 	var totalPage = data.total_page;
 	
+	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
+	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
+	
+	$(".more").hide(); //숨겨놓음
+	
+	var out="";
 	if(dataCount==0) { //리뷰 데이터가 0개일 때 
 		out="<div class='paging'>";
-		out+="    <p>아직 등록된 후기가 없습니다.</p>";
+		out+="    <p style='font-size:16px;'>등록된 후기가 없습니다 <i class='far fa-sad-tear'></i></p>";
+		out+="    <p style='font-size:16px;'>상품을 구매하시고 이용 후기를 남겨보세요!</p>";
 		out+="</div>"
 		
 		$("#listReviewBody").html(out);
@@ -280,18 +313,10 @@ function printReview(data) {
 		return;
 	}
 	
-	
-	$("#listReviewBody").attr("data-pageNo", page); //현재 화면상에 보이는 페이지
-	$("#listReviewBody").attr("data-totalPage", totalPage); //전체 데이터 갯수
-	
-	$("#lisReviewFooter").hide(); //숨겨놓음
-	
-	
 	if(page == 1) { //1페이지면 기존 내용 지우고 다시 추가 
 		$("#listReviewBody").empty();
 	}
 	
-	var out="";
 	for(var idx=0; idx<data.reviewList.length; idx++) {
 		var rNum=data.reviewList[idx].rNum;
 		var mId=data.reviewList[idx].mId;
@@ -300,24 +325,22 @@ function printReview(data) {
 		var rCreated=data.reviewList[idx].rCreated;
 		var rGrade=data.reviewList[idx].rGrade;
 		var imagefilename=data.reviewList[idx].imagefilename;
+		var mProfileImg=data.reviewList[idx].mProfileImg;		
 		var img=[];
 		if(imagefilename){
 			img = imagefilename.split(",");
 		}
 
 		
-		out+="<div class=''>"
-		out+="<div class=''>";
-		out+="    <div class=''style='border: 1px solid black; width:70px; height:70px;'><img></div>";
+		out+="<div class='rList'>"
+		out+="<div class='reviewTop'>";
+		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img style='width:70px; height:70px;'src='${pageContext.request.contextPath}/upload/profileImages/"+mProfileImg+"'></div>";
 		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
-		out+="</div>";
-		
-		out+="<div class 'reviewBottom'>";
+		out+="</div>";		
 		out+="<p>후기 평점:"+rGrade+"</p>";
 		out+="<p>"+rTitle+"</p>";
 		out+="<p>"+rContent+"</p>";
-		
-		out+="<div calss='reviewPic' style='display:flex;'>"
+		out+="<div calss='reviewPic' style='display:flex; margin-bottom:25px;'>"
 		if(img.length>0){
 			for(var i=0; i<img.length; i++) {
 				var s="${pageContext.request.contextPath}/upload/reviewImages/"+img[i];		
@@ -327,13 +350,14 @@ function printReview(data) {
 			
 		}
 		out+="</div>"
-			out+="</div>";
 	}
 	$("#listReviewBody").append(out); //append로 해야 기존 내용 지워지지 x
 	
 	if(page<totalPage) { //데이터가 더 존재하는 경우
-		$("#listReviewFooter").show(); //데이터를 보여줌
+		$(".more").show(); //데이터를 보여줌
 	}
+	console.log(page);
+	console.log(totalPage);
 	
 }
 //더보기
@@ -447,10 +471,17 @@ $(function(){
 		
 		<div class="review-list" id="listReview" style="margin-top: 50px;">
 			<div class="reviewT">
-				<h3>후기</h3>
+				<h3>펫시터 후기</h3>
+				<div class="star">
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	            <i class="fas fa-star"></i>
+	         	</div>	         
          	</div>
 			<div id="listReviewBody" data-pageNo="0" data-totalPage="0"></div>
-			<div id="listReviewFooter">
+			<div id="listReviewFooter" class="listReviewFooter">
 				<span class="more">후기 더보기</span>
 			</div>
 		</div>

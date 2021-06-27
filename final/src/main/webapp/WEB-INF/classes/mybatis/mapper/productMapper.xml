@@ -212,32 +212,37 @@
 
 	<!-- 리뷰 데이터  -->
 	<select id="rDataCount" parameterType="Integer" resultType="Integer">
-		SELECT NVL(COUNT(*),0) <!-- NVL=null값을 다른 값으로 치환. COUNT(*)가 null값이면 0으로 치환 -->
-		FROM review
+		SELECT NVL(COUNT(*),0) 
+		FROM review r
+		JOIN storeDetail sd ON r.orderNum = sd.orderNum 
+    	JOIN storeDetailOpt do ON sd.storeDetailOptNum = do.storeDetailOptNum 		
+        WHERE pNum= #{pNum}
 	</select>
 
 	<select id="listReview" parameterType="map" resultType="com.fin.app.product.ProductReview">
-	 SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, mId ,sd.orderNum
+	 SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, r.mId, sd.orderNum , do.pNum, mProfileImg
       FROM review r
+	  JOIN memberDetail md ON r.mId = md.mId      
       LEFT OUTER JOIN (
           SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
           FROM reviewImage
             GROUP BY rNum
       ) ri ON r.rNum = ri.rNum      
-      JOIN storeDetail sd ON r.orderNum = sd.orderNum 
+      	JOIN storeDetail sd ON r.orderNum = sd.orderNum 
         JOIN storeDetailOpt do ON sd.storeDetailOptNum = do.storeDetailOptNum 
         WHERE pNum= #{pNum}
-      ORDER BY rNum DESC
+      	ORDER BY rNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY 
 	</select>
 	
 	<!-- product 메인 상품 리스트 -->
 	
 	<select id="listBestProduct" resultType="com.fin.app.product.Product">
-		SELECT ROWNUM, a.*, p.pNum, pName, pPrice, pCateNum, pDiscountRate, pDetailPrice
+		SELECT ROWNUM, a.*, p.pNum, pName, pPrice, pCateNum, pDiscountRate, pDetailPrice,pImgName
 		FROM ( SELECT storeDetailOptNum, RANK() OVER (ORDER BY SUM(sDetailQty) DESC) rank, SUM(sDetailQty) sumQty FROM storeDetail GROUP BY storeDetailOptNum ) a 
         LEFT OUTER JOIN storeDetailOpt d ON a.storeDetailOptNum = d.storeDetailOptNum
         JOIN product p ON d.pNum = p.pNum
+        JOIN productImage i ON p.pNum = i.pNum
 		WHERE ROWNUM <![CDATA[ <= ]]> 4
 		ORDER BY sumQty DESC
 	</select>

@@ -15,6 +15,8 @@ public class ProductReview {
 	private String imagefilename; //이미지파일이름
 	private List<MultipartFile> uploads; //다중파일
 	private String rContent;
+	private String mProfileImg;
+	
 	
 	public int getrNum() {
 		return rNum;
@@ -75,6 +77,12 @@ public class ProductReview {
 	}
 	public void setrContent(String rContent) {
 		this.rContent = rContent;
+	}
+	public String getmProfileImg() {
+		return mProfileImg;
+	}
+	public void setmProfileImg(String mProfileImg) {
+		this.mProfileImg = mProfileImg;
 	}
 	
 	
