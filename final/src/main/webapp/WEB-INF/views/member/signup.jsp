@@ -221,6 +221,8 @@ function mNickCheck() {
 <style>
 div {
 	text-align: center;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 }
 </style>
 
@@ -229,8 +231,8 @@ div {
 		<h3><i class="fas fa-paw"></i> 회원 가입 </h3>
 	</div>
 	
-    <div class="alert alert-dark">
-        <i class="fab fa-gratipay"></i> 개묘개묘에 가입하고 길 위의 천사들을 만나 보세요.
+    <div class="alert alert" style="background-color:#F7BE81; color:white;">
+        <i class="fas fa-cat"></i> Take A Look에 가입하고 길 위의 천사들을 만나 보세요.
     </div>
 
 	<div class="body-main">
@@ -309,7 +311,7 @@ div {
 					    <div class="input-group-prepend">
 					      <div class="input-group-text" style=" background: none; border: none;">@</div>
 					    </div>
-					   <input type="text" class="form-control" name="mEmail2" maxlength="30" value="${dto.mEmail2}" readonly="readonly">
+					   <input type="text" class="form-control" name="mEmail2" maxlength="30" style="background-color:#F5D0A9;" value="${dto.mEmail2}" readonly="readonly">
 					</div>					
 
 		        </div>
@@ -340,9 +342,9 @@ div {
 		        <label class="col-sm-2 col-form-label" for="mZip">우편번호</label>
 		        <div class="col-sm-5">
 		       		<div class="input-group">
-		           		<input class="form-control" id="mZip" name="mZip" placeholder="우편번호" value="${dto.mZip}" readonly="readonly">
+		           		<input class="form-control" id="mZip" name="mZip" placeholder="우편번호" style="background-color:#F5D0A9;" value="${dto.mZip}" readonly="readonly">
 		           		<span class="input-group-btn">
-		           			<button class="btn btn-light" type="button" style="margin-left: 5px;" onclick="daumPostcode();">우편번호 검색</button>
+		           			<button class="btn btn-light" type="button" style="margin-left: 5px; " onclick="daumPostcode();">우편번호 검색</button>
 		           		</span>
 		           	</div>
 				</div>
@@ -352,7 +354,7 @@ div {
 		        <label class="col-sm-2 col-form-label" for="addr1">주소</label>
 		        <div class="col-sm-8">
 		       		<div>
-		           		<input class="form-control" id="mAddr1" name="mAddr1" placeholder="기본 주소" value="${dto.mAddr1}" readonly="readonly">
+		           		<input class="form-control" id="mAddr1" name="mAddr1" placeholder="기본 주소" style="background-color:#F5D0A9;" value="${dto.mAddr1}" readonly="readonly">
 		           	</div>
 		       		<div style="margin-top: 5px;">
 		       			<input class="form-control" id="mAddr2" name="mAddr2" placeholder="상세 주소" value="${dto.mAddr2}">
@@ -374,7 +376,7 @@ div {
 		
 		    <div class="form-group form-row">
 		        <div class="col-sm-12">
-		            <button type="button" name="sendButton" class="btn btn-secondary" onclick="memberOk();"> 회원가입 </button>
+		            <button type="button" name="sendButton" class="btn btn-secondary" onclick="memberOk();" style="background-color:#F7BE81; border: solid 1px #F7BE81;"> 회원가입 </button>
 		            <button type="button" class="btn btn-light" onclick="javascript:location.href='${pageContext.request.contextPath}/';">가입취소</button>
 		        </div>
 		    </div>

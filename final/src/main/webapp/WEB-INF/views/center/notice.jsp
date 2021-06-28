@@ -3,20 +3,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css">
+
+.body-container {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
+	text-align: center;
+}
+
 .table-content tr {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
+	text-align: center;
 	text-align: center;
 }
 .table-content tr:first-child {
-	background: #eee;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
+	font-color: white;
+	text-align: center;
+	background-color: #F7BE81;
 }
 .table-content tr > th {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
+	text-align: center;
 	color: #777;
 }
 .table-content tr > td:nth-child(2) {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 	box-sizing: border-box;
 	padding-left: 10px;
 	text-align: left;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -48,23 +68,23 @@ function searchList() {
 				<th width="60">번호</th>
 				<th width="500">제목</th>
 				<th width="100">작성자</th>
-				<th width="80">작성일</th>
+				<th width="100">작성일</th>
 				<th width="60">조회수</th>
 				<th width="50">첨부</th>
 			</tr>
 		 
 			<c:forEach var="dto" items="${noticeList}">
 			<tr> 
-				<td><span style="display: inline-block;padding:1px 3px; background: #ED4C00; color: #fff">공지</span></td>
+				<td><span style="display: inline-block;padding:1px 3px; background: #ED4C00; color: #fff">${dto.nCateName}</span></td>
 				<td>
-					<a href="${articleUrl}&num=${dto.nNum}">${dto.nTitle}</a>
+					<a href="${articleUrl}&nNum=${dto.nNum}">${dto.nTitle}</a>
 				</td>
 				<td>${dto.mId}</td>
 				<td>${dto.nCreated}</td>
 				<td>${dto.nHit}</td>
 				<td>
 					<c:if test="${dto.fileCount != 0}">
-						<a href="${pageContext.request.contextPath}/notice/zipdownload?num=${dto.nNum}"><i class="icofont-file-zip"></i></a>
+						<a href="${pageContext.request.contextPath}/center/zipdownload?nNum=${dto.nNum}"><i class="far fa-file"></i></a>
 					</c:if>		      
 				</td>
 			</tr>
@@ -74,14 +94,14 @@ function searchList() {
 			<tr> 
 				<td>${dto.listNum}</td>
 				<td>
-					<a href="${articleUrl}&num=${dto.nNum}">${dto.nTitle}</a>
+					<a href="${articleUrl}&nNum=${dto.nNum}">${dto.nTitle}</a>
 				</td>
 				<td>${dto.mId}</td>
 				<td>${dto.nCreated}</td>
 				<td>${dto.nHit}</td>
 				<td>
 					<c:if test="${dto.fileCount != 0}">
-						<a href="${pageContext.request.contextPath}/notice/zipdownload?num=${dto.nNum}"><i class="icofont-file-zip"></i></a>
+						<a href="${pageContext.request.contextPath}/center/zipdownload?nNum=${dto.nNum}"><i class="far fa-file"></i></a>
 					</c:if>		      
 				</td>
 			</tr>
@@ -99,7 +119,7 @@ function searchList() {
 		<table class="table">
 			<tr>
 				<td align="left" width="100">
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice';">새로고침</button>
+					<button type="button" style="width: 120%; border: 1px solid gray;" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice';">새로고침</button>
 				</td>
 				<td align="center">
 					<form name="searchForm" action="${pageContext.request.contextPath}/center/notice" method="post">
@@ -116,7 +136,7 @@ function searchList() {
 				</td>
 				<td align="right" width="100">
 					<c:if test="${sessionScope.member.mId=='admin'}">
-						<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/created';">글올리기</button>
+						<button type="button" style="width: 120%; border: 1px solid gray;" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/created';">글올리기</button>
 					</c:if>
 				</td>
 			</tr>

@@ -189,7 +189,7 @@ public class MemberServiceImpl implements MemberService {
 		mail.setReceiverEmail(dto.getmEmail());
 		
 		mail.setSenderEmail("ghiouw96@gmail.com");
-		mail.setSenderName("개묘개묘");
+		mail.setSenderName("Take A Look");
 		mail.setSubject("임시 패스워드 발급");
 		mail.setContent(result);
 		

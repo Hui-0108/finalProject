@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css">
+
+div {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
+}
+
 .table-content tr > td {
 	padding-left: 5px; padding-right: 5px;
 }
@@ -24,7 +30,6 @@
 <div class="container body-container">
     <div class="body-title">
 		<h2><i class="icofont-clip-board"></i> 공지사항 </h2>
-		<input type="text" >
     </div>
     
     <div class="body-main wx-700 ml-30 pt-15">
@@ -50,7 +55,7 @@
 			<c:forEach var="vo" items="${listFile}">
 				<tr>
 					<td colspan="2">
-						<a href="${pageContext.request.contextPath}/center/notice/download?fileNum=${vo.nFileNum}"><i class="icofont-file-alt"></i> ${vo.nOriginalFile}</a>
+						<a href="${pageContext.request.contextPath}/center/download?fileNum=${vo.nFileNum}"><i class="icofont-file-alt"></i> ${vo.nOriginalFile}</a>
 						(<fmt:formatNumber value="${vo.nFileSize/1024}" pattern="0.00"/> KByte)
 					</td>
 				</tr>
@@ -60,7 +65,7 @@
 				<td colspan="2">
 					이전글 :
 					<c:if test="${not empty preReadDto}">
-						<a href="${pageContext.request.contextPath}/center/article?${query}&num=${preReadDto.nNum}">${preReadDto.nTitle}</a>
+						<a href="${pageContext.request.contextPath}/center/article?${query}&nNum=${preReadDto.nNum}">${preReadDto.nTitle}</a>
 					</c:if>
 				</td>
 			</tr>
@@ -69,7 +74,7 @@
 				<td colspan="2">
 					다음글 :
 					<c:if test="${not empty nextReadDto}">
-						<a href="${pageContext.request.contextPath}/center/article?${query}&num=${nextReadDto.nNum}">${nextReadDto.nTitle}</a>
+						<a href="${pageContext.request.contextPath}/center/article?${query}&nNum=${nextReadDto.nNum}">${nextReadDto.nTitle}</a>
 					</c:if>
 				</td>
 			</tr>
@@ -80,25 +85,25 @@
 				<td width="50%" align="left">
 					<c:choose>
 						<c:when test="${sessionScope.member.mId=='admin'}">
-			    			<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/update?num=${dto.nNum}&page=${page}';">수정</button>
+			    			<button type="button" style="border: 1px solid gray;" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/update?nNum=${dto.nNum}&page=${page}';">수정</button>
 			    		</c:when>
 			    		<c:otherwise>
-			    			<button type="button" class="btn" disabled="disabled">수정</button>
+			    			<button type="button" style="border: 1px solid gray;" class="btn" disabled="disabled">수정</button>
 			    		</c:otherwise>
 			    	</c:choose>
 			    	
 			    	<c:choose>
 			    		<c:when test="${sessionScope.member.mId=='admin'}">
-			    			<button type="button" class="btn" onclick="deleteSend();">삭제</button>
+			    			<button type="button" style="border: 1px solid gray;" class="btn" onclick="deleteSend();">삭제</button>
 			    		</c:when>
 			    		<c:otherwise>
-			    			<button type="button" class="btn" disabled="disabled">삭제</button>
+			    			<button type="button" style="border: 1px solid gray;" class="btn" disabled="disabled">삭제</button>
 			    		</c:otherwise>
 			    	</c:choose>
 				</td>
 			
 				<td align="right">
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice?${query}';">리스트</button>
+					<button type="button" style="border: 1px solid gray;" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice?${query}';">리스트</button>
 				</td>
 			</tr>
 		</table>

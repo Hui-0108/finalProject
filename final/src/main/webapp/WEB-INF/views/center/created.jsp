@@ -5,18 +5,25 @@
 
 <style type="text/css">
 .table-content tr > td:nth-child(1) {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 	width: 100px;
-	text-align: center;
 	background: #eee;
 }
 .table-content tr > td:nth-child(2) {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 	padding-left: 10px;
 }
 .table-content input[type=text], .table-content input[type=file], .table-content textarea {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 	width: 97%;
 }
 
 .table-border tfoot tr:first-child {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 15px;
 	border-top: 1px solid #ccc;
 }
 </style>
@@ -75,7 +82,7 @@ $(function(){
 
   <c:if test="${mode=='update'}">
   function deleteFile(fileNum) {
-		var url="${pageContext.request.contextPath}/center/notice/deleteFile";
+		var url="${pageContext.request.contextPath}/center/deleteFile";
 		$.post(url, {fileNum:fileNum}, function(data){
 			$("#f"+fileNum).remove();
 		}, "json");
@@ -180,7 +187,7 @@ $(function(){
 					<button type="reset" class="btn">다시입력</button>
 					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/center/notice';">${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode=='update'}">
-						<input type="hidden" name="num" value="${dto.nNum}">
+						<input type="hidden" name="nNum" value="${dto.nNum}">
 						<input type="hidden" name="page" value="${page}">
 					</c:if>
 				</td>

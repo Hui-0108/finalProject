@@ -107,7 +107,7 @@ public class NoticeController {
         
         String cp=req.getContextPath();
         String query = "";
-        String listUrl = cp+"/notice/";
+        String listUrl = cp+"/center/notice";
         String articleUrl = cp+"/center/article?page=" + current_page;
         if(keyword.length()!=0) {
         	query = "condition=" + condition + 
@@ -115,7 +115,7 @@ public class NoticeController {
         }
         
         if(query.length()!=0) {
-        	listUrl = cp+"/center/notice/list?" + query;
+        	listUrl = cp+"/center/notice?" + query;
         	articleUrl = cp+"/center/article?page=" + current_page + "&"+ query;
         }
         
@@ -181,7 +181,7 @@ public class NoticeController {
 
 	@RequestMapping(value="article")
 	public String article(
-			@RequestParam int num,
+			@RequestParam int nNum,
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
@@ -194,9 +194,9 @@ public class NoticeController {
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
 		
-		service.updateHitCount(num);
+		service.updateHitCount(nNum);
 
-		Notice dto = service.readNotice(num);
+		Notice dto = service.readNotice(nNum);
 		if(dto==null) {
 			return "redirect:/center/notice?"+query;
 		}
@@ -207,13 +207,13 @@ public class NoticeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
-		map.put("num", num);
+		map.put("nNum", nNum);
 
 		Notice preReadDto = service.preReadNotice(map);
 		Notice nextReadDto = service.nextReadNotice(map);
         
 		// 파일
-		List<Notice> listFile=service.listFile(num);
+		List<Notice> listFile=service.listFile(nNum);
 				
 		model.addAttribute("dto", dto);
 		model.addAttribute("preReadDto", preReadDto);
@@ -228,7 +228,7 @@ public class NoticeController {
 
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public String updateForm(
-			@RequestParam int num,
+			@RequestParam int nNum,
 			@RequestParam String page,
 			HttpSession session,			
 			Model model	) throws Exception {
@@ -238,12 +238,12 @@ public class NoticeController {
 			return "redirect:/center/notice?page="+page;
 		}
 
-		Notice dto = service.readNotice(num);
+		Notice dto = service.readNotice(nNum);
 		if(dto==null) {
 			return "redirect:/center/notice?page="+page;
 		}
 		
-		List<Notice> listFile=service.listFile(num);
+		List<Notice> listFile=service.listFile(nNum);
 		List<Notice> listCategory = service.listCategory();
 		model.addAttribute("listCategory", listCategory);	
 		model.addAttribute("mode", "update");
@@ -280,7 +280,7 @@ public class NoticeController {
 
 	@RequestMapping(value="delete")
 	public String delete(
-			@RequestParam int num,
+			@RequestParam int nNum,
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
@@ -294,17 +294,17 @@ public class NoticeController {
 		}
 		
 		if(! info.getmId().equals("admin")) {
-			return "redirect:/center?"+query;
+			return "redirect:/center/notice?"+query;
 		}
 		
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathname = root + "uploads" + File.separator + "notice";
-			service.deleteNotice(num, pathname);
+			service.deleteNotice(nNum, pathname);
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/center/?"+query;
+		return "redirect:/center/notice?"+query;
 	}
 
 	@RequestMapping(value="download")
@@ -337,7 +337,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="zipdownload")
 	public void zipdownload(
-			@RequestParam int num,
+			@RequestParam int nNum,
 			HttpServletResponse resp,
 			HttpSession session) throws Exception {
 		String root = session.getServletContext().getRealPath("/");
@@ -345,11 +345,11 @@ public class NoticeController {
 
 		boolean b = false;
 		
-		List<Notice> listFile = service.listFile(num);
+		List<Notice> listFile = service.listFile(nNum);
 		if(listFile.size()>0) {
 			String []sources = new String[listFile.size()];
 			String []originals = new String[listFile.size()];
-			String zipFilename = num+".zip";
+			String zipFilename = nNum+".zip";
 			
 			for(int idx = 0; idx<listFile.size(); idx++) {
 				sources[idx] = pathname+File.separator+listFile.get(idx).getnSaveFile();
@@ -372,20 +372,20 @@ public class NoticeController {
 	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteFile(
-			@RequestParam int fileNum,
+			@RequestParam int nFileNum,
 			HttpSession session) throws Exception {
 		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + "uploads" + File.separator + "notice";
 		
-		Notice dto=service.readFile(fileNum);
+		Notice dto=service.readFile(nFileNum);
 		if(dto!=null) {
 			fileManager.doFileDelete(dto.getnSaveFile(), pathname);
 		}
 		
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("field", "fileNum");
-		map.put("num", fileNum);
+		map.put("field", "nFileNum");
+		map.put("nNum", nFileNum);
 		service.deleteFile(map);
 		
    	    // 작업 결과를 json으로 전송

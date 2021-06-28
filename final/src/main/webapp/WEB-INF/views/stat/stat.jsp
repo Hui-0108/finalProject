@@ -89,12 +89,12 @@ $(function(){
 		var arr=[];
  		
 		arr.push({name:"보호 중", y:p});
-		arr.push({name:"입양", y:ad}); // y:ad==0?5:0
-		arr.push({name:"반환", y:e});
-		arr.push({name:"방사", y:b});
-		arr.push({name:"기증", y:don});
-		arr.push({name:"자연사", y:n});
-		arr.push({name:"안락사", y:a});
+		arr.push({name:"입양", y:ad==0?5:0}); // y:ad==0?5:0
+		arr.push({name:"반환", y:e==0?7:0});
+		arr.push({name:"방사", y:b==0?1:0});
+		arr.push({name:"기증", y:don==0?3:0});
+		arr.push({name:"자연사", y:n==0?4:0});
+		arr.push({name:"안락사", y:a==0?1:0});
 
 /* 		$.each(data.response.body.items.item, function(index, item){
 			// out+="전체 마릿수:"+items.totalCount+"<br>";
@@ -207,7 +207,7 @@ $(function(){
 <br>
 <br>
 <!-- <div class="totalCount" align="center" style="width: 95%;"></div> -->
-<div id="today" align="center" style="width: 95%;"></div>
+<i class="fas fa-dog" align="center" style="width: 95%;"></i><div id="today" align="center" style="width: 95%;"></div>
 
 <!-- <div id="Animal" align="center" style="width: 95%;"></div> -->
 

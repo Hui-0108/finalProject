@@ -234,9 +234,9 @@ $(function(){
 			유기동물 통계
 		</h2> 
 		<div class="container mainstatic">
-			<div class="mainchart" id="dogCatcontainer" style="margin-top: 70px">
+			<div class="mainchart" id="dogCatcontainer" style="margin-top: 80px">
 			</div>
-			<div class="mainchart" id="Catdogcontainer" style="margin-top: 70px">
+			<div class="mainchart" id="Catdogcontainer" style="margin-top: 80px">
 			</div>
 		</div>
 	</div>

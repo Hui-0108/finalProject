@@ -58,7 +58,7 @@
 	        <a class="nav-link" href="${pageContext.request.contextPath}/petsit/list">떼껄룩 펫시터 <span class="sr-only">(current)</span></a>
 	    </li>
 		<li class="nav-item active item">
-	        <a class="nav-link" href="${pageContext.request.contextPath}/center/notice/notice">공지사항 <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="${pageContext.request.contextPath}/center/notice">공지사항 <span class="sr-only">(current)</span></a>
 	    </li>
 	      <li class="nav-item dropdown item">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
