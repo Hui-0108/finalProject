@@ -52,7 +52,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height: 973px">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height: 900px">
     <!-- Brand Logo -->
     <a href="${pageContext.request.contextPath}/admin" class="brand-link">
       <img src="${pageContext.request.contextPath}/resources/images/home/logoOrange.png" alt="Gaemyeo" class="brand-image img-circle elevation-3" style="opacity: .8">

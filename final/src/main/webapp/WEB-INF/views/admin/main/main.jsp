@@ -110,12 +110,12 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">${storeLastWeek.sTotLastWeek}</span>
+                    <span class="text-bold text-lg">${storeLastWeek.sTotLastWeek} 원</span>
                     <span>지난주 총 매출액</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="font-weight-bold">
-                    <span class="text-bold text-lg">${storeThisWeek.sTotThisWeek}</span>
+                    <span class="text-bold text-lg">${storeThisWeek.sTotThisWeek} 원</span>
                     </span>
                     <span class="text-muted">이번주 총 매출액</span>
                   </p>
@@ -442,7 +442,7 @@ $(function () {
 	          }, 
 	          ticks: $.extend({
 	            beginAtZero: true,
-	            suggestedMax: 30
+	            suggestedMax: 12
 	          }, ticksStyle)
 	        }],
 	        xAxes: [{

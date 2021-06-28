@@ -39,7 +39,7 @@ table {
 	</tr>
 	<tr class="detail detail-top">
 		<td class="detail-bold" align="right" style="padding-right: 9px;"><label style="font-weight: 900;">배송조건</label></td>
-		<td class="detail-normal" align="left" width="35%" style="padding-left: 5px;"><span>${dto.delivType}</span></td>
+		<td class="detail-normal" align="left" width="35%" style="padding-left: 5px;"><span>${dto.delivType==0?"무료배송":"일반배송"}</span></td>
 		<td class="detail-bold" align="right" style="padding-right: 9px;"><label style="font-weight: 900;">등록일</label></td>
 		<td class="detail-normal" align="left" width="35%" style="padding-left: 5px;"><span>${dto.pDate}</span></td>
 	</tr>
