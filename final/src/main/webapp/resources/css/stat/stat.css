@@ -9,6 +9,26 @@
 
 #today {
 	font-family: 'Cafe24Ssurround';
-	font-size: 15px;
+	font-size: 20px;
 	text-align: center;
+}
+
+.main {
+	font-family: 'Cafe24Ssurround';
+	font-size: 70px;
+	margin-top: 100px;
+	padding-left: 150px;
+	padding-top: 100px;
+	font-size: 60px;
+	text-align: left;
+}
+
+.sub {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 70px;
+	margin-top: 10px;
+	padding-left: 150px;
+	padding-top: 10px;
+	font-size: 30px;
+	text-align: left;
 }

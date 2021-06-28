@@ -89,12 +89,12 @@ $(function(){
 		var arr=[];
  		
 		arr.push({name:"보호 중", y:p});
-		arr.push({name:"입양", y:ad==0?5:0}); // y:ad==0?5:0
-		arr.push({name:"반환", y:e==0?7:0});
-		arr.push({name:"방사", y:b==0?1:0});
-		arr.push({name:"기증", y:don==0?3:0});
-		arr.push({name:"자연사", y:n==0?4:0});
-		arr.push({name:"안락사", y:a==0?1:0});
+		arr.push({name:"입양", y:ad}); // y:ad==0?5:0
+		arr.push({name:"반환", y:e});
+		arr.push({name:"방사", y:b});
+		arr.push({name:"기증", y:don});
+		arr.push({name:"자연사", y:n});
+		arr.push({name:"안락사", y:a});
 
 /* 		$.each(data.response.body.items.item, function(index, item){
 			// out+="전체 마릿수:"+items.totalCount+"<br>";
@@ -196,6 +196,11 @@ $(function(){
 <!--      	<p style="padding: 5px;">
      		<button type="button" id="btnAnimal">유기동물 발생 현황</button>
      	</p> -->
+     	
+<img width="850" height="400" style="opacity: 70%; margin-right: 130px; margin-bottom: 250px; border: ; border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px;
+			-webkit-border-radius: 100px;" src="${pageContext.request.contextPath}/resources/images/stat/main.jpg" align="right"/>     	
+<h2 class="main">유기동물 통계</h2>
+<h5 class="sub">오늘도 버려지는 아이들이 있습니다.</h5>
 <div id="dogCatcontainer" class="dogCatcontainer" align="center" style="width: 95%;"></div>
 <br>
 <br>

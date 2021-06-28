@@ -34,7 +34,7 @@ $(function(){
 	if(m<10) m="0"+m;
 	var d = now.getDate();
 	if(d<0) d="0"+d;
-	var date2=y+""+m+""+d-1;
+	var date2=y+""+m+""+d;
 	
 	var query="date2="+date2;
 	

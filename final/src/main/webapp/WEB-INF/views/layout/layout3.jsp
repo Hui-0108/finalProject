@@ -38,10 +38,7 @@
 	<!-- mypage -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/profile.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/changePwd.css" type="text/css">
-	
-	<!-- donation -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/donation/main.css" type="text/css">
-	
+		
 	<!-- stat -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/stat/stat.css" type="text/css">
 	

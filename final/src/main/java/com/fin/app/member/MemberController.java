@@ -331,7 +331,7 @@ public class MemberController {
 		
 		Member dto = service.readMember(mId);
 		if(dto==null || dto.getmEmail()==null) {
-			model.addAttribute("message", "등록된 아이디가 아닙니다.");
+			model.addAttribute("message", "등록된 아이디가 없습니다.");
 			return ".member.findPwd";
 		}
 		
