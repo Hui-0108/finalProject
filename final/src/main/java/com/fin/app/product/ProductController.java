@@ -56,6 +56,9 @@ public class ProductController {
 		List<Product> totProduct = service.listTotProduct();
 		model.addAttribute("listTotProduct", totProduct);
 		
+		List<Product> newProduct = service.listNewProduct();
+		model.addAttribute("listNewProduct", newProduct);
+		
 		
 		return ".product.productMain";
 	}

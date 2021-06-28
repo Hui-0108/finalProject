@@ -25,6 +25,11 @@
 	font-family: Cafe24Ssurround;
 }
 
+.storeSlide{
+
+	font-family: Cafe24SsurroundAir;
+}
+
 .totProductView{
 	float: right;
 	font-family: Cafe24SsurroundAir;
@@ -44,17 +49,29 @@
 .card-text{
 	font-family: Cafe24SsurroundAir;
 }
-.btn{
-	color: white;
-	background: #219ebc;
-}
-.btn:hover{
-	color: white;
-	background: #023047;
-}
+
 .btnToy{
 	width: 300px;
+    height: 35px;
+    border: none;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 17px; 
+	background: #023047;
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+	transition: 0.3s;  
+	font-family: GmarketSansMedium;	 	
 }
+
+.btnToy:hover{
+    color: whitesmoke;
+	background: #073f5a;
+	box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);	
+	font-family: GmarketSansMedium;
+}
+
+
+
 .storeBody .imgstore{
 	height: 300px;
 }
@@ -62,7 +79,7 @@
 </style>
 
 <div class="storeBody">
-		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+		<div id="carouselExampleCaptions" class="carousel slide storeSlide" data-ride="carousel">
 		  <ol class="carousel-indicators">
 		    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
 		    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -152,7 +169,7 @@
 			새로 들어온 상품들을 구경해 보세요!
 		</div>			
 			<div class="card-deck ">
-				<c:forEach var="dto" items="${listBestProduct}">
+				<c:forEach var="dto" items="${listNewProduct}">
 					<div class="card popularCard">
 						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="main-img " style="width: 200px;" alt="..."></a>
 						<div class="card-body">

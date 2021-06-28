@@ -109,4 +109,21 @@
 
 .mainBtn{
 	margin-right: 200px;
+    border: none;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 17px; 
+	background: #023047;
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+	transition: 0.3s;  
+
 }
+.mainBtn:hover{
+    color: whitesmoke;
+	background: #073f5a;
+	box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);	
+	
+}
+
+
+

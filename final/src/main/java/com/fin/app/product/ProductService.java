@@ -54,6 +54,6 @@ public interface ProductService {
 	//메인
 	public List<Product>listBestProduct();
 	public List<Product>listTotProduct();
-
+	public List<Product>listNewProduct();
 	
 }

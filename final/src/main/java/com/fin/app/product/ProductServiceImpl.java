@@ -522,6 +522,20 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> listNewProduct() {
+		List<Product> dto = null;
+		
+		
+		try {
+			dto = dao.selectList("product.listNewProduct");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+
 
 
 

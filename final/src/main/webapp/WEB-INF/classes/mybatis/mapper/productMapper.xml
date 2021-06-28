@@ -260,8 +260,26 @@
 		) d ON s.storeDetailOptNum = d.storeDetailOptNum
         JOIN productImage i ON p.pNum = i.pNum
         WHERE ROWNUM<![CDATA[ <= ]]> 4
-        ORDER BY pName DESC;	
+        ORDER BY pName DESC	
 	</select>
+	
+	<select id="listNewProduct" resultType="com.fin.app.product.Product">
+        select  p.pNum, p.pName, p.pPrice, p.pCateNum, p.pDiscountRate, pDetailPrice, pImgName, pDate
+        from product p
+        join storeDetailOpt s on p.pNum = s.pNum
+        LEFT OUTER JOIN (
+			SELECT orderNum, storeDetailOptNum FROM(
+				SELECT orderNum, storeDetailOptNum,
+					ROW_NUMBER() OVER(PARTITION BY storeDetailOptNum ORDER BY orderNum  ASC)rank
+				 FROM storeDetail
+			) WHERE rank = 1
+		) d ON s.storeDetailOptNum = d.storeDetailOptNum
+        JOIN productImage i ON p.pNum = i.pNum
+        WHERE ROWNUM<![CDATA[ <= ]]> 4
+        ORDER BY pDate DESC		
+	</select>
+	
+	
 	
 	
 
