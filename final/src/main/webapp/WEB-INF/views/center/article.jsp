@@ -24,6 +24,7 @@
 <div class="container body-container">
     <div class="body-title">
 		<h2><i class="icofont-clip-board"></i> 공지사항 </h2>
+		<input type="text" >
     </div>
     
     <div class="body-main wx-700 ml-30 pt-15">
