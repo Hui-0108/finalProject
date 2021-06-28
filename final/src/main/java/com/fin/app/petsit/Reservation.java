@@ -6,7 +6,7 @@ public class Reservation {
 	private String orderName;
 	private String orderTel;
 	private String orderEmail;
-	
+	//private String mName;
 	
 	
 	
@@ -18,6 +18,7 @@ public class Reservation {
 	private int petNum;//글번호
 	private int finalPrice;//최종금액
 	private String rDate; //예약을 신청한 날짜
+	
 	
 	
 	
@@ -150,7 +151,5 @@ public class Reservation {
 		this.sum = sum;
 	}
 	
-	
-
 	
 }	

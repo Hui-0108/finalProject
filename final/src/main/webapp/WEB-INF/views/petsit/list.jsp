@@ -8,8 +8,20 @@
 	cursor: pointer;
 }
 
+
 </style>
+
 <script type="text/javascript">
+
+//펫시터  한테만 글쓰기 보이기
+$(function() {
+	$(".btn").hide()
+	
+	var uid="${sessionScope.member.mRole}";
+	if(uid==2) 
+		$(".btn").show()
+});
+
 //datepicker의 기본 설정
 $(function() {
 	$("#datepicker1, #datepicker2").datepicker({
@@ -149,6 +161,11 @@ $(function(){
 					</div>
 				</div>
 				</c:forEach>
+				<div style="text-align: right; width: 1000px; margin-top: 10px;">
+			    <c:if test="${sessionScope.member.mRole == 2}">
+			    	<button  style="border: 1.5px solid #023047;" type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/write';">글등록</button>
+			    </c:if>
+			    </div>
 			</div>
 			<div class="paging">${paging}</div>	
 		</div>

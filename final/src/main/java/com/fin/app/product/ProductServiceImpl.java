@@ -508,6 +508,20 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> listTotProduct() {
+		List<Product> dto = null;
+		
+		try {
+			dto = dao.selectList("product.listTotProduct");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+
 
 
 

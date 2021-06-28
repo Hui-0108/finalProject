@@ -221,12 +221,12 @@
 	text-align: center;
 	
 	width: 500px;
-	
+	padding: 12px;
 }
 
 .petsitPayment .alignNone{
 	text-align: left;
-	padding-left: 50px;
+	padding-left: 30px;
 }
 .petsitPayment .tbl_cell{
     display: table-cell;
@@ -237,7 +237,7 @@
 	padding-right: 30px;
 }
 .petsitPayment .w600{
-	width: 600px;
+	width: 500px;
 }
 .petsitPayment .w100{
 	width: 100px;
@@ -413,7 +413,7 @@ function iamport(){
 		</tr>	
 		<tr class="content">
 			<td class="w600 tbl_cell alignNone">
-				&nbsp;<img width="100" height="200" border="0">
+				&nbsp;<img width="400" height="200" border="0">
 			</td>
 			<td class="w100 tbl_cell">
 				<input style="width: 95px;" type="text" name="checkIn" class="bookDate input" value="${dto.checkIn}" >&nbsp;~&nbsp;
@@ -431,7 +431,9 @@ function iamport(){
 		</tr>
 		<tr class="totmon">
 			<td colspan="4" class="priceTop">
-				<span>합계 : (옵션금액 * 박)  + 부과세(10%)= (${dto.sum} * ${dto.dayCnt}) + ${dto.tax} = ${dto.finalPrice} </span>  
+				<span>합계&nbsp;&nbsp; :&nbsp;&nbsp; (옵션금액 * 박)&nbsp;  + &nbsp;부과세&nbsp;(10%)&nbsp;&nbsp;
+				=&nbsp;&nbsp; (${dto.sum}&nbsp; * &nbsp;${dto.dayCnt}) &nbsp;+ &nbsp;${dto.tax}&nbsp;&nbsp; 
+				= &nbsp;&nbsp;${dto.finalPrice} </span>  
 			</td>
 		</tr>
 	</table>
@@ -444,7 +446,7 @@ function iamport(){
 					최종 결제 금액
 				</td>
 				<td>
-					${dto.finalPrice}
+					<input type="text" name="finalPrice" value="${dto.finalPrice}" class="input ipFinal">
 				</td>
 			</tr>
 			<tr>

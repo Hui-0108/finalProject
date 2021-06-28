@@ -16,6 +16,7 @@ public class ProductReview {
 	private List<MultipartFile> uploads; //다중파일
 	private String rContent;
 	private String mProfileImg;
+	private String mNick;
 	
 	
 	public int getrNum() {
@@ -83,6 +84,12 @@ public class ProductReview {
 	}
 	public void setmProfileImg(String mProfileImg) {
 		this.mProfileImg = mProfileImg;
+	}
+	public String getmNick() {
+		return mNick;
+	}
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
 	}
 	
 	

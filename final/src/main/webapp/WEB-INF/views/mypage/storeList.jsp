@@ -220,7 +220,7 @@ $(function() {
 					<c:forEach items="${list}" var="dto">
 					<tr class="items">
 						<td width="10%">
-							<img src="${pageContext.request.contextPath}/upload/product/${dto.pimgname}">
+							<img src="${pageContext.request.contextPath}/uploads/product/${dto.pimgname}">
 						</td>
 						<td style="text-align: left;">
 							<p><b> ${dto.pname} </b></p>

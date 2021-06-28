@@ -124,7 +124,7 @@
 			떼껄룩스토어 전체상품
 		</div>			
 			<div class="card-deck ">
-				<c:forEach var="dto" items="${listBestProduct}">
+				<c:forEach var="dto" items="${listTotProduct}">
 					<div class="card popularCard">
 						<a href="${pageContext.request.contextPath}/product/article?category=${dto.pCateNum}&page=1&pNum=${dto.pNum}"><img src="${pageContext.request.contextPath}/uploads/product/${dto.pImgName}" class="main-img "style="width: 200px;" alt="..."></a>
 						<div class="card-body">

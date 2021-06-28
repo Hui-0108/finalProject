@@ -38,7 +38,10 @@ public class PetsitController {
 	private MyUtil myUtil;
 	@Autowired
 	private FileManager fileManager;
-	
+	/*
+	@Autowired
+	private MemberService memberservice;
+	*/
 	@RequestMapping("main")
 	public String main() throws Exception {
 		return ".petsit.main";
@@ -379,6 +382,8 @@ public class PetsitController {
 		//예약한 아이디                             
 	    SessionInfo info=(SessionInfo)session.getAttribute("member"); 
 	    
+	    //Member member = memberservice.readMember(info.getmId());
+	    
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");		
 		Date date = new Date();        
 		String dateToStr = dateFormat.format(date);
@@ -391,6 +396,7 @@ public class PetsitController {
 	    }
 	     
 	    model.addAttribute("dto", dto);
+	    //model.addAttribute("member", member);
 	      
 	    //완료 후 페이지가 payment로    
 	    return ".petsit.payment";  

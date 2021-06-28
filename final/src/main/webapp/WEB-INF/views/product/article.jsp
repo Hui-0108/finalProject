@@ -174,9 +174,21 @@
     border-top: 1px solid rgb(235, 235, 235);
     padding: 38px 0px 0px 0px;
     width: 100%;
+    font-size: 20px;
+    font-family: Cafe24SsurroundAir;
 }
 
+.review-list{
+	padding-left: 200px;
+}
 
+.reviewT{
+	font-family: GmarketSansMedium;
+}
+.reviewGrade{
+	color: tomato;
+	font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 
@@ -319,7 +331,8 @@ function printReview(data) {
 	
 	for(var idx=0; idx<data.reviewList.length; idx++) {
 		var rNum=data.reviewList[idx].rNum;
-		var mId=data.reviewList[idx].mId;
+		var mNick=data.reviewList[idx].mNick;
+		//var mId=data.reviewList[idx].mId;
 		var rTitle=data.reviewList[idx].rTitle;
 		var rContent=data.reviewList[idx].rContent;
 		var rCreated=data.reviewList[idx].rCreated;
@@ -331,13 +344,13 @@ function printReview(data) {
 			img = imagefilename.split(",");
 		}
 
-		
+				
 		out+="<div class='rList'>"
 		out+="<div class='reviewTop'>";
 		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img style='width:70px; height:70px;'src='${pageContext.request.contextPath}/upload/profileImages/"+mProfileImg+"'></div>";
-		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
+		out+="    <div class='rTContent'><p>"+mNick+"</p><p>"+rCreated+"</p></div>";
 		out+="</div>";		
-		out+="<p>후기 평점:"+rGrade+"</p>";
+		out+="<p>후기 평점:<span class='reviewGrade'>"+rGrade+"</span></p>";
 		out+="<p>"+rTitle+"</p>";
 		out+="<p>"+rContent+"</p>";
 		out+="<div calss='reviewPic' style='display:flex; margin-bottom:25px;'>"
@@ -471,7 +484,7 @@ $(function(){
 		
 		<div class="review-list" id="listReview" style="margin-top: 50px;">
 			<div class="reviewT">
-				<h3>펫시터 후기</h3>
+				<h3>상품구매 후기</h3>
 				<div class="star">
 	            <i class="fas fa-star"></i>
 	            <i class="fas fa-star"></i>
