@@ -273,8 +273,12 @@ function orderOk(){
 		f.email2.focus();
 		return;
 	}	
-	
+		
 	iamport();
+	
+	
+	//f.action="${pageContext.request.contextPath}/product/list";
+	//f.submit();	
 	
 }
 
@@ -421,19 +425,8 @@ function iamport(){
 	
 	var f = document.orderForm;
 
-	var url = "${pageContext.request.contextPath}/product/orders";
 
-	var query = $('form[name=orderForm]').serialize();
-	
-	//alert(query);
-	var fn = function(data){
-		var state = data.state;
-		console.log(state);
-	};
-	ajaxFun(url, "post", query, "json", fn);		
-	
-	/*
-	
+
 	var finalPrice = $("input[name=finalPrice]").val();
 	
 	var IMP = window.IMP; // 생략가능
@@ -452,6 +445,21 @@ function iamport(){
 	}, function(rsp) {
 		if ( rsp.success ) {
 	
+			
+			var url = "${pageContext.request.contextPath}/product/orders";
+
+			var query = $('form[name=orderForm]').serialize();
+			
+			//alert(query);
+			var fn = function(data){
+				var state = data.state;
+				console.log(state);
+			};
+			ajaxFun(url, "post", query, "json", fn);		
+						
+			
+			
+			
 
 			
 			if ( everythings_fine ) {
@@ -474,7 +482,7 @@ function iamport(){
 	        alert(msg);
 	    }
 	});
-	*/
+	
 }
 
 </script>
@@ -666,17 +674,23 @@ function iamport(){
 				<td>
 					<input type="text" name="sDelivDate" value="${dto.sDelivDate}" readonly="readonly">
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td>
-					<button type="button" class="orderProductBtn" onclick="orderOk(); ">결제하기</button>
+					배송안내
+					제품 출고는 주문 후 1~2일 이내 발송(주말/공휴일 제외)
+					제주/도서산간 지역은 월~수요일 사이에만 출고가 가능하며, 기상악화 또는 택배사 사정에 따라 출고가 지연될 수 있으니 이점 양해 부탁드립니다.					
+				</td>
+				<td>
+					<button type="button" class="orderProductBtn" onclick="orderOk(); ">결제하기</button>	
+				</td>	
+			</tr>			
+		</table>
+					
 					<input type="text" name="sDetailPrice" value="${dto.sDetailPrice}" hidden="hidden">
 					<input type="text" name="storeMainOptNum" value="${dto.storeMainOptNum}" hidden="hidden">
 					<input type="text" name="storeSubOptNum" value="${dto.storeSubOptNum}" hidden="hidden">
 					<input type="text" name="storeDetailOptNum" value="${dto.storeDetailOptNum}" hidden="hidden">
-				</td>
-			</tr>
-		</table>
 	</form>	
 	</div>
 	

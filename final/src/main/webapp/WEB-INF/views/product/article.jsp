@@ -22,6 +22,11 @@
     font-style: normal;
 }
 
+.sumBox{
+	width: 150px;
+    text-align: right;
+    border:  1px solid white;
+}
 
 .imgLayout {
 	max-width: 700px;
@@ -52,6 +57,12 @@
 	float: left;
 }
 
+.productName{
+
+    font-size: 25px;
+    padding-bottom: 15px;
+}
+
 .inform{
 	float: left;
 	width: 500px;
@@ -68,6 +79,7 @@
     margin-top: 50px;
     font-family: GmarketSansMedium;
     margin-right: 200px;
+    font-size: 20px;
 }
 
 .content{
@@ -138,7 +150,8 @@
 
 .quantityBorder{
 	border: none;
-	width: 50px;
+    width: 158px;
+    text-align: center;
 }
 .payProduct{
 /*
@@ -188,6 +201,10 @@
 .reviewGrade{
 	color: tomato;
 	font-weight: bold;
+}
+
+.buyPrice{
+float: right;
 }
 </style>
 <script type="text/javascript">
@@ -423,20 +440,20 @@ $(function(){
 			</c:if>
 			
 			<table class="inform">
-				<tr>
-					<td>
+				<tr style="font-size: 20px;">
+					<td class="productName">
 						${dto.pName}
 					</td>
 				</tr>
 				<c:choose>
 					<c:when test="${dto.pDiscountRate != 0}">		
 						<tr class="price">
-							<td>
+							<td style="font-size: 20px;">
 								판매가 ${dto.productPrice}									
 							</td>
 						</tr>			
 						<tr>
-							<td>
+							<td style="font-size: 27px;  color: orange; font-weight: bold;">
 								할인가 ${dto.totPrice}
 							</td>
 						</tr>	
@@ -449,24 +466,36 @@ $(function(){
 						</tr>				
 					</c:otherwise>
 				</c:choose>
+				<tr>
+					<td>
+						<c:if test="${dto.delivType ==0}">
+							무료배송
+						</c:if>						
+					</td>
+				</tr>
+				
 				</table>
 
 				<table class="buyingProduct">
 				<tr>
 					<td>
-						수량선택
+						
 						<form name="articleform" method="get" >
 							수량 : <input type=hidden name="pNum"  value="${dto.pNum}">
 							<input type="hidden" name="page" value="${page}">
 							<input type="text" name="sDetailQty" value="1" class="quantityBorder">
-							<input type="button" value=" + " class="btnPlus btnQty" >
-							<input type="button" value=" - " class="btnMinus btnQty"><br>
+							<input type="button" value=" - " class="btnMinus btnQty">
+							<input type="button" value=" + " class="btnPlus btnQty" ><br>
+							
 							<c:choose>
 								<c:when test="${dto.pDiscountRate != 0}">
-									<input type="text" name="sum" data-price="${dto.totPrice}" value="${dto.totPrice}" readonly="readonly">
+									<span>TOTAL</span>
+									<div class="buyPrice">
+									<input type="text" name="sum" data-price="${dto.totPrice}" value="${dto.totPrice}" readonly="readonly" class="sumBox"><span>원</span>
+									</div>
 								</c:when>
 								<c:otherwise>
-									<input type="text" name="sum" data-price="${dto.productPrice}" value="${dto.productPrice}" readonly="readonly">								
+									<span>₩</span><input type="text" name="sum" data-price=" ${dto.productPrice}" value="${dto.productPrice}" readonly="readonly" class="sumBox">								
 								</c:otherwise>
 							</c:choose>
 						</form>					

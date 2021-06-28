@@ -78,6 +78,22 @@ box-shadow: inset -6px -7px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 /
 	font-family: Cafe24SsurroundAir
 }
 
+.productListBody .productPrice{
+    float: right;
+    width: auto;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+}
+
+.blue{
+	color: #fb8500;
+    font-weight: bolder;
+    font-size: 23px;
+}
+
+
 
 
 </style>
@@ -127,7 +143,7 @@ function article(pNum) {
 									<span class="through">	
 										₩${dto.productPrice}													
 									</span>			
-									<span class="bold">	
+									<span class="bold blue">	
 										₩${dto.totPrice}					
 									</span>
 								</div>	

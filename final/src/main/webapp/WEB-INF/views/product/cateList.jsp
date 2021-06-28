@@ -9,6 +9,38 @@
 	color: gray;
 }
 
+.productListBody .prodcutListTop{
+	font-family: GmarketSansMedium;
+}
+
+.productListBody{
+	font-family: Cafe24SsurroundAir
+}
+
+.productListBody .productPrice{
+    float: right;
+    width: auto;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+}
+
+.blue{
+	color: #fb8500;
+    font-weight: bolder;
+    font-size: 23px;
+}
+
+
+
+
+
+
+
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -54,13 +86,13 @@ function article(pNum) {
 								<span class="through">	
 										₩${dto.productPrice}													
 								</span>			
-								<span>	
+								<span class="bold blue">	
 										 ₩${dto.totPrice}					
 								</span>
 							</div>	
 							</c:when>
 							<c:otherwise>
-							<div  class="product productPrice" >
+							<div  class="product productPrice bold"  >
 									 ₩${dto.productPrice}									
 							</div>				
 							</c:otherwise>

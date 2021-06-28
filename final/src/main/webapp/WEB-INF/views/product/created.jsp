@@ -4,6 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-- 상품 작성폼 (관리자) -->
 <style type="text/css">
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .imgLayout {
 	max-width: 600px;
@@ -23,6 +29,39 @@
 
 .padding0{
 	padding: 0;
+}
+
+.productCreateForm{
+	padding: 0;
+	width: 1300px;
+	margin: auto;
+	font-family: Cafe24SsurroundAir;
+}
+
+#smart_editor2_content{
+	width: 650px;
+}
+
+.createBtn{
+    border: none;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 17px; 
+	background: #023047;
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+	transition: 0.3s;  
+	font-family: GmarketSansMedium;	 
+}
+
+.btnBuy:hover{
+    border: none;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 17px; 
+	background: #023047;
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+	transition: 0.3s;  
+	font-family: GmarketSansMedium;	 
 }
 
 </style>
@@ -291,9 +330,9 @@ $(function(){
 			<div class="tableFooter">
 				<ul>
 					<li>
-						<button type="submit" class="">${mode=='update'?'상품수정':'상품등록'}</button>
-						<button type="reset" class="productReset">다시입력</button>
-						<button type="button" class="" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
+						<button type="submit" class="createBtn">${mode=='update'?'상품수정':'상품등록'}</button>
+						<button type="reset" class="productReset createBtn">다시입력</button>
+						<button type="button" class="createBtn" onclick="javascript:location.href='${pageContext.request.contextPath}/product/list';" >${mode=='update'?'수정취소':'등록취소'}</button>
 						<c:if test="${mode=='update'}">
 							<input type="hidden" name="category" value="${category}">						
 							<input type="hidden" name="page" value="${page}">

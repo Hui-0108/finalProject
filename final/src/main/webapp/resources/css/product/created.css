@@ -8,6 +8,12 @@
     font-style: normal;
 }
 
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .productCreateForm input[type=text]{
 	width: 250px;
@@ -17,6 +23,7 @@
 	padding: 0;
 	width: 1300px;
 	margin: auto;
+	font-family: Cafe24SsurroundAir;
 }
 
 .productCreateForm .productTableForm{
