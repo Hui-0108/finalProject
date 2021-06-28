@@ -53,6 +53,10 @@ public class ProductController {
 		model.addAttribute("listBestProduct", bestProduct);
 		
 		
+		List<Product> totProduct = service.listTotProduct();
+		model.addAttribute("listTotProduct", totProduct);
+		
+		
 		return ".product.productMain";
 	}
 	

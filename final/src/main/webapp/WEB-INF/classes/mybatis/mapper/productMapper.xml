@@ -72,7 +72,7 @@
 
 	<!-- 글수정 -->
 	<update id="updateProduct" parameterType="com.fin.app.product.Product">
-		UPDATE product SET pName=#{pName}, pPrice=#{pPrice}, pDiscountRate=#{pDiscountRate}, pContent=#{pContent},
+		UPDATE product SET pCateNum = #{pCateNum}, pName=#{pName}, pPrice=#{pPrice}, pDiscountRate=#{pDiscountRate}, pContent=#{pContent},
 		delivType=#{delivType}
 		WHERE pNum=#{pNum}
 	</update>
@@ -219,9 +219,10 @@
 	</select>
 
 	<select id="listReview" parameterType="map" resultType="com.fin.app.product.ProductReview">
-	 SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, r.mId, sd.orderNum , do.pNum, mProfileImg
+	 SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, r.mId, sd.orderNum , do.pNum, mProfileImg, mNick
       FROM review r
-	  JOIN memberDetail md ON r.mId = md.mId      
+	  JOIN memberDetail md ON r.mId = md.mId 
+	  JOIN member m ON md.mId = m.mId     
       LEFT OUTER JOIN (
           SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
           FROM reviewImage
@@ -244,6 +245,22 @@
         JOIN productImage i ON p.pNum = i.pNum
 		WHERE ROWNUM <![CDATA[ <= ]]> 4
 		ORDER BY sumQty DESC
+	</select>
+	
+	<select id="listTotProduct" resultType="com.fin.app.product.Product">
+        select  p.pNum, p.pName, p.pPrice, p.pCateNum, p.pDiscountRate, pDetailPrice,pImgName
+        from product p
+        join storeDetailOpt s on p.pNum = s.pNum
+        LEFT OUTER JOIN (
+			SELECT orderNum, storeDetailOptNum FROM(
+				SELECT orderNum, storeDetailOptNum,
+					ROW_NUMBER() OVER(PARTITION BY storeDetailOptNum ORDER BY orderNum  ASC)rank
+				 FROM storeDetail
+			) WHERE rank = 1
+		) d ON s.storeDetailOptNum = d.storeDetailOptNum
+        JOIN productImage i ON p.pNum = i.pNum
+        WHERE ROWNUM<![CDATA[ <= ]]> 4
+        ORDER BY pName DESC;	
 	</select>
 	
 	

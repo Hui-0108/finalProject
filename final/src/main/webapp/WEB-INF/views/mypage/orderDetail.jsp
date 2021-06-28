@@ -162,7 +162,7 @@ $(function() {
 					
 					<tr class="items">
 						<td width="10%">
-							<img src="${pageContext.request.contextPath}/upload/${type=='petsit'?'petsit':'product'}/${type=='petsit'?dto.petImg:dto.pImgName}">
+							<img src="${pageContext.request.contextPath}/${type=='petsit'?'upload':'uploads'}/${type=='petsit'?'petsit':'product'}/${type=='petsit'?dto.petImg:dto.pImgName}">
 						</td>
 						<td style="text-align: left;">
 							<p> ${type=='petsit'?dto.petTitle:dto.pName} </p>
