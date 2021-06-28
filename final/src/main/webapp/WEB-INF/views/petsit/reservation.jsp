@@ -432,21 +432,21 @@ $(function(){
 		$("input[name=finalPrice]").val(tot);
 	});	
 	$(".body-main").on("click", ".btnMP", function(){
-		var qty = parseInt($("input[name=midium]").val());
+		var qty = parseInt($("input[name=medium]").val());
 		var price = 50000;
 	
 		qty=qty+1;
 		s += price*date;
 		t += (price*0.1)*date;
 		finalPrice = s+t;
-		$("input[name=midium]").val(qty);
+		$("input[name=medium]").val(qty);
 		$("input[name=sum]").val(s);
 		$("input[name=tax]").val(t);
 		$("input[name=finalPrice]").val(finalPrice);
 	});			
 	
 	$(".body-main").on("click", ".btnMM", function(){
-		var qty = parseInt($("input[name=midium]").val());
+		var qty = parseInt($("input[name=medium]").val());
 		var price = 50000;
 	
 		qty=qty-1;
@@ -460,7 +460,7 @@ $(function(){
 		t -= (price*0.1)*date;
 		finalPrice =s+t;
 		
-		$("input[name=midium]").val(qty);
+		$("input[name=medium]").val(qty);
 		$("input[name=sum]").val(s);
 		$("input[name=tax]").val(t);
 		$("input[name=finalPrice]").val(finalPrice);
@@ -667,7 +667,7 @@ function sendReservation() {
 						<div class="pmBtn">
 						<input type="button" value=" - " class="pmBtn btnMM">
 						</div>
-						<input type="text" name="midium" value="0" class="quantity" readonly="readonly">
+						<input type="text" name="medium" value="0" class="quantity" readonly="readonly">
 						<div class="pmBtn">
 						<input type="button" value=" + " class="pmBtn btnMP" >
 						</div>
@@ -713,7 +713,7 @@ function sendReservation() {
 				<div class="sumPrice">
 				<span><input type="text" name="dayCnt" class="day" value="" readonly="readonly">박</span> /&nbsp; 
 				<span>소형</span><input type="text" name="small" value="0" class="quantity subQty" readonly="readonly">
-				<span>중형</span><input type="text" name="midium" value="0" class="quantity subQty" readonly="readonly">
+				<span>중형</span><input type="text" name="medium" value="0" class="quantity subQty" readonly="readonly">
 				<span>대형</span><input type="text" name="large" value="0" class="quantity subQty" readonly="readonly">
 				<span><input type="text" name="sum" class="sumInput" value="" readonly="readonly">원</span>
 				</div>			
