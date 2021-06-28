@@ -29,7 +29,7 @@
 	<select id="reservPet" parameterType="String" resultType="Integer">
         SELECT NVL(COUNT(*),0)
 		FROM reservation
-		WHERE TO_CHAR(rDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
+		WHERE TO_CHAR(checkIn, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
 	</select>
 	
 	<select id="bestStore" resultType="com.fin.app.admin.Admin">
@@ -38,6 +38,19 @@
         LEFT OUTER JOIN storeDetailOpt d ON a.storeDetailOptNum = d.storeDetailOptNum
         JOIN product p ON d.pNum = p.pNum
 		WHERE ROWNUM <![CDATA[ <= ]]> 5
+		ORDER BY sumQty DESC
+	</select>
+	
+	<select id="freeDelivTot" parameterType="String" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM store
+		WHERE sDelivCharge = 0 AND TO_CHAR(sDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
+	</select>
+	
+	<select id="normalDelivTot" parameterType="String" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM store
+		WHERE sDelivCharge != 0 AND TO_CHAR(sDate, 'yyyy-mm-dd') BETWEEN ('${sDate}') AND ('${eDate}')
 	</select>
 	
 </mapper>

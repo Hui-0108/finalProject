@@ -95,8 +95,28 @@
                 <div class="chart">
                   <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-              </div>
+              </div> 
               <!-- /.card-body -->
+              <div style="padding-left: 20px; font-weight:700; text-align:center; padding-bottom: 10px;">
+              	지난 주 무료배송 상품 판매량 : ${freeLastWeek.freeDelivTot}건 &nbsp;&nbsp;&nbsp;&nbsp;
+              	지난 주 일반배송 상품 판매량 : ${normalLastWeek.normalDelivTot}건 <br><br>
+              	지난 주 
+              	<c:choose>
+              		<c:when test="${freeLastWeek.freeDelivTot > normalLastWeek.normalDelivTot}">
+              			무료배송 상품이 일반배송 상품에 비해 ${freeLastWeek.freeDelivTot - normalLastWeek.normalDelivTot}건 추가 주문되었습니다.
+              		</c:when>
+              		<c:otherwise>
+              			<c:choose>
+              				<c:when test="${freeLastWeek.freeDelivTot < normalLastWeek.normalDelivTot}">
+              					일반배송 상품이 무료배송 상품에 비해 ${normalLastWeek.normalDelivTot - freeLastWeek.freeDelivTot}건 추가 주문되었습니다.
+              				</c:when>
+              				<c:otherwise>
+              					무료배송 상품과 일반배송 상품의 판매량은 동일합니다.
+              				</c:otherwise>
+              			</c:choose>
+              		</c:otherwise>
+              	</c:choose>
+              </div>
             </div>
             <!-- /.card -->
 

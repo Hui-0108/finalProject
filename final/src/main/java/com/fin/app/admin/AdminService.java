@@ -15,6 +15,8 @@ public interface AdminService {
 	public int salesTot(Map<String, Object> map);
 	
 	public int reservPet(Map<String, Object> map);
+	public int freeDelivTot(Map<String, Object> map);
+	public int normalDelivTot(Map<String, Object> map);
 	
 	public List<Admin> bestStore();
 	public List<Admin> bestPetsit();

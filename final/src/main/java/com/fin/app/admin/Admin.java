@@ -18,6 +18,9 @@ public class Admin {
 	private int pTotLastWeek;
 	private int pTotThisWeek;
 	
+	private int freeDelivTot;
+	private int normalDelivTot;
+	
 	private int storeDetailOptNum;
 	private int sumQty;
 	private int pPrice;
@@ -176,6 +179,18 @@ public class Admin {
 	}
 	public void setpCateNum(int pCateNum) {
 		this.pCateNum = pCateNum;
+	}
+	public int getFreeDelivTot() {
+		return freeDelivTot;
+	}
+	public void setFreeDelivTot(int freeDelivTot) {
+		this.freeDelivTot = freeDelivTot;
+	}
+	public int getNormalDelivTot() {
+		return normalDelivTot;
+	}
+	public void setNormalDelivTot(int normalDelivTot) {
+		this.normalDelivTot = normalDelivTot;
 	}
 	
 	

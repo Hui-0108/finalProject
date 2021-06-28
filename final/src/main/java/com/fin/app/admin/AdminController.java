@@ -89,6 +89,10 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/saleStatus", method=RequestMethod.GET)
 	public String saleStatus(Model model) {
+		Map<String, Object> lMap = new HashMap<String, Object>();
+		
+		lMap.put("sDate", getLastMon());
+		lMap.put("eDate", getLastSun());
 		
 		Admin freeLastWeek = new Admin();
 		freeLastWeek.setMon(service.freeDelivCount(getLastMon()));
@@ -110,6 +114,9 @@ public class AdminController {
 		
 		List<Admin> bestProduct = service.bestProduct();
 		
+		freeLastWeek.setFreeDelivTot(service.freeDelivTot(lMap));
+		normalLastWeek.setNormalDelivTot(service.normalDelivTot(lMap));
+		
 		model.addAttribute("freeLastWeek", freeLastWeek);
 		model.addAttribute("normalLastWeek", normalLastWeek);
 		model.addAttribute("bestProduct", bestProduct);
@@ -119,6 +126,14 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/petsitStatus", method=RequestMethod.GET)
 	public String petsitStatus(Model model) {
+		Map<String, Object> tMap = new HashMap<String, Object>();
+		Map<String, Object> lMap = new HashMap<String, Object>();
+		
+		tMap.put("sDate", getCurMon());
+		tMap.put("eDate", getCurSun());
+		
+		lMap.put("sDate", getLastMon());
+		lMap.put("eDate", getLastSun());
 		
 		Admin petsitLastWeek = new Admin();
 		petsitLastWeek.setMon(service.reservCount(getLastMon()));
@@ -137,6 +152,9 @@ public class AdminController {
 		petsitThisWeek.setFri(service.reservCount(getCurFri()));
 		petsitThisWeek.setSat(service.reservCount(getCurSat()));
 		petsitThisWeek.setSun(service.reservCount(getCurSun()));
+		
+		petsitThisWeek.setpTotThisWeek(service.reservPet(tMap));
+		petsitLastWeek.setpTotLastWeek(service.reservPet(lMap));
 		
 		List<Admin> bestPetsit = service.bestPetsit();
 		

@@ -68,7 +68,7 @@
               </div>
               <!-- /.card-body -->
 			  <c:forEach var="dto" items="${bestPetsit}">
-			      <p style="padding-left: 20px; font-weight:700;"><a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}" style="color:black;">${dto.rank}위 &nbsp; 펫시터ID : ${dto.mId}님 &nbsp; 누적예약수 : ${dto.count}건</a> </p>
+			      <p style="padding-left: 50px; font-weight:700;"><a href="${pageContext.request.contextPath}/petsit/reservation?page=1&condition=all&petNum=${dto.petNum}" style="color:black;">${dto.rank}위 &nbsp; 펫시터ID : ${dto.mId}님 &nbsp; 누적예약수 : ${dto.count}건</a> </p>
 		      </c:forEach> 
             </div>
             <!-- /.card -->
@@ -97,6 +97,26 @@
                 </div>
               </div>
               <!-- /.card-body -->
+              <div style="padding-left: 20px; font-weight:700; text-align:center; padding-bottom: 10px;">
+              	지난 주 총 예약 수 : ${petsitLastWeek.pTotLastWeek}건 &nbsp;&nbsp;&nbsp;&nbsp;
+              	이번 주 총 예약 수 : ${petsitThisWeek.pTotThisWeek}건 <br><br>
+              	지난 주 대비 이번주 예약건은
+              	<c:choose>
+              		<c:when test="${petsitThisWeek.pTotThisWeek > petsitLastWeek.pTotLastWeek}">
+              			${petsitThisWeek.pTotThisWeek - petsitLastWeek.pTotLastWeek}건 증가했습니다.
+              		</c:when>
+              		<c:otherwise>
+              			<c:choose>
+              				<c:when test="${petsitThisWeek.pTotThisWeek < petsitLastWeek.pTotLastWeek}">
+              					${petsitLastWeek.pTotLastWeek - petsitThisWeek.pTotThisWeek}건 감소했습니다.
+              				</c:when>
+              				<c:otherwise>
+              					지난 주와 동일합니다.
+              				</c:otherwise>
+              			</c:choose>
+              		</c:otherwise>
+              	</c:choose>
+              </div>
             </div>
             <!-- /.card -->
 

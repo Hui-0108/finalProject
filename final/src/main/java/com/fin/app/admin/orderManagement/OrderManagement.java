@@ -18,7 +18,7 @@ public class OrderManagement {
 	private String sAddr1;
 	private String sAddr2;
 	
-	private int aMileNum;
+	private int aMilePrice;
 	
 	
 	public long getOrderNum() {
@@ -105,12 +105,13 @@ public class OrderManagement {
 	public void setsAddr2(String sAddr2) {
 		this.sAddr2 = sAddr2;
 	}
-	public int getaMileNum() {
-		return aMileNum;
+	public int getaMilePrice() {
+		return aMilePrice;
 	}
-	public void setaMileNum(int aMileNum) {
-		this.aMileNum = aMileNum;
+	public void setaMilePrice(int aMilePrice) {
+		this.aMilePrice = aMilePrice;
 	}
+
 	
 	
 	

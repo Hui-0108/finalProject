@@ -152,5 +152,31 @@ public class AdminServcieImpl implements AdminService {
 		}
 		return dto;
 	}
+
+	@Override
+	public int freeDelivTot(Map<String, Object> map) {
+		int tot = 0;
+		
+		try {
+			tot = dao.selectOne("adminMain.freeDelivTot", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return tot;
+	}
+
+	@Override
+	public int normalDelivTot(Map<String, Object> map) {
+		int tot = 0;
+		
+		try {
+			tot = dao.selectOne("adminMain.normalDelivTot", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return tot;
+	}
 	
 }

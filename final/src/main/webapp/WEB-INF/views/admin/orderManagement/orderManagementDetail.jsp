@@ -53,7 +53,7 @@ table {
 	</tr>
 	<tr class="detail detail-top">
 		<td class="detail-bold" align="right" style="padding-right: 9px;"><label style="font-weight: 900;">적립 마일리지</label></td>
-		<td class="detail-normal" align="left" width="30%" style="padding-left: 5px;"><span>${dto.aMileNum}</span></td>
+		<td class="detail-normal" align="left" width="30%" style="padding-left: 5px;"><span>${dto.aMilePrice}</span></td>
 		<td class="detail-bold" align="right" style="padding-right: 9px;"><label style="font-weight: 900;">배송상태</label></td>
 		<td class="detail-normal" align="left" width="30%" style="padding-left: 5px;"><span>${dto.deliveryState==0?"배송대기":dto.deliveryState==1?"배송중":"배송완료"}</span></td>
 	</tr>
