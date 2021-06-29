@@ -26,6 +26,11 @@
 	font-size: 15px;
 	border-top: 1px solid #ccc;
 }
+
+.table {
+	font-family: 'Cafe24SsurroundAir';
+}
+
 </style>
 
 <script type="text/javascript">
