@@ -78,10 +78,11 @@
 	<!-- 펫시터 글보기 --><!-- petsit, schedule조인 이미지는 밑에 따로 -->	
 	<select id="readPetsit" parameterType="Integer" resultType="com.fin.app.petsit.Petsit">
 		SELECT s.petNum, petTitle, petContent, petAddr, petYN, petYard, petLarge, petFamily, petWalk, petLiving, petChild, petCertif, s.mId,
-				mon, tue, wed, thu, fri, sat, sun, mAddr1, mAddr2, mProfileImg, mName, mTel, mZip, mEmail, mBirth
+				mon, tue, wed, thu, fri, sat, sun, mAddr1, mAddr2, mProfileImg, mName, mTel, mZip, mEmail, mBirth, mNick
 		FROM petsit s
 		JOIN petSchedule d ON s.petNum = d.petNum	
 		JOIN memberDetail md ON s.mId = md.mId
+		JOIN member  mb ON s.mId = mb.mId
 		WHERE s.petNum = #{s.petNum}
 	</select>
 		
@@ -137,9 +138,10 @@
 	<!-- 리뷰 리스트  --><!-- review, reviewImage 조인 -->
 	<select id="listReview" parameterType="map" resultType="com.fin.app.petsit.PetsitReview">
 		SELECT r.rNum, imagefilename, rTitle, rContent, rGrade, rCreated, r.mId ,rv.orderNum,
-            	checkIn, checkOut, mNum, petNum, finalPrice, rDate, mProfileImg
+            	checkIn, checkOut, mb.mNum, petNum, finalPrice, rDate, mProfileImg, mb.mNick
 		FROM review r
 		JOIN memberDetail md ON r.mId = md.mId
+		JOIN member mb ON r.mId = mb.mId
 		LEFT OUTER JOIN (
     		SELECT rNum, LISTAGG(imagefilename, ',') WITHIN GROUP(ORDER BY rNum) imagefilename
     		FROM reviewImage

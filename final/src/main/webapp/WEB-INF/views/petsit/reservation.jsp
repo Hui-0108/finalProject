@@ -6,6 +6,43 @@
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.petsitReserve {
+	font-family: 'Cafe24SsurroundAir';
+}
+
+.petsitReserve h3{
+	 font-family: 'GmarketSansMedium';
+}
+
+.petsitReserve h4{
+	 font-family: 'GmarketSansMedium';
+}
+
+.petsitReserve h5{
+	 font-family: 'GmarketSansMedium';
+}
+
+.petsitReserve h6{
+	 font-family: 'GmarketSansMedium';
+}
+
 .petsitReserve .textDate {
 	display: inline-block;
 	width: 33px;
@@ -142,25 +179,6 @@
 	margin-bottom: 7px;
 }
 
-.petsitReserve .paymentPart{
-
-}
-
-.petsitReserve .paymentPart{
-
-}
-
-.petsitReserve .paymentPart{
-
-}
-
-.petsitReserve .paymentPart{
-
-}
-
-.petsitReserve .paymentPart{
-
-}
 
 </style>
 
@@ -299,7 +317,8 @@ function printReview(data) {
 	
 	for(var idx=0; idx<data.reviewList.length; idx++) {
 		var rNum=data.reviewList[idx].rNum;
-		var mId=data.reviewList[idx].mId;
+		//var mId=data.reviewList[idx].mId;
+		var mNick=data.reviewList[idx].mNick;
 		var rTitle=data.reviewList[idx].rTitle;
 		var rContent=data.reviewList[idx].rContent;
 		var rCreated=data.reviewList[idx].rCreated;
@@ -311,11 +330,10 @@ function printReview(data) {
 			img = imagefilename.split(",");
 		}
 
-		
 		out+="<div class='rList'>"
 		out+="<div class='reviewTop'>";
-		out+="    <div class='rImg'style='border: 1px solid black; width:70px; height:70px;'><img style='width:70px; height:70px;'src='${pageContext.request.contextPath}/upload/profileImages/"+mProfileImg+"'></div>";
-		out+="    <div class='rTContent'><p>"+mId+"</p><p>"+rCreated+"</p></div>";
+		out+="    <div class='rImg'style='width:70px; height:70px;'><img style='width:70px; height:70px; border-radius:12px;'src='${pageContext.request.contextPath}/upload/profileImages/"+mProfileImg+"'></div>";
+		out+="    <div class='rTContent'><p>"+mNick+"</p><p>"+rCreated+"</p></div>";
 		out+="</div>";		
 		out+="<p>후기 평점:"+rGrade+"</p>";
 		out+="<p>"+rTitle+"</p>";
@@ -336,8 +354,6 @@ function printReview(data) {
 	if(page<totalPage) { //데이터가 더 존재하는 경우
 		$(".more").show(); //데이터를 보여줌
 	}
-	console.log(page);
-	console.log(totalPage);
 }
 
 //리뷰 더보기 
@@ -551,7 +567,7 @@ function sendReservation() {
 			<img src="${pageContext.request.contextPath}/upload/profileImages/${dto.mProfileImg}">
 			</div>
 			<div class="frofile-t">
-				<h6>${dto.petAddr} 펫시터 ${dto.mId}&nbsp;님</h6>
+				<h6>${dto.petAddr} 펫시터 ${dto.mNick}&nbsp;님</h6>
 				<h4>${dto.petTitle}</h4>
 				<div class="fofile-c">
 				<p><c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if></p>
@@ -576,11 +592,11 @@ function sendReservation() {
 				<div>
 					<i class="fas fa-medal"></i>&nbsp;&nbsp;<span>땡시터님은 우수 펫시터 입니다</span>
 				</div>
-				<p>프로 펫시터는 다수의 예약 진행 경험과 함께, 높은 고객 만족도를 받은 펫시터입니다</p>
+				<p>우수 펫시터는 다수의 예약 진행 경험과 함께, 높은 고객 만족도를 받은 펫시터입니다</p>
 			</div>
 
 		<div class="intro">
-			<h5><span>${dto.mId}</span>님을 소개합니다</h5>
+			<h5><span>${dto.mNick}</span>님을 소개합니다</h5>
 			<p class="intro-d">
 			${dto.petContent}
 			</p>
@@ -725,8 +741,8 @@ function sendReservation() {
 			<div class="reserve-send">
 				<button type="button" class="rvBtn" onclick="sendReservation()"><p>예약요청</p></button>
 			</div>
-         	<input type="hidden" name="petImg" value="${listFile[0]}"> <!-- 펫시터가 등록한 사진 -->	
-         	<input type="hidden" name="petNum" value="${dto.petNum}">	<!-- 현재 글의 petNum -->	
+         	<input type="hidden" name="petImg" value="${listFile[0].petImg}"> <!-- 펫시터가 등록한 사진 -->	
+         	<input type="hidden" name="petNum" value="${dto.petNum}">	<!-- 현재 글의 petNum -->
 			</form>		
 		</div>
 		<div class="price">

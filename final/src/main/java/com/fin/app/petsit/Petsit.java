@@ -11,6 +11,8 @@ public class Petsit {
 	//펫시터 부가정보
 	private String mId; //아이디
 	
+	private String mNick;//닉네임
+	
 	private int petStart; //근무시작일
 	private String petAct; //급여계좌 (14자리) 
 	
@@ -222,6 +224,12 @@ public class Petsit {
 	}
 	public void setmProfileImg(String mProfileImg) {
 		this.mProfileImg = mProfileImg;
+	}
+	public String getmNick() {
+		return mNick;
+	}
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
 	}
 	
 	

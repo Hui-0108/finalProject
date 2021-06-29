@@ -2,8 +2,24 @@
 
 .petsitList {
 	font-size: 15px;
-	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
 	color: rgb(57, 60, 71);
+	font-family: 'Cafe24SsurroundAir';
+}
+
+.searchCondition ul li {
+	cursor: pointer;
+}
+
+.listInfo-title p{
+	font-family: 'GmarketSansMedium';
+}
+
+.petsitList .searchAddr b {
+	font-family: 'GmarketSansMedium';
+}
+
+.petsitList .searchCondition b {
+	font-family: 'GmarketSansMedium';
 }
 
 .petsitList .searchDong {
@@ -146,6 +162,7 @@
     font-size: 15px;
     font-weight: 500;
     color: rgb(187, 193, 204);
+    font-family: 'GmarketSansMedium';
 }
 
 .petsitList .condition:hover {	
@@ -265,7 +282,7 @@
 }
 
 .petsitList .listInfo-title p:first-child {
-	font-family: "Noto Sans KR";
+	font-family: 'GmarketSansMedium';
     font-size: 14px;
     letter-spacing: -0.1px;
     color: rgb(94, 99, 109);
@@ -273,7 +290,7 @@
 
 .petsitList .listInfo-title p:last-child {
 	font-size: 20px;
-    font-family: "Noto Sans KR";
+    font-family: 'GmarketSansMedium';
     letter-spacing: -0.2px;
     color: rgb(56, 60, 72);
     margin-top: 9.5px;

@@ -3,6 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+
 <script type="text/javascript">
 //수정시 등록되어있는 이미지 삭제하기 
 <c:if test="${mode=='update'}"> 
@@ -67,41 +86,53 @@ function deleteSend() {
 </script>
 
 <div class="petsitWrite" align="center">
-<div class="body"  style="width: 1300px;">
-	<div class="write"><h3>펫시터 글 올리기</h3></div>
+<div class="body"  style="width: 1300px; min-height: 1580px;">
+	<div class="write"><h3>펫시터  소개글 작성</h3></div>
 	<div class="body-title">
 		<form name="petsitForm" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
-				<td>제&nbsp;&nbsp;&nbsp;목</td>
-				<td>
-					<input type="text" name="petTitle" maxlength="100" class="boxTF" value="${dto.petTitle}">
+				<td class="ahead">제&nbsp;&nbsp;&nbsp;목</td>
+				<td class="needVer"><span class="tip">작성 tip!</span> &nbsp;&nbsp;&nbsp; 펫시터를 하면서 중요하게 생각하는 단어를 포함시켜 작성해 보세요! <td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<input type="text" name="petTitle" maxlength="800" class="NboxTF" value="${dto.petTitle}">
 				</td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td>
+				<td class="ahead">작성자</td>
+				<td class="needVer">
 					${sessionScope.member.mNick}
 				</td>
 			</tr>
 			<tr>
-				<td>근무 주소</td>
+				<td class="ahead">근무 주소</td>
 				<td>
-					<input type="text" name="petAddr" maxlength="100" class="boxTF">
+					<input type="text" name="petAddr" class="boxShort" placeholder="시, 구, 동 순으로 입력해 주세요">
 				</td>
 			</tr>
 			<tr>
-				<td>소&nbsp;&nbsp;&nbsp;개</td>
-				<td>
-					<textarea name="petContent" class="boxTA">${dto.petContent}</textarea>
+				<td class="ahead">소&nbsp;&nbsp;&nbsp;개</td>
+				<td class="needVer">
+					<span class="tip">작성 tip!</span> &nbsp;&nbsp;&nbsp; 펫시터를 시작하게 된 계기와 케어에 대한 정보를 제공해 주세요!  
 				</td>
 			</tr>
 			<tr>
-				<td rowspan="3">기본&nbsp;&nbsp;&nbsp;옵션</td>
+				<td colspan="2">
+				<textarea name="petContent" class="boxContent">${dto.petContent}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="ahead">기본&nbsp;&nbsp;&nbsp;옵션</td>
+				<td class="needVer"><span class="tip">작성 tip!</span> &nbsp;&nbsp;&nbsp; 조건들을 정확하게 선택하여 주시고 이외 조건이 있다면 소개글에!  <td>
+			</tr>	
+			<tr>
+				<td rowspan="7"></td>
 				<td>
 					<div class="spaceNeed">반려동물</div>
-					<label><input type="radio" name="petYN" value="1" checked="checked"> 예 </label>&nbsp;&nbsp;&nbsp; 				
-					<label><input type="radio" name="petYN" value="0"> 아니오</label>
+					<label><input type="radio" name="petYN" value="0" checked="checked"> 예 </label>&nbsp;&nbsp;&nbsp; 				
+					<label><input type="radio" name="petYN" value="1"> 아니오</label>
 				</td>
 			</tr>			
 			<tr>
@@ -119,7 +150,6 @@ function deleteSend() {
 				</td>
 			</tr>
 			<tr>
-				<td rowspan="4">추가&nbsp;&nbsp;&nbsp;정보</td>
 				<td>	
 					<div class="spaceNeed">가족형태</div>
 					<label><input type="radio" name="petFamily" value="1" checked="checked"> 2인 이하 </label>&nbsp;&nbsp;&nbsp; 				
@@ -153,8 +183,8 @@ function deleteSend() {
 				</td>
 			</tr>	
 			<tr>
-				<td>	
-					<div class="spaceNeed">근무가능요일</div>&nbsp;
+				<td class="spaceNeed ahead">	
+					근무가능요일
 				</td>
 				<td>
 					<label><input type="checkbox" name="mon" value="1"> 월 </label>&nbsp;&nbsp;&nbsp;				
@@ -167,17 +197,17 @@ function deleteSend() {
 				</td>
 			</tr>		
 			<tr>
-				<td>	
-					<div class="spaceNeed">자격증 취득일</div>				
+				<td class="spaceNeed ahead">	
+					자격증 취득일			
 				</td>
 				<td>
 					<input type="date" name="petCertif" maxlength="20"  class="boxTF"> 
 				</td>
 			</tr>
 			<tr>
-				<td>집사진 3장 첨부</td>
+				<td class="ahead">집사진 3장 첨부</td>
 				<td>
-					<input type="file" name="upload" class="boxTF" multiple="multiple">
+					<input type="file" name="upload" class="boxTF" multiple="multiple"><span><span class="tip">작성 tip!</span>&nbsp;&nbsp;&nbsp;강아지를 위한 공간이 있음을 강조해 보세요!</span>
 				</td>
 			</tr>
 			<c:if test="${mode=='update'}">
@@ -194,9 +224,9 @@ function deleteSend() {
 				</tr>
 			</c:if>	
 			<tr>
-				<td>계좌 번호</td>
+				<td class="ahead needVer" style="width:60px;">계좌 번호</td>
 				<td>
-					<input type="text" name="petAct" maxlength="100" class="boxTF">
+					<input type="text" name="petAct" class="boxShort needCol" placeholder="급여용 계좌번호 입력란">
 				</td>
 			</tr>	
 		</table>		
@@ -206,7 +236,7 @@ function deleteSend() {
 				<td>
 					<button type="button" class="btn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 					<button type="reset" class="btn">다시입력</button>
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/main';">${mode=='update'?'수정취소':'등록취소'}</button>
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/petsit/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 					<c:if test="${mode=='update'}">
 						<input type="hidden" name="petNum" value="${dto.petNum}">
 						<input type="hidden" name="page" value="${page}">

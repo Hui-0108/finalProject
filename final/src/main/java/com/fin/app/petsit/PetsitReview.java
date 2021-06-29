@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class PetsitReview {
 	private int rNum; //리뷰번호
+	private String mNick; //
 	
 	private String rTitle;//리뷰제목
 	private String rContent;//리뷰내용
@@ -87,6 +88,12 @@ public class PetsitReview {
 	}
 	public void setmProfileImg(String mProfileImg) {
 		this.mProfileImg = mProfileImg;
+	}
+	public String getmNick() {
+		return mNick;
+	}
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
 	}
 	
 	

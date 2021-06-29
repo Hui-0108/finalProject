@@ -100,6 +100,9 @@ public class PetsitController {
 		//글리스트 
 		List<Petsit> list = service.listPetsit(map);
 		
+		//별명 가져오기 
+		
+		
 		//리스트 글번호 만들기 
 		int listNum, n =0;
 		for(Petsit dto: list) {
@@ -152,7 +155,8 @@ public class PetsitController {
 	public String writeSubmit(Petsit dto, HttpSession session ) throws Exception {
 		//올린 아이디						  //HttpSession인터페이스: Client의 상태값을 서버측에 저장하여 Session 관리			
 		SessionInfo info=(SessionInfo)session.getAttribute("member"); //info에 세션에 저장된 값(member의 요소들?) 가져오기
-			
+		
+		
 		//사진파일은 꼭 root(webapp)에 저장해야함 
 		String root = session.getServletContext().getRealPath("/");
 		String pathname=root+"upload"+File.separator+"petsit";

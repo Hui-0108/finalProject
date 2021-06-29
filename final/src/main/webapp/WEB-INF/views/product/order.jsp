@@ -359,11 +359,11 @@ function orderOk(){
 		return;
 	}	
 		
-	iamport();
+	//iamport();
 	
 	
-	//f.action="${pageContext.request.contextPath}/product/list";
-	//f.submit();	
+	f.action="${pageContext.request.contextPath}/product/list";
+	f.submit();	
 	
 }
 

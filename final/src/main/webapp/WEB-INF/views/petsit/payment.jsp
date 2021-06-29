@@ -4,9 +4,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .petsitPayment {
 	font-size: 15px;
-	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
+	font-family: 'Cafe24SsurroundAir';
 	color: rgb(57, 60, 71);
 }
 
@@ -365,7 +382,7 @@ function paymentOk() {
 	var f = document.rvForm;
 
 	//결제완료 후 list페이지로
-	//f.action="${pageContext.request.contextPath}/petsit/list";
+	f.action="${pageContext.request.contextPath}/petsit/list";
 	//서버로 넘김
     //f.submit();
 	iamport();
@@ -413,7 +430,7 @@ function iamport(){
 		</tr>	
 		<tr class="content">
 			<td class="w600 tbl_cell alignNone">
-				&nbsp;<img width="400" height="200" border="0">
+				&nbsp;<img width="400" height="200" border="0" src="${pageContext.request.contextPath}/upload/petsit/${dto.petImg}">
 			</td>
 			<td class="w100 tbl_cell">
 				<input style="width: 95px;" type="text" name="checkIn" class="bookDate input" value="${dto.checkIn}" >&nbsp;~&nbsp;
@@ -481,9 +498,10 @@ function iamport(){
 					<input type="text" name="rDate" value="${dto.rDate}" class="input ipRdate">
 				</td>
 			</tr>	
-			<tr>
+			<tr align="center">		
+				<td></td>
 				<td>
-					<button type="button" class="orderProductBtn" onclick="paymentOk();">결제하기</button>
+					<button type="button" class="orderProductBtn" onclick="paymentOk();" style="margin-right:65px;">결제하기</button>
 				</td>
 			</tr>
 		</table>

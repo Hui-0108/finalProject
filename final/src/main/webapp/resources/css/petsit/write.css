@@ -2,13 +2,13 @@
 
 .petsitWrite {
 	font-size: 15px;
-	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
+	//font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif !important;
 	color: rgb(57, 60, 71);
+	font-family: "Cafe24SsurroundAir""
 }
 
 .petsitWrite .body-title {
 	width: 900px;
-	border: 3px solid blue;
 	margin: 0 auto;	
 }
 
@@ -16,6 +16,8 @@
 	width: 900px;
 	margin-top: 50px;
 	text-align: left;
+	margin-bottom: 25px;
+	font-family: 'GmarketSansMedium';
 	
 }
 
@@ -23,6 +25,7 @@
 	width: 100%;
 	border-spacing: 0;
 	border-collapse: collapse;
+	margin: 0 0;
 }
 
 .petsitWrite .table-content {
@@ -53,7 +56,7 @@
 }
 
 .petsitWrite .table-footer {
-	margin: 5px auto;
+	margin: 0px auto;
 }
 .petsitWrite .table-footer tr {
 	height:45px;
@@ -61,7 +64,7 @@
 }
 
 .petsitWrite .spaceNeed {
-	width: 80px;
+	width: 100px;
 	display: inline-block;
 }
 
@@ -83,4 +86,77 @@
 	cursor: pointer;
 }
 
+.petsitWrite .NboxTF {
+	width: 870px;
+	min-height:43px; 
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+	border: 1.5px solid #8C8C8C;
+}
 
+.petsitWrite .ahead {
+	width: 200px;
+	height: 60px;
+	vertical-align: middle;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+
+.petsitWrite .needVer {
+	vertical-align: middle;
+}
+
+
+.petsitWrite .boxShort{
+	width: 220px;
+	min-height:43px; 
+}
+
+.petsitWrite .boxContent {
+	width: 870px;
+	min-height:400px; 
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+	border: 1.5px solid #8C8C8C;
+}
+
+
+.petsitWrite .needCol {
+	box-shadow: rgb(0 0 0 / 3%) 0px 2px 3px 0px;
+	border: 1.5px solid #8C8C8C;
+}
+
+
+
+.petsitWrite input[type=radio]{
+    background-color: orange;
+    width: 14px;
+    height: 14px;
+}
+
+.petsitWrite input[type=radio]:checked{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+}
+
+.petsitWrite input[type=checkbox]{
+    background-color: orange;
+    width: 14px;
+    height: 14px;
+}
+
+.petsitWrite input[type=checkbox]:checked{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    width: 14px;
+    height: 14px;
+}
+
+
+.petsitWrite .tip {
+	color: orange;
+	font-family: 'GmarketSansMedium';
+}

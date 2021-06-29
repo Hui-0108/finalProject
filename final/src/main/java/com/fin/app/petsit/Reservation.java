@@ -7,7 +7,8 @@ public class Reservation {
 	private String orderTel;
 	private String orderEmail;
 	//private String mName;
-	
+	private String mNick;
+	private String petImg;//사진
 	
 	
 	//펫시터 예약
@@ -150,6 +151,19 @@ public class Reservation {
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
-	
+	public String getPetImg() {
+		return petImg;
+	}
+	public void setPetImg(String petImg) {
+		this.petImg = petImg;
+	}
+	public String getmNick() {
+		return mNick;
+	}
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
+	}
+
+
 	
 }	

@@ -3,13 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<style>
-.searchCondition ul li {
-	cursor: pointer;
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
-
-
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
+
 
 <script type="text/javascript">
 
@@ -138,7 +150,7 @@ $(function(){
 							<div class="listInfo-main">
 								<div class="main-L">
 									<p>
-									<c:if test="${dto.petYN ne 0}">#반려동물 있어요&nbsp; </c:if>
+									<c:if test="${dto.petYN ne 1}">#반려동물 있어요&nbsp; </c:if>
 									<c:if test="${dto.petYard ne 0}">#마당 보유&nbsp; </c:if>
 									<c:if test="${dto.petLarge ne 0}">#대형견 가능&nbsp; </c:if>								
 									<c:if test="${dto.petWalk ne 0}">#산책로 있어요&nbsp; </c:if>			
