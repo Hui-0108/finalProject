@@ -155,7 +155,7 @@ public class MemberServiceImpl implements MemberService {
 		mail.setReceiverEmail(dto.getmEmail());
 		
 		mail.setSenderEmail("ghiouw96@gmail.com");
-		mail.setSenderName("개묘개묘");
+		mail.setSenderName("Take A Look");
 		mail.setSubject("아이디 안내");
 		mail.setContent(result);
 		
