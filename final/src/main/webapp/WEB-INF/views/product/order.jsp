@@ -277,8 +277,8 @@ function orderOk(){
 	iamport();
 	
 	
-	//f.action="${pageContext.request.contextPath}/product/list";
-	//f.submit();	
+	f.action="${pageContext.request.contextPath}/product/list";
+	f.submit();	
 	
 }
 
@@ -425,7 +425,16 @@ function iamport(){
 	
 	var f = document.orderForm;
 
+	var url = "${pageContext.request.contextPath}/product/orders";
 
+	var query = $('form[name=orderForm]').serialize();
+	
+	//alert(query);
+	var fn = function(data){
+		var state = data.state;
+		console.log(state);
+	};
+	ajaxFun(url, "post", query, "json", fn);	
 
 	var finalPrice = $("input[name=finalPrice]").val();
 	
@@ -446,16 +455,7 @@ function iamport(){
 		if ( rsp.success ) {
 	
 			
-			var url = "${pageContext.request.contextPath}/product/orders";
-
-			var query = $('form[name=orderForm]').serialize();
-			
-			//alert(query);
-			var fn = function(data){
-				var state = data.state;
-				console.log(state);
-			};
-			ajaxFun(url, "post", query, "json", fn);		
+	
 						
 			
 			
