@@ -59,7 +59,12 @@ h3{
     font-size: 14px;
     color: #222;
     line-height: 28px;
+}
 
+.orderTable input[type=text], .selectmEmail{
+	height: 35px;
+    border-radius: 8px;
+    border: 1px solid darkgray;	
 }
 
 .payTitle{
@@ -74,12 +79,6 @@ h3{
     padding-left: 20px;    
 }
 
-.orderTable input[type=text], .selectmEmail{
-	height: 35px;
-    border-radius: 8px;
-    border: 1px solid darkgray;	
-}
-
 .topTb th{
 	height: 60px;
     border-top: 2px solid #d6d6d6;
@@ -89,7 +88,6 @@ h3{
     vertical-align: inherit;
     font-weight: bold;
 	text-align: center;
-	
 }
 
 .alignNone{
@@ -178,6 +176,93 @@ h3{
 .orderProductBtn{
 	border: 1px solid white;
     border-radius: 5px;	
+	box-shadow: 1px 3px 3px 0px rgb(0 0 0 / 10%);	
+	transition: 0.3s;      
+	font-family: GmarketSansMedium;	 	
+}
+.orderProductBtn:hover{
+	box-shadow: 2px 4px 3px 0px rgb(0 0 0 / 10%);
+}
+
+.finalCheck{
+	clear: both;
+}
+/*
+.finalTable1{
+	width: 50%;
+}
+.finalTable2{
+	width: 50%;
+}
+
+*/
+.finalTable1{
+	margin-top: 20px;
+}
+
+.finalTable2{
+	margin-top: 80px;
+    border-left: 10px solid orange;
+    margin-left: 5px;
+}
+
+.finalTable2 input{
+	border: none;
+	width: 130px;
+}
+
+.finalTable2 th{
+    text-align: left;
+    color: #222;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.finalCheckPayment1{
+    width: 40%;
+    border-bottom: 3px solid orange;
+    float: left;
+    margin-left: 130px;
+}
+
+.finalCheckPayment1 td{
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #222;
+    line-height: 28px;
+}
+
+.finalCheckPayment1 input[type=text]{
+	height: 35px;
+	border: none;
+}
+
+
+.finalCheckPayment2{
+    width: 40%;
+    float: left;
+    margin-left: 130px;
+    margin-bottom: 50px;    
+}
+
+.finalCheckPayment2 td{
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #222;
+    line-height: 28px;
+    width: 50%;
+}
+
+.fff{
+	float: right;
+}
+.mm{
+	margin-right: 145px;
+}
+
+.footer{
+	clear: both;
 }
 
 </style>
@@ -277,8 +362,8 @@ function orderOk(){
 	iamport();
 	
 	
-	f.action="${pageContext.request.contextPath}/product/list";
-	f.submit();	
+	//f.action="${pageContext.request.contextPath}/product/list";
+	//f.submit();	
 	
 }
 
@@ -425,16 +510,7 @@ function iamport(){
 	
 	var f = document.orderForm;
 
-	var url = "${pageContext.request.contextPath}/product/orders";
 
-	var query = $('form[name=orderForm]').serialize();
-	
-	//alert(query);
-	var fn = function(data){
-		var state = data.state;
-		console.log(state);
-	};
-	ajaxFun(url, "post", query, "json", fn);	
 
 	var finalPrice = $("input[name=finalPrice]").val();
 	
@@ -455,7 +531,16 @@ function iamport(){
 		if ( rsp.success ) {
 	
 			
-	
+			var url = "${pageContext.request.contextPath}/product/orders";
+
+			var query = $('form[name=orderForm]').serialize();
+			
+			//alert(query);
+			var fn = function(data){
+				var state = data.state;
+				console.log(state);
+			};
+			ajaxFun(url, "post", query, "json", fn);	
 						
 			
 			
@@ -649,50 +734,94 @@ function iamport(){
 				</th>
 				<td>
 					<input type="text" id="uMilePrice"  name="uMilePrice" value="0"> 
-					<div id="result" ></div>
-			
+					<div id="result" ></div>			
 				</td>
 			</tr>
 		</table>	
 		
 		<div class="finalPayment">
 			<h3>결제 확인</h3>
-		</div>		
-		<table class="orderTable table">
+		</div>	
+		<div class="finalCheck">
+		<div style="float: left;">
+		<table class="finalTable1">
+			<tr>
+				<td>
+					제품 출고는 주문 후 1~2일 이내 발송(주말/공휴일 제외)
+				</td>							
+			</tr>
+			<tr>
+				<td>
+					제주/도서산간 지역은 월~수요일 사이에만 출고가 가능하며,
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					기상악화 또는 택배사 사정에 따라 출고가 지연될 수 있으니 이점 양해 부탁드립니다.
+				</td>			
+			</tr>
+		</table>
+		<table class="finalTable2 ">						
+			<tr>
+				<th>
+					배송 예정일
+				</th>
+				<td>
+					<input type="text" name="sDelivDate" value="${dto.sDelivDate}" readonly="readonly">
+				</td>
+			</tr>		
+		</table>
+		</div>	
+		<table class="finalCheckPayment1">
+			<tr>
+				<td>
+					구매가
+				</td>
+				<td class="fff mm">
+					₩${sum}	
+				</td>
+			</tr>
+			<tr>
+				<td>
+					배송비
+				<td>				
+					<c:choose>
+						<c:when test="${dto.delivType != 0}"> 
+							<span class="fff mm">₩2000</span>
+						</c:when>
+						<c:otherwise>
+							<span class="fff mm">무료</span>
+						</c:otherwise>
+					</c:choose>				
+			</tr>						
 			<tr>
 				<td>
 					최종 결제 금액
 				</td>
-				<td>
-					<input type="text" id="finalPrice" name="finalPrice" data-price="${dto.finalPrice}" value="${dto.finalPrice}" readonly="readonly">
+				<td class="fff">
+					₩<input type="text" id="finalPrice" name="finalPrice" data-price="${dto.finalPrice}" value="${dto.finalPrice}" readonly="readonly">
 				</td>
-			</tr>
-			<tr>
-				<td>
-					배송 예정일
-				</td>
-				<td>
-					<input type="text" name="sDelivDate" value="${dto.sDelivDate}" readonly="readonly">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					배송안내
-					제품 출고는 주문 후 1~2일 이내 발송(주말/공휴일 제외)
-					제주/도서산간 지역은 월~수요일 사이에만 출고가 가능하며, 기상악화 또는 택배사 사정에 따라 출고가 지연될 수 있으니 이점 양해 부탁드립니다.					
-				</td>
-				<td>
-					<button type="button" class="orderProductBtn" onclick="orderOk(); ">결제하기</button>	
-				</td>	
 			</tr>			
 		</table>
-					
+		<table class="finalCheckPayment2">
+			<tr>
+				<td>
+					<button type="button" class="orderProductBtn" onclick="orderOk();" style=" width: 100%;height: 45px;">결제하기</button>	
+				</td>			
+			</tr>		
+		</table>
+		</div>
+		
 					<input type="text" name="sDetailPrice" value="${dto.sDetailPrice}" hidden="hidden">
 					<input type="text" name="storeMainOptNum" value="${dto.storeMainOptNum}" hidden="hidden">
 					<input type="text" name="storeSubOptNum" value="${dto.storeSubOptNum}" hidden="hidden">
 					<input type="text" name="storeDetailOptNum" value="${dto.storeDetailOptNum}" hidden="hidden">
 	</form>	
 	</div>
+	
+	
+	
+	
 	
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
