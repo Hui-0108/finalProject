@@ -15,7 +15,7 @@ function ajaxFun(url, method, dataType, query, fn) {
 		success:function(data){
 			 fn(data);
 			 //console.log(data);
-			 var count='<i class="fas fa-ambulance"></i> 오늘 구조된 동물 :'+data.response.body.items.item.length+'마리 &nbsp;&nbsp;';
+			 var count=' &nbsp;&nbsp;<i class="fas fa-ambulance"></i> 오늘 구조된 동물 :'+data.response.body.items.item.length+'마리 &nbsp;&nbsp;';
 			 $("#count").html(count);
 			 
 		},

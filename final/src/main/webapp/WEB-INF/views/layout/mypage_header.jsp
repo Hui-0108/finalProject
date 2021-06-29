@@ -3,13 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<style type="text/css">
-.top-bar{
-	background: #f3ac29;
-}
-
-</style>
-
 
 <div class="storeHeader">
 
@@ -18,7 +11,7 @@
 		<div class="top-info">
 		             <a href="${pageContext.request.contextPath}/" class="headTitleA" style="text-decoration: none;">
                 <span class="titleTop">
-                <img alt=""  width="100px" src="${pageContext.request.contextPath}/resources/images/product/logoWW.png">                         
+                <img alt=""  width="160px" src="${pageContext.request.contextPath}/resources/images/product/logoWW.png">                         
                 </span>
             </a>
 		</div>
@@ -75,16 +68,9 @@
 		<li class="nav-item active item">
 	        <a class="nav-link" href="${pageContext.request.contextPath}/mypage/changePwd">비밀번호 변경 <span class="sr-only">(current)</span></a>
 	    </li>
-      <li class="nav-item dropdown item">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       	   고객센터
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">공지사항</a>
-  	      <a class="dropdown-item" href="#">이벤트</a>
-          <a class="dropdown-item" href="#">FAQ</a>
-        </div>
-      </li> 	       	                              
+		<li class="nav-item active item">
+	        <a class="nav-link" href="${pageContext.request.contextPath}/center/notice">공지사항 <span class="sr-only">(current)</span></a>
+	    </li>	       	                              
     </ul>
 
   </div>
