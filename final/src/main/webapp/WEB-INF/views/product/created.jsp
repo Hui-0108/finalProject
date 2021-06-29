@@ -11,6 +11,19 @@
     font-style: normal;
 }
 
+@font-face {/*본문 내용*/
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*강조하는 곳*/
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .imgLayout {
 	max-width: 600px;
 	padding: 5px;
@@ -43,6 +56,8 @@
 }
 
 .createBtn{
+	width: 100px;
+	height : 35px;
     border: none;
     color: whitesmoke;
     border-radius: 5px;
@@ -62,6 +77,102 @@
 	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
 	transition: 0.3s;  
 	font-family: GmarketSansMedium;	 
+}
+
+.categoryList select{
+    border: 2px solid #023047;	
+}
+
+.productCreateForm input[type=text]{
+    width: 250px;
+    border-radius: 7px;
+    border: 1px solid #023047;
+}
+
+.productCreateForm{
+	padding: 0;
+	width: 1300px;
+	margin: auto;
+	font-family: Cafe24SsurroundAir;
+}
+
+.productCreateForm .productTableForm{
+	margin: auto;
+	width: 100%;
+}
+.productCreateForm .productTable{
+	margin: auto;
+	width: 800px;
+}
+
+.productCreateForm .productCreateTitle{
+	margin-top: 40px;
+	font-family: GmarketSansMedium, sans-serif;
+}
+.productCreateForm .imgPreView {
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 200px;
+    line-height: 45px;
+    border-radius: 45px;
+    background: #eee;
+    position: relative;
+    z-index: 9999;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    font-size: 9px;
+    font-family: 나눔고딕;
+    margin-bottom: 20px;
+    margin-top: 15px;    
+}
+
+.productCreateForm .productCreateSelect{
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    margin: 30px 100px 30px 0px;
+    border-radius: 25px;
+}
+
+.productCreateForm .productTableForm ul{
+	list-style: none;
+}
+.productCreateForm .categoryList{
+	float: left;
+}
+
+.productCreateForm .imgLeft{
+	float: left;
+    clear: both;
+}
+
+.productCreateForm .contentLeft{
+	float: left;
+	padding-left: 0px;	
+}
+
+.productCreateForm .contentClear{
+	clear: both;
+	padding-top: 20px;
+    padding-left: 80px;	
+}
+.productCreateForm .imgText{
+	padding-left: 5px;
+    font-size: 20px;
+}
+
+.productCreateForm .categoryHead{
+	height: 30px;
+}
+
+#smart_editor2 #smart_editor2_content {
+    border: 1px solid #b5b5b5;
+    width: 700px;
+}
+.productCreateForm .tableFooter{
+	padding-left: 180px;
+	margin: 50px 0 80px 0px;
 }
 
 </style>
