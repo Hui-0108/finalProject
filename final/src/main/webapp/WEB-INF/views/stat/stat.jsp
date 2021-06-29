@@ -5,6 +5,46 @@
 <%-- <jsp:useBean id="toDay" class="java.util.Date" />
 <fmt:formatDate value="${toDay}" pattern="yyyyMMdd" /> --%>
 
+<style type="text/css">
+.statMain{
+	margin: auto;
+	padding: 0;
+
+}
+
+.main {
+	font-family: 'Cafe24Ssurround';
+	font-size: 70px;
+	margin-top: 100px;
+	padding-left: 150px;
+	padding-top: 100px;
+	font-size: 60px;
+	text-align: left;
+}
+
+.sub {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 70px;
+	margin-top: 10px;
+	padding-left: 150px;
+	padding-top: 10px;
+	font-size: 30px;
+	text-align: left;
+}
+.statContent{
+
+}
+
+#today {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 20px;
+	text-align: center;
+}
+
+
+</style>
+
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script type="text/javascript">
@@ -196,23 +236,23 @@ $(function(){
 <!--      	<p style="padding: 5px;">
      		<button type="button" id="btnAnimal">유기동물 발생 현황</button>
      	</p> -->
-     	
-<img width="850" height="400" style="opacity: 70%; margin-right: 130px; margin-bottom: 250px; border: ; border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px;
-			-webkit-border-radius: 100px;" src="${pageContext.request.contextPath}/resources/images/stat/main.jpg" align="right"/>     	
-<h2 class="main">유기동물 통계</h2>
-<h5 class="sub">오늘도 버려지는 아이들이 있습니다.</h5>
-<div id="dogCatcontainer" class="dogCatcontainer" align="center" style="width: 95%;"></div>
-<br>
-<br>
-<br>
-<br>
-<div id="Catdogcontainer" class="Catdogcontainer" align="center" style= "width: 90%;"></div>
-<br>
-<br>
-<br>
-<br>
-<!-- <div class="totalCount" align="center" style="width: 95%;"></div> -->
-<i class="fas fa-dog" align="center" style="width: 95%;"></i><div id="today" align="center" style="width: 95%;"></div>
-
-<!-- <div id="Animal" align="center" style="width: 95%;"></div> -->
+    <div class="statMain"> 	
+    	<div>
+			<img width="850" height="400" style="opacity: 70%; margin-right: 130px; margin-bottom: 250px; border: ; border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px;
+						-webkit-border-radius: 100px;" src="${pageContext.request.contextPath}/resources/images/stat/main.jpg" align="right"/>     	
+			<div class="main">유기동물 통계</div>
+			<div class="sub">오늘도 버려지는 아이들이 있습니다.</div>
+		</div>
+		<div id="dogCatcontainer" class="dogCatcontainer" align="center" style="width: 95%; "></div>
+			<br><br><br><br>
+		<div id="Catdogcontainer" class="Catdogcontainer" align="center" style= "width: 90%;"></div>
+			<br><br><br><br>
+		<!-- <div class="totalCount" align="center" style="width: 95%;"></div> -->
+		<hr>
+		<div class="statContent">
+			<i class="fas fa-dog" align="center" style="width: 95%;"></i>
+			<div id="today" align="center" style="width: 95%;"></div>
+		</div>
+	</div>
+	<!-- <div id="Animal" align="center" style="width: 95%;"></div> -->
 
