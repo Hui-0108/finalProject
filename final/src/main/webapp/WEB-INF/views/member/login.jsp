@@ -91,7 +91,7 @@
     font-size: 17px; 
 	background: #023047;
 	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
-	transition: 0.3s;  
+	transition: 0.5s;  
 	font-family: GmarketSansMedium;	 
 }
 .loginBtn:hover{
@@ -99,6 +99,40 @@
 	background: #073f5a;
 	box-shadow: inset -5px -3px 7px 1px rgb(0 0 0 / 10%),4px 3px 7px 1px rgb(0 0 0 / 10%);	
 	font-family: GmarketSansMedium;
+}
+
+.btn { 
+	display:block; 
+	width: 370px;
+    height: 50px;
+	line-height:40px; 
+	border:1px #8ecae6 solid; 
+	margin:15px auto; 
+	background-color: #8ecae6;
+	text-align:center; 
+	font-size: 17px; 
+	cursor: pointer; 
+	color:#333; 
+	transition:all 0.9s, color 0.7; 
+	font-family: GmarketSansMedium;	 
+	box-shadow:inset -2px -2px 7px 1px rgb(0 0 0 / 10%), 4px 3px 7px 1px rgb(0 0 0 / 10%);
+}
+.btn:hover{
+	color:#fff;
+}
+
+.hover1:hover{
+ box-shadow:370px 0 0 0 rgba(0,0,0,0.5) inset; 
+ }
+ 
+.textHead{
+    background: orange;
+    color: white;
+    width: 380px;
+    margin: auto;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
 }
 </style>
 
@@ -124,15 +158,21 @@ function sendLogin() {
 </script>
 <div class="body-container">
 	<div class="logInBody-main">
-		<div class="pc">
-	    	<img src="${pageContext.request.contextPath}/resources/images/login/painting.jpg" class="painting">
-	    </div>
-	    <span>사지않고 입양하는 당신을 응원합니다!</span>  	
-	    <form class="form-signin" name="loginForm" method="post">
+	        <div class="pc">
+	        </div>
+	        <div class="textHead">떼껄룩의 회원이 되어 다양한 혜택을 누려보세요</div >
+
+	    <form class="form-signin" name="loginForm" method="post" style="margin-top: 30px;">
 	        <h3 class="form-signin-heading">떼껄룩 회원 로그인</h3>  
 	        <input type="text" id="mId" name="mId" class="form-control loginTF" autofocus="autofocus" placeholder="아이디">
 	        <input type="password" id="mPwd" name="mPwd" class="form-control loginTF" placeholder="패스워드">
-	        <button class="loginBtn" type="button" onclick="sendLogin();">로그인 <span class="glyphicon glyphicon-ok"></span></button>
+	        <button class="btn hover1"" type="button" onclick="sendLogin();">로그인 <span class="glyphicon glyphicon-ok"></span></button>
+	        <hr>
+		<div class="pc">
+	    	<img src="${pageContext.request.contextPath}/resources/images/login/painting.jpg" class="painting">
+	    </div>
+	    <span>회원서비스 이용하기</span> 
+	    		 		
 	        <div class="center">
 					<a href="${pageContext.request.contextPath}/member/signup">회원가입</a> <span>|</span>
 					<a href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a> <span>|</span>
